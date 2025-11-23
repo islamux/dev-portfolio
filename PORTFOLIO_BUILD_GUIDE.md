@@ -210,6 +210,33 @@ Before diving into phases, understand this roadmap as a junior:
     pnpm add -D eslint prettier eslint-config-prettier husky lint-staged
     npx husky init
     ```
+    **Husky:**
+    is a tool that lets you run scripts automatically during Git events, such as:
+
+    pre-commit
+    pre-push
+    post-merge
+
+For example, you can run ESLint, tests, or formatting before allowing a commit.
+
+When you run:
+
+    npx husky init
+
+Husky will:
+
+Create a .husky/ directory
+
+Add a default pre-commit script
+
+Add or update the "prepare" script inside package.json
+
+Why do we use npx with Husky?
+
+Because Husky is not meant to be installed globally, and npx lets you run it without installing it globally.
+
+- npx runs the package without a global install
+    Using npx ensures you always use the correct version for the current project.
 
 5.  **EditorConfig:**
 
