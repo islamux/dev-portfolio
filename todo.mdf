@@ -1,0 +1,5 @@
+- Is tailwind.config.js best practice or tsx?
+**When Fixed:**  
+Once Next.js releases a fix (likely 16.1.0+), you can switch back to `next/font/google` for better optimization.
+
+
