@@ -267,6 +267,7 @@ export function Button({
   className = "",
   ...props
 }: ButtonProps) {
+
   // Base styles (applied to all buttons)
   const baseStyles =
     "inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed";
@@ -339,6 +340,14 @@ export default function TestPage() {
   );
 }
 ```
+
+### ⚠️ Common Button Component Issues to Avoid:
+
+If you're using an existing Button component that doesn't work, check for these issues:
+
+1. **Typo in prop name:** It should be `variant` (not `varient`)
+2. **Missing `"use client"` directive:** Required for interactivity
+3. **Export style:** Should use named export `export function Button()` (not default export)
 
 ---
 
@@ -520,14 +529,22 @@ export default function RootLayout({
 
 Design tokens are reusable values (colors, fonts, spacing) that ensure visual consistency.
 
-### File: `tailwind.config.ts`
+### ⚠️ File Name Note:
 
-```ts
-import type { Config } from "tailwindcss";
+Your project uses `tailwind.config.js` (not `.ts` as shown in examples).
 
-const config: Config = {
-  content: ["./app/**/*.{js,ts,jsx,tsx,mdx}", "./src/**/*.{js,ts,jsx,tsx,mdx}"],
-  darkMode: "class", // Enable class-based dark mode
+### File: `tailwind.config.js`
+
+```js
+// tailwind.config.js
+import { type } from 'tailwindcss';
+
+module.exports = {
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  darkMode: "class",
   theme: {
     extend: {
       colors: {
@@ -560,9 +577,13 @@ const config: Config = {
   },
   plugins: [],
 };
-
-export default config;
 ```
+
+### ⚠️ Critical: Content Paths
+
+The `content` array is **ESSENTIAL** - without it, Tailwind won't scan your files and classes won't work! Make sure it includes:
+- `./app/**/*.{js,ts,jsx,tsx,mdx}` - For Next.js app router
+- `./src/**/*.{js,ts,jsx,tsx,mdx}` - For your components
 
 ---
 
