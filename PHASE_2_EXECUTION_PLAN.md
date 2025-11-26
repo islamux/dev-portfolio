@@ -13,6 +13,8 @@
 **What You'll Build:**
 
 - ✅ Base UI components (Container, Button, Icon)
+  - ✅ **FIXED:** Icon multi-path rendering (sun, menu, close icons)
+  - ✅ **FIXED:** Button component variant prop typo in SiteHeader
 - ✅ Site Header with navigation, language switcher, and dark mode toggle
 - ✅ Site Footer with social links
 - ✅ Tailwind design tokens (colors, fonts, spacing)
@@ -696,7 +698,7 @@ export function SiteHeader() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link
-            href="/"
+        href="/"
             className="text-xl font-bold text-gray-900 dark:text-white"
           >
             Islamux
@@ -890,7 +892,6 @@ export function SiteFooter() {
                 </li>
               </ul>
             </div>
-
             {/* Social */}
             <div>
               <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-4">
@@ -1174,6 +1175,36 @@ Move dynamic content to Client Component with `"use client"` directive.
 1. Check icon name matches key in `icons` object
 2. Verify `currentColor` is inheriting text color
 3. Add className with text color: `className="text-gray-900 dark:text-white"`
+
+---
+
+### Issue 6: Multi-Path Icons Not Rendering (sun, menu, close)
+
+**Symptoms:** Icons like sun, menu, and close don't display properly or show incomplete graphics
+
+**Root Cause:** Multi-path icons require separate `<path>` elements for each command, not a single string with multiple commands.
+
+**Solution:** Update `Icon.tsx` to support both single and multi-path icons:
+
+```tsx
+// Define multi-path icons as arrays:
+sun: [
+  "M12 1v2",
+  "M12 21v2",
+  "M4.22 4.22l1.42 1.42",
+  // ... etc
+]
+
+// Render logic:
+const pathArray = Array.isArray(paths) ? paths : [paths];
+return (
+  <svg>
+    {pathArray.map((path, index) => (
+      <path key={index} d={path} />
+    ))}
+  </svg>
+);
+```
 
 ---
 

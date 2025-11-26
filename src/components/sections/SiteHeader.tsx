@@ -1,0 +1,114 @@
+'use client';
+
+import Link from "next/link";
+import Container from "../Container";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
+import Button from "../ui/Button";
+import Icon from "../ui/Icon";
+
+export default function SiteHeader() {
+  // uses
+  const [mounted, setMounted] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { theme, setTheme } = useTheme();
+  const pathname = usePathname();
+
+  // Avoid hydration mismatch
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [pathname]);
+
+  const navLink = [
+    { href: "/", label: "Home" },
+    { href: "/about", label: "About" },
+    { href: "/projects", label: "Projects" },
+    { href: "/contact", label: "Contact" },
+
+  ];
+  return (
+    <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/80 backdrop-blur-sm dark:border-gray-800 dark:bg-gray-900/80">
+      <Container>
+        <div className="flex h-16 items-center justify-between">
+          {/*Logo*/}
+          <Link href="/"
+            className="text-xl font-bold text-gray-900 dark:text-white">
+            Islamux
+          </Link>
+          {/*Desktop Navigation*/}
+          <nav className="hidden md:flex items-center space-x-6">
+            {navLink.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`text-sm font-medium transition-colors hover:text-brand-500 ${pathname === link.href
+                  ? "text-brand-500"
+                  : "text-gray-700 dark:text-gray-300"
+                  }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+          {/* Right side ; Theme toggle + Language*/}
+          <div className="flex items-center space-x-4">
+            {/* Dark mode Toggle*/}
+            {mounted && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                aria-label="Toggle dark mode"
+              >
+                {theme === "dark" ? (
+                  <Icon name="sun" size={20} />
+                ) : (
+                  <Icon name="moon" size={20} />
+                )}
+              </Button>
+            )}
+            {/*Language Swicher (placeholder)*/}
+            <select className="text-sm bg-transparent border border-gray-300 dark:border-gray-700 rounded px-2 py-1" defaultValue="en">
+              <option value="en">EN</option>
+              <option value="ar">AR</option>
+              <option value="fr">FR</option>
+            </select>
+            {/* Mobile Menue Button*/}
+            <Button
+              variant="ghost"
+              size="sm"
+              className="md:hidden"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              <Icon name={isMenuOpen ? "close" : "menu"} size={24} />
+            </Button>
+          </div>
+        </div>
+        {/*Mobile Navigation*/}
+        {isMenuOpen && (
+          <nav className="md:hidden py-4 space-y-2 border-t border-gray-200 dark:border-gray-800">
+            {navLink.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`block px-4 py-2 rounded-lg transition-colors ${pathname === link.href
+                  ? "bg-brand-50 text-brand-500 dark:bg-amber-900/30"
+                  : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                  }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+        )}
+      </Container>
+    </header>
+  );
+}
