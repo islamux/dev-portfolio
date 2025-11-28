@@ -39,6 +39,18 @@ RECAPTCHA_SECRET_KEY=xxx  # optional spam protection
 
 Before diving into phases, understand this roadmap as a junior:
 
+### 📊 Project Timeline Estimates
+
+| Phase                       | Days           | Hours             | Difficulty            |
+| --------------------------- | -------------- | ----------------- | --------------------- |
+| Phase 2 - Layout & Design   | 3-4            | 24-32             | Intermediate          |
+| Phase 3 - Pages & Content   | 3-4            | 24-32             | Intermediate          |
+| Phase 4 - i18n & RTL        | 2-3            | 16-24             | Intermediate-Advanced |
+| Phase 5 - API & Features    | 2-3            | 16-24             | Intermediate-Advanced |
+| Phase 6 - PWA & Performance | 2-3            | 16-24             | Intermediate          |
+| Phase 7 - Testing & Deploy  | 3-4            | 24-32             | Intermediate-Advanced |
+| **TOTAL**                   | **15-21 days** | **120-168 hours** | -                     |
+
 ### Week 1-2: Foundation (Before Phase 0)
 
 **Learn these concepts first:**
@@ -233,6 +245,14 @@ Following clean code practices makes your portfolio maintainable and demonstrate
         pnpm add -D eslint prettier eslint-config-prettier husky lint-staged
         npx husky init
         ```
+
+        **Recommended VS Code Extensions:**
+        - ESLint
+        - Prettier
+        - Tailwind CSS IntelliSense
+        - TypeScript Vue Plugin (Volar) (if applicable, or just standard TypeScript)
+        - Error Lens (optional, for inline errors)
+
         **Husky:**
 
     **I UNISTALL IT TEMPRORLY TO MAKE THE PROJECT PUSH MORE RAPID**
@@ -372,6 +392,10 @@ README.md
   **Fix:** Install `eslint-config-prettier` and add to `.eslintrc.js`
 - **Issue:** "Module not found" after installing package  
   **Fix:** Restart dev server (`Ctrl+C`, then `pnpm dev`)
+- **Issue:** Port 3000 already in use  
+  **Fix:** Run `lsof -ti:3000 | xargs kill -9` or use `pnpm dev -- -p 3001`
+- **Issue:** TypeScript errors persist in VS Code  
+  **Fix:** `Cmd/Ctrl + Shift + P` → "TypeScript: Restart TS Server"
 
 ### 🎓 Junior Learning Notes
 
@@ -522,18 +546,18 @@ npm install -g pnpm
 
 ### Acceptance Criteria
 
-- [ ] Header/footer on all pages
-- [ ] Responsive at breakpoints: 640px, 768px, 1024px, 1280px
-- [ ] Dark mode toggles and persists (localStorage)
-- [ ] Keyboard nav works (Tab, Enter, Escape)
+- [x] Header/footer on all pages
+- [x] Responsive at breakpoints: 640px, 768px, 1024px, 1280px
+- [x] Dark mode toggles and persists (localStorage)
+- [x] Keyboard nav works (Tab, Enter, Escape)
 
 ### Checkpoints
 
-1.  [ ] Header renders with logo + nav items
-2.  [ ] Dark mode toggle works (no flash on reload)
-3.  [ ] Mobile menu opens/closes on hamburger click
-4.  [ ] Footer accepts social links as props
-5.  [ ] Footer shows all social links (passed via props) with correct URLs and developer info
+1.  [x] Header renders with logo + nav items
+2.  [x] Dark mode toggle works (no flash on reload)
+3.  [x] Mobile menu opens/closes on hamburger click
+4.  [x] Footer accepts social links as props
+5.  [x] Footer shows all social links (passed via props) with correct URLs and developer info
 
 ### Common Pitfalls
 
@@ -2084,12 +2108,12 @@ export function ContactSection() {
 
 - [ ] **Phase 0:** Content files in `/content`, 3 languages ready
 - [ ] **Phase 1:** Next.js + TypeScript + Tailwind + ESLint
-- [ ] **Phase 2:** Header/Footer + dark mode + responsive
-- [ ] **Phase 3:** Pages + projects list + contact form
-- [ ] **Phase 4:** i18n (EN/FR/AR) + RTL
-- [ ] **Phase 5:** Projects API + contact API + /uses
-- [ ] **Phase 6:** PWA + SEO + Lighthouse >90
-- [ ] **Phase 7:** Tests + CI + Vercel deploy
+- [ ] **[Phase 2: Layout & Design](./PHASE_2_EXECUTION_PLAN.md):** Header/Footer + dark mode + responsive
+- [ ] **[Phase 3: Pages & Content](./PHASE_3_EXECUTION_PLAN.md):** Pages + projects list + contact form
+- [ ] **[Phase 4: i18n & RTL](./PHASE_4_EXECUTION_PLAN.md):** i18n (EN/FR/AR) + RTL
+- [ ] **[Phase 5: API & Features](./PHASE_5_EXECUTION_PLAN.md):** Projects API + contact API + /uses
+- [ ] **[Phase 6: PWA & Performance](./PHASE_6_EXECUTION_PLAN.md):** PWA + SEO + Lighthouse >90
+- [ ] **[Phase 7: Testing & Deploy](./PHASE_7_EXECUTION_PLAN.md):** Tests + CI + Vercel deploy
 - [ ] **Phase 8:** Analytics + docs + launch
 
 ---
@@ -2284,6 +2308,36 @@ Before you announce your portfolio:
 - [ ] No typos (use Grammarly)
 - [ ] Ask 2-3 friends to test
 - [ ] Fix all their feedback
+
+---
+
+## 🎉 After Launch: What's Next?
+
+Congratulations on launching your portfolio! Here's how to continue growing:
+
+### Showcase Your Work
+
+1. **Share on social media** (@nextjs, #100DaysOfCode on Twitter)
+2. **Post on LinkedIn** with screenshots and what you learned
+3. **Write a blog post** on Dev.to or Medium about your journey
+4. **Add to your resume** with the live URL
+
+### Continue Learning
+
+Next features to consider:
+
+- **Blog** - Add MDX blog with syntax highlighting
+- **Animations** - Framer Motion or GSAP for smooth transitions
+- **CMS** - Sanity or Contentful for easier content management
+- **Authentication** - NextAuth.js for protected pages
+- **Database** - Supabase or PlanetScale for dynamic content
+
+### Give Back to the Community
+
+- Help others learning Next.js on Discord/Reddit
+- Contribute to open-source projects
+- Share your code on GitHub (make it public!)
+- Write tutorials about what you learned
 
 ---
 

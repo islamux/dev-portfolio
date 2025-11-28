@@ -1317,6 +1317,7 @@ export async function POST(request: NextRequest) {
 import { Container } from "@/components/ui/Container";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { Icon } from "@/components/ui/Icon";
+import { socialLinks } from "@/data/socialLinks";
 
 export const metadata = {
   title: "Contact - Islamux",
@@ -1351,24 +1352,20 @@ export default function ContactPage() {
                 <Icon name="mail" size={20} />
                 fathi733@gmail.com
               </a>
-              <a
-                href="https://github.com/islamux"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 text-gray-600 dark:text-gray-400 hover:text-brand-500 transition-colors"
-              >
-                <Icon name="github" size={20} />
-                @islamux on GitHub
-              </a>
-              <a
-                href="https://twitter.com/islamux"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 text-gray-600 dark:text-gray-400 hover:text-brand-500 transition-colors"
-              >
-                <Icon name="twitter" size={20} />
-                @islamux on Twitter
-              </a>
+
+              {/* Social Links from Data Source */}
+              {socialLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 text-gray-600 dark:text-gray-400 hover:text-brand-500 transition-colors"
+                >
+                  <Icon name={link.icon} size={20} />
+                  {link.name}
+                </a>
+              ))}
             </div>
           </div>
 
