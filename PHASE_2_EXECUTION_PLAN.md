@@ -16,7 +16,7 @@
   - ✅ **FIXED:** Icon multi-path rendering (sun, menu, close icons)
   - ✅ **FIXED:** Button component variant prop typo in SiteHeader
 - ✅ Site Header with navigation, language switcher, and dark mode toggle
-- ✅ Site Footer with social links
+- ✅ Site Footer with configurable social links (via props) and developer info
 - ✅ Tailwind design tokens (colors, fonts, spacing)
 - ✅ Dark mode functionality using `next-themes`
 - ✅ Responsive design (mobile, tablet, desktop)
@@ -127,6 +127,7 @@ Create the following folders in your project:
 mkdir -p src/components/ui
 mkdir -p src/components/sections
 mkdir -p src/hooks
+mkdir -p src/data
 ```
 
 ### Explanation:
@@ -134,12 +135,110 @@ mkdir -p src/hooks
 - `src/components/ui/` - For reusable, generic components (Button, Container, etc.)
 - `src/components/sections/` - For page-specific sections (Header, Footer, Hero, etc.)
 - `src/hooks/` - For custom React hooks (e.g., `useTheme`, `useMediaQuery`)
+- `src/data/` - For static data and content (social links, projects, skills, etc.)
 
 ### Verify:
 
 ```bash
 ls -la src/components/
 # Should show: ui/ and sections/
+ls -la src/
+# Should show: data/ folder
+```
+
+---
+
+## **Step 1b: Create Static Data Files** ⭐
+
+**Estimated Time:** 15 minutes
+
+### What It Does:
+
+Organize static data (like social links, navigation menus, project data) in a dedicated `src/data/` folder. This follows the **Separation of Concerns** principle.
+
+### Why This Is a Best Practice:
+
+✅ **Single Source of Truth** - Update your social links in one place  
+✅ **Reusability** - Use the same data across multiple components  
+✅ **Type Safety** - Centralized TypeScript type definitions  
+✅ **Maintainability** - Easy to find and update content  
+✅ **Scalability** - As your portfolio grows, add more data files (projects, testimonials, etc.)
+
+### File: `src/data/socialLinks.ts`
+
+```tsx
+import { SocialLink } from "@/types";
+
+/**
+ * Social media links displayed in site footer
+ * Update this array to add/remove social links
+ */
+export const socialLinks: SocialLink[] = [
+  {
+    name: "GitHub",
+    href: "https://github.com/islamux",
+    icon: "github",
+  },
+  {
+    name: "Twitter",
+    href: "https://twitter.com/islamux",
+    icon: "twitter",
+  },
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/in/fathi-alqadasi-7893471b/",
+    icon: "linkedin",
+  },
+  {
+    name: "GitLab",
+    href: "https://gitlab.com/islamux",
+    icon: "gitlab",
+  },
+];
+```
+
+### 🎓 Understanding the Pattern:
+
+**Why `src/data/` instead of `src/config/`?**
+
+- **`config/`** is for environment-specific settings (API keys, feature flags)
+- **`data/`** is for static content that defines what users see
+- This makes your project structure self-documenting and semantic
+
+**Alternative folder names:**
+
+- `src/constants/` - Good for app-wide constant values
+- `src/lib/` - Better for utilities and helper functions (not data)
+
+### Usage Example:
+
+In your `layout.tsx`:
+
+```tsx
+import { socialLinks } from "@/data/socialLinks";
+
+export default function RootLayout({ children }: RootLayoutProps) {
+  return (
+    <html lang="en">
+      <body>
+        <SiteFooter socialLinks={socialLinks} />
+      </body>
+    </html>
+  );
+}
+```
+
+### 🚀 Future Expansion:
+
+As you build your portfolio, add more data files:
+
+```
+src/data/
+├── socialLinks.ts      # Social media links
+├── projects.ts         # Portfolio projects (Phase 3)
+├── skills.ts          # Your technical skills
+├── experience.ts      # Work experience
+└── testimonials.ts    # Client testimonials
 ```
 
 ---
@@ -152,7 +251,7 @@ ls -la src/components/
 
 A `Container` component wraps your content and provides consistent max-width and padding across all pages.
 
-### File: `src/components/ui/Container.tsx`
+### File: `src/components/Container.tsx`
 
 ```tsx
 import React from "react";
@@ -269,7 +368,6 @@ export function Button({
   className = "",
   ...props
 }: ButtonProps) {
-
   // Base styles (applied to all buttons)
   const baseStyles =
     "inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed";
@@ -539,13 +637,10 @@ Your project uses `tailwind.config.js` (not `.ts` as shown in examples).
 
 ```js
 // tailwind.config.js
-import { type } from 'tailwindcss';
+import { type } from "tailwindcss";
 
 module.exports = {
-  content: [
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: ["./app/**/*.{js,ts,jsx,tsx,mdx}", "./src/**/*.{js,ts,jsx,tsx,mdx}"],
   darkMode: "class",
   theme: {
     extend: {
@@ -569,8 +664,8 @@ module.exports = {
         mono: ["var(--font-geist-mono)", "Courier New", "monospace"],
       },
       spacing: {
-        "128": "32rem",
-        "144": "36rem",
+        128: "32rem",
+        144: "36rem",
       },
       maxWidth: {
         "8xl": "88rem",
@@ -584,6 +679,7 @@ module.exports = {
 ### ⚠️ Critical: Content Paths
 
 The `content` array is **ESSENTIAL** - without it, Tailwind won't scan your files and classes won't work! Make sure it includes:
+
 - `./app/**/*.{js,ts,jsx,tsx,mdx}` - For Next.js app router
 - `./src/**/*.{js,ts,jsx,tsx,mdx}` - For your components
 
@@ -698,7 +794,7 @@ export function SiteHeader() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link
-        href="/"
+            href="/"
             className="text-xl font-bold text-gray-900 dark:text-white"
           >
             Islamux
@@ -814,34 +910,16 @@ export function SiteHeader() {
 
 ```tsx
 import Link from "next/link";
-import { Container } from "../ui/Container";
+import { Container } from "../Container";
 import { Icon } from "../ui/Icon";
+import { SocialLink } from "@/types";
 
-export function SiteFooter() {
+interface SiteFooterProps {
+  socialLinks: SocialLink[];
+}
+
+export function SiteFooter({ socialLinks }: SiteFooterProps) {
   const currentYear = new Date().getFullYear();
-
-  const socialLinks = [
-    {
-      name: "GitHub",
-      href: "https://github.com/islamux",
-      icon: "github",
-    },
-    {
-      name: "Twitter",
-      href: "https://twitter.com/islamux",
-      icon: "twitter",
-    },
-    {
-      name: "LinkedIn",
-      href: "https://www.linkedin.com/in/fathi-alqadasi-7893471b/",
-      icon: "linkedin",
-    },
-    {
-      name: "GitLab",
-      href: "https://gitlab.com/islamux",
-      icon: "gitlab",
-    },
-  ];
 
   return (
     <footer className="border-t border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-900">
@@ -854,10 +932,32 @@ export function SiteFooter() {
               <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-4">
                 About
               </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
                 Full-stack developer passionate about open source and building
                 great user experiences.
               </p>
+              <div className="text-sm text-gray-600 dark:text-gray-400">
+                <p>
+                  Developed by{" "}
+                  <a
+                    href="https://github.com/islamux/salam-nextjs"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-brand-500 hover:underline"
+                  >
+                    Islamux
+                  </a>
+                </p>
+                <p>
+                  Email:{" "}
+                  <a
+                    href="mailto:fathi733@gmail.com"
+                    className="text-brand-500 hover:underline"
+                  >
+                    fathi733@gmail.com
+                  </a>
+                </p>
+              </div>
             </div>
 
             {/* Quick Links */}
@@ -934,6 +1034,10 @@ export function SiteFooter() {
 **Estimated Time:** 1 hour
 
 ### Create Skip-to-Content Link
+
+### What It Does:
+
+A skip-to-content link is an accessibility feature that lets keyboard and screen reader users bypass navigation and jump directly to the main content.
 
 **File: `src/components/ui/SkipToContent.tsx`**
 
@@ -1019,6 +1123,7 @@ import { Providers } from "./providers";
 import { SkipToContent } from "@/components/ui/SkipToContent";
 import { SiteHeader } from "@/components/sections/SiteHeader";
 import { SiteFooter } from "@/components/sections/SiteFooter";
+import { socialLinks } from "@/data/socialLinks";
 
 export const metadata = {
   title: "Islamux - Full-Stack Developer",
@@ -1040,7 +1145,7 @@ export default function RootLayout({
           <main id="main-content" className="flex-grow">
             {children}
           </main>
-          <SiteFooter />
+          <SiteFooter socialLinks={socialLinks} />
         </Providers>
       </body>
     </html>
@@ -1050,9 +1155,18 @@ export default function RootLayout({
 
 ### 🎓 Understanding the Layout:
 
+- **Import from `@/data/socialLinks`** - Following the best practice from Step 1b (Single Source of Truth)
 - **`flex flex-col min-h-screen`** - Makes footer stick to bottom
 - **`flex-grow`** on `<main>` - Makes main content take up available space
 - **`id="main-content"`** - Target for skip-to-content link
+
+### ✅ Best Practice Applied:
+
+By importing `socialLinks` from `src/data/socialLinks.ts`, you can now:
+
+- Update social links in one place
+- Reuse them in other components (e.g., contact page, about page)
+- Keep your layout component clean and focused on structure
 
 ---
 
@@ -1193,7 +1307,7 @@ sun: [
   "M12 21v2",
   "M4.22 4.22l1.42 1.42",
   // ... etc
-]
+];
 
 // Render logic:
 const pathArray = Array.isArray(paths) ? paths : [paths];
@@ -1224,7 +1338,8 @@ Before marking Phase 2 complete, verify:
 - [ ] Keyboard navigation works (Tab through all interactive elements)
 - [ ] Focus visible on all interactive elements
 - [ ] Skip-to-content link appears on Tab press
-- [ ] All social links in footer work
+- [ ] Site Footer accepts social links as props
+- [ ] All social links in footer work (passed via props)
 - [ ] No console errors
 - [ ] No TypeScript errors (`pnpm typecheck`)
 - [ ] No ESLint errors (`pnpm lint`)
@@ -1235,7 +1350,7 @@ Before marking Phase 2 complete, verify:
 
 ### What You Learned:
 
-1. **Component Architecture:** Breaking UI into reusable pieces
+1. **Component Architecture:** Breaking UI into reusable pieces, passing data as props to promote reusability and separation of concerns
 2. **Props & TypeScript:** Strongly typing component interfaces
 3. **Client vs Server Components:** When to use interactivity
 4. **Responsive Design:** Mobile-first Tailwind approach

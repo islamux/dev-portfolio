@@ -22,7 +22,7 @@ GitHub: https://github.com/islamux
 
 GitLab: https://gitlab.com/islamux
 
-vercel https://vercel.com/islamuxs-projects 
+vercel https://vercel.com/islamuxs-projects
 
 netlify https://app.netlify.com/teams/fathi733/projects
 
@@ -77,23 +77,27 @@ Lint and typecheck run in CI skeleton.
 Files / Layout suggestion (initial):
 
 /app
-  /layout.tsx
-  /page.tsx        // home
-  /about/page.tsx
-  /projects/page.tsx
-  /contact/page.tsx
+/layout.tsx
+/page.tsx // home
+/about/page.tsx
+/projects/page.tsx
+/contact/page.tsx
 /src
-  /components
-  /lib
-  /hooks
-  /types
+/components
+/ui // primitives (Button, Container)
+/sections // page sections (Header, Footer)
+/data // static data (socialLinks, projects, skills)
+socialLinks.ts
+/lib
+/hooks
+/types
 /content
-  home.md
-  about.en.md
-  about.fr.md
-  about.ar.md
+home.md
+about.en.md
+about.fr.md
+about.ar.md
 /public
-  /images
+/images
 tailwind.config.js
 tsconfig.json
 .eslintrc.js
@@ -107,6 +111,16 @@ Goal: implement global layout, header, footer, responsive nav, theme, typography
 Tasks:
 
 Create SiteHeader, SiteFooter, Container, Button, Icon components (atomic).
+
+Organize static data in src/data/ folder:
+
+Create src/data/socialLinks.ts for social media links (Twitter, GitHub, GitLab, LinkedIn).
+
+Import and pass as props to components (e.g., import { socialLinks } from '@/data/socialLinks' in layout).
+
+Benefits: Single source of truth, reusable across components, type-safe, easy to maintain.
+
+Why src/data/ not src/config/? config/ is for environment settings (API keys), data/ is for static content users see.
 
 Use Tailwind with utility classes + small design tokens in src/styles or tailwind.config.js (extend fonts, colors).
 
@@ -122,6 +136,8 @@ Acceptance criteria:
 
 Header + footer appear on all pages.
 
+Footer social links are passed as props from src/data/socialLinks.ts (not hardcoded).
+
 Site is fully responsive at common breakpoints.
 
 Dark mode toggles and persists (localStorage).
@@ -130,7 +146,9 @@ Opinionated patterns:
 
 Components: small, single-responsibility, prop-driven, typed props.
 
-Naming: components/ui/* for primitives, components/sections/* for page sections.
+Naming: components/ui/_ for primitives, components/sections/_ for page sections.
+
+Data organization: src/data/\* for static content (social links, projects), imported via props - never hardcoded in JSX.
 
 Prefer composition over inheritance: Card with slots vs many variants.
 
@@ -286,6 +304,8 @@ Keep it small: Avoid heavy UI libraries; Tailwind primitives + a small component
 
 Type everything: Prefer clear Types in src/types — it prevents junior mistakes.
 
+Data separation: Keep static data in src/data/ (social links, projects, skills) - single source of truth, imported via props.
+
 Design tokens: keep colors, spacing, fonts in tailwind.config.js rather than inline magic values.
 
 Accessibility: keyboard navigation and aria for nav, forms, and modals.
@@ -298,35 +318,35 @@ Privacy-first analytics: avoid heavy trackers.
 
 Quick checklist you (junior) can follow per phase
 
- Phase 0: Content files committed in /content
+Phase 0: Content files committed in /content
 
- Phase 1: Repo + Next + Tailwind + lint + TS strict
+Phase 1: Repo + Next + Tailwind + lint + TS strict
 
- Phase 2: Header/Footer + responsive layout + dark mode
+Phase 2: Header/Footer + responsive layout + dark mode
 
- Phase 3: Pages wired to content + Projects list + Contact mail
+Phase 3: Pages wired to content + Projects list + Contact mail
 
- Phase 4: i18n + RTL for Arabic
+Phase 4: i18n + RTL for Arabic
 
- Phase 5: Projects importer + API routes
+Phase 5: Projects importer + API routes
 
- Phase 6: PWA + image + SEO polish
+Phase 6: PWA + image + SEO polish
 
- Phase 7: Tests + CI + Vercel deploy
+Phase 7: Tests + CI + Vercel deploy
 
- Phase 8: Analytics + LICENSE + docs
+Phase 8: Analytics + LICENSE + docs
 
 Example package.json scripts (suggested)
 {
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "typecheck": "tsc --noEmit",
-    "test": "vitest",
-    "format": "prettier --write ."
-  }
+"scripts": {
+"dev": "next dev",
+"build": "next build",
+"start": "next start",
+"lint": "next lint",
+"typecheck": "tsc --noEmit",
+"test": "vitest",
+"format": "prettier --write ."
+}
 }
 
 Final notes for you

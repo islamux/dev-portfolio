@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import Button from "../ui/Button";
-import Icon from "../ui/Icon";
+import { Icon } from "../ui/Icon";
 
 export default function SiteHeader() {
   // uses

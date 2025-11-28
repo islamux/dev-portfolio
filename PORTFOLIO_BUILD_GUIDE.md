@@ -121,6 +121,37 @@ Before diving into phases, understand this roadmap as a junior:
 4.  **Timeline** - Your journey (optional but nice)
 5.  **Contact CTA** - Make it easy to reach you
 
+### Code Organization Principles ⭐
+
+Following clean code practices makes your portfolio maintainable and demonstrates professional development skills:
+
+1.  **Separate Data from Components**
+    - ✅ Store static data in `src/data/` (social links, projects, skills)
+    - ✅ Import data into components via props
+    - ❌ Don't hardcode data directly in JSX
+2.  **Single Source of Truth**
+    - Update content in ONE place (e.g., `src/data/socialLinks.ts`)
+    - Reuse across multiple components (footer, contact page, about page)
+    - Prevents inconsistencies and duplicate code
+3.  **Folder Structure**
+    ```
+    src/
+    ├── data/          # Static content (WHAT to display)
+    │   ├── socialLinks.ts
+    │   ├── projects.ts
+    │   └── skills.ts
+    ├── components/    # UI components (HOW to display)
+    │   ├── ui/
+    │   └── sections/
+    ├── lib/           # Utilities & helpers
+    └── types/         # TypeScript definitions
+    ```
+4.  **Why This Matters**
+    - **Maintainability:** Change your LinkedIn URL once, not in 5 files
+    - **Type Safety:** TypeScript catches errors at build time
+    - **Scalability:** Easy to add new data (testimonials, experience)
+    - **Professionalism:** Shows you understand clean architecture
+
 ### Inspiration (Study These)
 
 - [Lee Robinson](https://leerob.io) - Simple, fast, clean
@@ -293,6 +324,8 @@ Because Husky is not meant to be installed globally, and npx lets you run it wit
   /components
     /ui                  # primitives (Button, Card)
     /sections            # page sections (Hero, ProjectList)
+  /data                  # static data (socialLinks, projects, skills)
+    /socialLinks.ts      # social media links
   /lib
     /content.ts          # content loaders
   /hooks
@@ -376,22 +409,71 @@ npm install -g pnpm
 
 ### Tasks
 
-1.  **Create base components** (`src/components/ui/`):
-    - `Container.tsx` - max-width wrapper
-    - `Button.tsx` - primary/secondary variants
-    - `Icon.tsx` - SVG icon wrapper
+1.  **Create base components**:
+    - `src/components/Container.tsx` - max-width wrapper
+    - `src/components/ui/Button.tsx` - primary/secondary variants
+    - `src/components/ui/Icon.tsx` - SVG icon wrapper
 
-2.  **Site header** (`src/components/sections/SiteHeader.tsx`):
+2.  **Organize static data** (`src/data/`) ⭐:
+
+    Create a dedicated folder for static data following best practices:
+
+    ```tsx
+    // src/data/socialLinks.ts
+    import { SocialLink } from "@/types";
+
+    export const socialLinks: SocialLink[] = [
+      { name: "GitHub", href: "https://github.com/islamux", icon: "github" },
+      { name: "Twitter", href: "https://twitter.com/islamux", icon: "twitter" },
+      {
+        name: "LinkedIn",
+        href: "https://linkedin.com/in/fathi-alqadasi-7893471b/",
+        icon: "linkedin",
+      },
+      { name: "GitLab", href: "https://gitlab.com/islamux", icon: "gitlab" },
+    ];
+    ```
+
+    **Why `src/data/` instead of `src/config/`?**
+    - `config/` → Environment-specific settings (API keys, feature flags)
+    - `data/` → Static content that users see (social links, navigation menus)
+    - Makes your project self-documenting and semantic
+
+    **Benefits:**
+    - ✅ Single Source of Truth (update in one place)
+    - ✅ Reusability (use across multiple components)
+    - ✅ Type Safety (centralized TypeScript definitions)
+    - ✅ Maintainability (easy to find and update)
+    - ✅ Scalability (add `projects.ts`, `skills.ts`, etc. as you grow)
+
+3.  **Site header** (`src/components/sections/SiteHeader.tsx`):
     - Logo + nav links
     - Language switcher
     - Dark mode toggle
     - Mobile hamburger menu (<768px)
 
-3.  **Site footer** (`src/components/sections/SiteFooter.tsx`):
-    - Social links (Twitter, GitHub, GitLab, LinkedIn)
+4.  **Site footer** (`src/components/sections/SiteFooter.tsx`):
+    - Accepts social links as props
+    - Import from `src/data/socialLinks.ts` in layout
     - Copyright + year
+    - **Developer Info:** "Developed by Islamux" (link to GitHub) + Email
 
-4.  **Tailwind config** - design tokens:
+    ```tsx
+    // app/layout.tsx
+    import { socialLinks } from "@/data/socialLinks";
+
+    export default function RootLayout({ children }) {
+      return (
+        <html>
+          <body>
+            <SiteFooter socialLinks={socialLinks} />
+          </body>
+        </html>
+      );
+    }
+    ```
+
+5.  **Tailwind config** - design tokens:
 
     ```js
     // tailwind.config.js
@@ -414,7 +496,7 @@ npm install -g pnpm
     };
     ```
 
-5.  **Dark mode** with `next-themes`:
+6.  **Dark mode** with `next-themes`:
 
     ```bash
     pnpm add next-themes
@@ -433,7 +515,7 @@ npm install -g pnpm
     }
     ```
 
-6.  **Accessibility:**
+7.  **Accessibility:**
     - Skip-to-content link
     - Keyboard focus styles (`:focus-visible`)
     - ARIA labels for nav
@@ -450,7 +532,8 @@ npm install -g pnpm
 1.  [ ] Header renders with logo + nav items
 2.  [ ] Dark mode toggle works (no flash on reload)
 3.  [ ] Mobile menu opens/closes on hamburger click
-4.  [ ] Footer shows all social links with correct URLs
+4.  [ ] Footer accepts social links as props
+5.  [ ] Footer shows all social links (passed via props) with correct URLs and developer info
 
 ### Common Pitfalls
 
@@ -586,8 +669,8 @@ className = "bg-white dark:bg-gray-900 text-gray-900 dark:text-white";
     ```bash
     pnpm add gray-matter
     ```
-     In short, gray-matter is a utility tool for making ordinary text files smarter and more organized by adding machine-readable metadata. 
 
+    In short, gray-matter is a utility tool for making ordinary text files smarter and more organized by adding machine-readable metadata.
 
     ** 📝 Full implementation with TypeScript types and error handling:**
 
@@ -1640,6 +1723,30 @@ export function ProjectCard({
     </div>
   );
 }
+
+// Example for SiteFooterProps
+interface SocialLink {
+  name: string;
+  href: string;
+  icon: string;
+}
+
+interface SiteFooterProps {
+  socialLinks: SocialLink[];
+}
+
+export function SiteFooter({ socialLinks }: SiteFooterProps) {
+  // ... component logic using socialLinks
+  return (
+    <footer>
+      {socialLinks.map((link) => (
+        <a key={link.name} href={link.href}>
+          {link.name}
+        </a>
+      ))}
+    </footer>
+  );
+}
 ```
 
 ### Data Fetching Pattern
@@ -1785,7 +1892,7 @@ export function ProjectsSection() {
     <section
       className="
       relative py-20
-      bg-gradient-to-b from-white to-gray-50
+      bg-linear-to-b from-white to-gray-50
       dark:from-gray-900 dark:to-gray-800
     "
     >
@@ -1827,7 +1934,7 @@ export function SkillsSection() {
               key={skill}
               className="
                 px-4 py-2 rounded-lg
-                bg-gradient-to-r from-blue-500 to-purple-600
+                bg-linear-to-r from-blue-500 to-purple-600
                 text-white font-medium
                 shadow-md hover:shadow-lg
                 transition-shadow

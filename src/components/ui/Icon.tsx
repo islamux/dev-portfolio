@@ -1,11 +1,11 @@
 interface IconProps {
   name: string;
-  size: number;
-  className: string;
+  size?: number;
+  className?: string;
 }
 
 
-export default function Icon({ name, size = 24, className = "" }: IconProps) {
+export function Icon({ name, size = 24, className = "" }: IconProps) {
   // Map icon name to SVG paths
   const icons: Record<string, string[] | string> = {
     github:
