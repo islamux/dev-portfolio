@@ -6,9 +6,9 @@ export default function TestPage() {
     <Container className="py-8 space-y-8">
       <h1 className="text-2xl font-bold mb-4">Button Test</h1>
       <div className='space-x-4'>
-        <Button varient='primary'>Srimary</Button>
-        <Button varient='secondary'>Secondary</Button>
-        <Button varient='ghost'>Ghost</Button>
+        <Button variant='primary'>Srimary</Button>
+        <Button variant='secondary'>Secondary</Button>
+        <Button variant='ghost'>Ghost</Button>
       </div>
       <div className='space-x-4'>
         <Button size='sm'>Small</Button>
