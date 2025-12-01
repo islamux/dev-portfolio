@@ -1,0 +1,36 @@
+[
+  {
+    "id": "athkarix",
+    "name": "Athkarix",
+    "description": "Islamic prayer reminders and Athkar app built with Flutter",
+    "longDescription": "A comprehensive Islamic app featuring prayer time notifications, daily supplications (Athkar), and Quranic verses. Built with Flutter for cross-platform compatibility.",
+    "tech": ["Flutter", "Dart", "SQLite"],
+    "github": "https://github.com/islamux/athkarix",
+    "demo": "https://athkarix.netlify.app",
+    "image": "/images/projects/athkarix.jpg",
+    "featured": true,
+    "year": "2023"
+  },
+  {
+    "id": "portfolio",
+    "name": "Developer Portfolio",
+    "description": "Modern portfolio site built with Next.js 15 and TypeScript",
+    "longDescription": "A fully responsive, multilingual portfolio website featuring dark mode, SEO optimization, and PWA capabilities. Demonstrates best practices in modern web development.",
+    "tech": ["Next.js", "TypeScript", "Tailwind CSS"],
+    "github": "https://github.com/islamux/dev-portfolio",
+    "demo": "https://islamux.vercel.app",
+    "image": "/images/projects/portfolio.jpg",
+    "featured": true,
+    "year": "2024"
+  },
+  {
+    "id": "open-source",
+    "name": "Open Source Contributions",
+    "description": "Contributing to various open-source projects",
+    "tech": ["JavaScript", "TypeScript", "React"],
+    "github": "https://github.com/islamux",
+    "featured": false,
+    "year": "2022-2024"
+  }
+]
+
