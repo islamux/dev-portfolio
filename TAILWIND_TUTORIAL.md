@@ -50,6 +50,7 @@ A comprehensive guide to all Tailwind CSS properties used in this portfolio proj
 ## Spacing (Padding & Margin)
 
 ### Padding
+- **`pt-4`** - padding to all sides 
 - **`p-6`** - Applies padding of 1.5rem (24px) on all sides
 - **`p-4`** - Applies padding of 1rem (16px) on all sides
 - **`p-2`** - Applies padding of 0.5rem (8px) on all sides

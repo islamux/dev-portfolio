@@ -313,7 +313,6 @@ export function getContentBySlug(
     if (!fs.existsSync(filePath)) {
       throw new Error(`Content file not found: content/${locale}/${slug}.md`);
     }
-
     const fileContents = fs.readFileSync(filePath, "utf8");
     const { data, content } = matter(fileContents);
 
@@ -419,8 +418,7 @@ export function getProjectsData(locale: string = "en"): Project[] {
  *
  * @param id - Unique project identifier
  * @param locale - Language code
- * @returns Project object or null if not found
- */
+ * @returns Project object or null if not found */
 export function getProjectById(
   id: string,
   locale: string = "en"
@@ -931,6 +929,7 @@ export default function AboutPage() {
 }
 ```
 
+-------- {/*HERE I"M STOPED  @Islamux"*/}
 ---
 
 ## **Step 10: Create Projects Page**

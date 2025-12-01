@@ -2331,6 +2331,8 @@ Next features to consider:
 - **CMS** - Sanity or Contentful for easier content management
 - **Authentication** - NextAuth.js for protected pages
 - **Database** - Supabase or PlanetScale for dynamic content
+- **shadcn/ui** - Beautiful, accessible component library built on Radix UI
+- **Radix UI** - Unstyled, accessible components for building high-quality design systems
 
 ### Give Back to the Community
 
