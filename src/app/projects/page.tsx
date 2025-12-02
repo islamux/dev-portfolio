@@ -4,7 +4,7 @@ import Container from "@/components/Container";
 import ProjectsList from "@/components/sections/ProjectsList";
 import { getProjectData } from "@/lib/content";
 
-export default function ProjectPage() {
+export default function ProjectsPage() {
 
   const projects = getProjectData("en");
 

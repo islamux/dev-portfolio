@@ -929,9 +929,6 @@ export default function AboutPage() {
 }
 ```
 
--------- {/*HERE I"M STOPED  @Islamux"*/}
----
-
 ## **Step 10: Create Projects Page**
 
 **Estimated Time:** 1.5 hours
@@ -1070,6 +1067,8 @@ export function ContactForm() {
     message: "",
     honeypot: "", // Spam trap
   });
+  // Another way to get name,email,...
+  // ...
 
   const [status, setStatus] = useState<
     "idle" | "loading" | "success" | "error"
