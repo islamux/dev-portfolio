@@ -9,7 +9,7 @@ import { error } from "console";
 
 
 export function ContactForm() {
-  const [status, setStatus] = useState < "idle" | "loading" "success" | "error" > ("idle");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const [formData, setFormData] = useState<ContactFromData>({
     name: "",
@@ -72,7 +72,7 @@ export function ContactForm() {
           id="email"
           required
           value={formData.email}
-          onChange={(e) => setFormData({ ...formData, email, e.target.value })}
+          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-brand-500"
           placeholder="fathi733@gmail.com"
         />
