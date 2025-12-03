@@ -5,7 +5,9 @@ import { SkipToContent } from "@/components/ui/SkipToContent";
 import SiteHeader from "@/components/sections/SiteHeader";
 import { SiteFooter } from "@/components/sections/SiteFooter";
 import { socialLinks } from "@/data/socialLinks";
+import { defaultMetadata } from "./metadata";
 
+{/*i'm not sure or Metadata or defaultMetadata !*/ }
 export const metadata: Metadata = {
   title: "Islamux - Portfolio",
   description: "Full-stack developer portfolio",
