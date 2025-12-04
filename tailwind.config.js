@@ -1,5 +1,4 @@
 // tailwind.config.js
-import { type } from 'tailwindcss';
 
 module.exports = {
   content: [
@@ -38,6 +37,7 @@ module.exports = {
     },
   },
   plugins: [
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
     require("@tailwindcss/typography"),
   ],
 };

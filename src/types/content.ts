@@ -4,7 +4,7 @@ export interface ContentFrontmatter {
   date?: string;
   tags?: string[];
   image?: string;
-  [key: string]: any;
+  [key: string]: unknown; // Allow additional custom fields
 }
 
 export interface ContentData {
@@ -27,7 +27,7 @@ export interface Project {
   year?: string;
 }
 
-export interface ContactFromData {
+export interface ContactFormData {
   name: string;
   email: string;
   message: string;
