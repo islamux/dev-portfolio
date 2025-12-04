@@ -2,6 +2,7 @@ import Link from "next/link";
 import Container from "@/components/Container";
 import type { SocialLink } from "@/types";
 import { Icon } from "@/components/ui/Icon";
+import { siteConfig } from "@/app/metadata";
 
 interface SiteFooterProps {
   socialLinks: SocialLink[];
@@ -19,8 +20,7 @@ export function SiteFooter({ socialLinks }: SiteFooterProps) {
           </div>
           <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-4">About</h3>
           <p className="text-sm text-gray-900 dark:text-gray-400">
-            Full-stack developer passionate about open source and building
-            great user experiences.
+            {siteConfig.description}
           </p>
         </div>
         {/*Quick Links*/}
@@ -76,7 +76,7 @@ export function SiteFooter({ socialLinks }: SiteFooterProps) {
         </div>
         <div className="border-t border-gray-200 dark:border-gray-800 pt-8">
           <p className="text-sm text-center text-gray-600 dark:text-gray-400">
-            © {currentYear} Islamux. Built with Next.js and Tailwind CSS.
+            © {currentYear} {siteConfig.name}. Built with Next.js and Tailwind CSS.
 
           </p>
         </div>

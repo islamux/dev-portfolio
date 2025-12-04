@@ -1,17 +1,15 @@
 'use client';
 
-import { ContactFromData } from "@/types/content";
-import { flightRouterStateSchema } from "next/dist/server/app-render/types";
-import { Html } from "next/document";
+import { ContactFormData } from "@/types/content";
 import { FormEvent, useState } from "react";
 import Button from "../ui/Button";
-import { error } from "console";
+
 
 
 export function ContactForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
-  const [formData, setFormData] = useState<ContactFromData>({
+  const [formData, setFormData] = useState<ContactFormData>({
     name: "",
     email: "",
     message: "",
@@ -100,7 +98,7 @@ export function ContactForm() {
       {status === "success" && (
         <div className="p-4 bg-green-50 dark:bg-gray-900/20 border border-green-200 dark:border-gray-800 rounded-lg">
           <p className="text-gray-800 dark:text-gray-400">
-            ✓ Message sent successfully! I'll get back to you soon.
+            ✓ Message sent successfully! I&apos;ll get back to you soon.
           </p>
         </div>
       )}

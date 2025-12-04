@@ -15,13 +15,15 @@ export default function SiteHeader() {
   const { theme, setTheme } = useTheme();
   const pathname = usePathname();
 
-  // Avoid hydration mismatch
+  // Avoid hydration mismatch - standard Next.js pattern for client-only state
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 
-  // Close mobile menu when route changes
+  // Close mobile menu when route changes - valid state synchronization
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsMenuOpen(false);
   }, [pathname]);
 
