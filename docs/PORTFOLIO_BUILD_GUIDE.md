@@ -26,6 +26,15 @@ RECAPTCHA_SECRET_KEY=xxx  # optional spam protection
 - **PRs:** Require CI passing + 1 approval
 - **Protection:** Lock `main` branch
 
+**Before Starting Each Phase:**
+
+```bash
+# Create and switch to feature branch (or switch if exists)
+git checkout -b feature/phase-X-name || git checkout feature/phase-X-name
+# Example for Phase 2:
+git checkout -b feature/phase-2-layout || git checkout feature/phase-2-layout
+```
+
 ### Performance Budget
 
 - Lighthouse Performance: >90

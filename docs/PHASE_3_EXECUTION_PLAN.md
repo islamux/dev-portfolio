@@ -125,6 +125,19 @@ By the end of Phase 3, you will understand:
 
 ---
 
+## **Step 0: Create Feature Branch** ⭐
+
+Before starting Phase 3, create and switch to a feature branch:
+
+```bash
+# Create and switch to Phase 3 feature branch (or switch if it exists)
+git checkout -b feature/phase-3-content || git checkout feature/phase-3-content
+```
+
+**Why?** Keeps `main` stable, isolates changes, enables easy rollback, professional workflow.
+
+---
+
 ## **Step 1: Install Dependencies**
 
 **Estimated Time:** 10 minutes

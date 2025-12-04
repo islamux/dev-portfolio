@@ -100,6 +100,19 @@ By the end of Phase 6, you will understand:
 
 ---
 
+## **Step 0: Create Feature Branch** ⭐
+
+Before starting Phase 6, create and switch to a feature branch:
+
+```bash
+# Create and switch to Phase 6 feature branch (or switch if it exists)
+git checkout -b feature/phase-6-performance || git checkout feature/phase-6-performance
+```
+
+**Why?** Keeps `main` stable, isolates changes, enables easy rollback, professional workflow.
+
+---
+
 ## **Step 1: Install and Configure PWA**
 
 **Estimated Time:** 30 minutes

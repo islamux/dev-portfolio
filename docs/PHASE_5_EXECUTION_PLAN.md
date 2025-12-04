@@ -101,6 +101,19 @@ By the end of Phase 5, you will understand:
 
 ---
 
+## **Step 0: Create Feature Branch** ⭐
+
+Before starting Phase 5, create and switch to a feature branch:
+
+```bash
+# Create and switch to Phase 5 feature branch (or switch if it exists)
+git checkout -b feature/phase-5-api || git checkout feature/phase-5-api
+```
+
+**Why?** Keeps `main` stable, isolates changes, enables easy rollback, professional workflow.
+
+---
+
 ## **Step 1: Choose and Setup Email Service**
 
 **Estimated Time:** 30 minutes

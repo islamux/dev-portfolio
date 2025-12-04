@@ -118,6 +118,19 @@ By the end of Phase 2, you will understand:
 
 ---
 
+## **Step 0: Create Feature Branch** ⭐
+
+Before starting Phase 2, create and switch to a feature branch:
+
+```bash
+# Create and switch to Phase 2 feature branch (or switch if it exists)
+git checkout -b feature/phase-2-layout || git checkout feature/phase-2-layout
+```
+
+**Why?** Keeps `main` stable, isolates changes, enables easy rollback, professional workflow.
+
+---
+
 ## **Step 1: Create Folder Structure**
 
 **Estimated Time:** 15 minutes

@@ -116,7 +116,22 @@ By the end of Phase 7, you will understand:
 
 ---
 
-## 📝 Step-by-Step Implementation Guide
+## Step-by-Step Implementation
+
+**Step 0: Create Feature Branch** ⭐
+
+Before starting Phase 7, create and switch to a feature branch:
+
+```bash
+# Create and switch to Phase 7 feature branch (or switch if it exists)
+git checkout -b feature/phase-7-testing || git checkout feature/phase-7-testing
+```
+
+**Why?** Keeps `main` stable, isolates changes, enables easy rollback, professional workflow.
+
+---
+
+**Step 1: Set up Vitest**
 
 ---
 

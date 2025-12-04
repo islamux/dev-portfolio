@@ -95,6 +95,29 @@ By the end of Phase 1, you will understand:
 
 ---
 
+## **Step 0: Create Feature Branch** ⭐
+
+**Estimated Time:** 2 minutes
+
+Before starting Phase 1 work, create a dedicated feature branch:
+
+```bash
+# Create and switch to Phase 1 feature branch (or switch if it exists)
+git checkout -b feature/phase-1-baseline || git checkout feature/phase-1-baseline
+```
+
+**Why use feature branches?**
+
+- ✅ Keep `main` branch stable
+- ✅ Isolate changes for easier review
+- ✅ Enable parallel work on different features
+- ✅ Easy to rollback if needed
+- ✅ Professional Git workflow
+
+**The `||` operator:** Creates branch if it doesn't exist, otherwise switches to existing branch.
+
+---
+
 ## **Step 1: Verify Prerequisites**
 
 **Estimated Time:** 15 minutes

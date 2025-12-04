@@ -100,6 +100,19 @@ By the end of Phase 4, you will understand:
 
 ---
 
+## **Step 0: Create Feature Branch** ⭐
+
+Before starting Phase 4, create and switch to a feature branch:
+
+```bash
+# Create and switch to Phase 4 feature branch (or switch if it exists)
+git checkout -b feature/phase-4-i18n || git checkout feature/phase-4-i18n
+```
+
+**Why?** Keeps `main` stable, isolates changes, enables easy rollback, professional workflow.
+
+---
+
 ## **Step 1: Install next-intl**
 
 **Estimated Time:** 5 minutes
