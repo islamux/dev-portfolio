@@ -5,7 +5,7 @@ export const siteConfig = {
   title: "Islamux - Full-Stack Developer",
   description:
     "Full-stack developer specializing in Next.js, TypeScript, and Flutter. Building modern web applications.",
-  url: "https://yoursite.com",
+  url: "https://islamux.me",
   email: "fathi733@gmail.com",
   social: {
     github: "https://github.com/islamux",

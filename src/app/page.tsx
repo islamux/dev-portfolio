@@ -1,21 +1,21 @@
 import type { Metadata } from 'next';
 import HomePage from "@/components/HomePage";
+import { siteConfig } from './metadata';
 
 export const metadata: Metadata = {
-  title: "Islamux - Full-Stack Developer",
-  description:
-    "Full-stack developer specializing in Next.js, TypeScript, and Flutter",
+  title: siteConfig.title,
+  description: siteConfig.description,
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://yoursite.com",
-    siteName: "Islamux Portfolio",
+    url: siteConfig.url,
+    siteName: siteConfig.name,
     images: [
       {
         url: "/images/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Islamux Portfolio",
+        alt: siteConfig.title,
       },
     ],
   },

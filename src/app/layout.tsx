@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import "./globals.css";
 import { Providers } from "./providers";
 import { SkipToContent } from "@/components/ui/SkipToContent";
@@ -7,11 +6,7 @@ import { SiteFooter } from "@/components/sections/SiteFooter";
 import { socialLinks } from "@/data/socialLinks";
 import { defaultMetadata } from "./metadata";
 
-{/*i'm not sure or Metadata or defaultMetadata !*/ }
-export const metadata: Metadata = {
-  title: "Islamux - Portfolio",
-  description: "Full-stack developer portfolio",
-};
+export const metadata = defaultMetadata;
 
 interface RootLayoutProps {
   children: React.ReactNode;
@@ -28,7 +23,7 @@ export default function RootLayout({
         <SkipToContent />
         <Providers>
           <SiteHeader />
-          <main id="main-content" className="flex-grow">
+          <main id="main-content" className="grow">
             {children}
           </main>
           <SiteFooter socialLinks={socialLinks} />

@@ -3,8 +3,10 @@ import { ContactForm } from '@/components/sections/ContactForm';
 import { Icon } from '@/components/ui/Icon';
 import { socialLinks } from '@/data/socialLinks';
 import type { Metadata } from 'next';
+import { siteConfig } from '../metadata';
+
 export const metadata: Metadata = {
-  title: "Contact - Islamux",
+  title: `Contact - ${siteConfig.name}`,
   description: "Get in touch with me",
 };
 
@@ -21,7 +23,7 @@ export default function ContactPage() {
               Get In Touch
             </h1>
             <p className='text-xl text-gray-600 dark:text-gray-400'>
-              Have a project in mind ? Let's talk about it.
+              Have a project in mind? Let&apos;s talk about it.
             </p>
           </header>
 
@@ -32,10 +34,10 @@ export default function ContactPage() {
             </h2>
             <div className='space-y-3'>
               <a
-                href='mailto:fathi733@gmail.com'
+                href={`mailto:${siteConfig.email}`}
                 className='flex items-center gap-3 text-gray-600 dark:text-gray-400 hover:text-brand-500 transition-colors'>
                 <Icon name='mail' size={20} />
-                fathi733@gmail.com
+                {siteConfig.email}
               </a>
 
               {/*Social Links from Data Source*/}

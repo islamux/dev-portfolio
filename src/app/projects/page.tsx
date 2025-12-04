@@ -1,8 +1,13 @@
-
-
+import type { Metadata } from 'next';
 import Container from "@/components/Container";
 import ProjectsList from "@/components/sections/ProjectsList";
 import { getProjectData } from "@/lib/content";
+import { siteConfig } from '../metadata';
+
+export const metadata: Metadata = {
+  title: `Projects - ${siteConfig.name}`,
+  description: "A collection of my work and contributions",
+};
 
 export default function ProjectsPage() {
 

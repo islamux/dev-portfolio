@@ -2,11 +2,11 @@ import type { Metadata } from 'next';
 import { getContentBySlug } from "@/lib/content";
 import Container from '@/components/Container';
 import { MarkdownContent } from '@/components/ui/MarkdownContent';
+import { siteConfig } from '../metadata';
 
 export const metadata: Metadata = {
-  title: "About - Islamux",
+  title: `About - ${siteConfig.name}`,
   description: "Learn more about my journey as a full-stack developer",
-
 };
 
 export default function AboutPage() {
