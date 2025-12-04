@@ -9,12 +9,14 @@
 ## 🚀 Features
 
 - ✅ **Server Components** - Fast, SEO-friendly by default
-- ✅ **TypeScript** - Full type safety
+- ✅ **TypeScript** - Full type safety with strict mode
+- ✅ **Centralized Metadata** - Single source of truth for SEO and site config
 - ✅ **Responsive Design** - Mobile-first with Tailwind CSS
-- ✅ **Dark Mode** - Automatic theme switching
+- ✅ **Dark Mode** - Automatic theme switching with persistence
 - ✅ **i18n Ready** - English, French, Arabic (RTL) support
 - ✅ **Performance Optimized** - Lighthouse score >90
 - ✅ **Accessible** - WCAG AA compliant
+- ✅ **Clean Codebase** - ESLint + Prettier, zero warnings
 
 ## 📋 Prerequisites
 
@@ -57,19 +59,35 @@ pnpm --version  # Should be 8.0+
 ```
 dev_portfolio/
 ├── src/
-│   ├── app/              # Next.js app router
-│   │   ├── layout.tsx    # Root layout
-│   │   ├── page.tsx      # Home page
-│   │   └── globals.css   # Global styles
-│   ├── components/       # React components
-│   │   ├── ui/          # Reusable UI primitives
-│   │   └── sections/    # Page sections
-│   ├── lib/             # Utilities & helpers
-│   ├── hooks/           # Custom React hooks
-│   └── types/           # TypeScript types
-├── content/             # Markdown content
-├── public/              # Static assets
-└── PORTFOLIO_BUILD_GUIDE.md  # Comprehensive build guide
+│   ├── app/                # Next.js app router
+│   │   ├── metadata.ts     # ⭐ Centralized site config & SEO
+│   │   ├── layout.tsx      # Root layout
+│   │   ├── page.tsx        # Home page
+│   │   ├── about/          # About page
+│   │   ├── projects/       # Projects page
+│   │   ├── contact/        # Contact page
+│   │   └── globals.css     # Global styles
+│   ├── components/         # React components
+│   │   ├── ui/            # Reusable UI primitives
+│   │   └── sections/      # Page sections (Header, Footer, etc.)
+│   ├── data/              # Static data
+│   │   └── socialLinks.ts # Social media links
+│   ├── lib/               # Utilities & helpers
+│   ├── hooks/             # Custom React hooks
+│   └── types/             # TypeScript type definitions
+├── content/               # Markdown content
+├── public/                # Static assets
+│   └── images/           # Images and media
+├── docs/                  # 📚 Documentation
+│   ├── PORTFOLIO_BUILD_GUIDE.md  # Complete build guide
+│   ├── PHASE_1_EXECUTION_PLAN.md # Repo + baseline setup
+│   ├── PHASE_2_EXECUTION_PLAN.md # Layout & design system
+│   ├── PHASE_3_EXECUTION_PLAN.md # Pages & content
+│   ├── PHASE_4_EXECUTION_PLAN.md # i18n & RTL support
+│   ├── PHASE_5_EXECUTION_PLAN.md # API & features
+│   ├── PHASE_6_EXECUTION_PLAN.md # PWA & performance
+│   └── PHASE_7_EXECUTION_PLAN.md # Testing & deployment
+└── .claude_init.md        # AI assistant context
 ```
 
 ## 📜 Available Scripts
@@ -91,7 +109,42 @@ pnpm format       # Format code with Prettier
 | [TypeScript](https://www.typescriptlang.org/)             | Type safety                     |
 | [Tailwind CSS](https://tailwindcss.com/)                  | Utility-first CSS               |
 | [next-themes](https://github.com/pacocoursey/next-themes) | Dark mode                       |
-| [next-intl](https://next-intl-docs.vercel.app/)           | Internationalization            |
+| [next-intl](https://next-intl-docs.vercel.app/)           | Internationalization (planned)  |
+
+## 🏗️ Architecture Highlights
+
+### Centralized Metadata (`src/app/metadata.ts`)
+
+All site configuration and SEO metadata in one place:
+
+```typescript
+export const siteConfig = {
+  name: "Islamux",
+  title: "Islamux - Full-Stack Developer",
+  description: "...",
+  url: "https://islamux.me",
+  email: "fathi733@gmail.com",
+  social: { github, twitter, linkedin },
+};
+
+export const defaultMetadata: Metadata = {
+  // Comprehensive SEO configuration using siteConfig
+};
+```
+
+**Benefits:**
+
+- ✅ Single source of truth for site information
+- ✅ Consistent metadata across all pages
+- ✅ Type-safe configuration
+- ✅ Easy to update (change once, applies everywhere)
+
+### Component Organization
+
+- **Server Components** (default): For static content, optimal performance
+- **Client Components** (`'use client'`): For interactivity only
+- **Props-first pattern**: Pass data via props, not hardcoded values
+- **Separation of concerns**: Data in `src/data/`, types in `src/types/`
 
 ## 🌐 Deployment
 
@@ -105,20 +158,42 @@ pnpm format       # Format code with Prettier
 
 Set these in your deployment platform:
 
-- `NEXT_PUBLIC_SITE_URL` - Your domain (e.g., https://yoursite.com)
+- `NEXT_PUBLIC_SITE_URL` - Your domain (e.g., https://islamux.me)
 - `CONTACT_EMAIL` - Your contact email
 - `GITHUB_TOKEN` - (Optional) For GitHub API access
 
 ## 📚 Documentation
 
-- **[PORTFOLIO_BUILD_GUIDE.md](./PORTFOLIO_BUILD_GUIDE.md)** - Complete build guide with phases, best practices, and troubleshooting
-- **[QUICK_START.md](./QUICK_START.md)** - Get started in 5 steps
+Comprehensive documentation located in `/docs`:
+
+- **[PORTFOLIO_BUILD_GUIDE.md](./docs/PORTFOLIO_BUILD_GUIDE.md)** - Complete build guide with best practices
+- **[PHASE_1_EXECUTION_PLAN.md](./docs/PHASE_1_EXECUTION_PLAN.md)** - Repo + Baseline setup
+- **[PHASE_2_EXECUTION_PLAN.md](./docs/PHASE_2_EXECUTION_PLAN.md)** - Layout & Design System
+- **[PHASE_3_EXECUTION_PLAN.md](./docs/PHASE_3_EXECUTION_PLAN.md)** - Pages & Content
+- **[PHASE_4-7_EXECUTION_PLANS.md](./docs/)** - i18n, API, PWA, Testing & Deploy
+
+Each execution plan includes:
+
+- Step-by-step implementation guides
+- Code examples and best practices
+- Common issues and solutions
+- Junior developer learning notes
 
 ## 🐛 Known Issues
 
 ### Next.js 16.0.3 Font Loading
 
-There's a known bug with `next/font/google` in Next.js 16.0.3. This project uses CSS `@font-face` as a workaround. See [PORTFOLIO_BUILD_GUIDE.md](./PORTFOLIO_BUILD_GUIDE.md#critical-nextjs-1603-turbopack-font-bug) for details.
+There's a known bug with `next/font/google` in Next.js 16.0.3. This project uses CSS `@font-face` as a workaround. See [docs/PHASE_2_EXECUTION_PLAN.md](./docs/PHASE_2_EXECUTION_PLAN.md#critical-nextjs-1603-turbopack-font-bug) for details.
+
+## ✨ Recent Updates
+
+### December 2024
+
+- ✅ **Centralized metadata system** - All site config in `src/app/metadata.ts`
+- ✅ **ESLint clean** - Zero errors, zero warnings
+- ✅ **Type safety improvements** - Changed `any` to `unknown` for better type checking
+- ✅ **Component updates** - Footer and layout use `siteConfig` for consistency
+- ✅ **Documentation** - Complete Phase 1-7 execution plans
 
 ## 🤝 Contributing
 
@@ -134,8 +209,9 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ## 👤 Author
 
-**Fathi Al-Qadasi**
+**Fathi Al-Qadasi (Islamux)**
 
+- Website: https://islamux.me
 - Email: fathi733@gmail.com
 - GitHub: [@islamux](https://github.com/islamux)
 - GitLab: [@islamux](https://gitlab.com/islamux)
