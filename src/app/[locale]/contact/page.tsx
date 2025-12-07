@@ -1,16 +1,27 @@
+import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 import Container from '@/components/Container';
 import { ContactForm } from '@/components/sections/ContactForm';
 import { Icon } from '@/components/ui/Icon';
 import { socialLinks } from '@/data/socialLinks';
-import type { Metadata } from 'next';
-import { siteConfig } from '../metadata';
+import { siteConfig } from '@/app/metadata';
 
-export const metadata: Metadata = {
-  title: `Contact - ${siteConfig.name}`,
-  description: "Get in touch with me",
-};
+interface ContactPageProps {
+  params: Promise<{ locale: string }>;
+}
 
-export default function ContactPage() {
+export async function generateMetadata({ params }: ContactPageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "contact" });
+  return {
+    title: `${t("title")} - ${siteConfig.name}`,
+    description: t("description")
+  };
+}
+
+export default async function ContactPage({ params }: ContactPageProps) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "contact" });
 
   return (
     <div className='py-12 md:py-20'>
@@ -20,17 +31,17 @@ export default function ContactPage() {
           {/*Header*/}
           <header className='mb-12 text-center'>
             <h1 className='text-4xl md:text-4xl font-semibold text-gray-900 dark:text-white mb-4'>
-              Get In Touch
+              {t("title")}
             </h1>
             <p className='text-xl text-gray-600 dark:text-gray-400'>
-              Have a project in mind? Let&apos;s talk about it.
+              {t("description")}
             </p>
           </header>
 
           {/*Contact*/}
           <div className='mb-12 p-6 bg-gray-50 dark:bg-gray-900 rounded-lg border-gray-200 dark:border-gray-800'>
             <h2 className='text-lg font-semibold text-gray-900 dark:text-white mb-4'>
-              Other Ways to Reach Me
+              {t("other.title")}
             </h2>
             <div className='space-y-3'>
               <a

@@ -1,16 +1,29 @@
 import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 import { getContentBySlug } from "@/lib/content";
 import Container from '@/components/Container';
 import { MarkdownContent } from '@/components/ui/MarkdownContent';
-import { siteConfig } from '../metadata';
+import { siteConfig } from '@/app/metadata';
 
-export const metadata: Metadata = {
-  title: `About - ${siteConfig.name}`,
-  description: "Learn more about my journey as a full-stack developer",
-};
+interface AboutPageProps {
+  params: Promise<{ locale: string }>;
+}
 
-export default function AboutPage() {
-  const { frontmatter, content } = getContentBySlug("about", "en");
+export async function generateMetadata({
+  params,
+}: AboutPageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "about" });
+  return {
+    title: `${t("title")} - ${siteConfig.name}`,
+    description: t("description"),
+  };
+}
+
+
+export default async function AboutPage({ params }: AboutPageProps) {
+  const { locale } = await params;
+  const { frontmatter, content } = getContentBySlug("about", locale);
   return (
     <div className='py-12 md:py-20'>
       <Container>

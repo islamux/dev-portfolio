@@ -76,19 +76,18 @@ body {
   white-space: normal;
 }
 
-/* RTL-specific styles */
-[dir="rtl"] {
-  /* Font for Arabic */
-  --font-geist-sans: "Tajawal", "Noto Sans Arabic", system-ui, sans-serif;
+[dir="rtl"]{
+  /*Font for arabic*/
+  --font-geist-sans: "Tajwal",, "Noto Sans Arabic", system-ui, sans-serif;
 }
 
-/* Fix common RTL layout issues */
-[dir="rtl"] .prose {
-  text-align: right;
+/* Fix common RTL layout issues*/
+[dir="rtl"].prose{
+  text-align:right ;
 }
 
-[dir="rtl"] .prose ul,
-[dir="rtl"] .prose ol {
+{dir="rtl"} .prose ul,
+{dir="rtl"} .prose o{
   padding-inline-start: 1.5em;
   padding-inline-end: 0;
 }

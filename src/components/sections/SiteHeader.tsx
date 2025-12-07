@@ -5,10 +5,14 @@ import Container from "../Container";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
+import { useTranslations } from "next-intl";
 import Button from "../ui/Button";
 import { Icon } from "../ui/Icon";
 
 export default function SiteHeader() {
+
+  // translation
+  const t = useTranslations("nav");
   // uses
   const [mounted, setMounted] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,10 +32,10 @@ export default function SiteHeader() {
   }, [pathname]);
 
   const navLink = [
-    { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
-    { href: "/projects", label: "Projects" },
-    { href: "/contact", label: "Contact" },
+    { href: "/", label: t("home") },
+    { href: "/about", label: t("about") },
+    { href: "/projects", label: t("projects") },
+    { href: "/contact", label: t("contact") },
 
   ];
   return (

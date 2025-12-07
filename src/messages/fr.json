@@ -1,0 +1,67 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "projects": "Projets",
+    "contact": "Contact"
+  },
+  "home": {
+    "hero": {
+      "title": "Salut, je suis Islamux",
+      "subtitle": "Développeur full-stack passionné par l'open source",
+      "cta": {
+        "projects": "Voir les projets",
+        "contact": "Me contacter"
+      }
+    },
+    "featured": {
+      "title": "Projets en vedette",
+      "viewAll": "Voir tout"
+    }
+  },
+  "about": {
+    "title": "À propos de moi",
+    "description": "En savoir plus sur mon parcours de développeur"
+  },
+  "projects": {
+    "title": "Projets",
+    "description": "Une collection de mon travail et contributions",
+    "filter": {
+      "all": "Tout",
+      "noResults": "Aucun projet trouvé avec {tech}"
+    },
+    "card": {
+      "code": "Code",
+      "demo": "Démo en direct"
+    }
+  },
+  "contact": {
+    "title": "Contactez-moi",
+    "description": "Vous avez un projet en tête? Parlons-en.",
+    "form": {
+      "name": "Nom",
+      "email": "E-mail",
+      "message": "Message",
+      "submit": "Envoyer le message",
+      "sending": "Envoi en cours...",
+      "success": "Message envoyé avec succès! Je vous répondrai bientôt.",
+      "error": "Échec de l'envoi du message. Veuillez réessayer."
+    },
+    "other": {
+      "title": "Autres moyens de me contacter"
+    }
+  },
+  "footer": {
+    "about": {
+      "title": "À propos",
+      "text": "Développeur full-stack passionné par l'open source et la création d'excellentes expériences utilisateur."
+    },
+    "quickLinks": {
+      "title": "Liens rapides"
+    },
+    "connect": {
+      "title": "Se connecter"
+    },
+    "copyright": "Construit avec Next.js et Tailwind CSS."
+  }
+}

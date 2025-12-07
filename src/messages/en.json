@@ -1,0 +1,67 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "home": {
+    "hero": {
+      "title": "Hi, I'm Islamux",
+      "subtitle": "Full-stack developer passionate about open source",
+      "cta": {
+        "projects": "View Projects",
+        "contact": "Get in Touch"
+      }
+    },
+    "featured": {
+      "title": "Featured Projects",
+      "viewAll": "View All"
+    }
+  },
+  "about": {
+    "title": "About Me",
+    "description": "Learn more about my journey as a developer"
+  },
+  "projects": {
+    "title": "Projects",
+    "description": "A collection of my work and contributions",
+    "filter": {
+      "all": "All",
+      "noResults": "No projects found with {tech}"
+    },
+    "card": {
+      "code": "Code",
+      "demo": "Live Demo"
+    }
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "description": "Have a project in mind? Let's talk about it.",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "submit": "Send Message",
+      "sending": "Sending...",
+      "success": "Message sent successfully! I'll get back to you soon.",
+      "error": "Failed to send message. Please try again."
+    },
+    "other": {
+      "title": "Other Ways to Reach Me"
+    }
+  },
+  "footer": {
+    "about": {
+      "title": "About",
+      "text": "Full-stack developer passionate about open source and building great user experiences."
+    },
+    "quickLinks": {
+      "title": "Quick Links"
+    },
+    "connect": {
+      "title": "Connect"
+    },
+    "copyright": "Built with Next.js and Tailwind CSS."
+  }
+}

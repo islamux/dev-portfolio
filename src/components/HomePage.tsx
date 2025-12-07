@@ -4,10 +4,14 @@ import { MarkdownContent } from "./ui/MarkdownContent";
 import Link from "next/link";
 import Button from "./ui/Button";
 import ProjectCard from "./sections/ProjectCard";
-export default function HomePage() {
 
-  const { frontmatter, content } = getContentBySlug("home", "en");
-  const projects = getProjectData("en");
+interface HomePageProps {
+  locale: string;
+}
+
+export default function HomePage({ locale }: HomePageProps) {
+  const { frontmatter, content } = getContentBySlug("home", locale);
+  const projects = getProjectData(locale);
   const featuredProjects = projects.filter((p) => p.featured);
 
 

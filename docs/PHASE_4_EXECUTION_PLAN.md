@@ -142,41 +142,143 @@ A comprehensive i18n library for Next.js App Router that provides:
 ### File: `src/i18n/config.ts`
 
 ```typescript
-export const locales = ["en", "fr", "ar"] as const;
-export type Locale = (typeof locales)[number];
+// ------- Step 1: Define the types
 
+/** The supported language codes */
+export type Locale = "en" | "fr" | "ar";
+
+/** Information about a single language */
+export interface languageInfo {
+  name: string;
+  flag: string;
+  rtl: boolean;
+}
+
+// ------ Step 2: Create separate exports
+
+/** List of all supported locales */
+export const locales: Locale[] = ["en", "fr", "ar"];
+
+/** The default locale when none is specified */
 export const defaultLocale: Locale = "en";
 
+/** Human-readable names for each locale */
 export const localeNames: Record<Locale, string> = {
   en: "English",
   fr: "Français",
   ar: "العربية",
 };
 
-export const localeFlags: Record<Locale, string> = {
-  en: "🇺🇸",
-  fr: "🇫🇷",
-  ar: "🇸🇦",
+/** Flag codes for each locale (country codes) */
+export const localeFlag: Record<Locale, string> = {
+  en: "US",
+  fr: "FR",
+  ar: "AR",
 };
 
-// RTL languages
+/** Which locales use RTL (Right-to-Left) text direction */
 export const rtlLocales: Locale[] = ["ar"];
 
+// ----- Step 3: Helper functions
+
+/**
+ * Check if a locale uses RTL text direction
+ */
 export function isRTL(locale: Locale): boolean {
   return rtlLocales.includes(locale);
+}
+
+/**
+ * Get all information about a locale
+ */
+export function getLanguagesInfo(locale: Locale): languageInfo {
+  return {
+    name: localeNames[locale],
+    flag: localeFlag[locale],
+    rtl: isRTL(locale),
+  };
 }
 ```
 
 ### 🎓 Understanding the Config:
 
-- **`as const`** - Makes the array readonly and infers exact types
-- **`type Locale`** - Creates union type: `'en' | 'fr' | 'ar'`
+- **`type Locale`** - Explicit union type: `'en' | 'fr' | 'ar'`
+- **`interface LanguageInfo`** - Describes the shape of language data
 - **`Record<Locale, string>`** - Object with locale keys and string values
-- **RTL detection** - Used to set `dir="rtl"` attribute
+- **Separate exports** - Each piece of data is its own export
+- **Helper functions** - `isRTL()` and `getLanguageInfo()` for convenience
+
+### 📝 Usage Examples:
+
+```typescript
+import {
+  locales,
+  localeNames,
+  localeFlag,
+  isRTL,
+  getLanguagesInfo,
+  type Locale,
+} from "@/i18n/config";
+
+// Access data directly
+localeNames["ar"]; // "العربية"
+localeFlag["fr"]; // "FR"
+isRTL("ar"); // true
+
+// Or use the helper function
+getLanguagesInfo("en"); // { name: "English", flag: "US", rtl: false }
+```
 
 ---
 
-## **Step 3: Setup Middleware**
+## **Step 3: Create Locale Validation Guard**
+
+**Estimated Time:** 10 minutes
+
+### File: `src/i18n/guards.ts`
+
+```typescript
+import { Locale } from "next-intl";
+import { locales } from "./config";
+
+/**
+ * Type guard to validate if a string is a valid locale
+ * Used in layout to ensure type safety for Next.js 15+ async params
+ */
+export function isValidateLocale(locale: string): locale is Locale {
+  return locales.includes(locale as any);
+}
+```
+
+### 🎓 Understanding Type Guards:
+
+**What is a Type Guard?**
+
+- A function that narrows the type of a variable
+- Returns a boolean with special syntax: `value is Type`
+- Helps TypeScript understand the type after validation
+
+**Why do we need this?**
+
+- Next.js 15+ changed `params` to be async: `Promise<{ locale: string }>`
+- After awaiting, `locale` is just a `string`, not `Locale`
+- `isValidateLocale()` validates AND narrows the type to `Locale`
+- This enables type-safe usage throughout the application
+
+**Usage in layout:**
+
+```typescript
+const { locale } = await params; // locale is string
+
+if (!isValidateLocale(locale)) {
+  notFound();
+}
+// Now TypeScript knows locale is Locale type ("en" | "fr" | "ar")
+```
+
+---
+
+## **Step 4: Setup Middleware**
 
 **Estimated Time:** 15 minutes
 
@@ -231,7 +333,7 @@ export const config = {
 
 ---
 
-## **Step 4: Restructure App Directory**
+## **Step 5: Restructure App Directory**
 
 **Estimated Time:** 30 minutes
 
@@ -279,7 +381,7 @@ touch app/[locale]/layout.tsx
 
 ---
 
-## **Step 5: Update Root Layout**
+## **Step 6: Update Root Layout**
 
 **Estimated Time:** 20 minutes
 
@@ -308,7 +410,7 @@ The root layout doesn't set `<html>` or `<body>` because:
 
 ---
 
-## **Step 6: Create Locale Layout**
+## **Step 7: Create Locale Layout**
 
 **Estimated Time:** 30 minutes
 
@@ -318,28 +420,33 @@ The root layout doesn't set `<html>` or `<body>` because:
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import { Providers } from "../providers";
-import { SiteHeader } from "@/components/sections/SiteHeader";
-import { SiteFooter } from "@/components/sections/SiteFooter";
+import SiteHeader from "@/components/sections/SiteHeader";
 import { SkipToContent } from "@/components/ui/SkipToContent";
-import { locales, isRTL, type Locale } from "@/i18n/config";
+import { isRTL } from "@/i18n/config";
+import { isValidateLocale } from "@/i18n/guards";
 
 interface LocaleLayoutProps {
   children: React.ReactNode;
-  params: {
+  params: Promise<{
     locale: string;
-  };
+  }>;
 }
 
 /**
  * Locale-specific layout
  * Sets language, direction, and provides translations
+ *
+ * Note: Next.js 15+ requires params to be a Promise
  */
 export default async function LocaleLayout({
   children,
-  params: { locale },
+  params,
 }: LocaleLayoutProps) {
-  // Validate locale
-  if (!locales.includes(locale as Locale)) {
+  // Await params (Next.js 15+ requirement)
+  const { locale } = await params;
+
+  // Validate locale using type guard
+  if (!isValidateLocale(locale)) {
     notFound();
   }
 
@@ -347,12 +454,12 @@ export default async function LocaleLayout({
   let messages;
   try {
     messages = (await import(`@/messages/${locale}.json`)).default;
-  } catch (error) {
+  } catch {
     notFound();
   }
 
   // Determine text direction
-  const direction = isRTL(locale as Locale) ? "rtl" : "ltr";
+  const direction = isRTL(locale as any) ? "rtl" : "ltr";
 
   return (
     <html lang={locale} dir={direction} suppressHydrationWarning>
@@ -361,23 +468,14 @@ export default async function LocaleLayout({
           <SkipToContent />
           <Providers>
             <SiteHeader />
-            <main id="main-content" className="flex-grow">
+            <main id="main-content" className="grow">
               {children}
             </main>
-            <SiteFooter />
           </Providers>
         </NextIntlClientProvider>
       </body>
     </html>
   );
-}
-
-/**
- * Generate static params for all locales
- * Enables static generation at build time
- */
-export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
 }
 ```
 
@@ -385,26 +483,50 @@ export function generateStaticParams() {
 
 **Key Features:**
 
-1. **Dynamic Import** - Loads translation file based on locale
+1. **Async Params (Next.js 15+)** - Params must be awaited
+
+   ```tsx
+   const { locale } = await params;
+   ```
+
+2. **Type Guard Validation** - Uses `isValidateLocale()` for type safety
+
+   ```tsx
+   if (!isValidateLocale(locale)) {
+     notFound();
+   }
+   ```
+
+3. **Dynamic Import** - Loads translation file based on locale
 
    ```tsx
    messages = (await import(`@/messages/${locale}.json`)).default;
    ```
 
-2. **RTL Detection** - Sets `dir="rtl"` for Arabic
+4. **RTL Detection** - Sets `dir="rtl"` for Arabic
 
    ```tsx
-   const direction = isRTL(locale as Locale) ? "rtl" : "ltr";
+   const direction = isRTL(locale as any) ? "rtl" : "ltr";
    ```
 
-3. **NextIntlClientProvider** - Provides translations to all child components
+5. **NextIntlClientProvider** - Provides translations to all child components
    ```tsx
    <NextIntlClientProvider locale={locale} messages={messages}>
    ```
 
+**Note on SiteFooter:**
+
+- The footer component is not yet implemented in the current code
+- You can add `<SiteFooter />` after the `</main>` tag once you create the component
+
+**Note on `generateStaticParams()`:**
+
+- This function has been moved to a separate file: `app/[locale]/generateStaticParams.ts`
+- This enables static generation at build time for all locales
+
 ---
 
-## **Step 7: Create Translation Files**
+## **Step 8: Create Translation Files**
 
 **Estimated Time:** 1-2 hours
 
@@ -643,7 +765,7 @@ touch messages/ar.json
 
 ---
 
-## **Step 8: Update Components to Use Translations**
+## **Step 9: Update Components to Use Translations**
 
 **Estimated Time:** 1-2 hours
 
@@ -781,7 +903,7 @@ export function SiteHeader() {
 
 ---
 
-## **Step 9: Create Language Switcher**
+## **Step 10: Create Language Switcher**
 
 **Estimated Time:** 45 minutes
 
@@ -793,10 +915,10 @@ export function SiteHeader() {
 import { useLocale } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
-import { locales, localeNames, localeFlags, type Locale } from "@/i18n/config";
+import { locales, localeNames, localeFlag, type Locale } from "@/i18n/config";
 
 export function LanguageSwitcher() {
-  const locale = useLocale();
+  const locale = useLocale() as Locale;
   const router = useRouter();
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
@@ -835,10 +957,8 @@ export function LanguageSwitcher() {
         className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
         aria-label="Change language"
       >
-        <span className="text-lg">{localeFlags[locale as Locale]}</span>
-        <span className="hidden sm:inline">
-          {localeNames[locale as Locale]}
-        </span>
+        <span className="text-lg">{localeFlag[locale]}</span>
+        <span className="hidden sm:inline">{localeNames[locale]}</span>
         <svg
           className={`w-4 h-4 transition-transform ${isOpen ? "rotate-180" : ""}`}
           fill="none"
@@ -867,7 +987,7 @@ export function LanguageSwitcher() {
                   : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
               }`}
             >
-              <span className="text-lg">{localeFlags[loc]}</span>
+              <span className="text-lg">{localeFlag[loc]}</span>
               <span>{localeNames[loc]}</span>
               {locale === loc && (
                 <svg
@@ -895,15 +1015,15 @@ export function LanguageSwitcher() {
 
 **Key Features:**
 
-1. **`useLocale()`** - Get current locale from context
-2. **Path Preservation** - Maintains current page when switching
-3. **Logical Properties** - `end-0` (right in LTR, left in RTL)
-4. **`ms-auto`** - `margin-start: auto` (RTL-aware)
-5. **Click Outside** - Closes dropdown when clicking elsewhere
+1. **`localeNames[locale]`** - Get the display name for current locale
+2. **`localeFlag[locale]`** - Get the flag country code for current locale
+3. **`locales.map()`** - Loop through all available locales
+4. **Path Preservation** - Maintains current page when switching
+5. **Logical Properties** - `end-0` (right in LTR, left in RTL)
 
 ---
 
-## **Step 10: Add RTL-Aware Tailwind Utilities**
+## **Step 11: Add RTL-Aware Tailwind Utilities**
 
 **Estimated Time:** 30 minutes
 
@@ -970,7 +1090,7 @@ pnpm add -D tailwindcss-rtl
 
 ---
 
-## **Step 11: Load Arabic Font**
+## **Step 12: Load Arabic Font**
 
 **Estimated Time:** 20 minutes
 
@@ -1014,112 +1134,336 @@ const tajawal = Tajawal({
 
 ---
 
-## **Step 12: Update Pages with Translations**
+## **Step 13: Update Pages with Translations**
 
 **Estimated Time:** 1-2 hours
 
-### Example: Home Page
+Now we'll update each page to use translation hooks from `next-intl` and support dynamic locales.
+
+---
+
+### 1. Home Page (with Metadata)
 
 **File: `app/[locale]/page.tsx`**
 
 ```tsx
-import { useTranslations } from "next-intl";
+import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import Link from "next/link";
-import { getContentBySlug, getProjectsData } from "@/lib/content";
-import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
-import { ProjectCard } from "@/components/sections/ProjectCard";
+import HomePage from "@/components/HomePage";
+import { siteConfig } from "@/app/metadata";
 
-interface HomePageProps {
-  params: {
-    locale: string;
-  };
+interface PageProps {
+  params: Promise<{ locale: string }>;
 }
 
-export async function generateMetadata({ params: { locale } }: HomePageProps) {
-  const t = await getTranslations({ locale, namespace: "home.hero" });
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "home" });
 
   return {
     title: t("title"),
-    description: t("subtitle"),
+    description: t("description"),
+    openGraph: {
+      type: "website",
+      locale: locale === "ar" ? "ar_SA" : locale === "fr" ? "fr_FR" : "en_US",
+      url: siteConfig.url,
+      siteName: siteConfig.name,
+      images: [
+        {
+          url: "/images/og-image.jpg",
+          width: 1200,
+          height: 630,
+          alt: t("title"),
+        },
+      ],
+    },
   };
 }
 
-export default function HomePage({ params: { locale } }: HomePageProps) {
-  const { frontmatter, content } = getContentBySlug("home", locale);
-  const projects = getProjectsData(locale);
-  const featuredProjects = projects.filter((p) => p.featured);
+export default async function Page({ params }: PageProps) {
+  const { locale } = await params;
 
-  return (
-    <>
-      {/* Hero Section */}
-      <HeroSection locale={locale} />
+### ---------- HERE I STOPED @ISLAMUX----------------- ###
+  return <HomePage locale={locale} />;
+}
+```
 
-      {/* Featured Projects Section */}
-      {featuredProjects.length > 0 && (
-        <FeaturedProjectsSection projects={featuredProjects} locale={locale} />
-      )}
-    </>
-  );
+### 🎓 Key Changes:
+
+- Added async `params` handling for Next.js 15+
+- Used `getTranslations()` for server-side metadata
+- Dynamic OpenGraph locale based on current language
+- Passed locale to HomePage component
+
+---
+
+### 2. About Page (with Localized Content)
+
+**File: `app/[locale]/about/page.tsx`**
+
+```tsx
+import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
+import { getContentBySlug } from "@/lib/content";
+import Container from "@/components/Container";
+import { MarkdownContent } from "@/components/ui/MarkdownContent";
+import { siteConfig } from "@/app/metadata";
+
+interface AboutPageProps {
+  params: Promise<{ locale: string }>;
 }
 
-// Separate components to use client-side translations
-function HeroSection({ locale }: { locale: string }) {
-  const t = useTranslations("home.hero");
+export async function generateMetadata({
+  params,
+}: AboutPageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "about" });
+
+  return {
+    title: `${t("title")} - ${siteConfig.name}`,
+    description: t("description"),
+  };
+}
+
+export default async function AboutPage({ params }: AboutPageProps) {
+  const { locale } = await params;
+  const { frontmatter, content } = getContentBySlug("about", locale);
 
   return (
-    <section className="py-20 md:py-32 bg-gradient-to-b from-white to-gray-50 dark:from-gray-950 dark:to-gray-900">
+    <div className="py-12 md:py-20">
       <Container>
-        <div className="max-w-3xl">
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-            {t("title")}
-          </h1>
-
-          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8">
-            {t("subtitle")}
-          </p>
-
-          <div className="flex flex-wrap gap-4">
-            <Link href={`/${locale}/projects`}>
-              <Button variant="primary" size="lg">
-                {t("cta.projects")}
-              </Button>
-            </Link>
-            <Link href={`/${locale}/contact`}>
-              <Button variant="secondary" size="lg">
-                {t("cta.contact")}
-              </Button>
-            </Link>
-          </div>
+        <div className="max-w-4xl mx-auto">
+          {/*Header*/}
+          <header className="mb-12">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+              {frontmatter.title}
+            </h1>
+            {frontmatter.description && (
+              <p className="text-xl text-gray-600 dark:text-gray-400">
+                {frontmatter.description}
+              </p>
+            )}
+          </header>
+          {/*Content*/}
+          <MarkdownContent content={content} />
         </div>
       </Container>
-    </section>
+    </div>
   );
 }
 ```
 
+### 🎓 Key Changes:
+
+- Async params with `await params`
+- Localized metadata using `getTranslations()`
+- Dynamic locale passed to `getContentBySlug()`
+
+---
+
+### 3. Projects Page (with Translations)
+
+**File: `app/[locale]/projects/page.tsx`**
+
+```tsx
+import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
+import Container from "@/components/Container";
+import ProjectsList from "@/components/sections/ProjectsList";
+import { getProjectData } from "@/lib/content";
+import { siteConfig } from "@/app/metadata";
+
+interface ProjectsPageProps {
+  params: Promise<{ locale: string }>;
+}
+
+export async function generateMetadata({
+  params,
+}: ProjectsPageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "projects" });
+
+  return {
+    title: `${t("title")} - ${siteConfig.name}`,
+    description: t("description"),
+  };
+}
+
+export default async function ProjectsPage({ params }: ProjectsPageProps) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "projects" });
+  const projects = getProjectData(locale);
+
+  return (
+    <div className="py-12 md:py-20">
+      <Container>
+        {/*Header*/}
+        <header className="mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            {t("title")}
+          </h1>
+          <p className="text-xl text-gray-600 dark:text-gray-400">
+            {t("description")}
+          </p>
+        </header>
+        <ProjectsList initialProjects={projects} />
+      </Container>
+    </div>
+  );
+}
+```
+
+### 🎓 Key Changes:
+
+- Server component using `getTranslations()`
+- Translated page title and description
+- Locale-aware project data loading
+
+---
+
+### 4. Contact Page (with Translations)
+
+**File: `app/[locale]/contact/page.tsx`**
+
+```tsx
+import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
+import Container from "@/components/Container";
+import { ContactForm } from "@/components/sections/ContactForm";
+import { Icon } from "@/components/ui/Icon";
+import { socialLinks } from "@/data/socialLinks";
+import { siteConfig } from "@/app/metadata";
+
+interface ContactPageProps {
+  params: Promise<{ locale: string }>;
+}
+
+export async function generateMetadata({
+  params,
+}: ContactPageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "contact" });
+
+  return {
+    title: `${t("title")} - ${siteConfig.name}`,
+    description: t("description"),
+  };
+}
+
+export default async function ContactPage({ params }: ContactPageProps) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "contact" });
+
+  return (
+    <div className="py-12 md:py-20">
+      <Container>
+        <div className="max-w-2xl mx-auto">
+          {/*Header*/}
+          <header className="mb-12 text-center">
+            <h1 className="text-4xl md:text-4xl font-semibold text-gray-900 dark:text-white mb-4">
+              {t("title")}
+            </h1>
+            <p className="text-xl text-gray-600 dark:text-gray-400">
+              {t("description")}
+            </p>
+          </header>
+
+          {/*Contact*/}
+          <div className="mb-12 p-6 bg-gray-50 dark:bg-gray-900 rounded-lg border-gray-200 dark:border-gray-800">
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+              {t("other.title")}
+            </h2>
+            <div className="space-y-3">
+              <a
+                href={`mailto:${siteConfig.email}`}
+                className="flex items-center gap-3 text-gray-600 dark:text-gray-400 hover:text-brand-500 transition-colors"
+              >
+                <Icon name="mail" size={20} />
+                {siteConfig.email}
+              </a>
+
+              {/*Social Links from Data Source*/}
+              {socialLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 text-gray-600 dark:text-gray-400 hover:text-brand-500 transition-colors"
+                >
+                  <Icon name={link.icon} size={20} />
+                  {link.name}
+                </a>
+              ))}
+            </div>
+
+            {/* Contact Form*/}
+            <ContactForm />
+          </div>
+        </div>
+      </Container>
+    </div>
+  );
+}
+```
+
+### 🎓 Key Changes:
+
+- Server-side translations with `getTranslations()`
+- All text content translated (title, description, section headings)
+- Used nested translation keys like `t('other.title')`
+
+---
+
 ### 🎓 Understanding Translation Hooks:
 
-**Server Components:**
+**Server Components (Recommended for Pages):**
 
 ```tsx
 import { getTranslations } from "next-intl/server";
 
+// In async function or component
+const { locale } = await params;
 const t = await getTranslations({ locale, namespace: "home" });
+
+// Use translations
+t("title"); // Simple key
+t("hero.subtitle"); // Nested key
 ```
 
-**Client Components:**
+**Client Components (for Interactive UI):**
 
 ```tsx
+"use client";
 import { useTranslations } from "next-intl";
 
-const t = useTranslations("home");
+export function MyComponent() {
+  const t = useTranslations("home");
+
+  return <h1>{t("title")}</h1>;
+}
 ```
 
 ---
 
-## **Step 13: Fix Common RTL Layout Issues**
+### 📋 Summary of Changes:
+
+For each page, you need to:
+
+1. ✅ Add `Promise<{ locale: string }>` to params type
+2. ✅ Await params: `const { locale } = await params;`
+3. ✅ Use `getTranslations()` in `generateMetadata()`
+4. ✅ Replace hardcoded strings with `t()` calls
+5. ✅ Pass locale to data fetching functions
+6. ✅ Update OpenGraph locale dynamically
+
+This makes your entire application fully internationalized! 🌍
+
+---
+
+## **Step 14: Fix Common RTL Layout Issues**
 
 **Estimated Time:** 1-2 hours
 
@@ -1173,7 +1517,7 @@ className = "left-4 rtl:left-auto rtl:right-4";
 
 ---
 
-## **Step 14: Test All Pages in Each Locale**
+## **Step 15: Test All Pages in Each Locale**
 
 **Estimated Time:** 1 hour
 
