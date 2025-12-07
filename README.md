@@ -13,7 +13,7 @@
 - ✅ **Centralized Metadata** - Single source of truth for SEO and site config
 - ✅ **Responsive Design** - Mobile-first with Tailwind CSS
 - ✅ **Dark Mode** - Automatic theme switching with persistence
-- ✅ **i18n Ready** - English, French, Arabic (RTL) support
+- ✅ **i18n Support** - Full internationalization with English, French, Arabic (RTL)
 - ✅ **Performance Optimized** - Lighthouse score >90
 - ✅ **Accessible** - WCAG AA compliant
 - ✅ **Clean Codebase** - ESLint + Prettier, zero warnings
@@ -60,21 +60,29 @@ pnpm --version  # Should be 8.0+
 dev_portfolio/
 ├── src/
 │   ├── app/                # Next.js app router
+│   │   ├── [locale]/       # Locale-specific routes (en, fr, ar)
+│   │   │   ├── layout.tsx  # Locale layout with lang & dir
+│   │   │   ├── page.tsx    # Home page
+│   │   │   ├── about/      # About page
+│   │   │   ├── projects/   # Projects page
+│   │   │   └── contact/    # Contact page
 │   │   ├── metadata.ts     # ⭐ Centralized site config & SEO
 │   │   ├── layout.tsx      # Root layout
-│   │   ├── page.tsx        # Home page
-│   │   ├── about/          # About page
-│   │   ├── projects/       # Projects page
-│   │   ├── contact/        # Contact page
+│   │   ├── providers.tsx   # Theme provider
 │   │   └── globals.css     # Global styles
 │   ├── components/         # React components
 │   │   ├── ui/            # Reusable UI primitives
 │   │   └── sections/      # Page sections (Header, Footer, etc.)
 │   ├── data/              # Static data
 │   │   └── socialLinks.ts # Social media links
+│   ├── i18n/              # Internationalization
+│   │   ├── config.ts      # Locale configuration
+│   │   ├── guards.ts      # Type guards
+│   │   └── request.ts     # next-intl config
 │   ├── lib/               # Utilities & helpers
 │   ├── hooks/             # Custom React hooks
 │   └── types/             # TypeScript type definitions
+├── messages/              # Translation files (en, fr, ar)
 ├── content/               # Markdown content
 ├── public/                # Static assets
 │   └── images/           # Images and media
@@ -109,7 +117,7 @@ pnpm format       # Format code with Prettier
 | [TypeScript](https://www.typescriptlang.org/)             | Type safety                     |
 | [Tailwind CSS](https://tailwindcss.com/)                  | Utility-first CSS               |
 | [next-themes](https://github.com/pacocoursey/next-themes) | Dark mode                       |
-| [next-intl](https://next-intl-docs.vercel.app/)           | Internationalization (planned)  |
+| [next-intl](https://next-intl-docs.vercel.app/)           | Internationalization            |
 
 ## 🏗️ Architecture Highlights
 
@@ -189,10 +197,13 @@ There's a known bug with `next/font/google` in Next.js 16.0.3. This project uses
 
 ### December 2024
 
+- ✅ **Phase 4 Complete** - Full i18n support with next-intl
+- ✅ **Multi-language** - English, French, Arabic with RTL support
+- ✅ **Locale routing** - `/en`, `/fr`, `/ar` routes with middleware
+- ✅ **Type-safe i18n** - Locale validation guards for Next.js 15+
 - ✅ **Centralized metadata system** - All site config in `src/app/metadata.ts`
 - ✅ **ESLint clean** - Zero errors, zero warnings
 - ✅ **Type safety improvements** - Changed `any` to `unknown` for better type checking
-- ✅ **Component updates** - Footer and layout use `siteConfig` for consistency
 - ✅ **Documentation** - Complete Phase 1-7 execution plans
 
 ## 🤝 Contributing
