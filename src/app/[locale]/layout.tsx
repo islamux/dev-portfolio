@@ -35,7 +35,7 @@ export default async function LocaleLayout(
 
   return (
     <html lang={locale} dir={direction} suppressHydrationWarning>
-      <body className="antialiased flex flex-col min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100" >
+      <body className="antialiased flex flex-col min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100" suppressHydrationWarning>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <SkipToContent />
           <Providers>
