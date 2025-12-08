@@ -65,20 +65,22 @@ export default function SiteHeader() {
           {/* Right side ; Theme toggle + Language*/}
           <div className="flex items-center space-x-4">
             {/* Dark mode Toggle*/}
-            {mounted && (
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                aria-label="Toggle dark mode"
-              >
-                {theme === "dark" ? (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              aria-label="Toggle dark mode"
+            >
+              {mounted ? (
+                theme === "dark" ? (
                   <Icon name="sun" size={20} />
                 ) : (
                   <Icon name="moon" size={20} />
-                )}
-              </Button>
-            )}
+                )
+              ) : (
+                <Icon name="moon" size={20} />
+              )}
+            </Button>
             {/*Language Swicher (placeholder)*/}
             <select className="text-sm bg-transparent border border-gray-300 dark:border-gray-700 rounded px-2 py-1" defaultValue="en">
               <option value="en">EN</option>
