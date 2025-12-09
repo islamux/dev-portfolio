@@ -8,6 +8,7 @@ import { useTheme } from "next-themes";
 import { useTranslations } from "next-intl";
 import Button from "../ui/Button";
 import { Icon } from "../ui/Icon";
+import { LanguageSwitcher } from "./LanguagesSwitcher";
 
 export default function SiteHeader() {
 
@@ -81,12 +82,8 @@ export default function SiteHeader() {
                 <Icon name="moon" size={20} />
               )}
             </Button>
-            {/*Language Swicher (placeholder)*/}
-            <select className="text-sm bg-transparent border border-gray-300 dark:border-gray-700 rounded px-2 py-1" defaultValue="en">
-              <option value="en">EN</option>
-              <option value="ar">AR</option>
-              <option value="fr">FR</option>
-            </select>
+            {/* Language Switcher */}
+            <LanguageSwitcher />
             {/* Mobile Menue Button*/}
             <Button
               variant="ghost"

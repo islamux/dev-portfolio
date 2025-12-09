@@ -1,4 +1,5 @@
 import { getContentBySlug, getProjectData } from "@/lib/content";
+import { getTranslations } from "next-intl/server";
 import Container from "./Container";
 import { MarkdownContent } from "./ui/MarkdownContent";
 import Link from "next/link";
@@ -9,11 +10,13 @@ interface HomePageProps {
   locale: string;
 }
 
-export default function HomePage({ locale }: HomePageProps) {
+export default async function HomePage({ locale }: HomePageProps) {
   const { frontmatter, content } = getContentBySlug("home", locale);
   const projects = getProjectData(locale);
   const featuredProjects = projects.filter((p) => p.featured);
 
+  // Get translations
+  const t = await getTranslations({ locale, namespace: "home" });
 
   return (
     <>
@@ -30,12 +33,12 @@ export default function HomePage({ locale }: HomePageProps) {
             <div className="flex flex-wrap gap-4">
               <Link href="/projects">
                 <Button variant="primary" size="lg">
-                  View projects
+                  {t("hero.cta.projects")}
                 </Button>
               </Link>
               {/*Link 2 */}
               <Link href="/contact">
-                <Button variant="secondary" size="lg">Get In Touch</Button>
+                <Button variant="secondary" size="lg">{t("hero.cta.contact")}</Button>
               </Link>
             </div>
           </div>
@@ -48,11 +51,11 @@ export default function HomePage({ locale }: HomePageProps) {
           <Container>
             <div className="flex items-center justify-between mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
-                Feactured Projects
+                {t("featured.title")}
               </h2>
               {/*Link 3*/}
               <Link href="/projects" className="text-brand-500 hover:text-brand-600 font-medium">
-                View All
+                {t("featured.viewAll")}
               </Link>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

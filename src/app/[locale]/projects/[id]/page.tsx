@@ -7,9 +7,9 @@ import Button from "@/components/ui/Button";
 import Container from "@/components/Container";
 
 interface ProjectDetailPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 /**
@@ -28,7 +28,8 @@ export async function generateStaticParams() {
  * Generate metadata for each project page
  */
 export async function generateMetadata({ params }: ProjectDetailPageProps) {
-  const project = getProjectById(params.id, "en");
+  const { id } = await params;
+  const project = getProjectById(id, "en");
 
   if (!project) {
     return {
@@ -47,8 +48,9 @@ export async function generateMetadata({ params }: ProjectDetailPageProps) {
   };
 }
 
-export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
-  const project = getProjectById(params.id, "en");
+export default async function ProjectDetailPage({ params }: ProjectDetailPageProps) {
+  const { id } = await params;
+  const project = getProjectById(id, "en");
 
   // Show 404 if project not found
   if (!project) {

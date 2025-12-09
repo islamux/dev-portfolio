@@ -3,7 +3,6 @@
 import { localeFlag, localeNames, locales, type Locale } from "@/i18n/config";
 import { useLocale } from "next-intl";
 import { usePathname } from "next/navigation";
-import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 export function LanguageSwitcher() {
@@ -12,7 +11,6 @@ export function LanguageSwitcher() {
   const [isOpen, setIsOpen] = useState(false);
   const locale = useLocale() as Locale;
   const pathname = usePathname();
-  const router = useRouter();
 
   // 1
   useEffect(() => {
@@ -29,11 +27,22 @@ export function LanguageSwitcher() {
   const handleLocaleChange = (newLocale: Locale) => {
     setIsOpen(false);
 
-    // Remove current locale from pathname
-    const pathWithoutLocale = pathname.replace(`/${locale}`, "");
+    // Strip the current locale prefix from the pathname
+    // Current pathname includes the locale, e.g., /ar, /ar/about, /fr/projects
+    const pathWithoutLocale = pathname.replace(/^\/(en|fr|ar)/, '') || '/';
 
-    // Navigate to new locale with same path
-    router.push(`/${newLocale}${pathWithoutLocale}`);
+    // Construct the new path with the new locale prefix
+    // For default locale (en), no prefix needed due to localePrefix: "as-needed"
+    // For other locales (fr, ar), add locale prefix
+    let newPath;
+    if (newLocale === 'en') {
+      newPath = pathWithoutLocale;
+    } else {
+      newPath = pathWithoutLocale === '/' ? `/${newLocale}` : `/${newLocale}${pathWithoutLocale}`;
+    }
+
+    // Use window.location for a full navigation to ensure proxy middleware processes the request
+    window.location.assign(newPath);
   };
 
   return (

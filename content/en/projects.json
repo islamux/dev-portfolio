@@ -7,7 +7,7 @@
     "tech": ["Flutter", "Dart", "SQLite"],
     "github": "https://github.com/islamux/athkarix",
     "demo": "https://athkarix.netlify.app",
-    "image": "/images/projects/athkarix.jpg",
+    "image": "/images/projects/athkarix.png",
     "featured": true,
     "year": "2023"
   },
@@ -19,7 +19,7 @@
     "tech": ["Next.js", "TypeScript", "Tailwind CSS"],
     "github": "https://github.com/islamux/dev-portfolio",
     "demo": "https://islamux.vercel.app",
-    "image": "/images/projects/portfolio.jpg",
+    "image": "/images/projects/portfolio.png",
     "featured": true,
     "year": "2024"
   },

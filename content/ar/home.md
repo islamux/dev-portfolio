@@ -1,10 +1,10 @@
 ---
-title: "Hi, I'm Islamux"
-description: "Full-stack developer passionate about open source"
+title: "مرحباً، أنا إسلام"
+description: "مطور برمجيات متكامل شغوف بالمصادر المفتوحة"
 image: "/images/hero.jpg"
 ---
 
-I build modern web applications using Next.js, TypeScript, and Tailwind CSS.
-Currently contributing to open-source projects and exploring new technologies.
+أقوم ببناء تطبيقات ويب حديثة باستخدام Next.js وTypeScript وTailwind CSS.
+أقوم حالياً بالمساهمة في مشاريع مفتوحة المصدر واستكشاف تقنيات جديدة.
 
-**Skills:** React, Next.js, TypeScript, Flutter, Node.js, PostgreSQL
+**المهارات:** React, Next.js, TypeScript, Flutter, Node.js, PostgreSQL

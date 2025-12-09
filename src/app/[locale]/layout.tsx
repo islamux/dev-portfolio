@@ -34,19 +34,17 @@ export default async function LocaleLayout(
   const direction = isRTL(locale as any) ? "rtl" : "ltr";
 
   return (
-    <html lang={locale} dir={direction} suppressHydrationWarning>
-      <body className="antialiased flex flex-col min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100" suppressHydrationWarning>
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          <SkipToContent />
-          <Providers>
-            <SiteHeader />
-            <main id="main-content" className="grow">
-              {children}
-            </main>
-          </Providers>
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <div lang={locale} dir={direction} className="antialiased flex flex-col min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100">
+      <NextIntlClientProvider locale={locale} messages={messages}>
+        <SkipToContent />
+        <Providers>
+          <SiteHeader />
+          <main id="main-content" className="grow">
+            {children}
+          </main>
+        </Providers>
+      </NextIntlClientProvider>
+    </div>
   );
 }
 

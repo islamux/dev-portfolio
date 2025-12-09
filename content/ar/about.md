@@ -1,47 +1,51 @@
 ---
-title: "About Me"
-description: "Learn more about my journey as a developer"
+title: "نبذة عني"
+description: "تعرف على مسيرتي كمطور برمجيات"
 date: "2025-11-24"
 ---
 
-# About Me
+# نبذة عني
 
-I'm a full-stack developer with a passion for creating elegant, performant web applications.
+أنا مطور برمجيات متكامل أعمل على بناء تطبيقات ويب عالية الأداء تجمع بين الكفاءة والجمال، مع اهتمام خاص بتقنيات المصدر المفتوح وتجارب المستخدم المتقنة.
 
-## Background
+## الخلفية
 
-- 🎓 Self-taught developer since 2018
-- 💼 Freelance web developer
-- 🌍 Based in Yemen
-- 🛠️ Active open-source contributor
+- 🎓 مطور ذاتي التعلّم منذ عام 2018
+- 💼 أعمل كمطور ويب حر
+- 🌍 مقيم في اليمن
+- 🛠️ مساهم نشط في مشاريع المصدر المفتوح
 
-## Communities
+## المجتمعات
 
-I'm active in several tech communities:
+أنا عضو فعّال في عدد من المجتمعات التقنية:
 
-- [LinuxAC.org](https://www.linuxac.org/) - Linux & open-source advocacy
-- [Aosus.org](https://aosus.org/) - Arabic open-source community
+- [LinuxAC.org](https://www.linuxac.org/) - دعم ونشر ثقافة لينكس والمصدر المفتوح
+- [Aosus.org](https://aosus.org/) - مجتمع عربي للمصدر المفتوح
 
-## Tech Stack
+## المهارات التقنية
 
-**Frontend:**
+**الواجهات الأمامية (Frontend):**
 
 - React / Next.js
 - TypeScript
 - Tailwind CSS
 
-**Backend:**
+**الخلفية (Backend):**
 
 - Node.js
 - PostgreSQL
 - MongoDB
 
-**Mobile:**
+**تطوير الأجهزة المحمولة:**
 
 - Flutter
 - Dart
 
-## Contact
+## تواصل
 
-Feel free to reach out via [email](mailto:fathi733@gmail.com) or connect on [GitHub](https://github.com/islamux).
-```
+يسعدني التواصل عبر البريد الإلكتروني:  
+[Email](mailto:fathi733@gmail.com)
+
+أو متابعة مشاريعي على GitHub:  
+[GitHub](https://github.com/islamux)
+
