@@ -20,3 +20,5 @@ Once Next.js releases a fix (likely 16.1.0+), you can switch back to `next/font/
 - string text in everywere in code , RESPECT SINGLE SOURCE OF TRUTH
 - create image for the projects using ai banan , ...
 - The text with icons its like github page is this best pracrtice what your sug to improve the ui of txt
+- /en translation in voices-of-truth is better than current
+- Netlify
