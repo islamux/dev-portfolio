@@ -142,6 +142,54 @@ Before diving into phases, understand this roadmap as a junior:
 4.  **Timeline** - Your journey (optional but nice)
 5.  **Contact CTA** - Make it easy to reach you
 
+### 📖 Real-World Example: "Voices of Truth" Project
+
+**Project Overview:**
+"Voices of Truth" is a featured project in this portfolio - a sophisticated web application showcasing advanced Next.js 15 features with multilingual support.
+
+**Key Features Implemented:**
+
+- **Next.js 15 Server Components** - Optimal performance with minimal client-side JavaScript
+- **Internationalization (i18n)** - Seamless Arabic RTL and English LTR support
+- **Advanced Filtering** - Server-side filtering by category, country, and language
+- **Smooth Animations** - Framer Motion for polished user interactions
+- **Responsive Design** - Mobile-first approach with Tailwind CSS
+- **Dark/Light Theme** - Custom theme system with persistence
+
+**Technical Highlights:**
+
+```typescript
+// Project structure in content/{locale}/projects.json
+{
+  "id": "voices-of-truth",
+  "name": "Voices of Truth",
+  "description": "Multilingual directory of Islamic scholars...",
+  "tech": ["Next.js 15", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "react-i18next"],
+  "featured": true,
+  "year": "2024"
+}
+```
+
+**Why This Project Stands Out:**
+
+1. **Solves a Real Problem** - Provides a valuable resource for finding Islamic scholars
+2. **Technical Complexity** - Demonstrates advanced Next.js and React patterns
+3. **Cultural Sensitivity** - Proper RTL support for Arabic-speaking users
+4. **Production Ready** - Live at https://voices-of-truth.vercel.app
+5. **Well Documented** - Complete README and documentation
+
+**Portfolio Impact:**
+- Showcases full-stack capabilities
+- Demonstrates internationalization skills
+- Highlights attention to accessibility and UX
+- Provides concrete example for interviews
+
+**Lessons Learned:**
+- Server Components reduce bundle size significantly
+- react-i18next handles RTL layouts gracefully when combined with logical CSS properties
+- Framer Motion adds polish but should be used sparingly for performance
+- Featured projects should be your most impressive technical work
+
 ### Code Organization Principles ⭐
 
 Following clean code practices makes your portfolio maintainable and demonstrates professional development skills:
@@ -238,6 +286,7 @@ Following clean code practices makes your portfolio maintainable and demonstrate
 3.  **Languages:** English (primary), Français, العربية (RTL)
     - Translate core pages to all 3 languages
     - Store in `content/{en,fr,ar}/` folders
+    - Store projects in `content/{en,fr,ar}/projects.json` (localized project data)
 
 4.  **Decide blog scope:** Now or later? (If later, add hooks for it)
 
@@ -404,15 +453,18 @@ Because Husky is not meant to be installed globally, and npx lets you run it wit
   /en
     home.md
     about.md
+    projects.json        # English project data
   /fr
     home.md
     about.md
+    projects.json        # French project data
   /ar
     home.md
     about.md
-  projects.json
+    projects.json        # Arabic project data
 /public
   /images
+    /projects           # Project screenshots
 tailwind.config.js
 tsconfig.json
 .eslintrc.js
@@ -1082,12 +1134,28 @@ className = "bg-white dark:bg-gray-900 text-gray-900 dark:text-white";
     ```json
     [
       {
-        "id": "project-1",
+        "id": "athkarix",
         "name": "Athkarix",
-        "description": "Islamic prayer reminders app",
-        "tech": ["Flutter", "Dart"],
+        "description": "Islamic prayer reminders and Athkar app built with Flutter",
+        "longDescription": "A comprehensive Islamic app featuring prayer time notifications, daily supplications (Athkar), and Quranic verses. Built with Flutter for cross-platform compatibility.",
+        "tech": ["Flutter", "Dart", "SQLite"],
         "github": "https://github.com/islamux/athkarix",
-        "demo": "https://athkarix.netlify.app"
+        "demo": "https://athkarix.netlify.app",
+        "image": "/images/projects/athkarix.png",
+        "featured": true,
+        "year": "2023"
+      },
+      {
+        "id": "voices-of-truth",
+        "name": "Voices of Truth",
+        "description": "A multilingual directory of renowned Islamic scholars and preachers with Arabic RTL and English LTR support, featuring server-side filtering and smooth Framer Motion animations.",
+        "longDescription": "Voices of Truth is a sophisticated web application that serves as a comprehensive directory of Islamic scholars and preachers worldwide. Built with Next.js 15 and leveraging Server Components for optimal performance, it features seamless internationalization supporting both Arabic (RTL) and English (LTR). The application includes advanced filtering capabilities by category, country, and language, along with a powerful search functionality. With a beautiful, responsive design enhanced by Framer Motion animations and a custom dark/light theme system, it demonstrates modern full-stack development practices and accessibility standards.",
+        "tech": ["Next.js 15", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "react-i18next"],
+        "github": "https://github.com/islamux/voices-of-truth",
+        "demo": "https://voices-of-truth.vercel.app",
+        "image": "/images/projects/voices_of_truth_portfolio_showcase.png",
+        "featured": true,
+        "year": "2024"
       }
     ]
     ```
