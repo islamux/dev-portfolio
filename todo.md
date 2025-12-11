@@ -17,3 +17,6 @@ Once Next.js releases a fix (likely 16.1.0+), you can switch back to `next/font/
 - globals.css not edited  
 - dublications usein "t" in app/locale/projects/page.tsx
 - other.title in projects page.tsx
+- string text in everywere in code , RESPECT SINGLE SOURCE OF TRUTH
+- create image for the projects using ai banan , ...
+- The text with icons its like github page is this best pracrtice what your sug to improve the ui of txt

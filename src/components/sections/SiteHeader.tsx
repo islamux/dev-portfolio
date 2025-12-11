@@ -9,22 +9,20 @@ import { useTranslations } from "next-intl";
 import Button from "../ui/Button";
 import { Icon } from "../ui/Icon";
 import { LanguageSwitcher } from "./LanguagesSwitcher";
+import { navLinks } from "@/i18n/navigation";
+import { useMounted } from "../../hooks/useMounted";
 
-export default function SiteHeader() {
+export function SiteHeader() {
 
   // translation
   const t = useTranslations("nav");
   // uses
-  const [mounted, setMounted] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const pathname = usePathname();
 
   // Avoid hydration mismatch - standard Next.js pattern for client-only state
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setMounted(true);
-  }, []);
+  const mounted = useMounted();
 
   // Close mobile menu when route changes - valid state synchronization
   useEffect(() => {
@@ -32,13 +30,7 @@ export default function SiteHeader() {
     setIsMenuOpen(false);
   }, [pathname]);
 
-  const navLink = [
-    { href: "/", label: t("home") },
-    { href: "/about", label: t("about") },
-    { href: "/projects", label: t("projects") },
-    { href: "/contact", label: t("contact") },
 
-  ];
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/80 backdrop-blur-sm dark:border-gray-800 dark:bg-gray-900/80">
       <Container>
@@ -50,7 +42,7 @@ export default function SiteHeader() {
           </Link>
           {/*Desktop Navigation*/}
           <nav className="hidden md:flex items-center space-x-6">
-            {navLink.map((link) => (
+            {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
@@ -59,7 +51,7 @@ export default function SiteHeader() {
                   : "text-gray-700 dark:text-gray-300"
                   }`}
               >
-                {link.label}
+                {t(link.label)}
               </Link>
             ))}
           </nav>
@@ -99,7 +91,7 @@ export default function SiteHeader() {
         {/*Mobile Navigation*/}
         {isMenuOpen && (
           <nav className="md:hidden py-4 space-y-2 border-t border-gray-200 dark:border-gray-800">
-            {navLink.map((link) => (
+            {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
@@ -108,7 +100,7 @@ export default function SiteHeader() {
                   : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
                   }`}
               >
-                {link.label}
+                {t(link.label)}
               </Link>
             ))}
           </nav>

@@ -1,0 +1,2 @@
+- @docs/UI_IMPROVEMENTS_PLAN.md give me more details to apply 4.1
+- use pnpm always

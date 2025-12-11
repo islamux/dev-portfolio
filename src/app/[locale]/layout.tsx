@@ -1,11 +1,11 @@
 import { SkipToContent } from "@/components/ui/SkipToContent";
 import { NextIntlClientProvider } from "next-intl";
 import { Providers } from "../providers";
-import SiteHeader from "@/components/sections/SiteHeader";
+import { SiteHeader } from "@/components/sections/SiteHeader";
 import { isRTL } from "@/i18n/config";
 import { notFound } from "next/navigation";
 import { isValidateLocale } from "@/i18n/guards";
-
+import { Locale } from "@/i18n/config";
 interface LocaleLayoutProps {
   children: React.ReactNode;
   params: Promise<{
@@ -31,7 +31,7 @@ export default async function LocaleLayout(
   }
 
   // Direction
-  const direction = isRTL(locale as any) ? "rtl" : "ltr";
+  const direction = isRTL(locale as Locale) ? "rtl" : "ltr";
 
   return (
     <div lang={locale} dir={direction} className="antialiased flex flex-col min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100">

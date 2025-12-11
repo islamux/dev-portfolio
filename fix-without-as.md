@@ -8,8 +8,7 @@ Line 35 in `/src/app/[locale]/layout.tsx` has a type error because `locale` is `
 Create a type guard function:
 
 ```typescript
-import { Locale } from "next-intl";
-import { locales } from "@/i18n/config";
+import { Locale, locales } from "@/i18n/config";
 
 // Type guard function
 function isValidLocale(locale: string): locale is Locale {
@@ -35,8 +34,7 @@ export default async function LocaleLayout(
 ## Solution 2: Update Interface to use Locale type
 
 ```typescript
-import { Locale } from "next-intl";
-import { locales } from "@/i18n/config";
+import { Locale, locales } from "@/i18n/config";
 
 interface LocaleLayoutProps {
   children: React.ReactNode;
@@ -76,3 +74,25 @@ export default async function LocaleLayout(
 ## Recommendation
 
 Use **Solution 1** (Type Guard) - it's more explicit and works even if params type changes.
+
+## Why Import Locale from `@/i18n/config` Instead of `next-intl`
+
+**Problem:** Using `any` type (`locale as any`) triggers ESLint error `@typescript-eslint/no-explicit-any`.
+
+**Fix:** Import and use your app's `Locale` type from `@/i18n/config`:
+
+```typescript
+// ✅ Good - avoids 'any' type
+import { Locale } from "@/i18n/config";
+return locales.includes(locale as Locale);
+
+// ❌ Bad - triggers ESLint error
+import { Locale } from "next-intl";
+return locales.includes(locale as any);
+```
+
+**Benefits:**
+- ✅ **Type Safety:** No `any` type usage
+- ✅ **Single Source of Truth:** All locales defined in one place (`@/i18n/config`)
+- ✅ **Maintainability:** Control your locale types, not dependent on next-intl's internal types
+- ✅ **Simplicity:** Direct import, no type assertions needed
