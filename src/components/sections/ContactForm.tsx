@@ -1,44 +1,28 @@
 'use client';
 
-import { ContactFormData } from "@/types/content";
-import { FormEvent, useState } from "react";
+import { useContactForm } from "@/hooks/useContactForm";
 import Button from "../ui/Button";
 
-
-
 export function ContactForm() {
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [errorMessage, setErrorMessage] = useState("");
-  const [formData, setFormData] = useState<ContactFormData>({
-    name: "",
-    email: "",
-    message: "",
-    honeypot: "",
-  });
+
+  const { formData, status, errorMessage, updateField, handleSubmit } = useContactForm();
 
 
-  const handlerSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setStatus("loading");
-    setErrorMessage("");
-
-
-  };
   return (
-    <form onSubmit={handlerSubmit} className="space-x-6">
+    <form onSubmit={handleSubmit} className="space-x-6">
+
       {/*Honeypoot field (hidden from humans)*/}
       <input
         type="text"
         name="website"
         value={formData.honeypot}
-        onChange={(e) => setFormData({ ...formData, honeypot: e.target.value })}
+        onChange={(e) => updateField("honeypot", e.target.value)}
         className="hidden"
         tabIndex={-1}
         autoComplete="off"
       />
 
       {/* Name field*/}
-
       <div>
         <label
           htmlFor="name"
@@ -50,7 +34,7 @@ export function ContactForm() {
           id="name"
           required
           value={formData.name}
-          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+          onChange={(e) => updateField("name", e.target.value)}
           className="w-full px-4 py-2 border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-gray-900dar
     text-white focus:ring-2 focus:ring-amber-500 focus:border-transparent"
           placeholder="Islamux"
@@ -70,7 +54,7 @@ export function ContactForm() {
           id="email"
           required
           value={formData.email}
-          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+          onChange={(e) => updateField("email", e.target.value)}
           className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-brand-500"
           placeholder="fathi733@gmail.com"
         />
@@ -88,7 +72,7 @@ export function ContactForm() {
           required
           rows={6}
           value={formData.message}
-          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+          onChange={(e) => updateField("message", e.target.value)}
           className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent resize-none"
           placeholder="Your Message ...."
         />

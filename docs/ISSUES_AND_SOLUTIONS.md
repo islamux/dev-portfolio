@@ -708,6 +708,57 @@ export default function HomePage({ locale }: HomePageProps) {
 
 ---
 
+### Issue 4.10: ESLint Error - Unexpected `any` Type in Guards
+
+**Error:**
+
+```
+error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+File: src/i18n/guards.ts:5:37
+```
+
+**Cause:**
+
+- Using `any` type with locale type assertion: `locale as any`
+- Triggers ESLint rule `@typescript-eslint/no-explicit-any`
+- ESLint requires explicit type definitions
+
+**Solution:**
+
+Import `Locale` type from your config and use it:
+
+```typescript
+// ❌ WRONG
+import { Locale } from "next-intl";
+import { locales } from "./config";
+
+export function isValidateLocale(locale: string): locale is Locale {
+  return locales.includes(locale as any); // ❌ ESLint error!
+}
+
+// ✅ CORRECT
+import { Locale, locales } from "./config";
+
+export function isValidateLocale(locale: string): locale is Locale {
+  return locales.includes(locale as Locale); // ✅ No 'any' type!
+}
+```
+
+**Why This Works:**
+
+- ✅ Avoids `any` type usage (ESLint compliant)
+- ✅ Single source of truth for locales (`@/i18n/config`)
+- ✅ Type safety maintained
+- ✅ No dependency on next-intl's internal types
+
+**Prevention:**
+
+- Always import `Locale` from `@/i18n/config`, not `next-intl`
+- Avoid `as any` type assertions
+- Use TypeScript's type system properly
+
+---
+
 ## General Issues
 
 ### Issue G.1: Port 3000 Already in Use

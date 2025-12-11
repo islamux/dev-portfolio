@@ -2,6 +2,7 @@
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary" | "ghost";
   size?: "sm" | "md" | "lg";
+  active?: boolean; // Add active prop
   children: React.ReactNode;
   className?: string;
 }
@@ -11,6 +12,7 @@ export default function Button(
   {
     variant = "primary",
     size = "md",
+    active = false, // Default to false
     children,
     className = "",
     ...props
@@ -32,11 +34,13 @@ export default function Button(
     lg: "px-6 py-3 text-lg",
   };
 
+  const activeStyles = "bg-brand-500 text-white dark:bg-brand-600"; // Styles for active state
+
   return (
     <button className={
       `
       ${baseStyles}
-      ${variants[variant]}
+      ${active ? activeStyles : variants[variant]}
       ${sizes[size]}
       ${className}
       `

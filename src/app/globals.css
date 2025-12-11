@@ -1,5 +1,11 @@
 /* Geist fonts loaded via CDN to bypass Turbopack bug */
 
+/* Google Fonts - Arabic */
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap');
+
 @font-face {
   font-family: 'Geist';
   src: url('https://fonts.gstatic.com/s/geist/v4/gyByhwUxId8gMEwcGFWNOITd.woff2') format('woff2');
@@ -78,8 +84,163 @@ body {
 
 /* RTL-specific styles */
 [dir="rtl"] {
-  /* Font for Arabic */
-  --font-geist-sans: "Tajawal", "Noto Sans Arabic", system-ui, sans-serif;
+  --font-geist-sans: "Amiri", "Tajawal", system-ui, sans-serif;
+}
+
+[dir="rtl"] body {
+  font-family: "Amiri", "Tajawal", system-ui, sans-serif !important;
+  line-height: 1.8;
+  letter-spacing: -0.01em;
+  font-weight: 400;
+  font-optical-sizing: auto;
+  font-feature-settings: "rlig" 1, "calt" 1, "liga" 1;
+}
+
+/* Beautiful Arabic typography */
+[dir="rtl"] h1,
+[dir="rtl"] h2,
+[dir="rtl"] h3,
+[dir="rtl"] h4,
+[dir="rtl"] h5,
+[dir="rtl"] h6 {
+  font-family: "Amiri", "Tajawal", serif !important;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  font-feature-settings: "rlig" 1, "calt" 1, "liga" 1;
+  text-rendering: optimizeLegibility;
+}
+
+[dir="rtl"] p,
+[dir="rtl"] li,
+[dir="rtl"] span,
+[dir="rtl"] a {
+  font-family: "Amiri", "Tajawal", system-ui, sans-serif !important;
+  line-height: 1.8;
+  word-spacing: 0.02em;
+  font-feature-settings: "rlig" 1, "calt" 1, "liga" 1;
+  text-rendering: optimizeLegibility;
+  font-weight: 400;
+}
+
+/* Special styling for headings */
+[dir="rtl"] h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+}
+
+[dir="rtl"] h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+}
+
+[dir="rtl"] h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+/* Improve Arabic text readability */
+[dir="rtl"] .prose {
+  text-align: right;
+  line-height: 1.8;
+  font-size: 1.125rem;
+  font-family: "Amiri", "Tajawal", system-ui, sans-serif !important;
+}
+
+/* Force Amiri font on all prose elements for RTL */
+[dir="rtl"] .prose,
+[dir="rtl"] .prose p,
+[dir="rtl"] .prose span,
+[dir="rtl"] .prose li,
+[dir="rtl"] .prose a,
+[dir="rtl"] .prose ul,
+[dir="rtl"] .prose ol {
+  font-family: "Amiri", "Tajawal", system-ui, sans-serif !important;
+}
+
+/* Override Tailwind prose classes for RTL */
+[dir="rtl"] .prose-prose,
+[dir="rtl"] .prose-prose-slate {
+  font-family: "Amiri", "Tajawal", system-ui, sans-serif !important;
+}
+
+[dir="rtl"] article.prose {
+  font-family: "Amiri", "Tajawal", system-ui, sans-serif !important;
+}
+
+[dir="rtl"] article.prose p,
+[dir="rtl"] article.prose span,
+[dir="rtl"] article.prose li,
+[dir="rtl"] article.prose a {
+  font-family: "Amiri", "Tajawal", system-ui, sans-serif !important;
+}
+
+[dir="rtl"] .prose ul,
+[dir="rtl"] .prose ol {
+  padding-inline-start: 1.5em;
+  padding-inline-end: 0;
+  margin: 1.5rem 0;
+}
+
+[dir="rtl"] .prose li {
+  margin-bottom: 0.5rem;
+}
+
+/* Better Arabic text spacing */
+[dir="rtl"] .prose p {
+  margin-bottom: 1.25rem;
+  text-align: justify;
+  text-justify: distribute;
+}
+
+/* Arabic numerals support */
+[dir="rtl"] .arabic-numerals {
+  font-variant-numeric: arabic-indic;
+}
+
+/* Improve Arabic link styling */
+[dir="rtl"] a {
+  text-decoration: underline;
+  text-decoration-color: #0ea5e9;
+  text-underline-offset: 3px;
+  transition: all 0.2s ease;
+}
+
+[dir="rtl"] a:hover {
+  text-decoration-color: #0284c7;
+  color: #0284c7;
+}
+
+/* Better Arabic quotes */
+[dir="rtl"] blockquote {
+  border-right: 4px solid #0ea5e9;
+  border-left: none;
+  padding-right: 1.5rem;
+  padding-left: 0;
+  margin: 1.5rem 0;
+  font-style: italic;
+}
+
+[dir="rtl"] blockquote p {
+  font-family: "Amiri", "Tajawal", serif !important;
+  font-size: 1.25rem;
+  line-height: 1.6;
+}
+
+
+/* Arabic code blocks */
+[dir="rtl"] code {
+  font-family: "Geist Mono", "Courier New", monospace !important;
+  direction: ltr;
+  display: inline-block;
+}
+
+[dir="rtl"] pre {
+  direction: ltr;
+  text-align: left;
 }
 
 /* Fix common RTL layout issues */

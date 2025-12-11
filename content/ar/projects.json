@@ -1,0 +1,53 @@
+[
+  {
+    "id": "athkarix",
+    "name": "Athkarix",
+    "description": "Islamic prayer reminders and Athkar app built with Flutter",
+    "longDescription": "A comprehensive Islamic app featuring prayer time notifications, daily supplications (Athkar), and Quranic verses. Built with Flutter for cross-platform compatibility.",
+    "tech": ["Flutter", "Dart", "SQLite"],
+    "github": "https://github.com/islamux/athkarix",
+    "demo": "https://athkarix.netlify.app",
+    "image": "/images/projects/athkarix.png",
+    "featured": true,
+    "year": "2023"
+  },
+
+  {
+    "id": "portfolio",
+    "name": "Developer Portfolio",
+    "description": "Modern portfolio site built with Next.js 15 and TypeScript",
+    "longDescription": "A fully responsive, multilingual portfolio website featuring dark mode, SEO optimization, and PWA capabilities. Demonstrates best practices in modern web development.",
+    "tech": ["Next.js", "TypeScript", "Tailwind CSS"],
+    "github": "https://github.com/islamux/dev-portfolio",
+    "demo": "https://islamux.vercel.app",
+    "image": "/images/projects/portfolio.png",
+    "featured": true,
+    "year": "2024"
+  },
+
+  {
+    "id": "open-source",
+    "name": "Open Source Contributions",
+    "description": "Contributing to various open-source projects",
+    "tech": ["JavaScript", "TypeScript", "React"],
+    "github": "https://github.com/islamux",
+    "featured": false,
+    "year": "2022-2024"
+  },
+
+{
+  "id": "voices-of-truth",
+  "name": "أصوات الحق",
+  "description": "دليل شامل لعلماء ودعاة الإسلام حول العالم مع دعم العربية والإنجليزية، يتضمن فلترة متقدمة وانيميشن سلس.",
+  "longDescription": "أصوات الحق هو تطبيق ويب متطور يعمل كدليل شامل لعلماء ودعاة الإسلام حول العالم. مبني بتقنية Next.js 15 ويستفيد من مكونات الخادم لأداء مثالي، يتميز بترجمة سلسة تدعم العربية (من اليمين إلى اليسار) والإنجليزية (من اليسار إلى اليمين). يتضمن التطبيق إمكانيات فلترة متقدمة حسب الفئة والبلد واللغة، بالإضافة إلى وظيفة بحث قوية. بتصميم جميل ومتجاوب محسن بانيميشن Framer Motion ونظام ثيم مظلم/فاتح مخصص، يعرض أفضل الممارسات في تطوير الويب الحديث ومعايير إمكانية الوصول.",
+  "tech": ["Next.js 15", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "react-i18next"],
+  "github": "https://github.com/islamux/voices-of-truth",
+  "demo": "https://voices-of-truth.vercel.app",
+  "image": "/images/projects/voices_of_truth_portfolio_showcase.png",
+  "featured": true,
+  "year": "2024"
+}
+
+
+]
+

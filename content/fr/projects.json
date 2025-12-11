@@ -1,0 +1,48 @@
+[
+  {
+    "id": "athkarix",
+    "name": "Athkarix",
+    "description": "Rappels de prière islamiques et application Athkar construite avec Flutter",
+    "longDescription": "Une application islamique complète présentant des notifications d'horaires de prière, des invocations quotidiennes (Athkar) et des versets coraniques. Construite avec Flutter pour une compatibilité multiplateforme.",
+    "tech": ["Flutter", "Dart", "SQLite"],
+    "github": "https://github.com/islamux/athkarix",
+    "demo": "https://athkarix.netlify.app",
+    "image": "/images/projects/athkarix.png",
+    "featured": true,
+    "year": "2023"
+  },
+  {
+    "id": "portfolio",
+    "name": "Portfolio Développeur",
+    "description": "Site portfolio moderne construit avec Next.js 15 et TypeScript",
+    "longDescription": "Un site portfolio multilingue entièrement réactif présentant un mode sombre, une optimisation SEO et des capacités PWA. Démontre les meilleures pratiques du développement web moderne.",
+    "tech": ["Next.js", "TypeScript", "Tailwind CSS"],
+    "github": "https://github.com/islamux/dev-portfolio",
+    "demo": "https://islamux.vercel.app",
+    "image": "/images/projects/portfolio.png",
+    "featured": true,
+    "year": "2024"
+  },
+  {
+    "id": "open-source",
+    "name": "Contributions Open Source",
+    "description": "Contributions à divers projets open-source",
+    "tech": ["JavaScript", "TypeScript", "React"],
+    "github": "https://github.com/islamux",
+    "featured": false,
+    "year": "2022-2024"
+  },
+  {
+    "id": "voices-of-truth",
+  "name": "Voices of Truth",
+  "description": "Un répertoire multilingue de prédicateurs et savants islamiques renommés, avec prise en charge de l’arabe (RTL) et de l’anglais (LTR), incluant un filtrage côté serveur et des animations fluides via Framer Motion.",
+  "longDescription": "Voices of Truth est une application web avancée qui sert de répertoire complet des savants et prédicateurs islamiques à travers le monde. Développée avec Next.js 15 et exploitant les Server Components pour des performances optimales, elle offre une internationalisation fluide prenant en charge l’arabe (RTL) et l’anglais (LTR). L’application propose des fonctionnalités de filtrage avancées par catégorie, pays et langue, ainsi qu’un moteur de recherche performant. Grâce à un design moderne et responsive amélioré par des animations Framer Motion et un système personnalisé de thèmes clair/sombre, elle reflète les bonnes pratiques du développement full-stack moderne et respecte les standards d’accessibilité.",
+  "tech": ["Next.js 15", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "react-i18next"],
+  "github": "https://github.com/islamux/voices-of-truth",
+  "demo": "https://voices-of-truth.vercel.app",
+  "image": "/images/projects/voices_of_truth_portfolio_showcase.png",
+  "featured": true,
+  "year": "2024"
+}
+
+]

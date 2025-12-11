@@ -5,12 +5,14 @@ interface RootLayoutProps {
 }
 
 /**
- * Root layout - wraps entire app
- * Note: html, body, lang, and dir attributes are set in the locale-specific layout
- * This layout only imports global styles
+ * Root layout - wraps entire app with required html and body tags
  */
 export default function RootLayout({
   children,
 }: RootLayoutProps) {
-  return children;
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body>{children}</body>
+    </html>
+  );
 }

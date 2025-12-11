@@ -238,8 +238,7 @@ getLanguagesInfo("en"); // { name: "English", flag: "US", rtl: false }
 ### File: `src/i18n/guards.ts`
 
 ```typescript
-import { Locale } from "next-intl";
-import { locales } from "./config";
+import { Locale, locales } from "./config";
 
 /**
  * Type guard to validate if a string is a valid locale
