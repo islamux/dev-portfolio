@@ -109,9 +109,10 @@
 - **Purpose:** Code review, contributions, technical details
 
 **Live Demo**
-- **URL:** `https://voices-of-truth.vercel.app` (or actual deployment URL)
+- **URL:** `https://voices-of-truth.vercel.app/en` (English version)
+- **Arabic Version:** `https://voices-of-truth.vercel.app/ar`
 - **Label:** "Live Demo"
-- **Purpose:** Immediate project preview and interaction
+- **Purpose:** Immediate project preview and interaction with bilingual support
 
 ##### Visual Assets:
 
@@ -153,7 +154,7 @@
     "Node.js"
   ],
   "github": "https://github.com/islamux/voices-of-truth",
-  "demo": "https://voices-of-truth.vercel.app",
+  "demo": "https://voices-of-truth.vercel.app/en",
   "image": "/images/projects/voices_of_truth_portfolio_showcase.png",
   "featured": true,
   "year": "2024"
