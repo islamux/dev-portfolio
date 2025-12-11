@@ -41,24 +41,168 @@
 ### **PHASE 1: Preparation & Data Collection** ⏱️ *Est. 30-45 minutes*
 
 #### Step 1.1: Gather Project Assets
-- [ ] Use provided screenshot: `voices_of_truth_portfolio_showcase.png`
-- [ ] Verify screenshot quality and dimensions (1200x630px recommended)
-- [ ] Copy screenshot to `/public/images/projects/voices_of_truth_portfolio_showcase.png`
-- [ ] Keep original as backup: `voices_of_truth_portfolio_showcase.png`
+<!-- - [ ] Use provided screenshot: `voices_of_truth_portfolio_showcase.png` -->
+<!-- - [ ] Verify screenshot quality and dimensions (1200x630px recommended) -->
+<!-- - [ ] Copy screenshot to `/public/images/projects/voices_of_truth_portfolio_showcase.png` -->
+<!-- - [ ] Keep original as backup: `voices_of_truth_portfolio_showcase.png` -->
 
 #### Step 1.2: Define Project Metadata
-- [ ] **Project ID:** `voices-of-truth`
-- [ ] **Name:** "Voices of Truth" (EN) / "أصوات الحق" (AR)
-- [ ] **Year:** 2024
-- [ ] **Featured:** true (it's a significant project)
-- [ ] **Tech Stack:**
-  - Next.js 15
-  - React
-  - TypeScript
-  - Tailwind CSS
-  - Framer Motion
-  - react-i18next
-  - Node.js
+
+**Purpose:** Establish comprehensive project information for portfolio integration.
+
+##### Core Identification Fields:
+
+**1. Project ID**
+- **Value:** `voices-of-truth`
+- **Format:** kebab-case (lowercase with hyphens)
+- **Purpose:** Unique identifier for URLs, filtering, and internal references
+- **Usage:** Project card links, data lookup, filtering system
+- **Example:** `/projects/voices-of-truth`
+
+**2. Project Name**
+- **English:** "Voices of Truth"
+- **Arabic:** "أصوات الحق"
+- **French:** "Voix de Vérité" (if applicable)
+- **Purpose:** Display name in project cards and listings
+- **Usage:** `src/components/sections/ProjectCard.tsx`
+
+**3. Project Year**
+- **Value:** "2024"
+- **Format:** YYYY (string)
+- **Purpose:** Chronological sorting and timeline context
+- **Usage:** Sorting projects by date, showing development timeline
+
+**4. Featured Status**
+- **Value:** `true`
+- **Purpose:** Highlighted in "Featured Projects" section
+- **Impact:** Appears in hero section and priority placement
+- **Effect:** Special styling and prominent positioning
+
+##### Technology Stack (Tech Tags):
+
+**Primary Technologies:**
+- `Next.js 15` - Latest Next.js framework (emphasize version)
+- `React` - UI library
+- `TypeScript` - Type safety and developer experience
+- `Tailwind CSS` - Utility-first styling
+
+**Animation & UX:**
+- `Framer Motion` - Smooth animations and transitions
+
+**Internationalization:**
+- `react-i18next` - Multi-language support with RTL/LTR
+
+**Backend/Runtime:**
+- `Node.js` - Server runtime environment
+
+**Additional Relevant Tags:**
+- `Server Components` - Next.js 15 feature
+- `RTL Support` - Arabic right-to-left layout
+- `Responsive Design` - Mobile-first approach
+- `Dark Mode` - Theme switching capability
+
+##### External Links:
+
+**GitHub Repository**
+- **URL:** `https://github.com/islamux/voices-of-truth`
+- **Label:** "Source Code"
+- **Purpose:** Code review, contributions, technical details
+
+**Live Demo**
+- **URL:** `https://voices-of-truth.vercel.app` (or actual deployment URL)
+- **Label:** "Live Demo"
+- **Purpose:** Immediate project preview and interaction
+
+##### Visual Assets:
+
+**Screenshot**
+- **File:** `voices_of_truth_portfolio_showcase.png`
+- **Path:** `/public/images/projects/voices_of_truth_portfolio_showcase.png`
+- **Dimensions:** 1200x630px (16:9 aspect ratio)
+- **Format:** PNG (as provided)
+- **Alt Text:** "Voices of Truth - Islamic Scholars Directory"
+- **Usage:** Project card thumbnail and detail view
+
+##### Content Descriptions:
+
+**Short Description** (50-140 characters)
+```
+"A multilingual directory of renowned Islamic scholars and preachers with Arabic RTL and English LTR support, featuring server-side filtering and smooth Framer Motion animations."
+```
+
+**Long Description** (200-500 words)
+```
+"Voices of Truth is a sophisticated web application that serves as a comprehensive directory of Islamic scholars and preachers worldwide. Built with Next.js 15 and leveraging Server Components for optimal performance, it features seamless internationalization supporting both Arabic (RTL) and English (LTR). The application includes advanced filtering capabilities by category, country, and language, along with a powerful search functionality. With a beautiful, responsive design enhanced by Framer Motion animations and a custom dark/light theme system, it demonstrates modern full-stack development practices and accessibility standards."
+```
+
+##### Complete Metadata JSON Structure:
+
+```json
+{
+  "id": "voices-of-truth",
+  "name": "Voices of Truth",
+  "description": "A multilingual directory of renowned Islamic scholars and preachers with Arabic RTL and English LTR support, featuring server-side filtering and smooth Framer Motion animations.",
+  "longDescription": "Voices of Truth is a sophisticated web application that serves as a comprehensive directory of Islamic scholars and preachers worldwide. Built with Next.js 15 and leveraging Server Components for optimal performance, it features seamless internationalization supporting both Arabic (RTL) and English (LTR). The application includes advanced filtering capabilities by category, country, and language, along with a powerful search functionality. With a beautiful, responsive design enhanced by Framer Motion animations and a custom dark/light theme system, it demonstrates modern full-stack development practices and accessibility standards.",
+  "tech": [
+    "Next.js 15",
+    "React",
+    "TypeScript",
+    "Tailwind CSS",
+    "Framer Motion",
+    "react-i18next",
+    "Node.js"
+  ],
+  "github": "https://github.com/islamux/voices-of-truth",
+  "demo": "https://voices-of-truth.vercel.app",
+  "image": "/images/projects/voices_of_truth_portfolio_showcase.png",
+  "featured": true,
+  "year": "2024"
+}
+```
+
+##### Why This Metadata Matters:
+
+1. **Filtering System**: Tech tags enable `useProjectFilter` hook to categorize and filter projects
+2. **SEO Optimization**: Descriptions and metadata improve search engine visibility
+3. **User Experience**: Clear names and descriptions help visitors quickly understand each project
+4. **Showcase Value**: Featured status highlights your most impressive work
+5. **Credibility**: Links to live demo and GitHub demonstrate real, working projects
+6. **Consistency**: Standardized metadata across all locales ensures uniform presentation
+
+##### Categorization Details:
+
+**Project Category:**
+- `Web Application` - Primary project type
+- `Directory/Listing` - Functionality type
+- `Islamic Studies` - Subject domain
+- `Multilingual` - Feature category
+
+**Industry/Niche:**
+- `Religious Studies` - Academic/educational
+- `Education` - Learning resource
+- `Community Resource` - Public service
+
+##### File Usage Locations:
+
+- **Data Storage:** `content/{locale}/projects.json`
+- **Type Definition:** `src/types/content.ts` - Project interface
+- **Display Component:** `src/components/sections/ProjectsList.tsx`
+- **Card Component:** `src/components/sections/ProjectCard.tsx`
+- **Filtering Logic:** `src/hooks/useProjectFilter.ts`
+- **Single Project View:** `src/app/[locale]/projects/[id]/page.tsx`
+
+##### Localization Notes:
+
+This metadata will be implemented across:
+- ✅ `content/en/projects.json` - English version
+- ✅ `content/ar/projects.json` - Arabic version
+- ✅ `content/fr/projects.json` - French version (if maintained)
+
+Each locale requires:
+- Translated name and descriptions
+- Same structure and fields
+- Consistent formatting
+- Proper RTL/LTR text handling
 
 ---
 
