@@ -197,6 +197,12 @@ There's a known bug with `next/font/google` in Next.js 16.0.3. This project uses
 
 ### December 2024
 
+- ✅ **Added "Voices of Truth" Project** - Islamic scholars directory with multilingual support (EN/AR/FR)
+  - Next.js 15 with Server Components
+  - Arabic RTL and English LTR support
+  - Advanced filtering and search functionality
+  - Framer Motion animations
+  - Featured project in portfolio
 - ✅ **Phase 4 Complete** - Full i18n support with next-intl
 - ✅ **Multi-language** - English, French, Arabic with RTL support
 - ✅ **Locale routing** - `/en`, `/fr`, `/ar` routes with middleware
