@@ -40,9 +40,22 @@
   "tech": ["Next.js 15", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "react-i18next"],
   "github": "https://github.com/islamux/voices-of-truth",
   "demo": "https://voices-of-truth.vercel.app",
-  "image": "/images/projects/voices_of_truth_portfolio_showcase.png",
+  "image": "/images/projects/voices_of_truth.png",
   "featured": true,
   "year": "2024"
 }
+,
+{
+    "id": "khwater",
+    "name": "Khwater",
+    "description": "Réflexions spirituelles et intellectuelles inspirées des valeurs islamiques, apportant la beauté de la réflexion islamique dans le monde numérique.",
+    "longDescription": "Khwater – Réflexions sur la Foi et la Vie est une application spirituelle complète qui présente des écrits arabes sous une forme numérique moderne, accessible et élégante. Construit à l'origine avec Flutter, ce projet a été entièrement migré vers Next.js (TypeScript) en suivant un plan de migration structuré en 7 phases. L'application dispose de capacités PWA avec mode hors ligne, support de thème clair/sombre, fonctionnalité de signets, recherche avancée et support complet de la langue arabe. Conçu avec la performance à l'esprit en utilisant SSG et ISR, garantissant des temps de chargement rapides tout en maintenant la conformité WCAG AA pour l'accessibilité et l'optimisation SEO.",
+    "tech": ["Next.js", "TypeScript", "Tailwind CSS", "PWA", "Arabic RTL"],
+    "github": "https://github.com/islamux/khwater",
+    "demo": "https://khwater.vercel.app",
+    "image": "/images/projects/khwater.png",
+    "featured": true,
+    "year": "2024"
+ }
 
 ]

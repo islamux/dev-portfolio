@@ -1,7 +1,7 @@
 [
   {
     "id": "athkarix",
-    "name": "Athkarix",
+    "name": "أذكاري",
     "description": "Islamic prayer reminders and Athkar app built with Flutter",
     "longDescription": "A comprehensive Islamic app featuring prayer time notifications, daily supplications (Athkar), and Quranic verses. Built with Flutter for cross-platform compatibility.",
     "tech": ["Flutter", "Dart", "SQLite"],
@@ -35,19 +35,32 @@
     "year": "2022-2024"
   },
 
+  {
+    "id": "voices-of-truth",
+    "name": "أصوات الحق",
+    "description": "دليل شامل لعلماء ودعاة الإسلام حول العالم مع دعم العربية والإنجليزية، يتضمن فلترة متقدمة وانيميشن سلس.",
+    "longDescription": "أصوات الحق هو تطبيق ويب متطور يعمل كدليل شامل لعلماء ودعاة الإسلام حول العالم. مبني بتقنية Next.js 15 ويستفيد من مكونات الخادم لأداء مثالي، يتميز بترجمة سلسة تدعم العربية (من اليمين إلى اليسار) والإنجليزية (من اليسار إلى اليمين). يتضمن التطبيق إمكانيات فلترة متقدمة حسب الفئة والبلد واللغة، بالإضافة إلى وظيفة بحث قوية. بتصميم جميل ومتجاوب محسن بانيميشن Framer Motion ونظام ثيم مظلم/فاتح مخصص، يعرض أفضل الممارسات في تطوير الويب الحديث ومعايير إمكانية الوصول.",
+    "tech": ["Next.js 15", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "react-i18next"],
+    "github": "https://github.com/islamux/voices-of-truth",
+    "demo": "https://voices-of-truth.vercel.app",
+    "image": "/images/projects/voices_of_truth.png",
+    "featured": true,
+    "year": "2024"
+  },
+
 {
-  "id": "voices-of-truth",
-  "name": "أصوات الحق",
-  "description": "دليل شامل لعلماء ودعاة الإسلام حول العالم مع دعم العربية والإنجليزية، يتضمن فلترة متقدمة وانيميشن سلس.",
-  "longDescription": "أصوات الحق هو تطبيق ويب متطور يعمل كدليل شامل لعلماء ودعاة الإسلام حول العالم. مبني بتقنية Next.js 15 ويستفيد من مكونات الخادم لأداء مثالي، يتميز بترجمة سلسة تدعم العربية (من اليمين إلى اليسار) والإنجليزية (من اليسار إلى اليمين). يتضمن التطبيق إمكانيات فلترة متقدمة حسب الفئة والبلد واللغة، بالإضافة إلى وظيفة بحث قوية. بتصميم جميل ومتجاوب محسن بانيميشن Framer Motion ونظام ثيم مظلم/فاتح مخصص، يعرض أفضل الممارسات في تطوير الويب الحديث ومعايير إمكانية الوصول.",
-  "tech": ["Next.js 15", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "react-i18next"],
-  "github": "https://github.com/islamux/voices-of-truth",
-  "demo": "https://voices-of-truth.vercel.app",
-  "image": "/images/projects/voices_of_truth_portfolio_showcase.png",
+  "id": "khwater",
+  "name": "خواطر",
+  "description": "تطبيق ويب يعرض خواطر إيمانية وفكرية مستلهمة من القيم الإسلامية",
+  "longDescription": "خواطر – تأملات في الإيمان والحياة هو تطبيق ويب حديث يقدّم نصوصًا عربية روحية وفكرية مستوحاة من القيم الإسلامية، في واجهة عصرية تراعي سهولة الوصول وجمالية العرض. تم ترحيل المشروع بالكامل من Flutter إلى Next.js وفق خطة منهجية متعددة المراحل، مع التركيز على الأداء، ودعم العمل دون اتصال، وتحسين محركات البحث، وتجربة مستخدم موجهة للغة العربية أولًا. يدعم التطبيق خصائص PWA، والحفظ، والبحث، والوضع الليلي والنهاري، والقراءة دون إنترنت.",
+  "tech": ["Next.js", "TypeScript", "TailwindCSS", "PWA"],
+  "github": "https://github.com/islamux/khwater",
+  "demo": "https://khwater.vercel.app",
+  "image": "/images/projects/khwater.png",
   "featured": true,
   "year": "2024"
 }
 
 
-]
 
+]
