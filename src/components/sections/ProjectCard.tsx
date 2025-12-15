@@ -1,6 +1,7 @@
 import { Project } from "@/types/content";
 import Image from "next/image";
 import { Icon } from "../ui/Icon";
+import Link from "next/link";
 
 interface ProjectCardProps {
   project: Project;
@@ -13,20 +14,22 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       {/*Project Image*/}
       {project.image && (
         <div className="relative h-48 w-full overflow-hidden bg-gray-100 dark:bg-gray-800">
-          <Image
-            src={project.image}
-            alt={project.name}
-            fill
-            className="object-cover group-hover:scale-105 transform duration-300 "
-            sizes="(max-width:768xp) 100vw, (max-width:1024px) 50vw, 33vw"
-          />
+          <Link href={`/projects/${project.id}`}>
+            <Image
+              src={project.image}
+              alt={project.name}
+              fill
+              className="object-cover group-hover:scale-105 transform duration-300"
+              sizes="(max-width:768px) 100vw, (max-width:1024px) 50vw, 33vw"
+            />
+          </Link>
         </div>
       )}
       {/*Content*/}
       <div className="p-6">
-        {/*Year Badg*/}
+        {/*Year Badge*/}
         {project.year && (
-          <span className="inline-block px-3 py-1 text-xs font-medium bg-brand-100 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400 rounded mb3">
+          <span className="inline-block px-3 py-1 text-xs font-medium bg-brand-100 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400 rounded mb-3">
             {project.year}
           </span>
         )}
@@ -39,7 +42,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">
           {project.description}
         </p>
-        {/*Teck Stack*/}
+        {/*Tech Stack*/}
         <div className="flex flex-wrap gap-2 mb-4">
           {project.tech.slice(0, 3).map((tech) => (
             <span
@@ -60,7 +63,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         <div className="flex items-center gap-4 pt-4 border-t border-gray-200 dark:border-gray-800">
           {project.github && (
             <a
-              href="{project.github}"
+              href={project.github}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 hover:text-brand-500 transition-colors">
@@ -70,7 +73,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           )}
           {project.gitlab && (
             <a
-              href="{project.gitlab}"
+              href={project.gitlab}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 hover:text-brand-500 transition-colors">

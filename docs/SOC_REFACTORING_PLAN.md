@@ -39,8 +39,10 @@ export class ProjectService {
    * Get a single project by ID with proper locale handling
    */
   static async getProjectById(id: string, locale: string): Promise<Project | null> {
+
     try {
       return getProjectById(id, locale);
+
     } catch (error) {
       console.error(`Error fetching project ${id}:`, error);
       return null;
@@ -603,10 +605,89 @@ export default async function ProjectsPage({ params }: ProjectsPageProps) {
 
 ### 6.1 Update `src/components/HomePage.tsx`
 
+**Current Issues:**
+- Directly importing project data functions from `@/lib/content`
+- Mixing business logic (data fetching) with presentation
+- No centralized error handling
+- Hard to test without mocking file system
+
+**Implementation Steps:**
+
+#### Step 1: Import ProjectService
 ```typescript
-// Use ProjectService.getFeaturedProjects(locale) for featured projects
-// instead of direct file system access
+import { ProjectService } from "@/services/projectService";
+// ... other imports
 ```
+
+#### Step 2: Update data fetching logic
+```typescript
+export default async function HomePage({ params }: HomePageProps) {
+  const { locale } = await params;
+
+  // Use service layer for featured projects
+  const featuredProjects = await ProjectService.getFeaturedProjects(locale, 3);
+
+  return (
+    <main>
+      {/* Existing hero section */}
+
+      {/* Featured Projects Section */}
+      {featuredProjects.length > 0 && (
+        <section className="py-20">
+          <Container>
+            <div className="mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                Featured Projects
+              </h2>
+              <p className="text-lg text-gray-600 dark:text-gray-400">
+                A showcase of my recent work
+              </p>
+            </div>
+            <ProjectsList initialProjects={featuredProjects} />
+          </Container>
+        </section>
+      )}
+    </main>
+  );
+}
+```
+
+#### Step 3: Add metadata generation (if not present)
+```typescript
+export async function generateMetadata({ params }: HomePageProps): Promise<Metadata> {
+  const { locale } = await params;
+
+  return {
+    title: "Islamux - Software Developer",
+    description: "Full-stack developer specializing in modern web applications",
+  };
+}
+```
+
+**Benefits:**
+1. **Consistency**: Same data access pattern used across all pages
+2. **Testability**: Can easily mock `ProjectService` in unit tests
+3. **Error Handling**: Centralized error handling in service layer
+4. **Performance**: Service layer can implement caching if needed
+5. **Maintainability**: Changes to data fetching logic only need to happen in one place
+
+**Additional Enhancement (Optional):**
+If the home page displays projects in multiple sections (e.g., featured, recent, all), create reusable service calls:
+
+```typescript
+// Example for multiple project sections
+const featuredProjects = await ProjectService.getFeaturedProjects(locale, 3);
+const recentProjects = await ProjectService.getAllProjects(locale);
+```
+
+**Implementation Checklist for Phase 6:**
+- [ ] Import `ProjectService` in HomePage
+- [ ] Replace direct content access with `ProjectService.getFeaturedProjects()`
+- [ ] Add featured projects section with ProjectsList component
+- [ ] Add conditional rendering for featured projects
+- [ ] Test that featured projects display correctly
+- [ ] Verify no TypeScript errors
+- [ ] Check that build succeeds
 
 ---
 

@@ -5,15 +5,26 @@ import { MarkdownContent } from "./ui/MarkdownContent";
 import Link from "next/link";
 import Button from "./ui/Button";
 import ProjectCard from "./sections/ProjectCard";
+import { ProjectService } from "@/services/projectService";
+import { Metadata } from "next";
 
 interface HomePageProps {
-  locale: string;
+  params: Promise<{ locale: string }>;
 }
 
-export default async function HomePage({ locale }: HomePageProps) {
+export async function generateMetadata({ params }: HomePageProps): Promise<Metadata> {
+  return {
+    title: "Islamux = Software Developer",
+    description: "Full-stack developer specializing in modern web applications",
+  };
+}
+
+export default async function HomePage({ params }: HomePageProps) {
+  const { locale } = await params;
+  // use service layer for featured projects
+  const featuredProjects = await ProjectService.getFeaturedProjects(locale, 3);
+
   const { frontmatter, content } = getContentBySlug("home", locale);
-  const projects = getProjectData(locale);
-  const featuredProjects = projects.filter((p) => p.featured);
 
   // Get translations
   const t = await getTranslations({ locale, namespace: "home" });
@@ -24,7 +35,7 @@ export default async function HomePage({ locale }: HomePageProps) {
       <section className="py-20 md:py-32 bg-gradient-to-b from-white  to-gray-50 dark:from-gray-950 dark:to-gray-900">
         <Container>
           <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-6xl font-bold to-gray-900 dark:text-white mb-6  ">
+            <h1 className="text-4xl md:text-6xl font-bold from-gray-900 to-gray-900 dark:text-white mb-6">
               {frontmatter.title}
             </h1>
             <div className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8">
@@ -60,8 +71,7 @@ export default async function HomePage({ locale }: HomePageProps) {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {featuredProjects.map((project) => (
-                <ProjectCard key={project.id} project={project}></ProjectCard>
-
+                <ProjectCard key={project.id} project={project} />
               ))}
             </div>
           </Container>
