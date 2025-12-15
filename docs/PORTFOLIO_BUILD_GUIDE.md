@@ -52,6 +52,7 @@ Before diving into phases, understand this roadmap as a junior:
 
 | Phase                       | Days           | Hours             | Difficulty            | Status       |
 | --------------------------- | -------------- | ----------------- | --------------------- | ------------ |
+| **SoC Refactoring**         | 1-2            | 8-16              | Intermediate          | ✅ Completed |
 | Phase 2 - Layout & Design   | 3-4            | 24-32             | Intermediate          | ✅ Completed |
 | Phase 3 - Pages & Content   | 3-4            | 24-32             | Intermediate          | ✅ Completed |
 | Phase 4 - i18n & RTL        | 2-3            | 16-24             | Intermediate-Advanced | ✅ Completed |
@@ -255,6 +256,100 @@ Following clean code practices makes your portfolio maintainable and demonstrate
     - **Scalability:** Easy to add new data (testimonials, experience)
     - **Professionalism:** Shows you understand clean architecture
     - **SEO Consistency:** All pages have coherent, professional metadata
+
+### 📋 Separation of Concerns Refactoring (December 2024) ✅
+
+**What Was Done:**
+
+The codebase underwent a comprehensive refactoring to improve separation of concerns and code organization. This refactoring transformed a monolithic project structure into a well-organized, maintainable architecture.
+
+**Key Improvements:**
+
+1. **ProjectService Abstraction Layer** (`src/services/projectService.ts`)
+   - Centralized all project data operations
+   - Provides consistent API for getting projects by ID, locale, and featured status
+   - Includes proper error handling and TypeScript types
+   - Methods: `getProjectById()`, `getAllProjects()`, `generateStaticParams()`, `getFeaturedProjects()`
+
+2. **Component Decomposition**
+   Extracted 7 focused, reusable components from the monolithic ProjectDetailPage:
+
+   - **ProjectHeader** - Displays project title, description, year, and tech stack
+   - **ProjectImage** - Responsive image with Next.js optimization
+   - **ProjectDescription** - Long-form project description
+   - **ProjectLinks** - GitHub/GitLab/Live Demo action buttons
+   - **ProjectBreadcrumb** - Navigation breadcrumbs with locale support
+   - **ProjectBackButton** - Back navigation to projects list
+   - **ProjectDetailContainer** - Layout wrapper for consistent page structure
+
+3. **Bug Fixes**
+   - Fixed 20+ TypeScript errors across multiple files
+   - Corrected typos: "slingle"→"single", "fetcherd"→"featured", "mb3"→"mb-3"
+   - Fixed template literal syntax errors in projects page
+   - Corrected destructuring errors in async functions
+   - Fixed broken Tailwind className in ProjectHeader
+
+4. **Code Quality Improvements**
+   - Reduced ProjectDetailPage from 177 lines to ~50 lines
+   - Improved single responsibility principle
+   - Enhanced testability through service layer abstraction
+   - Added comprehensive JSDoc documentation
+   - Established consistent naming conventions
+
+**Before Refactoring:**
+```
+ProjectDetailPage (177 lines)
+├── Data fetching logic mixed with UI
+├── Styling scattered throughout
+├── Hardcoded locale handling
+├── Not testable in isolation
+└── Difficult to maintain
+```
+
+**After Refactoring:**
+```
+ProjectDetailPage (~50 lines)
+├── Clean component composition
+├── Business logic in ProjectService
+├── Reusable components
+├── Type-safe interfaces
+└── Easy to test and maintain
+```
+
+**Files Changed:**
+- Modified: 10 files (pages, components, docs, content)
+- Created: 8 new component files
+- Service Layer: 1 new service file
+- Types: 1 new type definition file
+- Documentation: 3 documentation files updated
+
+**Impact:**
+- ✅ Build Success: 100% TypeScript compliance
+- ✅ Maintainability: Clear separation of concerns
+- ✅ Reusability: Components can be used in multiple contexts
+- ✅ Testability: Service layer and components can be unit tested independently
+- ✅ Scalability: Easy to add new features or modify existing ones
+
+**Learning Outcomes:**
+This refactoring demonstrates professional software development practices:
+- **Abstraction:** Hiding implementation details behind clean APIs
+- **Single Responsibility:** Each component has one clear purpose
+- **DRY (Don't Repeat Yourself):** Eliminated code duplication
+- **Type Safety:** Leveraging TypeScript for better developer experience
+- **Clean Architecture:** Separating business logic from presentation
+
+**For Junior Developers:**
+
+This refactoring serves as an excellent case study for understanding:
+1. How to identify violations of separation of concerns
+2. When and how to extract reusable components
+3. The value of a service layer in organizing code
+4. How to maintain type safety throughout refactoring
+5. The importance of incremental, testable changes
+
+**Related Documentation:**
+- [SOC_REFACTORING_PLAN.md](./SOC_REFACTORING_PLAN.md) - Detailed refactoring plan
+- [REFACTORING_FIXES.md](../REFACTORING_FIXES.md) - Complete list of fixes applied
 
 ### Inspiration (Study These)
 
