@@ -52,7 +52,7 @@
     "tech": ["Next.js", "TypeScript", "Tailwind CSS", "PWA", "Arabic RTL"],
     "github": "https://github.com/islamux/khwater",
     "demo": "https://khwater.vercel.app",
-    "image": "/images/projects/khwater-portfolio-cover.png",
+    "image": "/images/projects/khwater.png",
     "featured": true,
     "year": "2024"
   }

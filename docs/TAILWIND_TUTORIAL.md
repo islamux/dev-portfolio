@@ -73,6 +73,8 @@ A comprehensive guide to all Tailwind CSS properties used in this portfolio proj
 - **`mb-3`** - Applies margin-bottom of 0.75rem (12px)
 - **`mt-2`** - Applies margin-top of 0.5rem (8px)
 - **`ml-auto`** - Applies auto margin-left (pushes element to the right in flexbox)
+- **`mr-2`** - Applies margin-right of 0.5rem (8px)
+- **`mr-4`** - Applies margin-right of 1rem (16px)
 
 ### Spacing Between Children
 - **`space-y-12`** - Applies margin-top of 3rem (48px) between vertically stacked children
@@ -101,7 +103,33 @@ A comprehensive guide to all Tailwind CSS properties used in this portfolio proj
 
 ---
 
-## Typography
+## Typography (Prose Plugin)
+
+The `@tailwindcss/typography` plugin provides utilities for styling content like articles and documentation.
+
+### Core Prose Classes
+- **`prose`** - Applies default typography styles (headings, paragraphs, lists, etc.)
+- **`prose-lg`** - Large text size for prose
+- **`dark:prose-invert`** - Inverts colors for dark mode
+- **`prose-slate`** - Applies slate color scheme
+- **`max-w-none`** - Allows prose to use full container width
+
+### Common Modifiers
+- **`prose-headings:font-bold`** - Bold headings
+- **`prose-a:text-brand-500`** - Brand-colored links
+- **`hover:prose-a:underline`** - Underline links on hover
+- **`prose-code:text-brand-600`** - Brand-colored code
+
+### Example from Project
+```tsx
+<div className="prose prose-lg dark:prose-invert max-w-none">
+  <p>Content with automatic typography styling</p>
+</div>
+```
+
+---
+
+## Typography (Core Text Styles)
 
 ### Font Size
 - **`text-5xl`** - Sets font size to 3rem (48px)

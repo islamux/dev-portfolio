@@ -23,3 +23,12 @@ Once Next.js releases a fix (likely 16.1.0+), you can switch back to `next/font/
 - /en translation in voices-of-truth is better than current
 - Netlify
 - seperation of concern for content files in the project , the data
+- Remove dublications in examples @TAILWIND_TUTORIAL.md: ex. max-w-7xl , max-w-4xl, ... and the same pattern in all file for other explainations.. make one expample and remove the others from the same kinde of explaination.
+- add explaination for using {project.github && ()} : using && here
+- text string seperated as a links.
+- seperate file for routing is best pracrtice
+- why we dont import usePath or something like that instead of import {use} rom react @ProjeBreadcrumb.tsx
+- make app/[locale]]/projects/page.tsx more simpler , seperated file
+- why getTranslation and getContentBYId not in ProjectService 
+- make sure getMetadata @HomePage is best practices.
+- add recentProject to HomePage : const recentProjects = await ProjectService.getAllProjects(locale);

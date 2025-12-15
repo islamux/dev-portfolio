@@ -1,9 +1,8 @@
-import type { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
 import Container from "@/components/Container";
 import ProjectsList from "@/components/sections/ProjectsList";
-import { getProjectData } from "@/lib/content";
-import { siteConfig } from '@/app/metadata';
+import { ProjectService } from "@/services/projectService";
+import { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 
 interface ProjectsPageProps {
   params: Promise<{ locale: string }>;
@@ -11,21 +10,21 @@ interface ProjectsPageProps {
 
 export async function generateMetadata({
   params,
-}: ProjectsPageProps): Promise<Metadata> {
+}: ProjectsPageProps
+): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "projects" });
   return {
-    title: `${t("title")} - ${siteConfig.name}`,
+    title: `${t("title")} - Islamux`,
     description: t("description"),
   };
 }
 
-
 export default async function ProjectsPage({ params }: ProjectsPageProps) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "projects" });
-  const projects = getProjectData(locale);
-  
+  const projects = await ProjectService.getAllProjects(locale);
+
   return (
     <div className="py-12 md:py-20">
       <Container>
@@ -42,4 +41,5 @@ export default async function ProjectsPage({ params }: ProjectsPageProps) {
       </Container>
     </div>
   );
+
 }
