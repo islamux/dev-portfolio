@@ -5,6 +5,7 @@ import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
+import { Alert } from "../ui/alert";
 
 export function ContactForm() {
 
@@ -74,19 +75,18 @@ export function ContactForm() {
 
       {/* Status Message*/}
       {status === "success" && (
-        <div className="p-4 bg-green-50 dark:bg-gray-900/20 border border-green-200 dark:border-gray-800 rounded-lg">
-          <p className="text-gray-800 dark:text-gray-400">
+        <Alert variant="success" className="border-green-200 dark:border-green-800">
+          <p className="text-gray-800 dark:text-green-400">
             ✓ Message sent successfully! I&apos;ll get back to you soon.
           </p>
-        </div>
+        </Alert>
       )}
       {status === "error" && (
-        <div
-          className="p-4  bg-red-50 dark:bg-gray-900/20 border  border-red-200 dark:border-red-800 rounded-lg">
+        <Alert variant="destructive" className="border-red-200 dark:border-red-800">
           <p className="text-red-800 dark:text-red-400">
             {errorMessage}
           </p>
-        </div>
+        </Alert>
       )}
 
       {/*Submit Button*/}
