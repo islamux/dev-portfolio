@@ -2,6 +2,9 @@
 
 import { useContactForm } from "@/hooks/useContactForm";
 import { Button } from "../ui/button";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
+import { Textarea } from "../ui/textarea";
 
 export function ContactForm() {
 
@@ -9,7 +12,7 @@ export function ContactForm() {
 
 
   return (
-    <form onSubmit={handleSubmit} className="space-x-6">
+    <form onSubmit={handleSubmit} className="space-y-6">
 
       {/*Honeypoot field (hidden from humans)*/}
       <input
@@ -23,58 +26,49 @@ export function ContactForm() {
       />
 
       {/* Name field*/}
-      <div>
-        <label
-          htmlFor="name"
-          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb2">
+      <div className="space-y-2">
+        <Label htmlFor="name" className="text-gray-700 dark:text-gray-300">
           Name *
-        </label>
-        <input
-          type="text"
+        </Label>
+        <Input
           id="name"
+          type="text"
           required
           value={formData.name}
           onChange={(e) => updateField("name", e.target.value)}
-          className="w-full px-4 py-2 border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-gray-900dar
-    text-white focus:ring-2 focus:ring-amber-500 focus:border-transparent"
           placeholder="Islamux"
+          className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white border-gray-300 dark:border-gray-700 focus:ring-brand-500"
         />
       </div>
 
       {/* Email Field*/}
-      <div>
-        <label
-          htmlFor="email"
-          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb2"
-        >
-          fathi733@gmail.com
-        </label>
-        <input
-          type="email"
+      <div className="space-y-2">
+        <Label htmlFor="email" className="text-gray-700 dark:text-gray-300">
+          Email *
+        </Label>
+        <Input
           id="email"
+          type="email"
           required
           value={formData.email}
           onChange={(e) => updateField("email", e.target.value)}
-          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-brand-500"
           placeholder="fathi733@gmail.com"
+          className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white border-gray-300 dark:border-gray-700 focus:ring-brand-500"
         />
       </div>
 
       {/*Message Field*/}
-      <div>
-        <label
-          htmlFor="message"
-          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+      <div className="space-y-2">
+        <Label htmlFor="message" className="text-gray-700 dark:text-gray-300">
           Message*
-        </label>
-        <textarea
+        </Label>
+        <Textarea
           id="message"
           required
-          rows={6}
           value={formData.message}
           onChange={(e) => updateField("message", e.target.value)}
-          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent resize-none"
           placeholder="Your Message ...."
+          className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white border-gray-300 dark:border-gray-700 focus:ring-brand-500 min-h-[160px] resize-none"
         />
       </div>
 
