@@ -11,24 +11,22 @@ import { Icon } from "../ui/Icon";
 import { LanguageSwitcher } from "./LanguagesSwitcher";
 import { navLinks } from "@/i18n/navigation";
 import { useMounted } from "../../hooks/useMounted";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from "../ui/sheet";
 
 export function SiteHeader() {
 
   // translation
   const t = useTranslations("nav");
   // uses
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const pathname = usePathname();
 
   // Avoid hydration mismatch - standard Next.js pattern for client-only state
   const mounted = useMounted();
-
-  // Close mobile menu when route changes - valid state synchronization
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setIsMenuOpen(false);
-  }, [pathname]);
 
 
   return (
@@ -78,34 +76,36 @@ export function SiteHeader() {
             {/* Language Switcher */}
             <LanguageSwitcher />
             {/* Mobile Menue Button*/}
-            <Button
-              variant="ghost"
-              size="icon"
-              className="md:hidden h-9 w-9"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              aria-label="Toggle menu"
-            >
-              <Icon name={isMenuOpen ? "close" : "menu"} size={24} />
-            </Button>
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="md:hidden h-9 w-9"
+                  aria-label="Toggle menu"
+                >
+                  <Icon name="menu" size={24} />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[300px] border-l border-gray-200 dark:border-gray-800">
+                <nav className="flex flex-col space-y-4 mt-8">
+                  {navLinks.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className={`text-lg font-medium transition-colors px-4 py-3 rounded-lg ${pathname === link.href
+                        ? "bg-brand-50 text-brand-500 dark:bg-amber-900/30"
+                        : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                        }`}
+                    >
+                      {t(link.label)}
+                    </Link>
+                  ))}
+                </nav>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
-        {/*Mobile Navigation*/}
-        {isMenuOpen && (
-          <nav className="md:hidden py-4 space-y-2 border-t border-gray-200 dark:border-gray-800">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`block px-4 py-2 rounded-lg transition-colors ${pathname === link.href
-                  ? "bg-brand-50 text-brand-500 dark:bg-amber-900/30"
-                  : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-                  }`}
-              >
-                {t(link.label)}
-              </Link>
-            ))}
-          </nav>
-        )}
       </Container>
     </header>
   );
