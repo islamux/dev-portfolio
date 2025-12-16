@@ -2,6 +2,13 @@ import { Project } from "@/types/content";
 import Image from "next/image";
 import { Icon } from "../ui/Icon";
 import Link from "next/link";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "../ui/card";
+import { Badge } from "../ui/badge";
 
 interface ProjectCardProps {
   project: Project;
@@ -10,7 +17,7 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <article className="group relative bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 overflow-hidden hover:shadow-xl transition-all duration-300">
+    <Card className="group relative overflow-hidden hover:shadow-xl transition-all duration-300">
       {/*Project Image*/}
       {project.image && (
         <div className="relative h-48 w-full overflow-hidden bg-gray-100 dark:bg-gray-800">
@@ -26,12 +33,12 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </div>
       )}
       {/*Content*/}
-      <div className="p-6">
+      <CardContent className="p-6">
         {/*Year Badge*/}
         {project.year && (
-          <span className="inline-block px-3 py-1 text-xs font-medium bg-brand-100 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400 rounded mb-3">
+          <Badge className="mb-3 bg-brand-100 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400 border-none hover:bg-brand-200 dark:hover:bg-brand-900/50">
             {project.year}
-          </span>
+          </Badge>
         )}
         {/*Title*/}
         <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
@@ -45,22 +52,24 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         {/*Tech Stack*/}
         <div className="flex flex-wrap gap-2 mb-4">
           {project.tech.slice(0, 3).map((tech) => (
-            <span
+            <Badge
               key={tech}
-              className="px-2 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded">
+              variant="outline"
+              className="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
+            >
               {tech}
-            </span>
+            </Badge>
           ))}
           {project.tech.length > 3 && (
-            <span
-              className="px-2 py-1 text-xs font-medium text-gray-500"
-            >
+            <Badge variant="outline" className="text-gray-500 border-gray-300 dark:border-gray-700">
               {project.tech.length - 3} more
-            </span>
+            </Badge>
           )}
         </div>
-        {/*Links */}
-        <div className="flex items-center gap-4 pt-4 border-t border-gray-200 dark:border-gray-800">
+      </CardContent>
+      {/*Links */}
+      <CardFooter className="p-6 pt-0 border-t border-gray-200 dark:border-gray-800">
+        <div className="flex items-center gap-4 w-full">
           {project.github && (
             <a
               href={project.github}
@@ -92,8 +101,8 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             </a>
           )}
         </div>
-      </div>
-    </article>
+      </CardFooter>
+    </Card>
   );
 }
 
