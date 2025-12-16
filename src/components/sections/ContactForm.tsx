@@ -1,7 +1,7 @@
 'use client';
 
 import { useContactForm } from "@/hooks/useContactForm";
-import Button from "../ui/Button";
+import { Button } from "../ui/button";
 
 export function ContactForm() {
 
@@ -98,8 +98,7 @@ export function ContactForm() {
       {/*Submit Button*/}
       <Button
         type="submit"
-        variant="primary"
-        size="lg"
+        className="bg-brand-500 hover:bg-brand-600 text-white h-10 px-6 py-2 text-base w-full"
         disabled={status === "loading"}
       >
         {status === "loading" ? "Sending" : "Send Message"}

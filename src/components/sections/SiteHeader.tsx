@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { useTranslations } from "next-intl";
-import Button from "../ui/Button";
+import { Button } from "../ui/button";
 import { Icon } from "../ui/Icon";
 import { LanguageSwitcher } from "./LanguagesSwitcher";
 import { navLinks } from "@/i18n/navigation";
@@ -60,7 +60,8 @@ export function SiteHeader() {
             {/* Dark mode Toggle*/}
             <Button
               variant="ghost"
-              size="sm"
+              size="icon"
+              className="h-9 w-9"
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               aria-label="Toggle dark mode"
             >
@@ -79,8 +80,8 @@ export function SiteHeader() {
             {/* Mobile Menue Button*/}
             <Button
               variant="ghost"
-              size="sm"
-              className="md:hidden"
+              size="icon"
+              className="md:hidden h-9 w-9"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Toggle menu"
             >

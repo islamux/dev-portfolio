@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server";
 import Container from "./Container";
 import { MarkdownContent } from "./ui/MarkdownContent";
 import Link from "next/link";
-import Button from "./ui/Button";
+import { Button } from "./ui/button";
 import ProjectCard from "./sections/ProjectCard";
 import { ProjectService } from "@/services/projectService";
 import { Metadata } from "next";
@@ -43,13 +43,13 @@ export default async function HomePage({ params }: HomePageProps) {
             </div>
             <div className="flex flex-wrap gap-4">
               <Link href="/projects">
-                <Button variant="primary" size="lg">
+                <Button className="bg-brand-500 hover:bg-brand-600 text-white h-10 px-6 py-2 text-base">
                   {t("hero.cta.projects")}
                 </Button>
               </Link>
               {/*Link 2 */}
               <Link href="/contact">
-                <Button variant="secondary" size="lg">{t("hero.cta.contact")}</Button>
+                <Button className="bg-gray-200 hover:bg-gray-300 text-gray-900 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 h-10 px-6 py-2 text-base">{t("hero.cta.contact")}</Button>
               </Link>
             </div>
           </div>

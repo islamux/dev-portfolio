@@ -1,5 +1,5 @@
 import { Project } from "@/types/content";
-import Button from "../ui/Button";
+import { Button } from "../ui/button";
 import { Icon } from "../ui/Icon";
 interface ProjectLinksProps {
   project: Project;
@@ -14,7 +14,7 @@ export function ProjectLinks({ project }: ProjectLinksProps) {
 
       {project.github && (
         <a href={project.github} target="_blank" rel="noopener noreferrer">
-          <Button variant="primary">
+          <Button className="bg-brand-500 hover:bg-brand-600 text-white gap-2">
             <Icon name="github" size={20} className="mr-2" />
             View on GitHub
           </Button>
@@ -24,7 +24,7 @@ export function ProjectLinks({ project }: ProjectLinksProps) {
       {/*Gitlab link*/}
       {project.gitlab && (
         <a href={project.gitlab} target="_blank" rel="noopener noreferrer">
-          <Button variant="secondary">
+          <Button className="bg-gray-200 hover:bg-gray-300 text-gray-900 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 gap-2">
             <Icon name="gitlab" size={20} className="mr-2" />
             View on GitLab
           </Button>
@@ -33,7 +33,7 @@ export function ProjectLinks({ project }: ProjectLinksProps) {
 
       {project.demo && (
         <a href={project.demo} target="_blank" rel="noopener noreferrer">
-          <Button variant="secondary">Live Demo →</Button>
+          <Button className="bg-gray-200 hover:bg-gray-300 text-gray-900 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600">Live Demo →</Button>
         </a>
       )}
 

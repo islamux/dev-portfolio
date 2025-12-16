@@ -1,7 +1,7 @@
 'use client';
 
 import { Project } from "@/types/content";
-import Button from "../ui/Button";
+import { Button } from "../ui/button";
 import ProjectCard from "./ProjectCard";
 import { useProjectFilter } from "@/hooks/useProjectFilter";
 
@@ -18,11 +18,18 @@ export default function ProjectsList({ initialProjects }: ProjectsListProps) {
     <>
       {/*Tech Filter*/}
       <div className="mb-8 flex flex-wrap gap-2 justify-center md:justify-center">
-        <Button size="sm" onClick={() => setSelectedTech(null)} active={selectedTech === null}>
+        <Button 
+          className={`h-8 px-3 text-xs rounded-md ${selectedTech === null ? 'bg-brand-500 text-white' : 'bg-gray-200 hover:bg-gray-300 text-gray-900 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'}`}
+          onClick={() => setSelectedTech(null)}
+        >
           All
         </Button>
         {allTech.map((tech) => (
-          <Button key={tech} size="sm" onClick={() => setSelectedTech(tech)} active={selectedTech === tech}>
+          <Button 
+            key={tech}
+            className={`h-8 px-3 text-xs rounded-md ${selectedTech === tech ? 'bg-brand-500 text-white' : 'bg-gray-200 hover:bg-gray-300 text-gray-900 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'}`}
+            onClick={() => setSelectedTech(tech)}
+          >
             {tech}
           </Button>
         ))}

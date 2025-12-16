@@ -32,3 +32,4 @@ Once Next.js releases a fix (likely 16.1.0+), you can switch back to `next/font/
 - why getTranslation and getContentBYId not in ProjectService 
 - make sure getMetadata @HomePage is best practices.
 - add recentProject to HomePage : const recentProjects = await ProjectService.getAllProjects(locale);
+- change lisence to gnu3
