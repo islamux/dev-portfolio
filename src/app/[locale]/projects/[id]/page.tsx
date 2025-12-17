@@ -22,6 +22,8 @@ export async function generateStaticParams() {
   return ProjectService.generateStaticParams();
 }
 
+// Duplicate removed
+
 /**
  * Generate metadata for each project page
  */

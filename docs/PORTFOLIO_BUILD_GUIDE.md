@@ -4,7 +4,8 @@
 
 **Tech Stack:** Next.js 15+ (App Router), TypeScript, Tailwind CSS  
 **Package Manager:** pnpm  
-**Target Deployment:** Vercel (primary), Netlify (secondary)
+**Target Deployment:** Vercel (Dynamic) & Hostinger (Static)
+**Deployment Strategy:** [Dual Compatibility Guide](../DUAL_COMPATIBILITY_GUIDE.md)
 
 ---
 
@@ -180,12 +181,14 @@ Before diving into phases, understand this roadmap as a junior:
 5. **Well Documented** - Complete README and documentation
 
 **Portfolio Impact:**
+
 - Showcases full-stack capabilities
 - Demonstrates internationalization skills
 - Highlights attention to accessibility and UX
 - Provides concrete example for interviews
 
 **Lessons Learned:**
+
 - Server Components reduce bundle size significantly
 - react-i18next handles RTL layouts gracefully when combined with logical CSS properties
 - Framer Motion adds polish but should be used sparingly for performance
@@ -273,7 +276,6 @@ The codebase underwent a comprehensive refactoring to improve separation of conc
 
 2. **Component Decomposition**
    Extracted 7 focused, reusable components from the monolithic ProjectDetailPage:
-
    - **ProjectHeader** - Displays project title, description, year, and tech stack
    - **ProjectImage** - Responsive image with Next.js optimization
    - **ProjectDescription** - Long-form project description
@@ -297,6 +299,7 @@ The codebase underwent a comprehensive refactoring to improve separation of conc
    - Established consistent naming conventions
 
 **Before Refactoring:**
+
 ```
 ProjectDetailPage (177 lines)
 ├── Data fetching logic mixed with UI
@@ -307,6 +310,7 @@ ProjectDetailPage (177 lines)
 ```
 
 **After Refactoring:**
+
 ```
 ProjectDetailPage (~50 lines)
 ├── Clean component composition
@@ -317,6 +321,7 @@ ProjectDetailPage (~50 lines)
 ```
 
 **Files Changed:**
+
 - Modified: 10 files (pages, components, docs, content)
 - Created: 8 new component files
 - Service Layer: 1 new service file
@@ -324,6 +329,7 @@ ProjectDetailPage (~50 lines)
 - Documentation: 3 documentation files updated
 
 **Impact:**
+
 - ✅ Build Success: 100% TypeScript compliance
 - ✅ Maintainability: Clear separation of concerns
 - ✅ Reusability: Components can be used in multiple contexts
@@ -332,6 +338,7 @@ ProjectDetailPage (~50 lines)
 
 **Learning Outcomes:**
 This refactoring demonstrates professional software development practices:
+
 - **Abstraction:** Hiding implementation details behind clean APIs
 - **Single Responsibility:** Each component has one clear purpose
 - **DRY (Don't Repeat Yourself):** Eliminated code duplication
@@ -341,6 +348,7 @@ This refactoring demonstrates professional software development practices:
 **For Junior Developers:**
 
 This refactoring serves as an excellent case study for understanding:
+
 1. How to identify violations of separation of concerns
 2. When and how to extract reusable components
 3. The value of a service layer in organizing code
@@ -348,6 +356,7 @@ This refactoring serves as an excellent case study for understanding:
 5. The importance of incremental, testable changes
 
 **Related Documentation:**
+
 - [SOC_REFACTORING_PLAN.md](./SOC_REFACTORING_PLAN.md) - Detailed refactoring plan
 - [REFACTORING_FIXES.md](../REFACTORING_FIXES.md) - Complete list of fixes applied
 
@@ -1245,7 +1254,14 @@ className = "bg-white dark:bg-gray-900 text-gray-900 dark:text-white";
         "name": "Voices of Truth",
         "description": "A multilingual directory of renowned Islamic scholars and preachers with Arabic RTL and English LTR support, featuring server-side filtering and smooth Framer Motion animations.",
         "longDescription": "Voices of Truth is a sophisticated web application that serves as a comprehensive directory of Islamic scholars and preachers worldwide. Built with Next.js 15 and leveraging Server Components for optimal performance, it features seamless internationalization supporting both Arabic (RTL) and English (LTR). The application includes advanced filtering capabilities by category, country, and language, along with a powerful search functionality. With a beautiful, responsive design enhanced by Framer Motion animations and a custom dark/light theme system, it demonstrates modern full-stack development practices and accessibility standards.",
-        "tech": ["Next.js 15", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "react-i18next"],
+        "tech": [
+          "Next.js 15",
+          "React",
+          "TypeScript",
+          "Tailwind CSS",
+          "Framer Motion",
+          "react-i18next"
+        ],
         "github": "https://github.com/islamux/voices-of-truth",
         "demo": "https://voices-of-truth.vercel.app",
         "image": "/images/projects/voices_of_truth_portfolio_showcase.png",

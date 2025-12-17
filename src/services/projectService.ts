@@ -1,5 +1,6 @@
 import { Project } from "@/types/content"
 import { getProjectById, getProjectData } from "@/lib/content"
+import { locales } from "@/i18n/config";
 
 export class ProjectService {
   /**
@@ -29,12 +30,21 @@ export class ProjectService {
   /**
    * Generate static params for all projects
    */
-  static async generateStaticParams(): Promise<Array<{ id: string }>> {
+  static async generateStaticParams(): Promise<Array<{ id: string; locale: string }>> {
     try {
-      const projects = getProjectData("en");
-      return projects.map((project) => ({
-        id: project.id,
-      }));
+      const paths: Array<{ id: string; locale: string }> = [];
+      
+      for (const locale of locales) {
+        const projects = getProjectData(locale);
+        projects.forEach((project) => {
+          paths.push({
+            id: project.id,
+            locale,
+          });
+        });
+      }
+      
+      return paths;
     } catch (error) {
       console.error("Error generating static params:", error);
       return [];

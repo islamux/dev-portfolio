@@ -102,7 +102,8 @@ dev_portfolio/
 
 ```bash
 pnpm dev          # Start dev server
-pnpm build        # Build for production
+pnpm build        # Build for production (Vercel)
+pnpm build:static # Build for static hosting (Hostinger)
 pnpm start        # Start production server
 pnpm lint         # Run ESLint
 pnpm typecheck    # Check TypeScript types
@@ -161,6 +162,20 @@ export const defaultMetadata: Metadata = {
 1. Push your code to GitHub
 2. Connect repository on [vercel.com](https://vercel.com)
 3. Deploy automatically on every push to `main`
+
+### Hostinger (Static Export)
+
+1. Run the static build locally:
+   ```bash
+   pnpm run build:static
+   ```
+2. This creates an `out` folder with your static site.
+3. Upload the contents of `out` to your Hostinger `public_html` directory via File Manager or FTP.
+
+**Note:** Static exports do not support ISR, Image Optimization, or Middleware.
+
+- Images are unoptimized automatically.
+- Redirects are handled client-side via `src/app/page.tsx`.
 
 ### Environment Variables
 

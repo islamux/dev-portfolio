@@ -5,17 +5,15 @@ import Container from "../Container";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
-import { useTranslations } from "next-intl";
 import Button from "../ui/Button";
 import { Icon } from "../ui/Icon";
-import { LanguageSwitcher } from "./LanguagesSwitcher";
 import { navLinks } from "@/i18n/navigation";
 import { useMounted } from "../../hooks/useMounted";
 
-export function SiteHeader() {
+export function SiteHeader({ navDict }: { navDict: Record<string, string> }) {
 
   // translation
-  const t = useTranslations("nav");
+  // const t = useTranslations("nav");
   // uses
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
@@ -51,7 +49,7 @@ export function SiteHeader() {
                   : "text-gray-700 dark:text-gray-300"
                   }`}
               >
-                {t(link.label)}
+                {navDict[link.label] || link.label}
               </Link>
             ))}
           </nav>
@@ -75,7 +73,13 @@ export function SiteHeader() {
               )}
             </Button>
             {/* Language Switcher */}
-            <LanguageSwitcher />
+            {/* <LanguageSwitcher /> */}
+            <div className="text-xs">
+                 <Link href="/en" className="px-1">EN</Link>|
+                 <Link href="/fr" className="px-1">FR</Link>|
+                 <Link href="/ar" className="px-1">AR</Link>
+            </div>
+
             {/* Mobile Menue Button*/}
             <Button
               variant="ghost"
@@ -100,7 +104,7 @@ export function SiteHeader() {
                   : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
                   }`}
               >
-                {t(link.label)}
+                {navDict[link.label] || link.label}
               </Link>
             ))}
           </nav>

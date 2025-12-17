@@ -1050,3 +1050,21 @@ Remember: Every expert was once a beginner who refused to give up.
 **You're not alone in this.** The dev community is here to help.
 
 **Now go build your portfolio and show the world what you can do!** 🚀💪
+
+---
+
+### 5. **Think "Static First"**
+
+**The Concept:**
+Modern web hosting (Vercel, Netlify, Hostinger) loves static files. They are fast, cheap, and unbreakable.
+
+**The Mistake:**
+Building everything assuming a Node.js server is always running (using `headers()`, `cookies()`, `getServerSideProps`).
+
+**The Fix:**
+Build as if you contain no server logic.
+1. Fetch data at build time (`generateStaticParams`).
+2. Use Client Components for dynamic user interaction.
+3. Use external APIs for form submissions.
+
+**Result:** Your app runs anywhere, costs nothing, and loads instantly.

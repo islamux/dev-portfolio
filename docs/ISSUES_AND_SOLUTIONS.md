@@ -944,3 +944,60 @@ pnpm dev  # Restart
 ---
 
 _This document is maintained as a learning resource. If you encounter a new issue, please add it here with the solution!_
+
+---
+
+## Phase 7 - Deployment & Static Export
+
+### Issue 7.1: Build Error - `headers()` usage in Static Export
+
+**Error:**
+
+```
+Error: Route /[locale]/projects/[id] with `dynamic = "error"` couldn't be rendered statically because it used `headers()`.
+```
+
+**Cause:**
+
+- Static Export (`output: 'export'`) does not support dynamic server functions like `headers()` or `cookies()`.
+- `next-intl`'s `NextIntlClientProvider` or `getTranslations` might implicitly use headers to determine locale if not configured for static rendering.
+- Layout components might be accessing headers dynamically.
+
+**Solution:**
+
+1.  **Remove Dynamic Header dependencies:**
+    Refactor `SiteHeader` (or similar components) to accept translations/data as **props** instead of using server-side hooks like `useTranslations` inside the component if it causes issues.
+    
+    ```tsx
+    // layout.tsx
+    const messages = (await import(`@/messages/${locale}.json`)).default;
+    const navDict = messages.nav;
+    
+    // Pass as prop
+    <SiteHeader navDict={navDict} />
+    ```
+
+2.  **Generate Static Params:**
+    Ensure `generateStaticParams` is implemented for **ALL** dynamic routes (`[locale]`, `[id]`).
+
+    ```tsx
+    export function generateStaticParams() {
+      return locales.map((locale) => ({ locale }));
+    }
+    ```
+
+3.  **Disable Image Optimization:**
+    Static hosts don't have an image optimization server.
+
+    ```ts
+    // next.config.ts
+    const nextConfig = {
+      output: 'export',
+      images: { unoptimized: true }
+    };
+    ```
+
+**Prevention:**
+
+- "Static First" mindset: Assume everything is static.
+- Use `pnpm run build:static` frequently to check for compliance.
