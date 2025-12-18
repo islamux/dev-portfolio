@@ -692,7 +692,7 @@ src/
 
 ## License
 
-MIT
+GNU GPL v3
 
 ## Author
 
