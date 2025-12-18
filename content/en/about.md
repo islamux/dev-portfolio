@@ -14,6 +14,9 @@ I'm a full-stack developer with a passion for creating elegant, performant web a
 - 💼 Freelance web developer
 - 🌍 Based in Yemen
 - 🛠️ Active open-source contributor
+- 🐧 Linux experience since 2007
+- 🔒 Security and networking experience
+- 📜 Google IT Support Certificate
 
 ## Communities
 
