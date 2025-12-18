@@ -244,7 +244,7 @@ This is a personal portfolio, but suggestions are welcome! Feel free to:
 
 ## 📄 License
 
-This project is open source and available under the [MIT License](LICENSE).
+This project is open source and available under the [GNU GPL v3 License](LICENSE).
 
 ## 👤 Author
 
