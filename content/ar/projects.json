@@ -2,8 +2,8 @@
   {
     "id": "athkarix",
     "name": "أذكاري",
-    "description": "Islamic prayer reminders and Athkar app built with Flutter",
-    "longDescription": "A comprehensive Islamic app featuring prayer time notifications, daily supplications (Athkar), and Quranic verses. Built with Flutter for cross-platform compatibility.",
+    "description": "تطبيق تذكيرات الصلاة والأذكار الإسلامية مبني باستخدام Flutter",
+    "longDescription": "تطبيق إسلامي شامل يتضمن إشعارات أوقات الصلاة، الأدعية اليومية (الأذكار)، والآيات القرآنية. مبني باستخدام Flutter للدعم عبر المنصات.",
     "tech": ["Flutter", "Dart", "SQLite"],
     "github": "https://github.com/islamux/athkarix",
     "demo": "https://athkarix.netlify.app",
@@ -14,9 +14,9 @@
 
   {
     "id": "portfolio",
-    "name": "Developer Portfolio",
-    "description": "Modern portfolio site built with Next.js 15 and TypeScript",
-    "longDescription": "A fully responsive, multilingual portfolio website featuring dark mode, SEO optimization, and PWA capabilities. Demonstrates best practices in modern web development.",
+    "name": "محفظة المطور",
+    "description": "موقع محفظة حديث مبني باستخدام Next.js 15 وTypeScript",
+    "longDescription": "موقع محفظة متجاوب بالكامل ومتعدد اللغات مع وضع مظلم، تحسين SEO، وإمكانيات PWA. يعرض أفضل الممارسات في تطوير الويب الحديث.",
     "tech": ["Next.js", "TypeScript", "Tailwind CSS"],
     "github": "https://github.com/islamux/dev-portfolio",
     "demo": "https://islamux.vercel.app",
@@ -27,8 +27,8 @@
 
   {
     "id": "open-source",
-    "name": "Open Source Contributions",
-    "description": "Contributing to various open-source projects",
+    "name": "مساهمات المصدر المفتوح",
+    "description": "المساهمة في مختلف مشاريع المصدر المفتوح",
     "tech": ["JavaScript", "TypeScript", "React"],
     "github": "https://github.com/islamux",
     "featured": false,

@@ -35,11 +35,13 @@ date: "2025-11-24"
 - Node.js
 - PostgreSQL
 - MongoDB
+- Python
 
 **تطوير الأجهزة المحمولة:**
 
 - Flutter
 - Dart
+- Kotlin
 
 ## تواصل
 

@@ -35,11 +35,13 @@ I'm active in several tech communities:
 - Node.js
 - PostgreSQL
 - MongoDB
+- Python
 
 **Mobile:**
 
 - Flutter
 - Dart
+- Kotlin
 
 ## Contact
 
