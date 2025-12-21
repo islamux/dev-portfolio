@@ -7,6 +7,7 @@ import { ProjectImage } from "@/components/sections/ProjectImage";
 import { ProjectDescription } from "@/components/sections/ProjectDescription";
 import { ProjectLinks } from "@/components/sections/ProjectLinks";
 import { ProjectBackButton } from "@/components/sections/ProjectBackButton";
+import { getTranslations } from "next-intl/server";
 
 interface ProjectDetailPageProps {
   params: Promise<{
@@ -51,6 +52,7 @@ export async function generateMetadata({ params }: ProjectDetailPageProps) {
 export default async function ProjectDetailPage({ params }: ProjectDetailPageProps) {
   const { id, locale } = await params;
   const project = await ProjectService.getProjectById(id, locale);
+  const t = await getTranslations({ locale, namespace: "projects" });
 
   // Show 404 if project not found
   if (!project) {
@@ -63,7 +65,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
       <ProjectHeader project={project} />
       <ProjectImage project={project} />
       <ProjectDescription project={project} />
-      <ProjectLinks project={project} />
+      <ProjectLinks project={project} translations={{ demo: t("card.demo") }} />
       <ProjectBackButton params={params} />
     </ProjectDetailContainer>
   );

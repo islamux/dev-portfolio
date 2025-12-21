@@ -71,7 +71,10 @@ export default async function HomePage({ params }: HomePageProps) {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {featuredProjects.map((project) => (
-                <ProjectCard key={project.id} project={project} />
+                <ProjectCard key={project.id} project={project} translations={{
+                  code: t("card.code"),
+                  demo: t("card.demo")
+                }} />
               ))}
             </div>
           </Container>

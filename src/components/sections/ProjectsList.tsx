@@ -7,10 +7,14 @@ import { useProjectFilter } from "@/hooks/useProjectFilter";
 
 interface ProjectsListProps {
   initialProjects: Project[];
+  translations?: {
+    code?: string;
+    demo?: string;
+  };
 }
 
 
-export default function ProjectsList({ initialProjects }: ProjectsListProps) {
+export default function ProjectsList({ initialProjects, translations }: ProjectsListProps) {
 
   // GetProject Filter
   const { selectedTech, setSelectedTech, allTech, filteredProjects } = useProjectFilter(initialProjects);
@@ -32,7 +36,7 @@ export default function ProjectsList({ initialProjects }: ProjectsListProps) {
       {filteredProjects.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProjects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+            <ProjectCard key={project.id} project={project} translations={translations} />
           ))}
         </div>
       ) : (

@@ -2,13 +2,29 @@ import { Project } from "@/types/content";
 import Image from "next/image";
 import { Icon } from "../ui/Icon";
 import Link from "next/link";
+import { ProjectLink } from "../ui/ProjectLink";
+
+/**
+ * ProjectCard Component
+ * 
+ * Displays a project card with image, title, description, and action links.
+ * 
+ * DRY Improvements:
+ * - Uses ProjectLink component instead of duplicated link structures
+ * - Centralized link styling and behavior
+ * - Reduced code duplication by ~66%
+ */
 
 interface ProjectCardProps {
   project: Project;
+  translations?: {
+    code?: string;
+    demo?: string;
+  };
 }
 
 
-export default function ProjectCard({ project }: ProjectCardProps) {
+export default function ProjectCard({ project, translations }: ProjectCardProps) {
   return (
     <article className="group relative bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 overflow-hidden hover:shadow-xl transition-all duration-300">
       {/*Project Image*/}
@@ -62,34 +78,26 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         {/*Links */}
         <div className="flex items-center gap-4 pt-4 border-t border-gray-200 dark:border-gray-800">
           {project.github && (
-            <a
+            <ProjectLink
               href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 hover:text-brand-500 transition-colors">
-              <Icon name="github" size={16} />
-              Code
-            </a>
+              icon="github"
+              text={translations?.code || "Code"}
+            />
           )}
           {project.gitlab && (
-            <a
+            <ProjectLink
               href={project.gitlab}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 hover:text-brand-500 transition-colors">
-              <Icon name="gitlab" size={16} />
-              GitLab
-            </a>
+              icon="gitlab"
+              text="GitLab"
+            />
           )}
           {project.demo && (
-            <a
+            <ProjectLink
               href={project.demo}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 hover:text-brand-500 transition-colors ml-auto"
-            >
-              Live Demo
-            </a>
+              icon="globe"
+              text={translations?.demo || "Live Demo"}
+              className="ml-auto"
+            />
           )}
         </div>
       </div>

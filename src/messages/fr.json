@@ -17,6 +17,10 @@
     "featured": {
       "title": "Projets en vedette",
       "viewAll": "Voir tout"
+    },
+    "card": {
+      "code": "Code source",
+      "demo": "Projet complet (Open Source)"
     }
   },
   "about": {
@@ -31,8 +35,8 @@
       "noResults": "Aucun projet trouvé avec {tech}"
     },
     "card": {
-      "code": "Code",
-      "demo": "Démo en direct"
+      "code": "Code source",
+      "demo": "Projet complet (Open Source)"
     }
   },
   "contact": {

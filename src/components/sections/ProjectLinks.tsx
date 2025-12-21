@@ -1,11 +1,15 @@
 import { Project } from "@/types/content";
 import Button from "../ui/Button";
 import { Icon } from "../ui/Icon";
+import { ProjectLink } from "../ui/ProjectLink";
 interface ProjectLinksProps {
   project: Project;
+  translations?: {
+    demo?: string;
+  };
 }
 
-export function ProjectLinks({ project }: ProjectLinksProps) {
+export function ProjectLinks({ project, translations }: ProjectLinksProps) {
   const hasAnyLink = project.github || project.gitlab || project.demo;
   if (!hasAnyLink)
     return null;
@@ -33,7 +37,14 @@ export function ProjectLinks({ project }: ProjectLinksProps) {
 
       {project.demo && (
         <a href={project.demo} target="_blank" rel="noopener noreferrer">
-          <Button variant="secondary">Live Demo →</Button>
+          <Button variant="secondary">
+            <ProjectLink
+              href={project.demo}
+              icon="globe"
+              text={translations?.demo || "Live Demo"}
+              className="p-0 text-base"
+            />
+          </Button>
         </a>
       )}
 

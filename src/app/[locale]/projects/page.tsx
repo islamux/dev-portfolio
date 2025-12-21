@@ -37,7 +37,13 @@ export default async function ProjectsPage({ params }: ProjectsPageProps) {
             {t("description")}
           </p>
         </header>
-        <ProjectsList initialProjects={projects}></ProjectsList>
+        <ProjectsList 
+          initialProjects={projects}
+          translations={{
+            code: t("card.code"),
+            demo: t("card.demo")
+          }}
+        ></ProjectsList>
       </Container>
     </div>
   );

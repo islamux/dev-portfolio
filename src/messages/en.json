@@ -17,6 +17,10 @@
     "featured": {
       "title": "Featured Projects",
       "viewAll": "View All"
+    },
+    "card": {
+      "code": "Code",
+      "demo": "Complete Project (Open Source)"
     }
   },
   "about": {
@@ -32,7 +36,7 @@
     },
     "card": {
       "code": "Code",
-      "demo": "Live Demo"
+      "demo": "Complete Project (Open Source)"
     }
   },
   "contact": {
