@@ -34,17 +34,17 @@
   },
   {
     "id": "voices-of-truth",
-  "name": "Voices of Truth",
-  "description": "A multilingual directory of renowned Islamic scholars and preachers with Arabic RTL and English LTR support, featuring server-side filtering and smooth Framer Motion animations.",
-  "longDescription": "Voices of Truth is a sophisticated web application that serves as a comprehensive directory of Islamic scholars and preachers worldwide. Built with Next.js 15 and leveraging Server Components for optimal performance, it features seamless internationalization supporting both Arabic (RTL) and English (LTR). The application includes advanced filtering capabilities by category, country, and language, along with a powerful search functionality. With a beautiful, responsive design enhanced by Framer Motion animations and a custom dark/light theme system, it demonstrates modern full-stack development practices and accessibility standards.",
-  "tech": ["Next.js 15", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "react-i18next"],
-  "github": "https://github.com/islamux/voices-of-truth",
-  "demo": "https://voices-of-truth.vercel.app",
-  "image": "/images/projects/voices_of_truth.png",
-  "featured": true,
-  "year": "2024"
-},
-{
+    "name": "Voices of Truth",
+    "description": "A multilingual directory of renowned Islamic scholars and preachers with Arabic RTL and English LTR support, featuring server-side filtering and smooth Framer Motion animations.",
+    "longDescription": "Voices of Truth is a sophisticated web application that serves as a comprehensive directory of Islamic scholars and preachers worldwide. Built with Next.js 15 and leveraging Server Components for optimal performance, it features seamless internationalization supporting both Arabic (RTL) and English (LTR). The application includes advanced filtering capabilities by category, country, and language, along with a powerful search functionality. With a beautiful, responsive design enhanced by Framer Motion animations and a custom dark/light theme system, it demonstrates modern full-stack development practices and accessibility standards.",
+    "tech": ["Next.js 15", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "react-i18next"],
+    "github": "https://github.com/islamux/voices-of-truth",
+    "demo": "https://voices-of-truth.vercel.app",
+    "image": "/images/projects/voices_of_truth.png",
+    "featured": true,
+    "year": "2024"
+  },
+  {
     "id": "khwater",
     "name": "Khwater",
     "description": "Spiritual and intellectual reflections inspired by Islamic values, bringing the beauty of Islamic reflection into the digital world.",
@@ -55,10 +55,15 @@
     "image": "/images/projects/khwater.png",
     "featured": true,
     "year": "2024"
+  },
+  {
+    "id": "huawei-router-control",
+    "name": "Huawei Router Control",
+    "description": "Advanced router management and control system for Huawei devices",
+    "longDescription": "A comprehensive router management system designed specifically for Huawei routers. This project provides advanced control features, monitoring capabilities, and automation tools for Huawei networking devices. Built with modern web technologies, it offers a user-friendly interface for managing router settings, monitoring network performance, and implementing security features.",
+    "tech": ["JavaScript", "Node.js", "Express", "React", "Networking"],
+    "github": "https://github.com/islamux/huawei-router-controle",
+    "featured": true,
+    "year": "2024"
   }
-
-
-
-
 ]
-

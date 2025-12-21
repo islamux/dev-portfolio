@@ -43,8 +43,7 @@
   "image": "/images/projects/voices_of_truth.png",
   "featured": true,
   "year": "2024"
-}
-,
+},
 {
     "id": "khwater",
     "name": "Khwater",
@@ -56,6 +55,15 @@
     "image": "/images/projects/khwater.png",
     "featured": true,
     "year": "2024"
- }
-
+},
+{
+    "id": "huawei-router-control",
+    "name": "Contrôleur de Routeur Huawei",
+    "description": "Système avancé de gestion et de contrôle pour les routeurs Huawei",
+    "longDescription": "Un système complet de gestion des routeurs Huawei conçu spécifiquement pour les appareils Huawei. Ce projet offre des fonctionnalités de contrôle avancées, des capacités de surveillance et des outils d'automatisation pour les appareils réseau Huawei. Construit avec des technologies web modernes, il propose une interface utilisateur conviviale pour gérer les paramètres du routeur, surveiller les performances du réseau et mettre en œuvre des fonctionnalités de sécurité.",
+    "tech": ["JavaScript", "Node.js", "Express", "React", "Networking"],
+    "github": "https://github.com/islamux/huawei-router-controle",
+    "featured": true,
+    "year": "2024"
+  }
 ]
