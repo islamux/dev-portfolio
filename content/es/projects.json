@@ -1,0 +1,69 @@
+[
+  {
+    "id": "athkarix",
+    "name": "Athkarix",
+    "description": "Aplicación de recordatorios de oración islámicos y Athkar construida con Flutter",
+    "longDescription": "Una aplicación islámica completa que presenta notificaciones de horarios de oración, invocaciones diarias (Athkar) y versos coránicos. Construida con Flutter para compatibilidad multiplataforma.",
+    "tech": ["Flutter", "Dart", "SQLite"],
+    "github": "https://github.com/islamux/Athkarix/releases/tag/v1.0.2/app-v1.0.2.apk",
+    "demo": "https://athkarix.netlify.app",
+    "image": "/images/projects/athkarix.png",
+    "featured": true,
+    "year": "2023"
+  },
+  {
+    "id": "portfolio",
+    "name": "Portafolio de Desarrollador",
+    "description": "Sitio de portafolio moderno construido con Next.js 15 y TypeScript",
+    "longDescription": "Un sitio de portafolio completamente responsivo y multilingüe con modo oscuro, optimización SEO y capacidades PWA. Demuestra las mejores prácticas en desarrollo web moderno.",
+    "tech": ["Next.js", "TypeScript", "Tailwind CSS"],
+    "github": "https://github.com/islamux/dev-portfolio",
+    "demo": "https://islamux.vercel.app",
+    "image": "/images/projects/portfolio.png",
+    "featured": true,
+    "year": "2024"
+  },
+  {
+    "id": "open-source",
+    "name": "Contribuciones de Código Abierto",
+    "description": "Contribuyendo a varios proyectos de código abierto",
+    "tech": ["JavaScript", "TypeScript", "React"],
+    "github": "https://github.com/islamux",
+    "featured": false,
+    "year": "2022-2024"
+  },
+  {
+    "id": "voices-of-truth",
+    "name": "Voces de la Verdad",
+    "description": "Un directorio multilingüe de eruditos y predicadores islámicos renombrados con soporte de árabe RTL e inglés LTR, que incluye filtrado del lado del servidor y animaciones fluidas de Framer Motion.",
+    "longDescription": "Voces de la Verdad es una aplicación web avanzada que sirve como un directorio completo de eruditos y predicadores islámicos de todo el mundo. Construida con Next.js 15 y aprovechando los Server Components para un rendimiento óptimo, ofrece una internacionalización fluida que admite árabe (RTL) e inglés (LTR). La aplicación incluye capacidades de filtrado avanzadas por categoría, país e idioma, junto con una potente funcionalidad de búsqueda. Con un diseño hermoso y responsivo mejorado con animaciones de Framer Motion y un sistema de temas personalizado claro/oscuro, demuestra las mejores prácticas de desarrollo full-stack moderno y los estándares de accesibilidad.",
+    "tech": ["Next.js 15", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "react-i18next"],
+    "github": "https://github.com/islamux/voices-of-truth",
+    "demo": "https://voices-of-truth.vercel.app",
+    "image": "/images/projects/voices_of_truth.png",
+    "featured": true,
+    "year": "2024"
+  },
+  {
+    "id": "khwater",
+    "name": "Khwater",
+    "description": "Reflexiones espirituales e intelectuales inspiradas en los valores islámicos, llevando la belleza de la reflexión islámica al mundo digital.",
+    "longDescription": "Khwater – Reflexiones sobre la Fe y la Vida es una aplicación espiritual completa que presenta escritos árabes accesibles y elegantes en forma digital moderna. Originalmente construida con Flutter, este proyecto fue migrado completamente a Next.js (TypeScript) siguiendo un plan de migración estructurado en 7 fases. La aplicación cuenta con capacidades PWA con modo fuera de línea, soporte de tema claro/oscuro, funcionalidad de marcadores, búsqueda avanzada y soporte completo del idioma árabe. Construida con el rendimiento en mente utilizando SSG e ISR, garantizando tiempos de carga rápidos mientras se mantiene el cumplimiento de accesibilidad WCAG AA y la optimización SEO.",
+    "tech": ["Next.js", "TypeScript", "Tailwind CSS", "PWA", "Arabic RTL"],
+    "github": "https://github.com/islamux/khwater",
+    "demo": "https://khwater.vercel.app",
+    "image": "/images/projects/khwater.png",
+    "featured": true,
+    "year": "2024"
+  },
+  {
+    "id": "huawei-router-control",
+    "name": "Controlador de Enrutador Huawei",
+    "description": "Sistema avanzado de gestión y control para dispositivos enrutadores Huawei",
+    "longDescription": "Un sistema completo de gestión de enrutadores Huawei diseñado específicamente para dispositivos Huawei. Este proyecto ofrece funciones de control avanzadas, capacidades de monitoreo y herramientas de automatización para dispositivos de red Huawei. Construido con tecnologías web modernas, ofrece una interfaz de usuario fácil de usar para gestionar la configuración del enrutador, monitorear el rendimiento de la red e implementar funciones de seguridad.",
+    "tech": ["JavaScript", "Node.js", "Express", "React", "Networking"],
+    "github": "https://github.com/islamux/huawei-router-controle",
+    "featured": true,
+    "year": "2024"
+  }
+]

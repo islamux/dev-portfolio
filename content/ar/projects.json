@@ -5,7 +5,7 @@
     "description": "تطبيق تذكيرات الصلاة والأذكار الإسلامية مبني باستخدام Flutter",
     "longDescription": "تطبيق إسلامي شامل يتضمن إشعارات أوقات الصلاة، الأدعية اليومية (الأذكار)، والآيات القرآنية. مبني باستخدام Flutter للدعم عبر المنصات.",
     "tech": ["Flutter", "Dart", "SQLite"],
-    "github": "https://github.com/islamux/athkarix",
+    "github": "https://github.com/islamux/Athkarix/releases/tag/v1.0.2/app-v1.0.2.apk",
     "demo": "https://athkarix.netlify.app",
     "image": "/images/projects/athkarix.png",
     "featured": true,

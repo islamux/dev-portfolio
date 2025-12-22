@@ -5,7 +5,7 @@
     "description": "Rappels de prière islamiques et application Athkar construite avec Flutter",
     "longDescription": "Une application islamique complète présentant des notifications d'horaires de prière, des invocations quotidiennes (Athkar) et des versets coraniques. Construite avec Flutter pour une compatibilité multiplateforme.",
     "tech": ["Flutter", "Dart", "SQLite"],
-    "github": "https://github.com/islamux/athkarix",
+    "github": "https://github.com/islamux/Athkarix/releases/tag/v1.0.2/app-v1.0.2.apk",
     "demo": "https://athkarix.netlify.app",
     "image": "/images/projects/athkarix.png",
     "featured": true,
