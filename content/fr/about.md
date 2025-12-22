@@ -1,46 +1,50 @@
 ---
-title: "À Propos"
-description: "En savoir plus sur mon parcours de développeur"
+title: "À propos de moi"
+description: "Fathi | Responsable RH, Passionné d'Open Source et Développeur Amateur"
 date: "2025-11-24"
 ---
 
-# À Propos
+🌍 Fathi | Responsable RH, Passionné d'Open Source et Développeur Amateur
 
-Je suis un développeur full-stack avec une passion pour créer des applications web élégantes et performantes.
+## À propos de moi
 
-## Parcours
+Diplômé en administration des affaires, j'occupe actuellement le poste de Responsable des Ressources Humaines au Yémen. En dehors du milieu administratif, ma véritable passion réside dans les logiciels libres et l'Open Source, un intérêt qui a forgé mes compétences techniques en tant que développeur autodidacte.
 
-- <Développeur autodidacte depuis 2018
-- =Développeur web freelance
-- < Basé au Yémen
-- =玉石 Contributeur open-source actif
+Je crois que la programmation et les langues sont des ponts vers le monde. Je m'efforce de combiner mon expertise en gestion, mes compétences linguistiques et ma curiosité technique pour créer des projets personnels simples mais significatifs.
 
-## Communautés
+## 🗣️ Langues et Communication
 
-Je suis actif dans plusieurs communautés tech :
+Ma passion pour les langues me permet de consulter des ressources mondiales et d'échanger avec diverses communautés techniques :
 
-- [LinuxAC.org](https://www.linuxac.org/) - Promotion Linux & open-source
-- [Aosus.org](https://aosus.org/) - Communauté open-source arabe
+- **Arabe :** Langue maternelle
+- **Anglais et Français :** Bon niveau (écrit et parlé)
+- **Espagnol :** Bonne compréhension
+- **Turc :** Notions de base
 
-## Stack Technique
+## 🛠️ Intérêts Techniques
 
-**Frontend :**
+Mon aventure technologique a débuté en 2007 avec Linux, et je me consacre à l'apprentissage de la programmation depuis 2018 :
 
-- React / Next.js
-- TypeScript
-- Tailwind CSS
+- **Développement Web :** Utilisation de React/Next.js et Tailwind CSS
+- **Applications Mobiles :** Projets simples avec Flutter
+- **Backend :** Expérience avec Node.js, TypeScript et les bases de PostgreSQL
+- **Systèmes :** Utilisateur de longue date de Linux, avec des connaissances de base en réseaux et sécurité informatique
 
-**Backend :**
+## 🌐 Engagement Communautaire
 
-- Node.js
-- PostgreSQL
-- MongoDB
+Membre actif pour la promotion de la culture numérique libre :
 
-**Mobile :**
+- [LinuxAC.org](https://www.linuxac.org/) & [Aosus.org](https://aosus.org/)
 
-- Flutter
-- Dart
+## 📜 Qualifications
 
-## Contact
+- **Académique :** Licence en Administration des Affaires
+- **Professionnel :** Responsable RH
+- **Technique :** Certificat Professionnel Google IT Support
 
-N'hésitez pas à me contacter par [email](mailto:fathi733@gmail.com) ou à me suivre sur [GitHub](https://github.com/islamux).
+## 🤝 Contactez-moi
+
+Que vous souhaitiez discuter de gestion, de langues ou de logiciels open source, je serais ravi d'échanger :
+
+- **Email :** [fathi@islamux.me](mailto:fathi@islamux.me) | [fathi733@gmail.com](mailto:fathi733@gmail.com)
+- **Code :** [GitHub](https://github.com/islamux) | [GitLab](https://gitlab.com/islamux)

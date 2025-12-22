@@ -4,9 +4,6 @@ description: "Full-stack developer passionate about open source"
 image: "/images/hero.jpg"
 ---
 
-I build modern web applications using Next.js, TypeScript, and Tailwind CSS.
-Currently contributing to open-source projects and exploring new technologies.
+I build modern web and mobile applications using cutting-edge technologies. Passionate about open-source projects and delivering exceptional user experiences.
 
-**Skills:** React, Next.js, TypeScript, Flutter, Node.js, PostgreSQL, Python
-
-[Learn more about me →](/about)
+[Learn about my journey and expertise →](/about)
