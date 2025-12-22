@@ -77,6 +77,12 @@ export default async function HomePage({ params }: HomePageProps) {
                 }} />
               ))}
             </div>
+            {/*View All Link at the end*/}
+            <div className="mt-12 text-center">
+              <Link href="/projects" className="text-brand-500 hover:text-brand-600 font-medium">
+                {t("featured.viewAllEnd")}
+              </Link>
+            </div>
           </Container>
         </section>
       )}

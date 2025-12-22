@@ -8,3 +8,5 @@ image: "/images/hero.jpg"
 أقوم حالياً بالمساهمة في مشاريع مفتوحة المصدر واستكشاف تقنيات جديدة.
 
 **المهارات:** React, Next.js, TypeScript, Flutter, Node.js, PostgreSQL, Python
+
+[تعرف علي أكثر →](/about)

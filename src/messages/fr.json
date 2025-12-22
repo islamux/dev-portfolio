@@ -16,7 +16,8 @@
     },
     "featured": {
       "title": "Projets en vedette",
-      "viewAll": "Voir tout"
+      "viewAll": "Voir tout",
+      "viewAllEnd": "Voir tout"
     },
     "card": {
       "code": "Code source",

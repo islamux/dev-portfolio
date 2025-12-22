@@ -16,7 +16,8 @@
     },
     "featured": {
       "title": "المشاريع المميزة",
-      "viewAll": "عرض الكل"
+      "viewAll": "عرض الكل",
+      "viewAllEnd": "عرض الكل"
     },
     "card": {
       "code": "الكود",

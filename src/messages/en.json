@@ -16,7 +16,8 @@
     },
     "featured": {
       "title": "Featured Projects",
-      "viewAll": "View All"
+      "viewAll": "View All",
+      "viewAllEnd": "View All"
     },
     "card": {
       "code": "Code",
