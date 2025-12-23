@@ -4,9 +4,6 @@ description: "Fathi | Responsable RH, Passionné d'Open Source et Développeur A
 date: "2025-11-24"
 ---
 
-🌍 Fathi | Responsable RH, Passionné d'Open Source et Développeur Amateur
-
-## À propos de moi
 
 Diplômé en administration des affaires, j'occupe actuellement le poste de Responsable des Ressources Humaines au Yémen. En dehors du milieu administratif, ma véritable passion réside dans les logiciels libres et l'Open Source, un intérêt qui a forgé mes compétences techniques en tant que développeur autodidacte.
 

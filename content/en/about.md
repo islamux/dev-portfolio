@@ -4,9 +4,6 @@ description: "Fathi | HR Manager, Open Source Enthusiast & Tech Hobbyist"
 date: "2025-11-24"
 ---
 
-🌍 Fathi | HR Manager, Open Source Enthusiast & Tech Hobbyist
-
-## About Me
 
 I am a Business Administration graduate currently serving as an HR Manager in Yemen. Beyond the corporate world, my true passion lies in Open Source software and programming—a hobby that has shaped my technical skills and made me a dedicated self-taught developer.
 
