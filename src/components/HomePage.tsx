@@ -7,6 +7,8 @@ import Button from "./ui/Button";
 import ProjectCard from "./sections/ProjectCard";
 import { ProjectService } from "@/services/projectService";
 import { Metadata } from "next";
+import { getLocalizedHref } from "@/i18n/navigation";
+import type { Locale } from "@/i18n/config";
 
 interface HomePageProps {
   params: Promise<{ locale: string }>;
@@ -23,6 +25,10 @@ export default async function HomePage({ params }: HomePageProps) {
   const { locale } = await params;
   // use service layer for featured projects
   const featuredProjects = await ProjectService.getFeaturedProjects(locale, 3);
+
+  // Get localized hrefs for links
+  const projectsHref = getLocalizedHref(locale as Locale, 'projects');
+  const contactHref = getLocalizedHref(locale as Locale, 'contact');
 
   const { frontmatter, content } = getContentBySlug("home", locale);
 
@@ -42,13 +48,13 @@ export default async function HomePage({ params }: HomePageProps) {
               <MarkdownContent content={content} />
             </div>
             <div className="flex flex-wrap gap-4">
-              <Link href="/projects">
+              <Link href={projectsHref}>
                 <Button variant="primary" size="lg">
                   {t("hero.cta.projects")}
                 </Button>
               </Link>
               {/*Link 2 */}
-              <Link href="/contact">
+              <Link href={contactHref}>
                 <Button variant="secondary" size="lg">{t("hero.cta.contact")}</Button>
               </Link>
             </div>
@@ -65,7 +71,7 @@ export default async function HomePage({ params }: HomePageProps) {
                 {t("featured.title")}
               </h2>
               {/*Link 3*/}
-              <Link href="/projects" className="text-brand-500 hover:text-brand-600 font-medium">
+              <Link href={projectsHref} className="text-brand-500 hover:text-brand-600 font-medium">
                 {t("featured.viewAll")}
               </Link>
             </div>
@@ -74,12 +80,12 @@ export default async function HomePage({ params }: HomePageProps) {
                 <ProjectCard key={project.id} project={project} translations={{
                   code: t("card.code"),
                   demo: t("card.demo")
-                }} />
+                }} locale={locale} />
               ))}
             </div>
             {/*View All Link at the end*/}
             <div className="mt-12 text-center">
-              <Link href="/projects" className="text-brand-500 hover:text-brand-600 font-medium">
+              <Link href={projectsHref} className="text-brand-500 hover:text-brand-600 font-medium">
                 {t("featured.viewAllEnd")}
               </Link>
             </div>

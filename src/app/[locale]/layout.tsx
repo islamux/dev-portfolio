@@ -42,7 +42,7 @@ export default async function LocaleLayout(
       {/* <NextIntlClientProvider locale={locale} messages={messages}> */}
         <SkipToContent />
         <Providers>
-          <SiteHeader navDict={navDict} />
+          <SiteHeader navDict={navDict} locale={locale} />
           <main id="main-content" className="grow">
             {children}
           </main>

@@ -11,10 +11,11 @@ interface ProjectsListProps {
     code?: string;
     demo?: string;
   };
+  locale: string;
 }
 
 
-export default function ProjectsList({ initialProjects, translations }: ProjectsListProps) {
+export default function ProjectsList({ initialProjects, translations, locale }: ProjectsListProps) {
 
   // GetProject Filter
   const { selectedTech, setSelectedTech, allTech, filteredProjects } = useProjectFilter(initialProjects);
@@ -36,7 +37,7 @@ export default function ProjectsList({ initialProjects, translations }: Projects
       {filteredProjects.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProjects.map((project) => (
-            <ProjectCard key={project.id} project={project} translations={translations} />
+            <ProjectCard key={project.id} project={project} translations={translations} locale={locale} />
           ))}
         </div>
       ) : (

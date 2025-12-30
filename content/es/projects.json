@@ -5,9 +5,10 @@
     "description": "Aplicación de recordatorios de oración islámicos y Athkar construida con Flutter",
     "longDescription": "Una aplicación islámica completa que presenta notificaciones de horarios de oración, invocaciones diarias (Athkar) y versos coránicos. Construida con Flutter para compatibilidad multiplataforma.",
     "tech": ["Flutter", "Dart", "SQLite"],
-    "github": "https://github.com/islamux/Athkarix/releases/tag/v1.0.2/app-v1.0.2.apk",
+    "github": "https://github.com/islamux/Athkarix",
+    "apk": "https://github.com/islamux/Athkarix/releases/tag/v1.0.2/app-v1.0.2.apk",
     "demo": "https://athkarix.netlify.app",
-    "image": "/images/projects/athkarix.png",
+    "image": "/images/projects/athkari-cover.png",
     "featured": true,
     "year": "2023"
   },

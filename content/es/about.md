@@ -4,9 +4,6 @@ description: "Fathi | Gerente de RR.HH., Entusiasta del Código Abierto y Progra
 date: "2025-11-24"
 ---
 
-🌍 Fathi | Gerente de RR.HH., Entusiasta del Código Abierto y Programador Aficionado
-
-## Sobre mí
 
 Soy graduado en Administración de Empresas y actualmente trabajo como Gerente de Recursos Humanos en Yemen. Más allá del mundo corporativo, mi gran pasión es el Software Libre y el Código Abierto, un hobby que me ha convertido en un desarrollador autodidacta.
 

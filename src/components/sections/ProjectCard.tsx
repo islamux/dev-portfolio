@@ -3,12 +3,14 @@ import Image from "next/image";
 import { Icon } from "../ui/Icon";
 import Link from "next/link";
 import { ProjectLink } from "../ui/ProjectLink";
+import { getProjectHref } from "@/i18n/navigation";
+import type { Locale } from "@/i18n/config";
 
 /**
  * ProjectCard Component
- * 
+ *
  * Displays a project card with image, title, description, and action links.
- * 
+ *
  * DRY Improvements:
  * - Uses ProjectLink component instead of duplicated link structures
  * - Centralized link styling and behavior
@@ -21,16 +23,19 @@ interface ProjectCardProps {
     code?: string;
     demo?: string;
   };
+  locale: string;
 }
 
 
-export default function ProjectCard({ project, translations }: ProjectCardProps) {
+export default function ProjectCard({ project, translations, locale }: ProjectCardProps) {
+  const projectHref = getProjectHref(locale as Locale, project.id);
+
   return (
     <article className="group relative bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 overflow-hidden hover:shadow-xl transition-all duration-300">
       {/*Project Image*/}
       {project.image && (
         <div className="relative h-48 w-full overflow-hidden bg-gray-100 dark:bg-gray-800">
-          <Link href={`/projects/${project.id}`}>
+          <Link href={projectHref}>
             <Image
               src={project.image}
               alt={project.name}

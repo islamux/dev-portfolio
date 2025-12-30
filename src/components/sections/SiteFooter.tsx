@@ -3,13 +3,21 @@ import Container from "@/components/Container";
 import type { SocialLink } from "@/types";
 import { Icon } from "@/components/ui/Icon";
 import { siteConfig } from "@/app/metadata";
+import { getLocalizedHref } from "@/i18n/navigation";
+import type { Locale } from "@/i18n/config";
 
 interface SiteFooterProps {
   socialLinks: SocialLink[];
+  locale: string;
 };
 
-export function SiteFooter({ socialLinks }: SiteFooterProps) {
+export function SiteFooter({ socialLinks, locale }: SiteFooterProps) {
   const currentYear = new Date().getFullYear();
+
+  // Get localized hrefs for links
+  const aboutHref = getLocalizedHref(locale as Locale, 'about');
+  const projectsHref = getLocalizedHref(locale as Locale, 'projects');
+  const contactHref = getLocalizedHref(locale as Locale, 'contact');
   return (
     <footer className="border-t border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-900">
       <Container>
@@ -29,21 +37,21 @@ export function SiteFooter({ socialLinks }: SiteFooterProps) {
           <ul className="space-y-2">
             <li>
               <Link
-                href="/about"
+                href={aboutHref}
                 className="text-sm text-gray-600 dark:text-gray-400 hover:text-brand-500">
                 About
               </Link>
             </li>
             <li>
               <Link
-                href="/projects"
+                href={projectsHref}
                 className="text-sm text-gray-600 dark:text-gray-400 hover:text-brand-500">
                 Projects
               </Link>
             </li>
             <li>
               <Link
-                href="/contact"
+                href={contactHref}
                 className="text-sm text-gray-600 dark:text-gray-400 hover:text-brand-500">
                 Contact
               </Link>
