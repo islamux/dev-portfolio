@@ -23,7 +23,7 @@ My passion for languages allows me to access global resources and connect with d
 My journey with technology started in 2007 with Linux systems, and I have been self-learning programming since 2018:
 
 - **Web Development:** Utilizing React/Next.js and Tailwind CSS
-- **Mobile Apps:** Building simple projects with Flutter
+- **Mobile Apps:** Building simple projects with Flutter, Kotlin.
 - **Backend & Environment:** Working with Node.js and TypeScript, with a foundational understanding of PostgreSQL
 - **Systems:** Long-time Linux user with a basic grasp of networking and IT security
 

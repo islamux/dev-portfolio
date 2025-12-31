@@ -2,9 +2,9 @@
   {
     "id": "athkarix",
     "name": "أذكاري",
-    "description": "تطبيق تذكيرات الصلاة والأذكار الإسلامية مبني باستخدام Flutter",
-    "longDescription": "تطبيق إسلامي شامل يتضمن إشعارات أوقات الصلاة، الأدعية اليومية (الأذكار)، والآيات القرآنية. مبني باستخدام Flutter للدعم عبر المنصات.",
-    "tech": ["Flutter", "Dart", "SQLite"],
+    "description": "تطبيق أذكار إسلامية مبني باستخدام Flutter",
+    "longDescription": "تطبيق إسلامي يضم الأدعية اليومية (الأذكار) والآيات القرآنية. مبني باستخدام Flutter للدعم عبر المنصات.",
+    "tech": ["Flutter", "Dart"],
     "github": "https://github.com/islamux/Athkarix",
     "apk": "https://github.com/islamux/Athkarix/releases/tag/v1.0.2/app-v1.0.2.apk",
     "demo": "https://athkarix.netlify.app",
@@ -67,7 +67,7 @@
   "name": "تحكم راوتر هواوي",
   "description": "نظام متقدم لإدارة وتحكم راوترات هواوي",
   "longDescription": "نظام شامل لإدارة راوترات هواوي مصمم خصيصًا لأجهزة هواوي. يوفر هذا المشروع ميزات تحكم متقدمة، قدرات مراقبة، وأدوات أتمتة لأجهزة الشبكة من هواوي. مبني بتقنيات الويب الحديثة، يوفر واجهة مستخدم سهلة الاستخدام لإدارة إعدادات الراوتر، مراقبة أداء الشبكة، وتنفيذ ميزات الأمان.",
-  "tech": ["JavaScript", "Node.js", "Express", "React", "Networking"],
+  "tech": ["JavaScript", "Node.js", "React", "Networking"],
   "github": "https://github.com/islamux/huawei-router-controle",
   "featured": true,
   "year": "2024"

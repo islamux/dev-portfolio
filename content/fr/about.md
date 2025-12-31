@@ -23,7 +23,7 @@ Ma passion pour les langues me permet de consulter des ressources mondiales et d
 Mon aventure technologique a débuté en 2007 avec Linux, et je me consacre à l'apprentissage de la programmation depuis 2018 :
 
 - **Développement Web :** Utilisation de React/Next.js et Tailwind CSS
-- **Applications Mobiles :** Projets simples avec Flutter
+- **Applications Mobiles :** Projets simples avec Flutter, Kotlin.
 - **Backend :** Expérience avec Node.js, TypeScript et les bases de PostgreSQL
 - **Systèmes :** Utilisateur de longue date de Linux, avec des connaissances de base en réseaux et sécurité informatique
 

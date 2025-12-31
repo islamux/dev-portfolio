@@ -9,6 +9,7 @@ import Button from "../ui/Button";
 import { Icon } from "../ui/Icon";
 import { navLinkKeys, getLocalizedHref } from "@/i18n/navigation";
 import { useMounted } from "../../hooks/useMounted";
+import { LanguageSwitcher } from "./LanguagesSwitcher";
 
 export function SiteHeader({ navDict, locale }: { navDict: Record<string, string>; locale: string }) {
 
@@ -79,12 +80,7 @@ export function SiteHeader({ navDict, locale }: { navDict: Record<string, string
               )}
             </Button>
             {/* Language Switcher */}
-            {/* <LanguageSwitcher /> */}
-            <div className="text-xs">
-                 <Link href={getLocalizedHref('en' as any, 'home')} className="px-1">EN</Link>|
-                 <Link href={getLocalizedHref('fr' as any, 'home')} className="px-1">FR</Link>|
-                 <Link href={getLocalizedHref('ar' as any, 'home')} className="px-1">AR</Link>
-            </div>
+            <LanguageSwitcher />
 
             {/* Mobile Menue Button*/}
             <Button

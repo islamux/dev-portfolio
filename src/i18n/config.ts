@@ -1,6 +1,6 @@
 // ------- Step 1 define types
 // Supported languages coded
-export type Locale = "en" | "fr" | "ar";
+export type Locale = "en" | "fr" | "ar" | "es";
 
 // Info about single languag
 export interface languageInfo {
@@ -11,7 +11,7 @@ export interface languageInfo {
 
 // ------ Step 2  create seperate exports
 // List of all Supported languages.
-export const locales: Locale[] = ["en", "fr", "ar"];
+export const locales: Locale[] = ["en", "fr", "ar", "es"];
 
 // Default locale
 export const defaultLocale: Locale = "en";
@@ -21,13 +21,15 @@ export const localeNames: Record<Locale, string> = {
   en: "English",
   fr: "Français",
   ar: "العربية",
+  es: "Español",
 }
 
 // Flags codes for each lang 
 export const localeFlag: Record<Locale, string> = {
   en: "US",
   fr: "FR",
-  ar: "AR"
+  ar: "AR",
+  es: "ES"
 }
 
 // Which locale use RTL 

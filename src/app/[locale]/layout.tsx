@@ -2,6 +2,7 @@ import { SkipToContent } from "@/components/ui/SkipToContent";
 import { Providers } from "../providers";
 import { SiteHeader } from "@/components/sections/SiteHeader";
 import { isRTL, locales, Locale } from "@/i18n/config";
+import { NextIntlClientProvider } from "next-intl";
 interface LocaleLayoutProps {
   children: React.ReactNode;
   params: Promise<{
@@ -39,7 +40,7 @@ export default async function LocaleLayout(
 
   return (
     <div lang={locale} dir={direction} className="antialiased flex flex-col min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100">
-      {/* <NextIntlClientProvider locale={locale} messages={messages}> */}
+      <NextIntlClientProvider locale={locale} messages={messages}>
         <SkipToContent />
         <Providers>
           <SiteHeader navDict={navDict} locale={locale} />
@@ -47,7 +48,7 @@ export default async function LocaleLayout(
             {children}
           </main>
         </Providers>
-      {/* </NextIntlClientProvider> */}
+      </NextIntlClientProvider>
     </div>
   );
 }
