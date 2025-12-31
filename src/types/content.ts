@@ -22,6 +22,7 @@ export interface Project {
   github?: string;
   gitlab?: string;
   demo?: string;
+  apk?: string;
   image?: string;
   featured?: boolean;
   year?: string;

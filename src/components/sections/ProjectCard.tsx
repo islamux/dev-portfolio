@@ -95,7 +95,14 @@ export default function ProjectCard({ project, translations, locale }: ProjectCa
               text="GitLab"
             />
           )}
-          {project.demo && (
+          {project.apk ? (
+            <ProjectLink
+              href={project.apk}
+              icon="download"
+              text={translations?.demo || "Download APK"}
+              className="ml-auto"
+            />
+          ) : project.demo && (
             <ProjectLink
               href={project.demo}
               icon="globe"
