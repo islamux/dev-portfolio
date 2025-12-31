@@ -6,7 +6,7 @@
     "longDescription": "Una aplicación islámica que incluye súplicas diarias (Athkar) y versículos coránicos. Construida con Flutter para compatibilidad multiplataforma.",
     "tech": ["Flutter", "Dart"],
     "github": "https://github.com/islamux/Athkarix",
-    "apk": "https://github.com/islamux/Athkarix/releases/tag/v1.0.2/app-v1.0.2.apk",
+    "apk": "https://github.com/islamux/Athkarix/releases/download/v1.0.2/app-v1.0.2.apk",
     "demo": "https://athkarix.netlify.app",
     "image": "/images/projects/athkari-cover.png",
     "featured": true,
