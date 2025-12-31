@@ -5,7 +5,9 @@
 **Tech Stack:** Next.js 15+ (App Router), TypeScript, Tailwind CSS  
 **Package Manager:** pnpm  
 **Target Deployment:** Vercel (Dynamic) & Hostinger (Static)
-**Deployment Strategy:** [Dual Compatibility Guide](../DUAL_COMPATIBILITY_GUIDE.md)
+**Deployment Strategy:** [Dual Compatibility Guide](DUAL_STATIC_SSR_COMPATIBILITY_GUIDE.md)
+
+> **Advanced Deployment:** For detailed guidance on static exports with internationalization (i18n), see the [Comprehensive Static Export Guide](COMPREHENSIVE_STATIC_EXPORT_GUIDE.md). It covers locale-aware navigation, clean URL routing, and common pitfalls when deploying multilingual Next.js sites to static hosts.
 
 ---
 
@@ -42,6 +44,31 @@ git checkout -b feature/phase-2-layout || git checkout feature/phase-2-layout
 - First Contentful Paint: <1.5s
 - Total Bundle: <200KB gzipped
 - Per-route: <50KB
+
+### Build Strategy (Static-First Approach)
+
+**🏆 Golden Rule: "Static First"**
+
+If you're targeting static hosting (like Hostinger) in addition to Vercel:
+
+- **Always test static build before committing:**
+  ```bash
+  DEPLOY_TARGET=static pnpm build
+  ```
+  If this fails, fix it immediately—static export constraints are stricter than Vercel's.
+
+- **Benefits:**
+  - Code that works for static export will work on Vercel
+  - Forces better architecture (no runtime dependencies)
+  - Faster deployments and better performance
+
+- **Limitations:**
+  - No API routes (use external services like Formspree)
+  - No `headers()`, `cookies()`, or middleware for rendering
+  - All data must be fetched at build time
+  - Images must be `unoptimized: true` in next.config.ts
+
+- **See also:** [Dual-Compatibility Guide](DUAL_STATIC_SSR_COMPATIBILITY_GUIDE.md) for detailed patterns
 
 ---
 
@@ -1725,11 +1752,17 @@ export function Hero() {
     - Set environment variables
     - Auto-deploy on push to `main`
 
-5.  **Netlify (secondary):**
+5.  **Static Export Testing** (if targeting static hosts like Hostinger):
+    - Test static build: `DEPLOY_TARGET=static pnpm build`
+    - Serve locally: `npx http-server out -p 3000`
+    - Verify all links work (see [Comprehensive Static Export Guide](COMPREHENSIVE_STATIC_EXPORT_GUIDE.md))
+    - Configure redirects for clean URLs (Netlify `_redirects`, Vercel `vercel.json`)
+
+6.  **Netlify (secondary):**
     - Deploy `dev` branch for previews
     - Or skip if not needed
 
-6.  **Branch protection:**
+7.  **Branch protection:**
     - Require PR reviews
     - Require CI to pass
     - No direct commits to `main`

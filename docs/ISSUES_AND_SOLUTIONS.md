@@ -1001,3 +1001,95 @@ Error: Route /[locale]/projects/[id] with `dynamic = "error"` couldn't be render
 
 - "Static First" mindset: Assume everything is static.
 - Use `pnpm run build:static` frequently to check for compliance.
+---
+
+### Issue 7.2: Hydration Error - Nested `<a>` Tags
+
+**Error:**
+```
+In HTML, <a> cannot be a descendant of <a>.
+This will cause a hydration error.
+```
+
+**Files Affected:**
+- `src/components/sections/ProjectLinks.tsx`
+- `src/components/ui/ProjectLink.tsx`
+
+**Cause:**
+- Invalid HTML structure was being generated where a `<a>` tag was nested inside another `<a>` tag.
+- In `ProjectLinks.tsx`, the "Live Demo" link was created by wrapping a `<ProjectLink>` component inside another `<a>` tag.
+- The `ProjectLink` component itself renders an `<a>` tag, leading to the `<a><a>...</a></a>` nesting.
+- This causes a hydration error because the browser's parser auto-corrects the invalid server-rendered HTML, creating a mismatch with what React expects to find on the client-side.
+
+**Solution:**
+Refactored `src/components/sections/ProjectLinks.tsx` to remove the nested link structure. The use of the `<ProjectLink>` component for the demo link was removed, and instead, the link was constructed similarly to the "GitHub" and "GitLab" links in the same file, placing an `<Icon>` and text directly inside the `<Button>` component.
+
+```tsx
+// ❌ WRONG
+{project.demo && (
+  <a href={project.demo} target="_blank" rel="noopener noreferrer">
+    <Button variant="secondary">
+      <ProjectLink
+        href={project.demo}
+        icon="globe"
+        text="Live Demo"
+      />
+    </Button>
+  </a>
+)}
+
+// ✅ CORRECT
+{project.demo && (
+  <a href={project.demo} target="_blank" rel="noopener noreferrer">
+    <Button variant="secondary">
+      <Icon name="globe" size={20} className="mr-2" />
+      Live Demo
+    </Button>
+  </a>
+)}
+```
+
+**Prevention:**
+- Be mindful of component composition. Ensure that components that render a specific tag (like `<a>`) are not wrapped by another instance of the same tag.
+- Heed hydration error messages; they almost always point to a structural mismatch between server and client HTML.
+
+---
+
+## Related Documentation
+
+### For Static Export Deployment Issues
+
+This document (ISSUES_AND_SOLUTIONS.md) covers development-phase issues across Phases 1-7. For **detailed static export deployment guidance** with internationalization (i18n) support, see:
+
+**[Comprehensive Static Export Guide](COMPREHENSIVE_STATIC_EXPORT_GUIDE.md)**
+
+This specialized guide covers:
+- ✅ Locale-aware navigation patterns (`getLocalizedHref` helper)
+- ✅ Clean URL routing for static exports
+- ✅ i18n-specific issues and solutions
+- ✅ Complete test results and verification
+- ✅ Common pitfalls when deploying multilingual Next.js sites
+- ✅ Deployment configurations for different platforms (Netlify, Vercel, etc.)
+
+### When to Use Which Guide
+
+**Use ISSUES_AND_SOLUTIONS.md when:**
+- Encountering development errors (TypeScript, build, runtime)
+- Working through phases 1-7 of portfolio development
+- Debugging hydration, component, or general Next.js issues
+
+**Use COMPREHENSIVE_STATIC_EXPORT_GUIDE.md when:**
+- Building static exports with multiple languages
+- Troubleshooting navigation links in static builds
+- Setting up clean URLs for static hosting
+- Deploying to static hosts (Netlify, Hostinger, etc.)
+
+### Additional Resources
+
+- **[Dual-Compatibility Guide](DUAL_STATIC_SSR_COMPATIBILITY_GUIDE.md)** - How to maintain code that deploys to both Vercel (dynamic) and static hosts
+- **[Portfolio Build Guide](PORTFOLIO_BUILD_GUIDE.md)** - Complete step-by-step portfolio building process
+
+---
+
+**Last Updated:** December 31, 2025
+**Status:** Living document - updated as new issues are discovered
