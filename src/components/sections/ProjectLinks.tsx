@@ -1,7 +1,6 @@
 import { Project } from "@/types/content";
 import Button from "../ui/Button";
 import { Icon } from "../ui/Icon";
-import { ProjectLink } from "../ui/ProjectLink";
 interface ProjectLinksProps {
   project: Project;
   translations?: {
@@ -38,12 +37,8 @@ export function ProjectLinks({ project, translations }: ProjectLinksProps) {
       {project.demo && (
         <a href={project.demo} target="_blank" rel="noopener noreferrer">
           <Button variant="secondary">
-            <ProjectLink
-              href={project.demo}
-              icon="globe"
-              text={translations?.demo || "Live Demo"}
-              className="p-0 text-base"
-            />
+            <Icon name="globe" size={20} className="mr-2" />
+            {translations?.demo || "Live Demo"}
           </Button>
         </a>
       )}

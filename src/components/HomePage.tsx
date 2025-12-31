@@ -1,4 +1,4 @@
-import { getContentBySlug, getProjectData } from "@/lib/content";
+import { getContentBySlug } from "@/lib/content";
 import { getTranslations } from "next-intl/server";
 import Container from "./Container";
 import { MarkdownContent } from "./ui/MarkdownContent";
@@ -11,18 +11,17 @@ import { getLocalizedHref } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/config";
 
 interface HomePageProps {
-  params: Promise<{ locale: string }>;
+  locale: string;
 }
 
-export async function generateMetadata({ params }: HomePageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   return {
     title: "Islamux = Software Developer",
     description: "Full-stack developer specializing in modern web applications",
   };
 }
 
-export default async function HomePage({ params }: HomePageProps) {
-  const { locale } = await params;
+export default async function HomePage({ locale }: HomePageProps) {
   // use service layer for featured projects
   const featuredProjects = await ProjectService.getFeaturedProjects(locale, 3);
 

@@ -34,7 +34,8 @@ export async function generateMetaData({
 };
 
 export default async function Page({ params }: PageProps) {
+  const { locale } = await params;
   return (
-    <HomePage params={params} />
+    <HomePage locale={locale} />
   );
 }

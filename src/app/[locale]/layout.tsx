@@ -24,7 +24,7 @@ export default async function LocaleLayout(
   // }
 
   // load translaiton messages
-  let messages;
+  let messages: { nav?: Record<string, string> };
   try {
     messages = (await import(`@/messages/${locale}.json`)).default;
   } catch (e) {
@@ -33,7 +33,7 @@ export default async function LocaleLayout(
     messages = {};
   }
 
-  const navDict = (messages as Record<string, any>)?.nav || {};
+  const navDict = messages?.nav || {};
 
   // Direction
   const direction = isRTL(locale as Locale) ? "rtl" : "ltr";

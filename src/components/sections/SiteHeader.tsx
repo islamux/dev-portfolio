@@ -8,6 +8,7 @@ import { useTheme } from "next-themes";
 import Button from "../ui/Button";
 import { Icon } from "../ui/Icon";
 import { navLinkKeys, getLocalizedHref } from "@/i18n/navigation";
+import { type Locale } from "@/i18n/config";
 import { useMounted } from "../../hooks/useMounted";
 import { LanguageSwitcher } from "./LanguagesSwitcher";
 
@@ -26,7 +27,7 @@ export function SiteHeader({ navDict, locale }: { navDict: Record<string, string
   // Generate nav links with locale prefix
   const navLinks = navLinkKeys.map(link => ({
     ...link,
-    href: getLocalizedHref(locale as any, link.key)
+    href: getLocalizedHref(locale as Locale, link.key)
   }));
 
   // Close mobile menu when route changes - valid state synchronization

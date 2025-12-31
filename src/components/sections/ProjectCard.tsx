@@ -1,6 +1,5 @@
 import { Project } from "@/types/content";
 import Image from "next/image";
-import { Icon } from "../ui/Icon";
 import Link from "next/link";
 import { ProjectLink } from "../ui/ProjectLink";
 import { getProjectHref } from "@/i18n/navigation";
