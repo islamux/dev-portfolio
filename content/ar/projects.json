@@ -27,16 +27,6 @@
   },
 
   {
-    "id": "open-source",
-    "name": "مساهمات المصدر المفتوح",
-    "description": "المساهمة في مختلف مشاريع المصدر المفتوح",
-    "tech": ["JavaScript", "TypeScript", "React"],
-    "github": "https://github.com/islamux",
-    "featured": false,
-    "year": "2022-2024"
-  },
-
-  {
     "id": "voices-of-truth",
     "name": "أصوات الحق",
     "description": "دليل شامل لعلماء ودعاة الإسلام حول العالم مع دعم العربية والإنجليزية، يتضمن فلترة متقدمة وانيميشن سلس.",

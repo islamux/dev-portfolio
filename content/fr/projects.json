@@ -25,15 +25,6 @@
     "year": "2024"
   },
   {
-    "id": "open-source",
-    "name": "Contributions Open Source",
-    "description": "Contributions à divers projets open-source",
-    "tech": ["JavaScript", "TypeScript", "React"],
-    "github": "https://github.com/islamux",
-    "featured": false,
-    "year": "2022-2024"
-  },
-  {
     "id": "voices-of-truth",
   "name": "Voices of Truth",
   "description": "Un répertoire multilingue de prédicateurs et savants islamiques renommés, avec prise en charge de l’arabe (RTL) et de l’anglais (LTR), incluant un filtrage côté serveur et des animations fluides via Framer Motion.",
