@@ -32,7 +32,7 @@
     "tech": ["Next.js 15", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "react-i18next"],
     "github": "https://github.com/islamux/voices-of-truth",
     "demo": "https://voices-of-truth.vercel.app",
-    "image": "/images/projects/voices_of_truth.png",
+    "image": "/images/projects/voice-of-truth.png",
     "featured": true,
     "year": "2024"
   },
