@@ -2,12 +2,13 @@
   {
     "id": "athkarix",
     "name": "Athkarix",
-    "description": "Rappels de prière islamiques et application Athkar construite avec Flutter",
-    "longDescription": "Une application islamique complète présentant des notifications d'horaires de prière, des invocations quotidiennes (Athkar) et des versets coraniques. Construite avec Flutter pour une compatibilité multiplateforme.",
-    "tech": ["Flutter", "Dart", "SQLite"],
-    "github": "https://github.com/islamux/athkarix",
+    "description": "Application Athkar construite avec Flutter",
+    "longDescription": "Une application islamique présentant des invocations quotidiennes (Athkar) et des versets coraniques. Construite avec Flutter pour une compatibilité multiplateforme.",
+    "tech": ["Flutter", "Dart"],
+    "github": "https://github.com/islamux/Athkarix",
+    "apk": "https://github.com/islamux/Athkarix/releases/download/v1.0.2/app-v1.0.2.apk",
     "demo": "https://athkarix.netlify.app",
-    "image": "/images/projects/athkarix.png",
+    "image": "/images/projects/athkari-cover-v2.png",
     "featured": true,
     "year": "2023"
   },
@@ -24,15 +25,6 @@
     "year": "2024"
   },
   {
-    "id": "open-source",
-    "name": "Contributions Open Source",
-    "description": "Contributions à divers projets open-source",
-    "tech": ["JavaScript", "TypeScript", "React"],
-    "github": "https://github.com/islamux",
-    "featured": false,
-    "year": "2022-2024"
-  },
-  {
     "id": "voices-of-truth",
   "name": "Voices of Truth",
   "description": "Un répertoire multilingue de prédicateurs et savants islamiques renommés, avec prise en charge de l’arabe (RTL) et de l’anglais (LTR), incluant un filtrage côté serveur et des animations fluides via Framer Motion.",
@@ -40,7 +32,7 @@
   "tech": ["Next.js 15", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "react-i18next"],
   "github": "https://github.com/islamux/voices-of-truth",
   "demo": "https://voices-of-truth.vercel.app",
-  "image": "/images/projects/voices_of_truth.png",
+  "image": "/images/projects/voice-of-truth.png",
   "featured": true,
   "year": "2024"
 },
@@ -61,7 +53,7 @@
     "name": "Contrôleur de Routeur Huawei",
     "description": "Système avancé de gestion et de contrôle pour les routeurs Huawei",
     "longDescription": "Un système complet de gestion des routeurs Huawei conçu spécifiquement pour les appareils Huawei. Ce projet offre des fonctionnalités de contrôle avancées, des capacités de surveillance et des outils d'automatisation pour les appareils réseau Huawei. Construit avec des technologies web modernes, il propose une interface utilisateur conviviale pour gérer les paramètres du routeur, surveiller les performances du réseau et mettre en œuvre des fonctionnalités de sécurité.",
-    "tech": ["JavaScript", "Node.js", "Express", "React", "Networking"],
+    "tech": ["JavaScript", "Node.js", "React", "Networking"],
     "github": "https://github.com/islamux/huawei-router-controle",
     "featured": true,
     "year": "2024"

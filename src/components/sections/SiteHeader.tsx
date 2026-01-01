@@ -7,10 +7,12 @@ import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import Button from "../ui/Button";
 import { Icon } from "../ui/Icon";
-import { navLinks } from "@/i18n/navigation";
+import { navLinkKeys, getLocalizedHref } from "@/i18n/navigation";
+import { type Locale } from "@/i18n/config";
 import { useMounted } from "../../hooks/useMounted";
+import { LanguageSwitcher } from "./LanguagesSwitcher";
 
-export function SiteHeader({ navDict }: { navDict: Record<string, string> }) {
+export function SiteHeader({ navDict, locale }: { navDict: Record<string, string>; locale: string }) {
 
   // translation
   // const t = useTranslations("nav");
@@ -21,6 +23,12 @@ export function SiteHeader({ navDict }: { navDict: Record<string, string> }) {
 
   // Avoid hydration mismatch - standard Next.js pattern for client-only state
   const mounted = useMounted();
+
+  // Generate nav links with locale prefix
+  const navLinks = navLinkKeys.map(link => ({
+    ...link,
+    href: getLocalizedHref(locale as Locale, link.key)
+  }));
 
   // Close mobile menu when route changes - valid state synchronization
   useEffect(() => {
@@ -73,12 +81,7 @@ export function SiteHeader({ navDict }: { navDict: Record<string, string> }) {
               )}
             </Button>
             {/* Language Switcher */}
-            {/* <LanguageSwitcher /> */}
-            <div className="text-xs">
-                 <Link href="/en" className="px-1">EN</Link>|
-                 <Link href="/fr" className="px-1">FR</Link>|
-                 <Link href="/ar" className="px-1">AR</Link>
-            </div>
+            <LanguageSwitcher locale={locale} />
 
             {/* Mobile Menue Button*/}
             <Button

@@ -101,14 +101,40 @@ dev_portfolio/
 ## 📜 Available Scripts
 
 ```bash
-pnpm dev          # Start dev server
-pnpm build        # Build for production (Vercel)
-pnpm build:static # Build for static hosting (Hostinger)
-pnpm start        # Start production server
-pnpm lint         # Run ESLint
-pnpm typecheck    # Check TypeScript types
-pnpm format       # Format code with Prettier
+# Development
+pnpm dev                 # Start dev server (SSR mode)
+
+# Production Builds
+pnpm build              # Build for production (Vercel/SSR)
+pnpm build:static       # Build static version (Hostinger)
+pnpm build:static:full  # Clean + build static (recommended)
+pnpm start              # Start production server
+
+# Testing & Serving
+pnpm serve:static       # Test static build locally
+pnpm test:static        # Build + serve static version
+
+# Code Quality
+pnpm lint               # Run ESLint
+pnpm typecheck          # Check TypeScript types (if configured)
+pnpm format             # Format code with Prettier (if configured)
 ```
+
+### Automated Build Script
+
+For a fully automated static build with cleanup and deployment instructions:
+
+```bash
+./scripts/build-static.sh
+```
+
+This script will:
+
+1. Clean previous builds (`rm -rf .next out`)
+2. Build static version with `DEPLOY_TARGET=static`
+3. Provide instructions for local testing and Hostinger deployment
+
+**See [docs/STATIC_VS_SSR_ANALYSIS.md](./docs/STATIC_VS_SSR_ANALYSIS.md) for complete workflow documentation.**
 
 ## 🔧 Tech Stack
 

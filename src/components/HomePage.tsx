@@ -1,5 +1,4 @@
-import { getContentBySlug, getProjectData } from "@/lib/content";
-import { getTranslations } from "next-intl/server";
+import { getContentBySlug } from "@/lib/content";
 import Container from "./Container";
 import { MarkdownContent } from "./ui/MarkdownContent";
 import Link from "next/link";
@@ -7,27 +6,39 @@ import Button from "./ui/Button";
 import ProjectCard from "./sections/ProjectCard";
 import { ProjectService } from "@/services/projectService";
 import { Metadata } from "next";
+import { getLocalizedHref } from "@/i18n/navigation";
+import type { Locale } from "@/i18n/config";
 
 interface HomePageProps {
-  params: Promise<{ locale: string }>;
+  locale: string;
 }
 
-export async function generateMetadata({ params }: HomePageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   return {
     title: "Islamux = Software Developer",
     description: "Full-stack developer specializing in modern web applications",
   };
 }
 
-export default async function HomePage({ params }: HomePageProps) {
-  const { locale } = await params;
+export default async function HomePage({ locale }: HomePageProps) {
   // use service layer for featured projects
   const featuredProjects = await ProjectService.getFeaturedProjects(locale, 3);
 
+  // Get localized hrefs for links
+  const projectsHref = getLocalizedHref(locale as Locale, 'projects');
+  const contactHref = getLocalizedHref(locale as Locale, 'contact');
+
   const { frontmatter, content } = getContentBySlug("home", locale);
 
-  // Get translations
-  const t = await getTranslations({ locale, namespace: "home" });
+  // For static export, import messages directly instead of using getTranslations
+  // to avoid headers() dependency
+  let translations: any = {};
+  try {
+    const messages = (await import(`@/messages/${locale}.json`)).default;
+    translations = messages?.home || {};
+  } catch (error) {
+    console.warn(`Failed to load messages for locale ${locale}:`, error);
+  }
 
   return (
     <>
@@ -42,14 +53,14 @@ export default async function HomePage({ params }: HomePageProps) {
               <MarkdownContent content={content} />
             </div>
             <div className="flex flex-wrap gap-4">
-              <Link href="/projects">
+              <Link href={projectsHref}>
                 <Button variant="primary" size="lg">
-                  {t("hero.cta.projects")}
+                  {translations?.hero?.cta?.projects || "View Projects"}
                 </Button>
               </Link>
               {/*Link 2 */}
-              <Link href="/contact">
-                <Button variant="secondary" size="lg">{t("hero.cta.contact")}</Button>
+              <Link href={contactHref}>
+                <Button variant="secondary" size="lg">{translations?.hero?.cta?.contact || "Get in Touch"}</Button>
               </Link>
             </div>
           </div>
@@ -62,25 +73,25 @@ export default async function HomePage({ params }: HomePageProps) {
           <Container>
             <div className="flex items-center justify-between mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
-                {t("featured.title")}
+                {translations?.featured?.title || "Featured Projects"}
               </h2>
               {/*Link 3*/}
-              <Link href="/projects" className="text-brand-500 hover:text-brand-600 font-medium">
-                {t("featured.viewAll")}
+              <Link href={projectsHref} className="text-brand-500 hover:text-brand-600 font-medium">
+                {translations?.featured?.viewAll || "View All"}
               </Link>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {featuredProjects.map((project) => (
                 <ProjectCard key={project.id} project={project} translations={{
-                  code: t("card.code"),
-                  demo: t("card.demo")
-                }} />
+                  code: translations?.card?.code || "Code",
+                  demo: translations?.card?.demo || "Complete Project (Open Source)"
+                }} locale={locale} />
               ))}
             </div>
             {/*View All Link at the end*/}
             <div className="mt-12 text-center">
-              <Link href="/projects" className="text-brand-500 hover:text-brand-600 font-medium">
-                {t("featured.viewAllEnd")}
+              <Link href={projectsHref} className="text-brand-500 hover:text-brand-600 font-medium">
+                {translations?.featured?.viewAllEnd || "View All"}
               </Link>
             </div>
           </Container>

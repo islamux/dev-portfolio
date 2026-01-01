@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
+import { setRequestLocale } from 'next-intl/server';
 import Container from '@/components/Container';
 import { ContactForm } from '@/components/sections/ContactForm';
 import { Icon } from '@/components/ui/Icon';
@@ -12,16 +12,18 @@ interface ContactPageProps {
 
 export async function generateMetadata({ params }: ContactPageProps): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "contact" });
+  setRequestLocale(locale);
+
+  // For static export, use static metadata
   return {
-    title: `${t("title")} - ${siteConfig.name}`,
-    description: t("description")
+    title: `Contact - ${siteConfig.name}`,
+    description: "Get in touch with me"
   };
 }
 
 export default async function ContactPage({ params }: ContactPageProps) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "contact" });
+  setRequestLocale(locale);
 
   return (
     <div className='py-12 md:py-20'>
@@ -31,17 +33,17 @@ export default async function ContactPage({ params }: ContactPageProps) {
           {/*Header*/}
           <header className='mb-12 text-center'>
             <h1 className='text-4xl md:text-4xl font-semibold text-gray-900 dark:text-white mb-4'>
-              {t("title")}
+              Contact
             </h1>
             <p className='text-xl text-gray-600 dark:text-gray-400'>
-              {t("description")}
+              Get in touch with me
             </p>
           </header>
 
           {/*Contact*/}
           <div className='mb-12 p-6 bg-gray-50 dark:bg-gray-900 rounded-lg border-gray-200 dark:border-gray-800'>
             <h2 className='text-lg font-semibold text-gray-900 dark:text-white mb-4'>
-              {t("other.title")}
+              Other Ways to Reach Me
             </h2>
             <div className='space-y-3'>
               <a

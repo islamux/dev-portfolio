@@ -1,52 +1,47 @@
 ---
 title: "About Me"
-description: "Learn more about my journey as a developer"
+description: "Fathi | HR Manager, Open Source Enthusiast & Tech Hobbyist"
 date: "2025-11-24"
 ---
 
-# About Me
 
-I'm a full-stack developer with a passion for creating elegant, performant web applications.
+I am a Business Administration graduate currently serving as an HR Manager in Yemen. Beyond the corporate world, my true passion lies in Open Source software and programming—a hobby that has shaped my technical skills and made me a dedicated self-taught developer.
 
-## Background
+I believe that programming and languages are bridges to the world. I strive to blend my managerial expertise, linguistic skills, and technical curiosity to build simple yet meaningful personal projects.
 
-- 🎓 Self-taught developer since 2018
-- 💼 Freelance web developer
-- 🌍 Based in Yemen
-- 🛠️ Active open-source contributor
-- 🐧 Linux experience since 2007
-- 🔒 Security and networking experience
-- 📜 Google IT Support Certificate
+## 🗣️ Languages & Communication
 
-## Communities
+My passion for languages allows me to access global resources and connect with diverse technical communities:
 
-I'm active in several tech communities:
+- **Arabic:** Native
+- **English & French:** Good proficiency (Written & Spoken)
+- **Spanish:** Good understanding
+- **Turkish:** Basic knowledge
 
-- [LinuxAC.org](https://www.linuxac.org/) - Linux & open-source advocacy
-- [Aosus.org](https://aosus.org/) - Arabic open-source community
+## 🛠️ Technical Interests
 
-## Tech Stack
+My journey with technology started in 2007 with Linux systems, and I have been self-learning programming since 2018:
 
-**Frontend:**
+- **Web Development:** Utilizing React/Next.js and Tailwind CSS
+- **Mobile Apps:** Building simple projects with Flutter, Kotlin.
+- **Backend & Environment:** Working with Node.js and TypeScript, with a foundational understanding of PostgreSQL
+- **Systems:** Long-time Linux user with a basic grasp of networking and IT security
 
-- React / Next.js
-- TypeScript
-- Tailwind CSS
+## 🌐 Community Involvement
 
-**Backend:**
+I am an active member of the Arab open-source community, contributing to:
 
-- Node.js
-- PostgreSQL
-- MongoDB
-- Python
+- [LinuxAC.org](https://www.linuxac.org/) & [Aosus.org](https://aosus.org/) (Promoting Free and Open Source Software)
 
-**Mobile:**
+## 📜 Qualifications
 
-- Flutter
-- Dart
-- Kotlin
+- **Academic:** B.A. in Business Administration
+- **Professional:** HR Manager
+- **Technical:** Google IT Support Professional Certificate
 
-## Contact
+## 🤝 Contact Me
 
-Feel free to reach out via [email](mailto:fathi733@gmail.com) or connect on [GitHub](https://github.com/islamux).
-```
+Whether you want to discuss management, languages, or open-source software, I'd be happy to connect:
+
+- **Email:** [fathi@islamux.me](mailto:fathi@islamux.me) | [fathi733@gmail.com](mailto:fathi733@gmail.com)
+- **Code:** [GitHub](https://github.com/islamux) | [GitLab](https://gitlab.com/islamux)

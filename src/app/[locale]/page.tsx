@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
+import { setRequestLocale } from 'next-intl/server';
 import HomePage from "@/components/HomePage";
 import { siteConfig } from '@/app/metadata';
-import { getTranslations } from 'next-intl/server';
-
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -12,11 +11,12 @@ export async function generateMetaData({
   params,
 }: PageProps): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "home" });
+  setRequestLocale(locale);
 
+  // For static export, use static metadata to avoid headers() usage
   return {
-    title: t("title"),
-    description: t("description"),
+    title: "Islamux - Software Developer",
+    description: "Full-stack developer specializing in modern web applications",
     openGraph: {
       type: "website",
       locale: locale === "ar" ? "ar_SA" : locale === "fr" ? "fr_FR" : "en_US",
@@ -26,7 +26,7 @@ export async function generateMetaData({
           url: "images/og-image.jpg",
           width: 1200,
           height: 630,
-          alt: t("title"),
+          alt: "Islamux - Software Developer",
         }
       ]
     }
@@ -34,7 +34,9 @@ export async function generateMetaData({
 };
 
 export default async function Page({ params }: PageProps) {
+  const { locale } = await params;
+  setRequestLocale(locale);
   return (
-    <HomePage params={params} />
+    <HomePage locale={locale} />
   );
 }

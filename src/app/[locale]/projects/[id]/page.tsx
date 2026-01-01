@@ -1,13 +1,7 @@
-import { notFound } from "next/navigation";
-import { ProjectService } from "@/services/projectService";
-import { ProjectDetailContainer } from "@/components/sections/ProjectDetailContainer";
-import { ProjectBreadcrumb } from "@/components/sections/ProjectBreadcrumb";
-import { ProjectHeader } from "@/components/sections/ProjectHeader";
-import { ProjectImage } from "@/components/sections/ProjectImage";
-import { ProjectDescription } from "@/components/sections/ProjectDescription";
-import { ProjectLinks } from "@/components/sections/ProjectLinks";
-import { ProjectBackButton } from "@/components/sections/ProjectBackButton";
-import { getTranslations } from "next-intl/server";
+import fs from "fs";
+import path from "path";
+import { locales } from "@/i18n/config";
+import { setRequestLocale } from 'next-intl/server';
 
 interface ProjectDetailPageProps {
   params: Promise<{
@@ -16,57 +10,83 @@ interface ProjectDetailPageProps {
   }>;
 }
 
-/**
- * Generate static paths for all projects at build time
- */
-export async function generateStaticParams() {
-  return ProjectService.generateStaticParams();
+interface ProjectData {
+  id: string;
+  name: string;
+  description: string;
+  longDescription: string;
+  [key: string]: any;
 }
 
-// Duplicate removed
+export async function generateStaticParams() {
+  const params: { locale: string; id: string }[] = [];
 
-/**
- * Generate metadata for each project page
- */
-export async function generateMetadata({ params }: ProjectDetailPageProps) {
-  const { id, locale } = await params;
-  const project = await ProjectService.getProjectById(id, locale);
-
-  if (!project) {
-    return {
-      title: "Project Not Found",
-    };
+  for (const locale of locales) {
+    try {
+      const filePath = path.join(process.cwd(), "content", locale, "projects.json");
+      if (fs.existsSync(filePath)) {
+         const projectsData = fs.readFileSync(filePath, "utf-8");
+         const projects = JSON.parse(projectsData);
+         projects.forEach((p: ProjectData) => {
+           if (p.id) {
+             params.push({ locale, id: p.id });
+           }
+         });
+      }
+    } catch {
+      console.warn(`Could not load projects for locale ${locale} during static params generation.`);
+    }
   }
 
-  return {
-    title: `${project.name} - Islamux`,
-    description: project.description,
-    openGraph: {
-      title: project.name,
-      description: project.description,
-      images: project.image ? [project.image] : [],
-    },
-  };
+  return params;
 }
 
 export default async function ProjectDetailPage({ params }: ProjectDetailPageProps) {
   const { id, locale } = await params;
-  const project = await ProjectService.getProjectById(id, locale);
-  const t = await getTranslations({ locale, namespace: "projects" });
+  
+  // Enable static rendering
+  setRequestLocale(locale);
 
-  // Show 404 if project not found
+  // Load project data directly
+  let project: ProjectData | null = null;
+  try {
+    const filePath = path.join(process.cwd(), "content", locale, "projects.json");
+    const projectsData = fs.readFileSync(filePath, "utf-8");
+    const projects = JSON.parse(projectsData);
+    project = projects.find((p: ProjectData) => p.id === id);
+  } catch (error) {
+    console.error(`Error loading project ${id} for locale ${locale}:`, error);
+    return (
+      <div className="container mx-auto py-20">
+        <h1 className="text-4xl font-bold mb-4">Error Loading Project</h1>
+        <p className="text-lg text-gray-600 dark:text-gray-400">
+          Failed to load project data. Please try again later.
+        </p>
+      </div>
+    );
+  }
+
+  // Show message if project not found
   if (!project) {
-    notFound();
+    return (
+      <div className="container mx-auto py-20">
+        <h1 className="text-4xl font-bold mb-4">Project Not Found</h1>
+        <p className="text-lg text-gray-600 dark:text-gray-400">
+          The project you&apos;re looking for doesn&apos;t exist.
+        </p>
+      </div>
+    );
   }
 
   return (
-    <ProjectDetailContainer>
-      <ProjectBreadcrumb params={params} projectName={project.name} />
-      <ProjectHeader project={project} />
-      <ProjectImage project={project} />
-      <ProjectDescription project={project} />
-      <ProjectLinks project={project} translations={{ demo: t("card.demo") }} />
-      <ProjectBackButton params={params} />
-    </ProjectDetailContainer>
+    <div className="container mx-auto py-20">
+      <h1 className="text-4xl font-bold mb-4">{project.name}</h1>
+      <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">
+        {project.description}
+      </p>
+      <div className="prose dark:prose-invert max-w-none">
+        <p>{project.longDescription}</p>
+      </div>
+    </div>
   );
 }

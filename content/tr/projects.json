@@ -1,0 +1,62 @@
+[
+  {
+    "id": "athkarix",
+    "name": "Athkarix",
+    "description": "Flutter ile geliştirilmiş İslami zikir uygulaması",
+    "longDescription": "Günlük zikirler (Ezkâr) ve Kur’an ayetleri içeren bir İslami uygulama. Flutter kullanılarak çoklu platform uyumluluğu sağlanmıştır.",
+    "tech": ["Flutter", "Dart"],
+    "github": "https://github.com/islamux/Athkarix",
+    "apk": "https://github.com/islamux/Athkarix/releases/download/v1.0.2/app-v1.0.2.apk",
+    "demo": "https://athkarix.netlify.app",
+    "image": "/images/projects/athkari-cover-v2.png",
+    "featured": true,
+    "year": "2023"
+  },
+  {
+    "id": "portfolio",
+    "name": "Geliştirici Portföyü",
+    "description": "Next.js 15 ve TypeScript ile oluşturulmuş modern portföy sitesi",
+    "longDescription": "Karanlık mod, SEO optimizasyonu ve PWA özellikleri içeren tamamen duyarlı, çok dilli bir portföy web sitesi. Modern web geliştirmede en iyi uygulamaları sergiler.",
+    "tech": ["Next.js", "TypeScript", "Tailwind CSS"],
+    "github": "https://github.com/islamux/dev-portfolio",
+    "demo": "https://islamux.vercel.app",
+    "image": "/images/projects/portfolio.png",
+    "featured": true,
+    "year": "2024"
+  },
+  {
+    "id": "voices-of-truth",
+    "name": "Voices of Truth",
+    "description": "Arapça RTL ve İngilizce LTR desteğine sahip, sunucu taraflı filtreleme ve akıcı Framer Motion animasyonları içeren çok dilli İslami âlimler ve davetçiler dizini.",
+    "longDescription": "Voices of Truth, dünya genelindeki İslami âlimler ve davetçileri kapsayan gelişmiş bir web uygulamasıdır. Next.js 15 ile geliştirilmiş olup en iyi performans için Server Components kullanır. Arapça (RTL) ve İngilizce (LTR) dillerini destekleyen güçlü bir uluslararasılaştırma altyapısına sahiptir. Kategori, ülke ve dile göre gelişmiş filtreleme ile güçlü bir arama sistemi sunar. Framer Motion animasyonlarıyla zenginleştirilmiş şık ve duyarlı tasarımı, özel karanlık/açık tema sistemi, modern full-stack geliştirme pratiklerini ve erişilebilirlik standartlarını örneklemektedir.",
+    "tech": ["Next.js 15", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "react-i18next"],
+    "github": "https://github.com/islamux/voices-of-truth",
+    "demo": "https://voices-of-truth.vercel.app",
+    "image": "/images/projects/voice-of-truth.png",
+    "featured": true,
+    "year": "2024"
+  },
+  {
+    "id": "khwater",
+    "name": "Khwater",
+    "description": "İslami değerlerden ilham alan ruhsal ve düşünsel yazılar; İslami tefekkürün estetiğini dijital dünyaya taşıyan bir proje.",
+    "longDescription": "Khwater – İnanç ve Hayata Dair Düşünceler, modern bir yapıda sunulan sade, erişilebilir ve zarif Arapça dijital yazılardan oluşan kapsamlı bir manevi uygulamadır. İlk olarak Flutter ile geliştirilmiş, ardından yapılandırılmış 7 aşamalı bir geçiş planı ile tamamen Next.js (TypeScript) altyapısına taşınmıştır. PWA desteğiyle çevrimdışı kullanım, açık/karanlık tema, yer imleri, gelişmiş arama ve tam Arapça dil desteği sunar. SSG ve ISR kullanılarak yüksek performans hedeflenmiş, WCAG AA erişilebilirlik standartları ve SEO optimizasyonu sağlanmıştır.",
+    "tech": ["Next.js", "TypeScript", "Tailwind CSS", "PWA", "Arabic RTL"],
+    "github": "https://github.com/islamux/khwater",
+    "demo": "https://khwater.vercel.app",
+    "image": "/images/projects/khwater.png",
+    "featured": true,
+    "year": "2024"
+  },
+  {
+    "id": "huawei-router-control",
+    "name": "Huawei Router Control",
+    "description": "Huawei cihazları için gelişmiş yönlendirici yönetim ve kontrol sistemi",
+    "longDescription": "Huawei yönlendiriciler için özel olarak tasarlanmış kapsamlı bir ağ yönetim sistemidir. Gelişmiş kontrol özellikleri, izleme yetenekleri ve otomasyon araçları sunar. Modern web teknolojileriyle geliştirilmiş olup, yönlendirici ayarlarını yönetmek, ağ performansını izlemek ve güvenlik özelliklerini uygulamak için kullanıcı dostu bir arayüz sağlar.",
+    "tech": ["JavaScript", "Node.js", "Express", "React", "Networking"],
+    "github": "https://github.com/islamux/huawei-router-controle",
+    "featured": true,
+    "year": "2024"
+  }
+]
+

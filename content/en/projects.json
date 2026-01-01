@@ -2,12 +2,13 @@
   {
     "id": "athkarix",
     "name": "Athkarix",
-    "description": "Islamic prayer reminders and Athkar app built with Flutter",
-    "longDescription": "A comprehensive Islamic app featuring prayer time notifications, daily supplications (Athkar), and Quranic verses. Built with Flutter for cross-platform compatibility.",
-    "tech": ["Flutter", "Dart", "SQLite"],
-    "github": "https://github.com/islamux/athkarix",
+    "description": "Islamic Athkar app built with Flutter",
+    "longDescription": "An Islamic app featuring daily supplications (Athkar), and Quranic verses. Built with Flutter for cross-platform compatibility.",
+    "tech": ["Flutter", "Dart"],
+    "github": "https://github.com/islamux/Athkarix",
+    "apk": "https://github.com/islamux/Athkarix/releases/download/v1.0.2/app-v1.0.2.apk",
     "demo": "https://athkarix.netlify.app",
-    "image": "/images/projects/athkarix.png",
+    "image": "/images/projects/athkari-cover-v2.png",
     "featured": true,
     "year": "2023"
   },
@@ -24,15 +25,6 @@
     "year": "2024"
   },
   {
-    "id": "open-source",
-    "name": "Open Source Contributions",
-    "description": "Contributing to various open-source projects",
-    "tech": ["JavaScript", "TypeScript", "React"],
-    "github": "https://github.com/islamux",
-    "featured": false,
-    "year": "2022-2024"
-  },
-  {
     "id": "voices-of-truth",
     "name": "Voices of Truth",
     "description": "A multilingual directory of renowned Islamic scholars and preachers with Arabic RTL and English LTR support, featuring server-side filtering and smooth Framer Motion animations.",
@@ -40,7 +32,7 @@
     "tech": ["Next.js 15", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "react-i18next"],
     "github": "https://github.com/islamux/voices-of-truth",
     "demo": "https://voices-of-truth.vercel.app",
-    "image": "/images/projects/voices_of_truth.png",
+    "image": "/images/projects/voice-of-truth.png",
     "featured": true,
     "year": "2024"
   },

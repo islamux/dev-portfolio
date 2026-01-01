@@ -1,16 +1,18 @@
 'use client';
 
 import { localeFlag, localeNames, locales, type Locale } from "@/i18n/config";
-import { useLocale } from "next-intl";
-import { usePathname } from "next/navigation";
+// import { useLocale } from "next-intl"; // Removed
+// import { usePathname, useRouter } from "@/i18n/navigation"; // Removed
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
-export function LanguageSwitcher() {
+export function LanguageSwitcher({ locale: localeString }: { locale: string }) {
 
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
-  const locale = useLocale() as Locale;
-  const pathname = usePathname();
+  const locale = localeString as Locale;
+  const router = useRouter(); // Native Next.js router
+  const pathname = usePathname(); // Native path (includes locale)
 
   // 1
   useEffect(() => {
@@ -26,23 +28,37 @@ export function LanguageSwitcher() {
   // 2
   const handleLocaleChange = (newLocale: Locale) => {
     setIsOpen(false);
+    if (!pathname) return;
 
-    // Strip the current locale prefix from the pathname
-    // Current pathname includes the locale, e.g., /ar, /ar/about, /fr/projects
-    const pathWithoutLocale = pathname.replace(/^\/(en|fr|ar)/, '') || '/';
+    // Manual replacement logic
+    // pathname is like "/en/about" or "/en/about.html" or "/" (root)
+    let newPath = pathname;
 
-    // Construct the new path with the new locale prefix
-    // For default locale (en), no prefix needed due to localePrefix: "as-needed"
-    // For other locales (fr, ar), add locale prefix
-    let newPath;
-    if (newLocale === 'en') {
-      newPath = pathWithoutLocale;
+    // Handle root "/" -> "/fr" (redirects to default usually but for static we want /fr)
+    if (pathname === '/' && newLocale !== 'en') {
+       newPath = `/${newLocale}`;
     } else {
-      newPath = pathWithoutLocale === '/' ? `/${newLocale}` : `/${newLocale}${pathWithoutLocale}`;
+       // Replace segment /en/ with /fr/
+       // Regex to replace first segment if it matches a locale
+       // We can assume path starts with /<locale>/ or is just /<locale>
+       // Or we can rely on current 'locale' prop to know what to replace.
+       const currentPrefix = `/${locale}`;
+       if (pathname.startsWith(currentPrefix)) {
+          newPath = pathname.replace(currentPrefix, `/${newLocale}`);
+       } else if (pathname === `/${locale}`) {
+          newPath = `/${newLocale}`;
+       } else {
+          // If path doesn't start with locale (e.g. /), try to prepend?
+          // But usually we are already inside a locale based path.
+          // Fallback
+          newPath = `/${newLocale}${pathname}`;
+       }
     }
-
-    // Use window.location for a full navigation to ensure proxy middleware processes the request
-    window.location.assign(newPath);
+    
+    // For static, check .html? Hosting usually handles it, but let's be safe.
+    // If it ends with .html, keep it.
+    
+    router.push(newPath);
   };
 
   return (
