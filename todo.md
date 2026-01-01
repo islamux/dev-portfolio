@@ -1,3 +1,4 @@
+- clean .bac files , images.
 - security based best practice.
 - check export 'default' in project , what is best practice and when
 - Is tailwind.config.js best practice or tsx?

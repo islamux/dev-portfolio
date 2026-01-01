@@ -1,0 +1,73 @@
+{
+  "nav": {
+    "home": "Ana Sayfa",
+    "about": "Hakkımda",
+    "projects": "Projeler",
+    "contact": "İletişim"
+  },
+  "home": {
+    "hero": {
+      "title": "Merhaba, ben Fathi",
+      "subtitle": "Açık kaynağa tutkuyla bağlı full-stack geliştirici",
+      "cta": {
+        "projects": "Projeleri Görüntüle",
+        "contact": "İletişime Geç"
+      }
+    },
+    "featured": {
+      "title": "Öne Çıkan Projeler",
+      "viewAll": "Tümünü Gör",
+      "viewAllEnd": "Tümünü Gör"
+    },
+    "card": {
+      "code": "Kod",
+      "demo": "Tam Proje (Açık Kaynak)"
+    }
+  },
+  "about": {
+    "title": "Hakkımda",
+    "description": "Bir geliştirici olarak yolculuğum hakkında daha fazla bilgi edinin"
+  },
+  "projects": {
+    "title": "Projeler",
+    "description": "Çalışmalarım ve katkılarımdan oluşan bir koleksiyon",
+    "filter": {
+      "all": "Tümü",
+      "noResults": "{tech} ile eşleşen proje bulunamadı"
+    },
+    "card": {
+      "code": "Kod",
+      "demo": "Tam Proje (Açık Kaynak)"
+    }
+  },
+  "contact": {
+    "title": "İletişime Geç",
+    "description": "Aklınızda bir proje mi var? Hadi konuşalım.",
+    "form": {
+      "name": "Ad",
+      "email": "E-posta",
+      "message": "Mesaj",
+      "submit": "Mesaj Gönder",
+      "sending": "Gönderiliyor...",
+      "success": "Mesaj başarıyla gönderildi! En kısa sürede size dönüş yapacağım.",
+      "error": "Mesaj gönderilemedi. Lütfen tekrar deneyin."
+    },
+    "other": {
+      "title": "Benimle İletişime Geçmenin Diğer Yolları"
+    }
+  },
+  "footer": {
+    "about": {
+      "title": "Hakkında",
+      "text": "Açık kaynağa tutkuyla bağlı, güçlü kullanıcı deneyimleri oluşturan full-stack geliştirici."
+    },
+    "quickLinks": {
+      "title": "Hızlı Bağlantılar"
+    },
+    "connect": {
+      "title": "Bağlan"
+    },
+    "copyright": "Next.js ve Tailwind CSS ile geliştirildi."
+  }
+}
+
