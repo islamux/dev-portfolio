@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
+import { setRequestLocale } from 'next-intl/server';
 import { getContentBySlug } from "@/lib/content";
 import Container from '@/components/Container';
 import { MarkdownContent } from '@/components/ui/MarkdownContent';
@@ -13,17 +13,31 @@ export async function generateMetadata({
   params,
 }: AboutPageProps): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "about" });
+  setRequestLocale(locale);
+
+  // For static export, use static metadata
   return {
-    title: `${t("title")} - ${siteConfig.name}`,
-    description: t("description"),
+    title: `About - ${siteConfig.name}`,
+    description: "About me - Full-stack developer",
   };
 }
 
 
 export default async function AboutPage({ params }: AboutPageProps) {
   const { locale } = await params;
-  const { frontmatter, content } = getContentBySlug("about", locale);
+  setRequestLocale(locale);
+
+  let frontmatter: any = { title: "About", description: "About me" };
+  let content: string = "About me content";
+
+  try {
+    const result = getContentBySlug("about", locale);
+    frontmatter = result.frontmatter;
+    content = result.content;
+  } catch (error) {
+    console.error(`Error loading about page for locale ${locale}:`, error);
+  }
+
   return (
     <div className='py-12 md:py-20'>
       <Container>

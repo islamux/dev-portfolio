@@ -1,5 +1,13 @@
 # Dual-Compatibility Development Guide
 
+> [!IMPORTANT]
+> **Updated Workflow Available**  
+> This guide is now supplemented with automated build scripts and comprehensive analysis:
+>
+> - **[Static vs SSR Analysis](./STATIC_VS_SSR_ANALYSIS.md)** - Problem analysis, prevention strategies, and step-by-step guides
+> - **Build Script**: `./scripts/build-static.sh` - Automated static build process
+> - **Package Scripts**: `pnpm run build:static:full` - Clean build with cleanup
+
 This guide outlines the best practices for maintaining your Next.js project so it continues to deploy successfully to both **Vercel** (Dynamic/Server) and **Hostinger** (Static Export).
 
 ## 🏆 The Golden Rule: "Static First"
@@ -55,8 +63,24 @@ The constraints for Hostinger (Static Export) are stricter than Vercel. If code 
 
 **Requirement**: No backend to process `POST` requests.
 
-- **Do**: Use external services like [Formspree](https://formspree.io/), [EmailJS](https://www.emailjs.com/), or [Google Forms].
-- **Don't**: `POST` to a local `/api/contact` route.
+### 6. Component-Level Divergence
+
+**Requirement**: Some components need Context (Provider) in SSR but must survive without it in Static Export.
+
+- **Do**: Pass necessary data (like `locale`) as **Props** from the Page/Layout level down to the component.
+- **Do**: Avoid using `useLocale()` or `useTranslations()` in Client Components if they might be rendered outside the `NextIntlClientProvider` (used in Static Mode).
+- **Example**:
+
+  ```tsx
+  // Layout passes locale to header
+  <SiteHeader locale={locale} />
+
+  // Header passes locale to switcher
+  <LanguageSwitcher locale={locale} />
+
+  // Switcher uses the prop instead of hook
+  export function LanguageSwitcher({ locale }) { ... }
+  ```
 
 ---
 

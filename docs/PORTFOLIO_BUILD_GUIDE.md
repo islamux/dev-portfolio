@@ -7,6 +7,14 @@
 **Target Deployment:** Vercel (Dynamic) & Hostinger (Static)
 **Deployment Strategy:** [Dual Compatibility Guide](DUAL_STATIC_SSR_COMPATIBILITY_GUIDE.md)
 
+> [!IMPORTANT]
+> **New: Automated Static/SSR Workflow**  
+> This guide is now supplemented with automated build processes:
+>
+> - **[Static vs SSR Analysis](./STATIC_VS_SSR_ANALYSIS.md)** - Complete problem analysis, prevention strategies, and automation guide
+> - **Build Scripts**: Use `pnpm run build:static:full` or `./scripts/build-static.sh`
+> - **Prevents Recurring Issues**: Automates the static build process to avoid the cycle of breaking/fixing after each edit
+
 > **Advanced Deployment:** For detailed guidance on static exports with internationalization (i18n), see the [Comprehensive Static Export Guide](COMPREHENSIVE_STATIC_EXPORT_GUIDE.md). It covers locale-aware navigation, clean URL routing, and common pitfalls when deploying multilingual Next.js sites to static hosts.
 
 ---
@@ -52,9 +60,11 @@ git checkout -b feature/phase-2-layout || git checkout feature/phase-2-layout
 If you're targeting static hosting (like Hostinger) in addition to Vercel:
 
 - **Always test static build before committing:**
+
   ```bash
   DEPLOY_TARGET=static pnpm build
   ```
+
   If this fails, fix it immediately—static export constraints are stricter than Vercel's.
 
 - **Benefits:**

@@ -25,7 +25,7 @@ export const localeNames: Record<Locale, string> = {
   tr: "Türkçe"
 }
 
-// Flags codes for each lang 
+// Flags codes for each lang
 export const localeFlag: Record<Locale, string> = {
   en: "US",
   fr: "FR",
@@ -34,7 +34,7 @@ export const localeFlag: Record<Locale, string> = {
   tr: "TR"
 }
 
-// Which locale use RTL 
+// Which locale use RTL
 export const rtlLocales: Locale[] = ["ar"];
 
 // ----- Step 3 : Helper Func

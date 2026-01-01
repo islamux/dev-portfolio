@@ -7,6 +7,10 @@
     "build": "next build",
     "start": "next start",
     "build:static": "DEPLOY_TARGET=static next build",
+    "build:clean": "rm -rf .next out",
+    "build:static:full": "pnpm build:clean && pnpm build:static",
+    "serve:static": "pnpm dlx serve out",
+    "test:static": "pnpm build:static:full && pnpm serve:static",
     "lint": "eslint"
   },
   "dependencies": {

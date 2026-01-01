@@ -1,5 +1,4 @@
 import { getContentBySlug } from "@/lib/content";
-import { getTranslations } from "next-intl/server";
 import Container from "./Container";
 import { MarkdownContent } from "./ui/MarkdownContent";
 import Link from "next/link";
@@ -31,8 +30,15 @@ export default async function HomePage({ locale }: HomePageProps) {
 
   const { frontmatter, content } = getContentBySlug("home", locale);
 
-  // Get translations
-  const t = await getTranslations({ locale, namespace: "home" });
+  // For static export, import messages directly instead of using getTranslations
+  // to avoid headers() dependency
+  let translations: any = {};
+  try {
+    const messages = (await import(`@/messages/${locale}.json`)).default;
+    translations = messages?.home || {};
+  } catch (error) {
+    console.warn(`Failed to load messages for locale ${locale}:`, error);
+  }
 
   return (
     <>
@@ -49,12 +55,12 @@ export default async function HomePage({ locale }: HomePageProps) {
             <div className="flex flex-wrap gap-4">
               <Link href={projectsHref}>
                 <Button variant="primary" size="lg">
-                  {t("hero.cta.projects")}
+                  {translations?.hero?.cta?.projects || "View Projects"}
                 </Button>
               </Link>
               {/*Link 2 */}
               <Link href={contactHref}>
-                <Button variant="secondary" size="lg">{t("hero.cta.contact")}</Button>
+                <Button variant="secondary" size="lg">{translations?.hero?.cta?.contact || "Get in Touch"}</Button>
               </Link>
             </div>
           </div>
@@ -67,25 +73,25 @@ export default async function HomePage({ locale }: HomePageProps) {
           <Container>
             <div className="flex items-center justify-between mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
-                {t("featured.title")}
+                {translations?.featured?.title || "Featured Projects"}
               </h2>
               {/*Link 3*/}
               <Link href={projectsHref} className="text-brand-500 hover:text-brand-600 font-medium">
-                {t("featured.viewAll")}
+                {translations?.featured?.viewAll || "View All"}
               </Link>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {featuredProjects.map((project) => (
                 <ProjectCard key={project.id} project={project} translations={{
-                  code: t("card.code"),
-                  demo: t("card.demo")
+                  code: translations?.card?.code || "Code",
+                  demo: translations?.card?.demo || "Complete Project (Open Source)"
                 }} locale={locale} />
               ))}
             </div>
             {/*View All Link at the end*/}
             <div className="mt-12 text-center">
               <Link href={projectsHref} className="text-brand-500 hover:text-brand-600 font-medium">
-                {t("featured.viewAllEnd")}
+                {translations?.featured?.viewAllEnd || "View All"}
               </Link>
             </div>
           </Container>

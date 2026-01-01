@@ -2,7 +2,16 @@
 
 > **A complete guide to building, testing, and deploying multilingual Next.js static sites**
 
+> [!IMPORTANT]
+> **New: Unified Static/SSR Workflow**  
+> For the latest automated workflow and problem analysis, see:
+>
+> - **[Static vs SSR Analysis](./STATIC_VS_SSR_ANALYSIS.md)** - Complete problem analysis and solutions
+> - **Quick Commands**: Use `pnpm run build:static:full` for clean static builds
+> - **Build Script**: Run `./scripts/build-static.sh` for automated deployment-ready builds
+
 This document combines three key resources into one comprehensive guide:
+
 1. Common issues and solutions encountered
 2. Test results and verification
 3. Technical analysis of the static export output
@@ -34,6 +43,7 @@ This document combines three key resources into one comprehensive guide:
 **Build Date:** December 2025
 
 ### Technology Stack
+
 - **Framework:** Next.js 15 (App Router)
 - **Build Type:** Static Site Generation (SSG)
 - **Styling:** Tailwind CSS
@@ -42,6 +52,7 @@ This document combines three key resources into one comprehensive guide:
 - **Asset Optimization:** Next.js static optimization
 
 ### Statistics
+
 - **Total HTML Files:** 49
 - **Languages Supported:** 3 (Arabic, English, French)
 - **Pages Generated:** 4 main pages + 4 project detail pages
@@ -118,11 +129,13 @@ out/
 ```
 
 If your link points to `/about.html`, the browser looks for:
+
 ```
 out/about.html  ← DOESN'T EXIST! 404!
 ```
 
 But it should point to `/en/about.html`:
+
 ```
 out/en/about.html  ← EXISTS! Works!
 ```
@@ -138,11 +151,13 @@ In development, Next.js middleware automatically handles the locale prefix. When
 ### Issue 1: 404 Errors on Static Routes
 
 **Symptom:**
+
 - All internal navigation links returned 404 errors
 - Direct access to locale-prefixed URLs worked fine
 - Development server (`pnpm dev`) worked correctly
 
 **Example:**
+
 ```html
 <!-- Generated link (404) -->
 <a href="/about.html">About</a>
@@ -154,6 +169,7 @@ In development, Next.js middleware automatically handles the locale prefix. When
 ### Issue 2: Missing Locale Prefix in Links
 
 **Affected Components:**
+
 - `SiteHeader` - Main navigation
 - `HomePage` - Hero CTAs and featured projects
 - `SiteFooter` - Footer quick links
@@ -162,6 +178,7 @@ In development, Next.js middleware automatically handles the locale prefix. When
 - `ProjectCard` - Project detail links
 
 **Original Code Pattern:**
+
 ```tsx
 // ❌ Hardcoded paths without locale
 <Link href="/about">About</Link>
@@ -172,6 +189,7 @@ In development, Next.js middleware automatically handles the locale prefix. When
 ### Issue 3: Language Switcher Not Working
 
 **Symptom:**
+
 - Language switcher links (`/en.html`, `/fr.html`, `/ar.html`) worked
 - But the pattern wasn't consistent across the application
 - Internal links didn't respect the current locale
@@ -179,11 +197,13 @@ In development, Next.js middleware automatically handles the locale prefix. When
 ### Issue 4: Clean URL Routing (CRITICAL)
 
 **Problem:**
+
 - Next.js static export creates `.html` files (e.g., `en/about.html`)
 - Clean URLs (e.g., `/en/about`) were returning the default `index.html`
 - Standard static servers don't handle Next.js routing conventions
 
 **Impact:**
+
 - HIGH - Users couldn't access pages via clean URLs
 - SEO impact - duplicate content issues
 - Broken user experience
@@ -216,13 +236,14 @@ When `output: 'export'` is set in `next.config.ts`:
 const isStatic = process.env.DEPLOY_TARGET === "static";
 
 const nextConfig: NextConfig = {
-  output: isStatic ? 'export' : undefined,
+  output: isStatic ? "export" : undefined,
   images: { unoptimized: true },
   // ...
 };
 ```
 
 Next.js generates static HTML files with `.html` extensions:
+
 - `/en/index.html` (home page for English)
 - `/en/about.html` (about page for English)
 - `/en/projects/athkarix.html` (project detail page)
@@ -232,13 +253,13 @@ Next.js generates static HTML files with `.html` extensions:
 The original `src/i18n/navigation.ts` had:
 
 ```tsx
-const isStatic = process.env.DEPLOY_TARGET === 'static';
+const isStatic = process.env.DEPLOY_TARGET === "static";
 
 export const navLinks = [
   { href: isStatic ? "/index.html" : "/", label: "home" },
-  { href: isStatic ? "/about.html" : "/about", label: "about" },  // ❌ Missing locale prefix
-  { href: isStatic ? "/projects.html" : "/projects", label: "projects" },  // ❌ Missing locale prefix
-  { href: isStatic ? "/contact.html" : "/contact", label: "contact" },  // ❌ Missing locale prefix
+  { href: isStatic ? "/about.html" : "/about", label: "about" }, // ❌ Missing locale prefix
+  { href: isStatic ? "/projects.html" : "/projects", label: "projects" }, // ❌ Missing locale prefix
+  { href: isStatic ? "/contact.html" : "/contact", label: "contact" }, // ❌ Missing locale prefix
 ];
 ```
 
@@ -253,8 +274,8 @@ export const navLinks = [
 **File:** `src/i18n/navigation.ts`
 
 ```tsx
-import { createNavigation } from 'next-intl/navigation';
-import { locales, defaultLocale, type Locale } from './config';
+import { createNavigation } from "next-intl/navigation";
+import { locales, defaultLocale, type Locale } from "./config";
 
 // ============================================================================
 // STATIC EXPORT DETECTION
@@ -263,7 +284,7 @@ import { locales, defaultLocale, type Locale } from './config';
 // 1. Development server (pnpm dev) - No .html extension, server routing
 // 2. Static export (DEPLOY_TARGET=static) - .html extension required
 // ============================================================================
-const isStatic = process.env.DEPLOY_TARGET === 'static';
+const isStatic = process.env.DEPLOY_TARGET === "static";
 
 // Base routes without locale prefix - centralized for easy maintenance
 const baseRoutes = {
@@ -298,17 +319,20 @@ const baseRoutes = {
  *   Dev EN:     getLocalizedHref('en', 'about')  → '/en/about'
  *   Dev Home:   getLocalizedHref('en', 'home')   → '/'
  */
-export function getLocalizedHref(locale: Locale, route: keyof typeof baseRoutes): string {
+export function getLocalizedHref(
+  locale: Locale,
+  route: keyof typeof baseRoutes
+): string {
   const basePath = baseRoutes[route];
 
   if (isStatic) {
     // STATIC EXPORT MODE
     // Must include locale prefix AND .html extension
-    if (route === 'home') {
+    if (route === "home") {
       // Special case: home page
       // Default locale: /index.html (standard static site convention)
       // Other locales:  /en.html, /fr.html, /ar.html
-      return locale === defaultLocale ? '/index.html' : `/${locale}.html`;
+      return locale === defaultLocale ? "/index.html" : `/${locale}.html`;
     }
     // All other pages: /en/about.html, /fr/projects.html, etc.
     return `/${locale}${basePath}.html`;
@@ -352,20 +376,25 @@ import { navLinkKeys, getLocalizedHref } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/config";
 
 // Update props to include locale
-export function SiteHeader({ navDict, locale }: { navDict: Record<string, string>; locale: string }) {
-
+export function SiteHeader({
+  navDict,
+  locale,
+}: {
+  navDict: Record<string, string>;
+  locale: string;
+}) {
   // Generate nav links with locale prefix
-  const navLinks = navLinkKeys.map(link => ({
+  const navLinks = navLinkKeys.map((link) => ({
     ...link,
-    href: getLocalizedHref(locale as Locale, link.key)
+    href: getLocalizedHref(locale as Locale, link.key),
   }));
 
   // Language switcher also uses getLocalizedHref
   return (
     <div className="text-xs">
-      <Link href={getLocalizedHref('en' as Locale, 'home')}>EN</Link>
-      <Link href={getLocalizedHref('fr' as Locale, 'home')}>FR</Link>
-      <Link href={getLocalizedHref('ar' as Locale, 'home')}>AR</Link>
+      <Link href={getLocalizedHref("en" as Locale, "home")}>EN</Link>
+      <Link href={getLocalizedHref("fr" as Locale, "home")}>FR</Link>
+      <Link href={getLocalizedHref("ar" as Locale, "home")}>AR</Link>
     </div>
   );
 }
@@ -383,8 +412,8 @@ export default async function HomePage({ params }: HomePageProps) {
   const { locale } = await params;
 
   // Get localized hrefs for links
-  const projectsHref = getLocalizedHref(locale as Locale, 'projects');
-  const contactHref = getLocalizedHref(locale as Locale, 'contact');
+  const projectsHref = getLocalizedHref(locale as Locale, "projects");
+  const contactHref = getLocalizedHref(locale as Locale, "contact");
 
   return (
     <>
@@ -409,11 +438,15 @@ import type { Locale } from "@/i18n/config";
 
 interface ProjectCardProps {
   project: Project;
-  translations?: { code?: string; demo?: string; };
-  locale: string;  // Add locale prop
+  translations?: { code?: string; demo?: string };
+  locale: string; // Add locale prop
 }
 
-export default function ProjectCard({ project, translations, locale }: ProjectCardProps) {
+export default function ProjectCard({
+  project,
+  translations,
+  locale,
+}: ProjectCardProps) {
   const projectHref = getProjectHref(locale as Locale, project.id);
 
   return (
@@ -429,7 +462,10 @@ export default function ProjectCard({ project, translations, locale }: ProjectCa
 **Layout:** `src/app/[locale]/layout.tsx`
 
 ```tsx
-export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {
+export default async function LocaleLayout({
+  children,
+  params,
+}: LocaleLayoutProps) {
   const { locale } = await params;
 
   return (
@@ -447,16 +483,17 @@ Created `server.js` with routing logic:
 
 ```javascript
 const redirects = {
-  '/en/about': '/en/about.html',
-  '/en/projects': '/en/projects.html',
-  '/en/contact': '/en/contact.html',
-  '/ar/about': '/ar/about.html',
+  "/en/about": "/en/about.html",
+  "/en/projects": "/en/projects.html",
+  "/en/contact": "/en/contact.html",
+  "/ar/about": "/ar/about.html",
   // ... more routes
-  '/': '/en.html'  // Default redirect
+  "/": "/en.html", // Default redirect
 };
 ```
 
 #### Key Features
+
 1. **Clean URL Support**: Maps `/en/about` → `/en/about.html`
 2. **Automatic Extension**: Adds `.html` when needed
 3. **Directory Index**: Serves `index.html` for directories
@@ -466,6 +503,7 @@ const redirects = {
 7. **Etag Support**: Enabled for caching validation
 
 #### Starting the Server
+
 ```bash
 cd /out
 node server.js
@@ -475,6 +513,7 @@ node server.js
 ### Solution 5: Deployment Configurations
 
 #### 1. Netlify Configuration (`_redirects`)
+
 ```
 /en/about  /en/about.html  200
 /en/projects  /en/projects.html  200
@@ -482,6 +521,7 @@ node server.js
 ```
 
 #### 2. Vercel Configuration (`vercel.json`)
+
 ```json
 {
   "rewrites": [
@@ -493,6 +533,7 @@ node server.js
 ```
 
 #### 3. Netlify TOML (`netlify.toml`)
+
 ```toml
 [[redirects]]
   from = "/en/about"
@@ -515,33 +556,36 @@ The static export was successfully tested and **fully functional** with custom U
 
 ### Test Results Overview
 
-| Category | Status | Details |
-|----------|--------|---------|
-| **HTML Pages** | ✅ PASS | All 49 pages load correctly |
-| **Asset Delivery** | ✅ PASS | CSS, JS, Images, Fonts served properly |
-| **Internationalization** | ✅ PASS | 3 locales (AR/EN/FR) working |
-| **RTL Support** | ✅ PASS | Arabic RTL layout functional |
-| **Clean URLs** | ✅ PASS | Resolved with custom server |
-| **404 Handling** | ✅ PASS | Custom 404 page works |
-| **Cache Headers** | ✅ PASS | Immutable cache headers set |
+| Category                 | Status  | Details                                |
+| ------------------------ | ------- | -------------------------------------- |
+| **HTML Pages**           | ✅ PASS | All 49 pages load correctly            |
+| **Asset Delivery**       | ✅ PASS | CSS, JS, Images, Fonts served properly |
+| **Internationalization** | ✅ PASS | 3 locales (AR/EN/FR) working           |
+| **RTL Support**          | ✅ PASS | Arabic RTL layout functional           |
+| **Clean URLs**           | ✅ PASS | Resolved with custom server            |
+| **404 Handling**         | ✅ PASS | Custom 404 page works                  |
+| **Cache Headers**        | ✅ PASS | Immutable cache headers set            |
 
 ### Detailed Test Results
 
 #### 1. Homepage Tests
 
 **Root Path (`/`)**
+
 - **URL**: `http://localhost:8888/`
 - **Status**: ✅ 200 OK
 - **Redirects to**: `/en.html` (English default)
 - **Cache**: `public, max-age=31536000, immutable`
 
 **English Home (`/en/`)**
+
 - **URL**: `http://localhost:8888/en/`
 - **Status**: ✅ 200 OK
 - **Title**: "Islamux" (from en.html)
 - **Content**: Hero section with "Hi, I'm Islamux"
 
 **Arabic Home (`/ar/`)**
+
 - **URL**: `http://localhost:8888/ar/`
 - **Status**: ✅ 200 OK
 - **Title**: "Islamux"
@@ -549,6 +593,7 @@ The static export was successfully tested and **fully functional** with custom U
 - **Layout**: RTL (Right-to-Left) ✅
 
 **French Home (`/fr/`)**
+
 - **URL**: `http://localhost:8888/fr/`
 - **Status**: ✅ 200 OK
 - **Title**: "Islamux"
@@ -558,19 +603,19 @@ The static export was successfully tested and **fully functional** with custom U
 
 **About Page**
 
-| Language | URL | Status | Title | Layout |
-|----------|-----|--------|-------|--------|
-| English | `/en/about` | ✅ 200 | `About Me - Islamux` | LTR |
-| Arabic | `/ar/about` | ✅ 200 | `عني - Islamux` | RTL ✅ |
-| French | `/fr/about` | ✅ 200 | `À propos - Islamux` | LTR |
+| Language | URL         | Status | Title                | Layout |
+| -------- | ----------- | ------ | -------------------- | ------ |
+| English  | `/en/about` | ✅ 200 | `About Me - Islamux` | LTR    |
+| Arabic   | `/ar/about` | ✅ 200 | `عني - Islamux`      | RTL ✅ |
+| French   | `/fr/about` | ✅ 200 | `À propos - Islamux` | LTR    |
 
 **Projects Page**
 
-| Language | URL | Status | Title |
-|----------|-----|--------|-------|
-| English | `/en/projects` | ✅ 200 | `Projects - Islamux` |
-| Arabic | `/ar/projects` | ✅ 200 | `المشاريع - Islamux` |
-| French | `/fr/projects` | ✅ 200 | `Projets - Islamux` |
+| Language | URL            | Status | Title                |
+| -------- | -------------- | ------ | -------------------- |
+| English  | `/en/projects` | ✅ 200 | `Projects - Islamux` |
+| Arabic   | `/ar/projects` | ✅ 200 | `المشاريع - Islamux` |
+| French   | `/fr/projects` | ✅ 200 | `Projets - Islamux`  |
 
 **Contact Page**
 
@@ -581,18 +626,19 @@ The static export was successfully tested and **fully functional** with custom U
 
 #### 3. Project Detail Pages
 
-| Project | URL | Status | Title | Verified |
-|---------|-----|--------|-------|----------|
-| **Athkarix** | `/en/athkarix.html` | ✅ 200 | `Athkarix - Islamux` | ✅ |
-| **Portfolio** | `/en/portfolio.html` | ✅ 200 | `Developer Portfolio - Islamux` | ✅ |
-| **Voices of Truth** | `/en/projects/voices-of-truth.html` | ✅ 200 | `Voices of Truth - Islamux` | ✅ |
-| **Khwater** | `/en/khwater.html` | ✅ 200 | `Khwater - Islamux` | ✅ |
+| Project             | URL                                 | Status | Title                           | Verified |
+| ------------------- | ----------------------------------- | ------ | ------------------------------- | -------- |
+| **Athkarix**        | `/en/athkarix.html`                 | ✅ 200 | `Athkarix - Islamux`            | ✅       |
+| **Portfolio**       | `/en/portfolio.html`                | ✅ 200 | `Developer Portfolio - Islamux` | ✅       |
+| **Voices of Truth** | `/en/projects/voices-of-truth.html` | ✅ 200 | `Voices of Truth - Islamux`     | ✅       |
+| **Khwater**         | `/en/khwater.html`                  | ✅ 200 | `Khwater - Islamux`             | ✅       |
 
 **Note**: Project detail pages use direct `.html` URLs due to Next.js export structure.
 
 #### 4. Static Assets Tests
 
 **CSS Stylesheets**
+
 - **URL**: `/_next/static/chunks/65a8734a5855e1f7.css`
 - **Status**: ✅ 200 OK
 - **Size**: 43,518 bytes
@@ -601,6 +647,7 @@ The static export was successfully tested and **fully functional** with custom U
 - **Content**: Tailwind CSS + custom styles ✅
 
 **JavaScript Bundles**
+
 - **Main Bundle**: `/_next/static/chunks/7ec254cc87e301ae.js`
 - **Status**: ✅ 200 OK
 - **Type**: `application/javascript; charset=utf-8`
@@ -608,6 +655,7 @@ The static export was successfully tested and **fully functional** with custom U
 - **Note**: 14+ chunks for code splitting
 
 **Images**
+
 - **Portfolio Screenshot**: `/images/projects/portfolio.png`
   - Status: ✅ 200 OK
   - Size: 575,969 bytes (562 KB)
@@ -631,6 +679,7 @@ The static export was successfully tested and **fully functional** with custom U
 #### 5. Error Handling Tests
 
 **404 Not Found**
+
 - **URL**: `http://localhost:8888/nonexistent-page`
 - **Status**: ✅ 404 Not Found
 - **Page**: Custom 404.html with "404: This page could not be found"
@@ -646,6 +695,7 @@ The static export was successfully tested and **fully functional** with custom U
 | French | fr | LTR | 4 main + 4 projects | ✅ PASS |
 
 **RTL (Right-to-Left) Support**
+
 - **Arabic Layout**: ✅ Properly mirrored
 - **Text Direction**: `dir="rtl"` attribute set
 - **Navigation**: Right-aligned correctly
@@ -654,6 +704,7 @@ The static export was successfully tested and **fully functional** with custom U
 #### 7. Performance Tests
 
 **Response Times (Localhost)**
+
 - **HTML Pages**: < 50ms
 - **CSS/JS Assets**: < 20ms
 - **Images**: < 100ms (larger files)
@@ -661,11 +712,13 @@ The static export was successfully tested and **fully functional** with custom U
 
 **Cache Headers**
 All assets include:
+
 ```
 Cache-Control: public, max-age=31536000, immutable
 ```
 
 This enables:
+
 - ✅ Aggressive caching in browsers
 - ✅ CDN optimization
 - ✅ Faster repeat visits
@@ -683,6 +736,7 @@ This enables:
 | **TOTAL** | **70+ files** | **~3.4 MB** | **~48 KB** |
 
 **Load Time Estimates (3G Network)**
+
 - **First View**: 2-3 seconds (includes images)
 - **Repeat View**: < 1 second (cached assets)
 - **Time to Interactive**: 2-3 seconds
@@ -743,6 +797,7 @@ This enables:
 #### Main Pages
 
 **1. Home Page (`/`)**
+
 - **Purpose**: Landing page with hero section and featured projects
 - **Key Elements**:
   - Personalized greeting in multiple languages
@@ -752,11 +807,13 @@ This enables:
   - Gradient background with responsive design
 
 **2. About Page (`/about`)**
+
 - **Purpose**: Detailed personal and professional information
 - **Content**: Comprehensive background, experience, and skills
 - **Localization**: Fully translated for all 3 languages
 
 **3. Projects Page (`/projects`)**
+
 - **Purpose**: Showcase all projects with filtering and search
 - **Features**:
   - Grid layout of project cards
@@ -765,6 +822,7 @@ This enables:
   - Project filtering capabilities
 
 **4. Contact Page (`/contact`)**
+
 - **Purpose**: Contact information and social links
 - **Elements**: Contact form, social media links, location
 
@@ -773,6 +831,7 @@ This enables:
 Each project has a dedicated page:
 
 **1. Athkarix** (`/projects/athkarix`)
+
 - Islamic prayer reminders and Athkar app
 - Built with Flutter, Dart, SQLite
 - Year: 2023
@@ -780,6 +839,7 @@ Each project has a dedicated page:
 - Live: https://athkarix.netlify.app
 
 **2. Developer Portfolio** (`/projects/portfolio`)
+
 - This portfolio website
 - Built with Next.js 15, TypeScript, Tailwind CSS
 - Year: 2024
@@ -787,6 +847,7 @@ Each project has a dedicated page:
 - Live: https://islamux.vercel.app
 
 **3. Voices of Truth** (`/projects/voices-of-truth`)
+
 - Multilingual Islamic scholars directory
 - Features: Arabic RTL, English LTR, server-side filtering, Framer Motion
 - Year: 2024
@@ -794,12 +855,14 @@ Each project has a dedicated page:
 - Live: https://voices-of-truth.vercel.app
 
 **4. Khwater** (`/projects/khwater`)
+
 - [Project details available in project page]
 - Technology stack includes modern web technologies
 
 ### Design System
 
 **Color Scheme**
+
 - **Primary Brand**: Blue-based color palette (brand-500, brand-600, brand-700)
 - **Light Mode**: White background with gray accents
 - **Dark Mode**: Dark gray backgrounds (gray-950) with light text
@@ -807,6 +870,7 @@ Each project has a dedicated page:
 - **Manual Toggle**: User-controlled dark/light mode switcher
 
 **Typography**
+
 - **Font Family**: Geist (Regular and Mono variants)
 - **Font Format**: WOFF2 (modern, compressed)
 - **Responsive Sizing**:
@@ -815,6 +879,7 @@ Each project has a dedicated page:
   - Small text: xs-sm
 
 **Layout**
+
 - **Responsive Design**: Mobile-first approach
 - **Breakpoints**: sm (640px), md (768px), lg (1024px), xl (1280px)
 - **Container Max-Width**: 7xl (1280px)
@@ -824,6 +889,7 @@ Each project has a dedicated page:
 ### Technical Features
 
 **Performance Optimizations**
+
 1. **Static Generation**: All pages pre-rendered at build time
 2. **Code Splitting**: Automatic chunk splitting for optimal loading
 3. **Image Optimization**: Next.js Image component with lazy loading
@@ -832,6 +898,7 @@ Each project has a dedicated page:
 6. **Asset Compression**: Optimized image sizes
 
 **SEO & Metadata**
+
 - **Dynamic Metadata**: Generated per page and locale
 - **Meta Tags**: Viewport, charset, description
 - **Open Graph**: Social media sharing preparation
@@ -839,6 +906,7 @@ Each project has a dedicated page:
 - **Semantic HTML**: Proper heading hierarchy and landmarks
 
 **Accessibility (a11y)**
+
 - **ARIA Labels**: Proper labeling for screen readers
 - **Keyboard Navigation**: Full keyboard support
 - **Focus Management**: Visible focus indicators
@@ -847,6 +915,7 @@ Each project has a dedicated page:
 - **Alt Text**: Descriptive alt attributes for images
 
 **Browser Support**
+
 - **Modern Browsers**: Chrome, Firefox, Safari, Edge (latest versions)
 - **Progressive Enhancement**: Core functionality works without JavaScript
 - **CSS Grid/Flexbox**: Modern layout features
@@ -858,15 +927,17 @@ Each project has a dedicated page:
 ### 1. Use Locale-Aware Links from the Start
 
 **❌ Don't:**
+
 ```tsx
 <Link href="/about">About</Link>
 ```
 
 **✅ Do:**
+
 ```tsx
 import { getLocalizedHref } from "@/i18n/navigation";
 
-<Link href={getLocalizedHref(locale, 'about')}>About</Link>
+<Link href={getLocalizedHref(locale, "about")}>About</Link>;
 ```
 
 ### 2. Create Helper Functions Early
@@ -879,7 +950,7 @@ Use TypeScript to enforce locale passing:
 
 ```tsx
 interface LocaleAwareProps {
-  locale: Locale;  // Required prop
+  locale: Locale; // Required prop
 }
 ```
 
@@ -900,7 +971,7 @@ npx http-server out -p 3000
 ### 5. Use Environment Variables for Conditional Behavior
 
 ```tsx
-const isStatic = process.env.DEPLOY_TARGET === 'static';
+const isStatic = process.env.DEPLOY_TARGET === "static";
 
 export function getLocalizedHref(locale: Locale, route: string): string {
   if (isStatic) {
@@ -911,6 +982,7 @@ export function getLocalizedHref(locale: Locale, route: string): string {
 ```
 
 This allows the same code to work for both:
+
 - Development server (no `.html` extension)
 - Static export (with `.html` extension)
 
@@ -973,24 +1045,93 @@ const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 export default withNextIntl(nextConfig);
 ```
 
-### 9. Enable Static Export Settings
+## 2. Core Implementation Strategy
+
+### The "Dual-Mode" Layout Pattern
+
+For maximal compatibility, we run **Normal Mode** (for Vercel/Node) and **Static Mode** (for Hostinger).
+
+```tsx
+// src/app/[locale]/layout.tsx
+const isStatic = process.env.DEPLOY_TARGET === "static";
+
+return (
+  <div lang={locale}>
+    {!isStatic ? (
+      // Dynamic: Uses NextIntlClientProvider (Context available)
+      <NextIntlClientProvider locale={locale} messages={messages}>
+        <Providers>
+          <SiteHeader locale={locale} />
+        </Providers>
+      </NextIntlClientProvider>
+    ) : (
+      // Static: Skips Provider (Context missing, must pass props)
+      // Headers/Cookies are not available here
+      <Providers>
+        <SiteHeader locale={locale} />
+      </Providers>
+    )}
+  </div>
+);
+```
+
+### The "Prop-Drilling" Switcher Pattern
+
+Components that typically rely on `useLocale` context must accept props instead to survive in Static Mode.
+
+**Example: LanguageSwitcher**
+
+```tsx
+// ❌ Avoid in shared components (breaks in Static Mode)
+// import { useLocale } from "next-intl";
+// const locale = useLocale();
+
+// ✅ Use Props and Native Navigation
+import { useRouter, usePathname } from "next/navigation"; // Native
+
+export function LanguageSwitcher({ locale }: { locale: string }) {
+  // Use manual path replacement for switching
+  const handleSwitch = (newLocale) => {
+    // replace /en/ with /fr/ manually in pathname string
+    router.push(newPath);
+  };
+}
+```
+
+## 3. Mandatory Configuration Checklist
+
+### 1. `next.config.ts`
 
 ```ts
-// next.config.ts
+const isStatic = process.env.DEPLOY_TARGET === "static";
 const nextConfig = {
-  output: 'export',
-  images: { unoptimized: true },
-  trailingSlash: true,
+  output: isStatic ? "export" : undefined,
+  images: { unoptimized: isStatic },
 };
 ```
 
-### 10. Generate Static Params
+### 2. `generateStaticParams` (CRITICAL)
 
-Ensure `generateStaticParams` is implemented for **ALL** dynamic routes:
+EVERY dynamic route folder (e.g., `[id]`) MUST have this function.
 
 ```tsx
-export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
+// src/app/[locale]/projects/[id]/page.tsx
+export async function generateStaticParams() {
+  // READ FILESYSTEM directly. Do NOT fetch from API.
+  // Return array: [{ locale: 'en', id: '1' }, ...]
+}
+```
+
+### 3. `setRequestLocale`
+
+Every `page.tsx` and `layout.tsx` must call this to enable static rendering for `next-intl`.
+
+```tsx
+import { setRequestLocale } from "next-intl/server";
+export default async function Page({ params }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  // ...
 }
 ```
 
@@ -1001,6 +1142,7 @@ export function generateStaticParams() {
 ### 1. Forgetting the `async` Keyword with params
 
 **❌ WRONG:**
+
 ```tsx
 export default function AboutPage({ params }) {
   const { locale } = await params; // ERROR!
@@ -1008,6 +1150,7 @@ export default function AboutPage({ params }) {
 ```
 
 **✅ CORRECT:**
+
 ```tsx
 export default async function AboutPage({ params }) {
   const { locale } = await params; // Works!
@@ -1021,30 +1164,36 @@ export default async function AboutPage({ params }) {
 ### 2. Hydration Errors from Nested `<a>` Tags
 
 **❌ WRONG:**
+
 ```tsx
-{project.demo && (
-  <a href={project.demo} target="_blank" rel="noopener noreferrer">
-    <Button variant="secondary">
-      <ProjectLink // This renders another <a> tag!
-        href={project.demo}
-        icon="globe"
-        text="Live Demo"
-      />
-    </Button>
-  </a>
-)}
+{
+  project.demo && (
+    <a href={project.demo} target="_blank" rel="noopener noreferrer">
+      <Button variant="secondary">
+        <ProjectLink // This renders another <a> tag!
+          href={project.demo}
+          icon="globe"
+          text="Live Demo"
+        />
+      </Button>
+    </a>
+  );
+}
 ```
 
 **✅ CORRECT:**
+
 ```tsx
-{project.demo && (
-  <a href={project.demo} target="_blank" rel="noopener noreferrer">
-    <Button variant="secondary">
-      <Icon name="globe" size={20} className="mr-2" />
-      Live Demo
-    </Button>
-  </a>
-)}
+{
+  project.demo && (
+    <a href={project.demo} target="_blank" rel="noopener noreferrer">
+      <Button variant="secondary">
+        <Icon name="globe" size={20} className="mr-2" />
+        Live Demo
+      </Button>
+    </a>
+  );
+}
 ```
 
 **Why:** HTML doesn't allow nested `<a>` tags. This causes hydration mismatches.
@@ -1054,13 +1203,15 @@ export default async function AboutPage({ params }) {
 ### 3. Missing Locale Prefix in Static Export Links
 
 **❌ WRONG:**
+
 ```tsx
 <Link href="/about">About</Link> // Points to /about.html (doesn't exist)
 ```
 
 **✅ CORRECT:**
+
 ```tsx
-<Link href={getLocalizedHref(locale, 'about')}>
+<Link href={getLocalizedHref(locale, "about")}>
   About // Points to /en/about.html (exists!)
 </Link>
 ```
@@ -1072,18 +1223,20 @@ export default async function AboutPage({ params }) {
 ### 4. Forgetting `unoptimized: true` for Images
 
 **❌ WRONG:**
+
 ```ts
 // next.config.ts
 const nextConfig = {
-  output: 'export',
+  output: "export",
   // Missing images config
 };
 ```
 
 **✅ CORRECT:**
+
 ```ts
 const nextConfig = {
-  output: 'export',
+  output: "export",
   images: { unoptimized: true }, // Required for static exports
 };
 ```
@@ -1095,12 +1248,14 @@ const nextConfig = {
 ### 5. Incorrect `generateMetadata` Function Name
 
 **❌ WRONG:**
+
 ```tsx
 export async function generateMetadat(...) {} // Typo!
 export async function generateMetaData(...) {} // Wrong capitalization!
 ```
 
 **✅ CORRECT:**
+
 ```tsx
 export async function generateMetadata(...) {} // Exact spelling
 ```
@@ -1112,12 +1267,14 @@ export async function generateMetadata(...) {} // Exact spelling
 ### 6. Missing next-intl Configuration
 
 **❌ WRONG:**
+
 ```ts
 // next.config.ts
 export default nextConfig; // Missing next-intl plugin
 ```
 
 **✅ CORRECT:**
+
 ```ts
 import createNextIntlPlugin from "next-intl/plugin";
 
@@ -1132,12 +1289,14 @@ export default withNextIntl(nextConfig);
 ### 7. Wrong Import - `useTransition` vs `useTranslations`
 
 **❌ WRONG:**
+
 ```tsx
 import { useTransition } from "react";
 const t = useTransition("nav"); // ERROR!
 ```
 
 **✅ CORRECT:**
+
 ```tsx
 import { useTranslations } from "next-intl";
 const t = useTranslations("nav");
@@ -1150,15 +1309,17 @@ const t = useTranslations("nav");
 ### 8. Translation Template Literal Syntax Errors
 
 **❌ WRONG:**
+
 ```tsx
 title: `${t(title) - ${ siteConfig.name } }` // Mixed operators, spaces
 t{"other.title"} // Wrong brackets
 ```
 
 **✅ CORRECT:**
+
 ```tsx
-title: `${t("title")} - ${siteConfig.name}`
-t("other.title")
+title: `${t("title")} - ${siteConfig.name}`;
+t("other.title");
 ```
 
 **Why:** Template literals require proper syntax and function calls use `()` not `{}`.
@@ -1168,11 +1329,13 @@ t("other.title")
 ### 9. Missing `dir` Attribute for RTL Languages
 
 **❌ WRONG:**
+
 ```tsx
 <html lang="ar"> // Missing dir attribute
 ```
 
 **✅ CORRECT:**
+
 ```tsx
 <html lang="ar" dir="rtl"> // Required for Arabic/Hebrew
 ```
@@ -1186,6 +1349,7 @@ t("other.title")
 **Problem:** Only testing with `pnpm dev` and discovering issues at deploy time.
 
 **✅ SOLUTION:**
+
 ```bash
 # Test static export frequently
 DEPLOY_TARGET=static pnpm build
@@ -1201,6 +1365,7 @@ npx http-server out -p 3000
 ### 11. Using `any` Type in Type Guards
 
 **❌ WRONG:**
+
 ```tsx
 export function isValidateLocale(locale: string): locale is Locale {
   return locales.includes(locale as any); // ESLint error!
@@ -1208,6 +1373,7 @@ export function isValidateLocale(locale: string): locale is Locale {
 ```
 
 **✅ CORRECT:**
+
 ```tsx
 import { Locale } from "./config";
 
@@ -1223,6 +1389,7 @@ export function isValidateLocale(locale: string): locale is Locale {
 ### 12. Tailwind RTL Plugin Incompatibility
 
 **❌ WRONG:**
+
 ```js
 // tailwind.config.js
 module.exports = {
@@ -1233,6 +1400,7 @@ module.exports = {
 ```
 
 **✅ CORRECT:**
+
 ```js
 module.exports = {
   plugins: [
@@ -1252,6 +1420,7 @@ className = "ps-4 pe-4"; // Start and end (RTL-aware)
 ### 13. Hydration Mismatch from Duplicate HTML Tags
 
 **❌ WRONG:**
+
 ```tsx
 // src/app/layout.tsx
 export default function RootLayout({ children }) {
@@ -1263,6 +1432,7 @@ export default function RootLayout({ children }) {
 ```
 
 **✅ CORRECT:**
+
 ```tsx
 // src/app/layout.tsx - Pass through only
 export default function RootLayout({ children }) {
@@ -1277,6 +1447,7 @@ export default function RootLayout({ children }) {
 ### 14. Missing Locale Prop in Components
 
 **❌ WRONG:**
+
 ```tsx
 export default function HomePage() {
   const content = getContentBySlug("home", "en"); // Hardcoded!
@@ -1284,6 +1455,7 @@ export default function HomePage() {
 ```
 
 **✅ CORRECT:**
+
 ```tsx
 interface HomePageProps {
   locale: string;
@@ -1301,6 +1473,7 @@ export default function HomePage({ locale }: HomePageProps) {
 ### 15. Static Export Build Errors with Dynamic Functions
 
 **❌ WRONG:**
+
 ```tsx
 export default function Page() {
   const headers = headers(); // Works in dev, fails in static export!
@@ -1308,11 +1481,12 @@ export default function Page() {
 ```
 
 **✅ CORRECT:**
+
 ```tsx
 // For static export, use build-time data instead
 const messages = (await import(`@/messages/${locale}.json`)).default;
 // Pass as prop to components
-<Component messages={messages} />
+<Component messages={messages} />;
 ```
 
 **Why:** Static exports don't support `headers()`, `cookies()`, or other dynamic server functions.
@@ -1344,6 +1518,7 @@ const messages = (await import(`@/messages/${locale}.json`)).default;
 ### Hosting Compatibility
 
 This static export is compatible with:
+
 - **Vercel** (recommended for Next.js)
 - **Netlify**
 - **GitHub Pages**
@@ -1360,6 +1535,7 @@ This static export is compatible with:
 ### Deployment Commands
 
 **Local Testing**
+
 ```bash
 cd /out
 node server.js
@@ -1367,12 +1543,14 @@ node server.js
 ```
 
 **Vercel Deployment**
+
 ```bash
 npm i -g vercel
 vercel --prod
 ```
 
 **Netlify Deployment**
+
 ```bash
 npm i -g netlify-cli
 netlify deploy --prod --dir=out
@@ -1381,6 +1559,7 @@ netlify deploy --prod --dir=out
 ### Hosting Recommendations
 
 #### Option 1: Vercel (Recommended)
+
 ```bash
 # Deploy with vercel CLI
 vercel --prod
@@ -1388,6 +1567,7 @@ vercel --prod
 ```
 
 #### Option 2: Netlify
+
 ```bash
 # Deploy with Netlify CLI
 netlify deploy --prod --dir=out
@@ -1395,6 +1575,7 @@ netlify deploy --prod --dir=out
 ```
 
 #### Option 3: GitHub Pages
+
 ```bash
 # Requires custom 404.html setup for clean URLs
 # Or use direct .html URLs
@@ -1424,13 +1605,13 @@ netlify deploy --prod --dir=out
 
 ```tsx
 // Basic navigation
-getLocalizedHref(locale, 'about')  // → /en/about.html (static) or /en/about (dev)
+getLocalizedHref(locale, "about"); // → /en/about.html (static) or /en/about (dev)
 
 // Home page
-getLocalizedHref(locale, 'home')   // → /index.html (static) or / (dev)
+getLocalizedHref(locale, "home"); // → /index.html (static) or / (dev)
 
 // Dynamic routes
-getProjectHref(locale, projectId)  // → /en/projects/athkarix.html (static)
+getProjectHref(locale, projectId); // → /en/projects/athkarix.html (static)
 ```
 
 ### Test Status: ✅ PASS
@@ -1438,6 +1619,7 @@ getProjectHref(locale, projectId)  // → /en/projects/athkarix.html (static)
 The static export of the Next.js developer portfolio is **production-ready** with the following highlights:
 
 **Strengths:**
+
 - ✅ Fully functional with 3 languages (AR/EN/FR)
 - ✅ RTL support for Arabic
 - ✅ All assets load correctly
@@ -1449,6 +1631,7 @@ The static export of the Next.js developer portfolio is **production-ready** wit
 - ✅ Modern tech stack
 
 **Issues Resolved:**
+
 - ✅ Clean URL routing (CRITICAL)
 - ✅ Asset delivery optimization
 - ✅ Cache header configuration
@@ -1456,6 +1639,7 @@ The static export of the Next.js developer portfolio is **production-ready** wit
 - ✅ next-intl configuration
 
 **Deployment Ready:**
+
 - ✅ Multiple hosting configurations provided
 - ✅ Custom server for testing
 - ✅ All redirects configured
@@ -1482,43 +1666,43 @@ cd /out && node server.js
 
 ### URL Patterns (Static Export)
 
-| Type | English | French | Arabic |
-|------|---------|--------|--------|
-| Home | `/index.html` | `/fr.html` | `/ar.html` |
-| About | `/en/about.html` | `/fr/about.html` | `/ar/about.html` |
-| Projects | `/en/projects.html` | `/fr/projects.html` | `/ar/projects.html` |
+| Type           | English                  | French                   | Arabic                   |
+| -------------- | ------------------------ | ------------------------ | ------------------------ |
+| Home           | `/index.html`            | `/fr.html`               | `/ar.html`               |
+| About          | `/en/about.html`         | `/fr/about.html`         | `/ar/about.html`         |
+| Projects       | `/en/projects.html`      | `/fr/projects.html`      | `/ar/projects.html`      |
 | Project Detail | `/en/projects/{id}.html` | `/fr/projects/{id}.html` | `/ar/projects/{id}.html` |
-| Contact | `/en/contact.html` | `/fr/contact.html` | `/ar/contact.html` |
+| Contact        | `/en/contact.html`       | `/fr/contact.html`       | `/ar/contact.html`       |
 
 ### Files Modified Summary
 
-| File | Changes |
-|------|---------|
-| `src/i18n/navigation.ts` | Added `getLocalizedHref()` and `getProjectHref()` helpers |
-| `src/components/sections/SiteHeader.tsx` | Added locale prop, use `getLocalizedHref()` |
-| `src/components/HomePage.tsx` | Use `getLocalizedHref()` for all links |
-| `src/components/sections/SiteFooter.tsx` | Added locale prop, use `getLocalizedHref()` |
-| `src/components/sections/ProjectBreadcrumb.tsx` | Use `getLocalizedHref()` |
-| `src/components/sections/ProjectBackButton.tsx` | Use `getLocalizedHref()` |
-| `src/components/sections/ProjectCard.tsx` | Added locale prop, use `getProjectHref()` |
-| `src/components/sections/ProjectsList.tsx` | Added locale prop, pass to `ProjectCard` |
-| `src/app/[locale]/layout.tsx` | Pass `locale` to `SiteHeader` |
-| `src/app/[locale]/projects/page.tsx` | Pass `locale` to `ProjectsList` |
-| `out/_redirects` | Netlify redirects for clean URLs |
-| `out/vercel.json` | Vercel rewrites for clean URLs |
-| `out/netlify.toml` | Netlify configuration |
-| `out/server.js` | Custom Node.js server with routing |
+| File                                            | Changes                                                   |
+| ----------------------------------------------- | --------------------------------------------------------- |
+| `src/i18n/navigation.ts`                        | Added `getLocalizedHref()` and `getProjectHref()` helpers |
+| `src/components/sections/SiteHeader.tsx`        | Added locale prop, use `getLocalizedHref()`               |
+| `src/components/HomePage.tsx`                   | Use `getLocalizedHref()` for all links                    |
+| `src/components/sections/SiteFooter.tsx`        | Added locale prop, use `getLocalizedHref()`               |
+| `src/components/sections/ProjectBreadcrumb.tsx` | Use `getLocalizedHref()`                                  |
+| `src/components/sections/ProjectBackButton.tsx` | Use `getLocalizedHref()`                                  |
+| `src/components/sections/ProjectCard.tsx`       | Added locale prop, use `getProjectHref()`                 |
+| `src/components/sections/ProjectsList.tsx`      | Added locale prop, pass to `ProjectCard`                  |
+| `src/app/[locale]/layout.tsx`                   | Pass `locale` to `SiteHeader`                             |
+| `src/app/[locale]/projects/page.tsx`            | Pass `locale` to `ProjectsList`                           |
+| `out/_redirects`                                | Netlify redirects for clean URLs                          |
+| `out/vercel.json`                               | Vercel rewrites for clean URLs                            |
+| `out/netlify.toml`                              | Netlify configuration                                     |
+| `out/server.js`                                 | Custom Node.js server with routing                        |
 
 ### Browser Compatibility
 
-| Browser | Version | Support |
-|---------|---------|---------|
-| Chrome  | 90+     | ✅ Full |
-| Firefox | 88+     | ✅ Full |
-| Safari  | 14+     | ✅ Full |
-| Edge    | 90+     | ✅ Full |
-| Mobile Safari | 14+ | ✅ Full |
-| Chrome Mobile | 90+ | ✅ Full |
+| Browser       | Version | Support |
+| ------------- | ------- | ------- |
+| Chrome        | 90+     | ✅ Full |
+| Firefox       | 88+     | ✅ Full |
+| Safari        | 14+     | ✅ Full |
+| Edge          | 90+     | ✅ Full |
+| Mobile Safari | 14+     | ✅ Full |
+| Chrome Mobile | 90+     | ✅ Full |
 
 ---
 
@@ -1535,4 +1719,4 @@ cd /out && node server.js
 **Last Updated:** December 31, 2025
 **Status:** Production Ready ✅
 
-*This document serves as a complete reference for building and deploying multilingual Next.js static sites with proper i18n support.*
+_This document serves as a complete reference for building and deploying multilingual Next.js static sites with proper i18n support._

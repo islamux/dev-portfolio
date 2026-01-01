@@ -1,17 +1,18 @@
 'use client';
 
 import { localeFlag, localeNames, locales, type Locale } from "@/i18n/config";
-import { useLocale } from "next-intl";
-import { usePathname, useRouter } from "@/i18n/navigation";
+// import { useLocale } from "next-intl"; // Removed
+// import { usePathname, useRouter } from "@/i18n/navigation"; // Removed
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
-export function LanguageSwitcher() {
+export function LanguageSwitcher({ locale: localeString }: { locale: string }) {
 
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
-  const locale = useLocale() as Locale;
-  const router = useRouter();
-  const pathname = usePathname();
+  const locale = localeString as Locale;
+  const router = useRouter(); // Native Next.js router
+  const pathname = usePathname(); // Native path (includes locale)
 
   // 1
   useEffect(() => {
@@ -27,7 +28,37 @@ export function LanguageSwitcher() {
   // 2
   const handleLocaleChange = (newLocale: Locale) => {
     setIsOpen(false);
-    router.push(pathname, { locale: newLocale });
+    if (!pathname) return;
+
+    // Manual replacement logic
+    // pathname is like "/en/about" or "/en/about.html" or "/" (root)
+    let newPath = pathname;
+
+    // Handle root "/" -> "/fr" (redirects to default usually but for static we want /fr)
+    if (pathname === '/' && newLocale !== 'en') {
+       newPath = `/${newLocale}`;
+    } else {
+       // Replace segment /en/ with /fr/
+       // Regex to replace first segment if it matches a locale
+       // We can assume path starts with /<locale>/ or is just /<locale>
+       // Or we can rely on current 'locale' prop to know what to replace.
+       const currentPrefix = `/${locale}`;
+       if (pathname.startsWith(currentPrefix)) {
+          newPath = pathname.replace(currentPrefix, `/${newLocale}`);
+       } else if (pathname === `/${locale}`) {
+          newPath = `/${newLocale}`;
+       } else {
+          // If path doesn't start with locale (e.g. /), try to prepend?
+          // But usually we are already inside a locale based path.
+          // Fallback
+          newPath = `/${newLocale}${pathname}`;
+       }
+    }
+    
+    // For static, check .html? Hosting usually handles it, but let's be safe.
+    // If it ends with .html, keep it.
+    
+    router.push(newPath);
   };
 
   return (

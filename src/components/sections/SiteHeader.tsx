@@ -81,7 +81,7 @@ export function SiteHeader({ navDict, locale }: { navDict: Record<string, string
               )}
             </Button>
             {/* Language Switcher */}
-            <LanguageSwitcher />
+            <LanguageSwitcher locale={locale} />
 
             {/* Mobile Menue Button*/}
             <Button

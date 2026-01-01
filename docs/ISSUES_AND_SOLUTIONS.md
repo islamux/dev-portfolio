@@ -2,6 +2,13 @@
 
 > A comprehensive log of all errors, issues, and their solutions encountered during the development of the portfolio project. This document serves as a troubleshooting guide and learning resource.
 
+> [!IMPORTANT]
+> **Preventing Recurring Issues**  
+> To avoid repeating the same Static/SSR issues after every edit:
+>
+> - **[Static vs SSR Analysis](./STATIC_VS_SSR_ANALYSIS.md)** - Comprehensive problem analysis and prevention strategies
+> - **Automated Workflow**: Use `pnpm run build:static:full` or `./scripts/build-static.sh`
+
 **Project:** Developer Portfolio  
 **Tech Stack:** Next.js 16.0.3, TypeScript, Tailwind CSS, next-intl  
 **Date Range:** November 2024 - December 2024
@@ -967,14 +974,14 @@ Error: Route /[locale]/projects/[id] with `dynamic = "error"` couldn't be render
 
 1.  **Remove Dynamic Header dependencies:**
     Refactor `SiteHeader` (or similar components) to accept translations/data as **props** instead of using server-side hooks like `useTranslations` inside the component if it causes issues.
-    
+
     ```tsx
     // layout.tsx
     const messages = (await import(`@/messages/${locale}.json`)).default;
     const navDict = messages.nav;
-    
+
     // Pass as prop
-    <SiteHeader navDict={navDict} />
+    <SiteHeader navDict={navDict} />;
     ```
 
 2.  **Generate Static Params:**
@@ -992,8 +999,8 @@ Error: Route /[locale]/projects/[id] with `dynamic = "error"` couldn't be render
     ```ts
     // next.config.ts
     const nextConfig = {
-      output: 'export',
-      images: { unoptimized: true }
+      output: "export",
+      images: { unoptimized: true },
     };
     ```
 
@@ -1001,21 +1008,25 @@ Error: Route /[locale]/projects/[id] with `dynamic = "error"` couldn't be render
 
 - "Static First" mindset: Assume everything is static.
 - Use `pnpm run build:static` frequently to check for compliance.
+
 ---
 
 ### Issue 7.2: Hydration Error - Nested `<a>` Tags
 
 **Error:**
+
 ```
 In HTML, <a> cannot be a descendant of <a>.
 This will cause a hydration error.
 ```
 
 **Files Affected:**
+
 - `src/components/sections/ProjectLinks.tsx`
 - `src/components/ui/ProjectLink.tsx`
 
 **Cause:**
+
 - Invalid HTML structure was being generated where a `<a>` tag was nested inside another `<a>` tag.
 - In `ProjectLinks.tsx`, the "Live Demo" link was created by wrapping a `<ProjectLink>` component inside another `<a>` tag.
 - The `ProjectLink` component itself renders an `<a>` tag, leading to the `<a><a>...</a></a>` nesting.
@@ -1026,34 +1037,146 @@ Refactored `src/components/sections/ProjectLinks.tsx` to remove the nested link 
 
 ```tsx
 // ❌ WRONG
-{project.demo && (
-  <a href={project.demo} target="_blank" rel="noopener noreferrer">
-    <Button variant="secondary">
-      <ProjectLink
-        href={project.demo}
-        icon="globe"
-        text="Live Demo"
-      />
-    </Button>
-  </a>
-)}
+{
+  project.demo && (
+    <a href={project.demo} target="_blank" rel="noopener noreferrer">
+      <Button variant="secondary">
+        <ProjectLink href={project.demo} icon="globe" text="Live Demo" />
+      </Button>
+    </a>
+  );
+}
 
 // ✅ CORRECT
-{project.demo && (
-  <a href={project.demo} target="_blank" rel="noopener noreferrer">
-    <Button variant="secondary">
-      <Icon name="globe" size={20} className="mr-2" />
-      Live Demo
-    </Button>
-  </a>
-)}
+{
+  project.demo && (
+    <a href={project.demo} target="_blank" rel="noopener noreferrer">
+      <Button variant="secondary">
+        <Icon name="globe" size={20} className="mr-2" />
+        Live Demo
+      </Button>
+    </a>
+  );
+}
 ```
 
 **Prevention:**
+
 - Be mindful of component composition. Ensure that components that render a specific tag (like `<a>`) are not wrapped by another instance of the same tag.
 - Heed hydration error messages; they almost always point to a structural mismatch between server and client HTML.
 
 ---
+
+---
+
+## Phase 8 - Static Export Implementation (Hostinger)
+
+### Issue 8.1: Missing `generateStaticParams` for Project Detail Pages
+
+**Error:**
+
+```
+Error: Page "/[locale]/projects/[id]" is missing "generateStaticParams()" so it cannot be used with "output: export" config.
+```
+
+**Cause:**
+
+- In strict static export mode, Next.js must know every single path to render at build time.
+- The dynamic route `src/app/[locale]/projects/[id]/page.tsx` existed but lacked the function to list all possible `id`s for each `locale`.
+
+**Solution:**
+Implemented `generateStaticParams` to read from the JSON content files and return a list of params.
+
+```tsx
+// src/app/[locale]/projects/[id]/page.tsx
+export async function generateStaticParams() {
+  const params = [];
+  // Loop through locales and projects.json to build:
+  // [{ locale: 'en', id: 'project1' }, { locale: 'ar', id: 'project1' }, ...]
+  return params;
+}
+```
+
+### Issue 8.2: `NextIntlClientProvider` forcing Dynamic Rendering
+
+**Error:**
+
+```
+Error occurred prerendering page... export encountered an error...
+cause: headers() usage
+```
+
+**Cause:**
+
+- `NextIntlClientProvider` (used in `layout.tsx`) accesses request headers at runtime to determine locale/timezone info, which is incompatible with `output: 'export'` where no server exists at runtime.
+
+**Solution:**
+
+- Created a "Static Mode" in the layout using an environment variable `DEPLOY_TARGET=static`.
+- In Static Mode, we bypass the `NextIntlClientProvider`.
+
+```tsx
+// src/app/[locale]/layout.tsx
+const isStatic = process.env.DEPLOY_TARGET === 'static';
+
+return (
+  <div>
+    {!isStatic ? (
+      <NextIntlClientProvider ...>{children}</NextIntlClientProvider>
+    ) : (
+      children // Render directly without provider
+    )}
+  </div>
+);
+```
+
+### Issue 8.3: `next-intl` Hooks Failing in Static Mode
+
+**Error:**
+
+```
+Error: invariant expected app router context to be mounted
+```
+
+or Context-related errors when using `useLocale`, `usePathname`, or `useRouter` from `next-intl/navigation`.
+
+**Cause:**
+
+- Since we bypassed `NextIntlClientProvider` in Static Mode (Issue 8.2), the context these hooks rely on was missing.
+- Components like `LanguageSwitcher` that used these hooks crashed.
+
+**Solution:**
+Refactored `LanguageSwitcher` to use native Next.js hooks and props.
+
+1.  **Pass Data as Props**: Passed `locale` from the Server Component (`layout.tsx` -> `SiteHeader` -> `LanguageSwitcher`) instead of using `useLocale()`.
+2.  **Use Native Navigation**: Replaced `next-intl/navigation` with `next/navigation` (`useRouter`, `usePathname`).
+3.  **Manual Locale Switching**: Implemented custom logic to rewrite the URL string (swapping `/en` for `/fr`) instead of relying on the router's automatic locale handling.
+
+### Issue 8.4: `setRequestLocale` Missing
+
+**Error:**
+
+```
+Error: Page ... couldn't be rendered statically...
+```
+
+(Sometimes manifest as general prerender errors)
+
+**Cause:**
+
+- `next-intl` needs to know the current locale for static generation in Server Components.
+
+**Solution:**
+Added `setRequestLocale(locale)` at the top of every Page component (`page.tsx`) and the main Layout.
+
+```tsx
+// src/app/[locale]/page.tsx
+export default async function Page({ params }: Props) {
+  const { locale } = await params;
+  setRequestLocale(locale); // Critical for static generation
+  // ...
+}
+```
 
 ## Related Documentation
 
@@ -1064,6 +1187,7 @@ This document (ISSUES_AND_SOLUTIONS.md) covers development-phase issues across P
 **[Comprehensive Static Export Guide](COMPREHENSIVE_STATIC_EXPORT_GUIDE.md)**
 
 This specialized guide covers:
+
 - ✅ Locale-aware navigation patterns (`getLocalizedHref` helper)
 - ✅ Clean URL routing for static exports
 - ✅ i18n-specific issues and solutions
@@ -1074,11 +1198,13 @@ This specialized guide covers:
 ### When to Use Which Guide
 
 **Use ISSUES_AND_SOLUTIONS.md when:**
+
 - Encountering development errors (TypeScript, build, runtime)
 - Working through phases 1-7 of portfolio development
 - Debugging hydration, component, or general Next.js issues
 
 **Use COMPREHENSIVE_STATIC_EXPORT_GUIDE.md when:**
+
 - Building static exports with multiple languages
 - Troubleshooting navigation links in static builds
 - Setting up clean URLs for static hosting
