@@ -7,6 +7,7 @@ const isStatic = process.env.DEPLOY_TARGET === "static";
 
 const nextConfig: NextConfig = {
   output: isStatic ? 'export' : undefined,
+  trailingSlash: isStatic ? true : undefined,
   images: {
     unoptimized: isStatic,
   },
