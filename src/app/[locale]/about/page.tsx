@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { getContentBySlug } from "@/lib/content";
-import Container from '@/components/Container';
+import Container from '@/components/ui/Container';
 import { MarkdownContent } from '@/components/ui/MarkdownContent';
 import { siteConfig } from '@/app/metadata';
 

@@ -1,4 +1,4 @@
-import Container from '@/components/Container';
+import Container from '@/components/ui/Container';
 import Button from '@/components/ui/Button';
 
 export default function TestPage() {

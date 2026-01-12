@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
-import Container from '@/components/Container';
+import Container from '@/components/ui/Container';
 import { ContactForm } from '@/components/sections/ContactForm';
 import { Icon } from '@/components/ui/Icon';
 import { socialLinks } from '@/data/socialLinks';

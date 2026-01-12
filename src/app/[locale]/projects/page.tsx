@@ -1,4 +1,4 @@
-import Container from "@/components/Container";
+import Container from "@/components/ui/Container";
 import ProjectsList from "@/components/sections/ProjectsList";
 import { ProjectService } from "@/services/projectService";
 import { Metadata } from "next";
