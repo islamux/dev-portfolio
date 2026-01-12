@@ -1,5 +1,5 @@
 import { getContentBySlug } from "@/lib/content";
-import Container from "./Container";
+import Container from "./ui/Container";
 import { MarkdownContent } from "./ui/MarkdownContent";
 import Link from "next/link";
 import Button from "./ui/Button";
