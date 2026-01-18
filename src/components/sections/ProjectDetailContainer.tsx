@@ -1,5 +1,4 @@
-import Container from "../Container";
-
+import Container from "../ui/Container";
 interface ProjectDetailContainerProps {
   children: React.ReactNode;
 }

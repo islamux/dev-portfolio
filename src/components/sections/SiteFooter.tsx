@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Container from "@/components/Container";
+import Container from "../ui/Container";
 import type { SocialLink } from "@/types";
 import { Icon } from "@/components/ui/Icon";
 import { siteConfig } from "@/app/metadata";
