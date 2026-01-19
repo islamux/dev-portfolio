@@ -20,7 +20,7 @@
     "longDescription": "موقع محفظة متجاوب بالكامل ومتعدد اللغات مع وضع مظلم، تحسين SEO، وإمكانيات PWA. يعرض أفضل الممارسات في تطوير الويب الحديث.",
     "tech": ["Next.js", "TypeScript", "Tailwind CSS"],
     "github": "https://github.com/islamux/dev-portfolio",
-    "demo": "https://islamux.vercel.app",
+    "demo": "https://dev-portfolio-ashen.vercel.app",
     "image": "/images/projects/portfolio.png",
     "featured": true,
     "year": "2024"

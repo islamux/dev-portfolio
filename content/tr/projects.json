@@ -19,7 +19,7 @@
     "longDescription": "Karanlık mod, SEO optimizasyonu ve PWA özellikleri içeren tamamen duyarlı, çok dilli bir portföy web sitesi. Modern web geliştirmede en iyi uygulamaları sergiler.",
     "tech": ["Next.js", "TypeScript", "Tailwind CSS"],
     "github": "https://github.com/islamux/dev-portfolio",
-    "demo": "https://islamux.vercel.app",
+    "demo":"https://dev-portfolio-ashen.vercel.app/tr",
     "image": "/images/projects/portfolio.png",
     "featured": true,
     "year": "2024"

@@ -1,5 +1,5 @@
 ---
-title: "Salut, je suis Islamux"
+title: "Salut, je suis Fathi"
 description: "Développeur full-stack passionné par l'open source"
 image: "/images/hero.jpg"
 ---

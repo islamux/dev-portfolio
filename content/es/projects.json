@@ -19,7 +19,7 @@
     "longDescription": "Un sitio web de portafolio totalmente responsivo y multilingüe que presenta modo oscuro, optimización SEO y capacidades PWA. Demuestra las mejores prácticas en el desarrollo web moderno.",
     "tech": ["Next.js", "TypeScript", "Tailwind CSS"],
     "github": "https://github.com/islamux/dev-portfolio",
-    "demo": "https://islamux.vercel.app",
+    "demo": "https://dev-portfolio-ashen.vercel.app",
     "image": "/images/projects/portfolio.png",
     "featured": true,
     "year": "2024"
