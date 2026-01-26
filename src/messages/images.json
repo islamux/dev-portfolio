@@ -17,13 +17,5 @@
         "alt": "Khwater project screenshot"
       }
     }
-  },
-  "projects": {
-    "title": "المشاريع",
-    "description": "مجموعة من أعمالي ومساهماتي",
-    "card": {
-      "code": "الكود",
-      "demo": "المشروع الكامل (مفتوح المصدر)"
-    }
   }
 }

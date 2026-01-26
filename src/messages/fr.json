@@ -1,72 +1,29 @@
 {
-  "nav": {
-    "home": "Accueil",
-    "about": "À propos",
-    "projects": "Projets",
-    "contact": "Contact"
-  },
-  "home": {
-    "hero": {
-      "title": "Salut, je suis Fathi",
-      "subtitle": "Développeur full-stack passionné par l'open source",
-      "cta": {
-        "projects": "Voir les projets",
-        "contact": "Me contacter"
+  "images": {
+    "projects": {
+      "new_muslims": {
+        "alt": "New Muslim Stories project screenshot"
+      },
+      "athkari-cover-v2": {
+        "alt": "Athkarix project screenshot"
+      },
+      "portfolio": {
+        "alt": "Developer Portfolio project screenshot"
+      },
+      "voice-of-truth": {
+        "alt": "Voices of Truth project screenshot"
+      },
+      "khwater": {
+        "alt": "Khwater project screenshot"
       }
-    },
-    "featured": {
-      "title": "Projets en vedette",
-      "viewAll": "Voir tout",
-      "viewAllEnd": "Voir tout"
-    },
-    "card": {
-      "code": "Code source",
-      "demo": "Projet complet (Open Source)"
     }
-  },
-  "about": {
-    "title": "À propos de moi",
-    "description": "En savoir plus sur mon parcours de développeur"
   },
   "projects": {
     "title": "Projets",
-    "description": "Une collection de mon travail et contributions",
-    "filter": {
-      "all": "Tout",
-      "noResults": "Aucun projet trouvé avec {tech}"
-    },
+    "description": "Une collection de mes travaux et contributions",
     "card": {
-      "code": "Code source",
+      "code": "Code",
       "demo": "Projet complet (Open Source)"
     }
-  },
-  "contact": {
-    "title": "Contactez-moi",
-    "description": "Vous avez un projet en tête? Parlons-en.",
-    "form": {
-      "name": "Nom",
-      "email": "E-mail",
-      "message": "Message",
-      "submit": "Envoyer le message",
-      "sending": "Envoi en cours...",
-      "success": "Message envoyé avec succès! Je vous répondrai bientôt.",
-      "error": "Échec de l'envoi du message. Veuillez réessayer."
-    },
-    "other": {
-      "title": "Autres moyens de me contacter"
-    }
-  },
-  "footer": {
-    "about": {
-      "title": "À propos",
-      "text": "Développeur full-stack passionné par l'open source et la création d'excellentes expériences utilisateur."
-    },
-    "quickLinks": {
-      "title": "Liens rapides"
-    },
-    "connect": {
-      "title": "Se connecter"
-    },
-    "copyright": "Construit avec Next.js et Tailwind CSS."
   }
 }
