@@ -17,5 +17,13 @@
         "alt": "Khwater project screenshot"
       }
     }
+  },
+  "projects": {
+    "title": "Proyectos",
+    "description": "Una colección de mi trabajo y contribuciones",
+    "card": {
+      "code": "Código",
+      "demo": "Proyecto completo (Código abierto)"
+    }
   }
 }
