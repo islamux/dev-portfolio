@@ -7,6 +7,7 @@
 > For the latest automated workflow and problem analysis, see:
 >
 > - **[Static vs SSR Analysis](./STATIC_VS_SSR_ANALYSIS.md)** - Complete problem analysis and solutions
+> - **[Hostinger Static Export Routing Fix](./RUN_SUCCESSFULY_IN_LOCALE_BUT_NOT_IN_HOSTINGER.md)** - Solutions for Hostinger deployment issues
 > - **Quick Commands**: Use `pnpm run build:static:full` for clean static builds
 > - **Build Script**: Run `./scripts/build-static.sh` for automated deployment-ready builds
 
@@ -321,7 +322,7 @@ const baseRoutes = {
  */
 export function getLocalizedHref(
   locale: Locale,
-  route: keyof typeof baseRoutes
+  route: keyof typeof baseRoutes,
 ): string {
   const basePath = baseRoutes[route];
 

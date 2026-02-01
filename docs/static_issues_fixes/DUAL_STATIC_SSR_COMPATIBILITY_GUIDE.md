@@ -5,6 +5,7 @@
 > This guide is now supplemented with automated build scripts and comprehensive analysis:
 >
 > - **[Static vs SSR Analysis](./STATIC_VS_SSR_ANALYSIS.md)** - Problem analysis, prevention strategies, and step-by-step guides
+> - **[Hostinger Static Export Routing Fix](./RUN_SUCCESSFULY_IN_LOCALE_BUT_NOT_IN_HOSTINGER.md)** - Solutions for Hostinger deployment routing conflicts
 > - **Build Script**: `./scripts/build-static.sh` - Automated static build process
 > - **Package Scripts**: `pnpm run build:static:full` - Clean build with cleanup
 

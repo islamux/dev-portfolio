@@ -6,6 +6,8 @@ Follow these steps to resolve the 403 Forbidden error on Hostinger.
 
 You need to enable `trailingSlash` to ensure that paths like `/en` are exported as directories (`/en/index.html`) rather than files (`/en.html`). This resolves conflicts where a directory and a file share the same name.
 
+**For more detailed solutions and alternative approaches, see:** **[Hostinger Static Export Routing Fix Documentation](./RUN_SUCCESSFULY_IN_LOCALE_BUT_NOT_IN_HOSTINGER.md)**
+
 1.  Open the file `next.config.ts` in your project root.
 2.  Add `trailingSlash: true` to the configuration object.
 
