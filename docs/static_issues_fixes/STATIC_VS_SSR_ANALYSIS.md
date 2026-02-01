@@ -10,6 +10,9 @@ The user experiences a cycle where "fixing" the project for a Static Export brea
 - **Code Divergence**: Components (especially Layouts) need different structures for Static (no server-side `headers()`, no `cookies()`) vs SSR (dynamic req/res access).
 - **Manual Toggling**: The user manually edits `next.config.ts` or `layout.tsx` before every build, which is error-prone and tedious.
 - **Layout Structure**: Next.js requires proper `<html>` and `<body>` tags in the root layout. With i18n using `[locale]` route groups, the layout structure must be carefully designed.
+- **Routing Conflicts**: Trailing slash configuration conflicts with `.html` extensions in static exports, especially on Hostinger deployments.
+
+**For specific Hostinger routing solutions, see:** **[Hostinger Static Export Routing Fix Documentation](./RUN_SUCCESSFULY_IN_LOCALE_BUT_NOT_IN_HOSTINGER.md)**
 
 ---
 
