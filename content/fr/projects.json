@@ -64,5 +64,25 @@
     "github": "https://github.com/islamux/huawei-router-controle",
     "featured": true,
     "year": "2024"
+  },
+  {
+    "id": "new-muslims",
+    "name": "Histoires de Nouveaux Musulmans",
+    "description": "Une plateforme multilingue présentant des histoires inspirantes de personnes ayant embrassé l'Islam à travers le monde.",
+    "longDescription": "Histoires de Nouveaux Musulmans est une application web moderne construite avec Next.js et TypeScript. Elle présente des récits authentiques de personnes ayant adopté l'Islam, mettant en lumière leurs parcours, leurs origines et leurs moments de guidance. La plateforme se concentre sur une expérience utilisateur calme et spirituelle avec un support multilingue (arabe RTL et anglais LTR), un filtrage avancé par pays ou origine, une fonctionnalité de recherche, des histoires mises en avant quotidiennement et des animations élégantes utilisant Framer Motion. Le contenu est géré via Markdown ou CMS, avec un accent particulier sur l'accessibilité, la réactivité et le storytelling émotionnel.",
+    "tech": [
+      "Next.js 16",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "next-intl",
+      "i18n",
+      "Markdown"
+    ],
+    "github": "https://github.com/islamux/new-muslim-stories",
+    "demo": "https://new-muslim-stories.vercel.app/en",
+    "image": "/images/projects/new_muslims.png",
+    "featured": true,
+    "year": "2025"
   }
 ]

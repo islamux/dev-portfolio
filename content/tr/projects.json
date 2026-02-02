@@ -19,7 +19,7 @@
     "longDescription": "Karanlık mod, SEO optimizasyonu ve PWA özellikleri içeren tamamen duyarlı, çok dilli bir portföy web sitesi. Modern web geliştirmede en iyi uygulamaları sergiler.",
     "tech": ["Next.js", "TypeScript", "Tailwind CSS"],
     "github": "https://github.com/islamux/dev-portfolio",
-    "demo":"https://dev-portfolio-ashen.vercel.app/tr",
+    "demo": "https://dev-portfolio-ashen.vercel.app/tr",
     "image": "/images/projects/portfolio.png",
     "featured": true,
     "year": "2024"
@@ -29,7 +29,14 @@
     "name": "Voices of Truth",
     "description": "Arapça RTL ve İngilizce LTR desteğine sahip, sunucu taraflı filtreleme ve akıcı Framer Motion animasyonları içeren çok dilli İslami âlimler ve davetçiler dizini.",
     "longDescription": "Voices of Truth, dünya genelindeki İslami âlimler ve davetçileri kapsayan gelişmiş bir web uygulamasıdır. Next.js 15 ile geliştirilmiş olup en iyi performans için Server Components kullanır. Arapça (RTL) ve İngilizce (LTR) dillerini destekleyen güçlü bir uluslararasılaştırma altyapısına sahiptir. Kategori, ülke ve dile göre gelişmiş filtreleme ile güçlü bir arama sistemi sunar. Framer Motion animasyonlarıyla zenginleştirilmiş şık ve duyarlı tasarımı, özel karanlık/açık tema sistemi, modern full-stack geliştirme pratiklerini ve erişilebilirlik standartlarını örneklemektedir.",
-    "tech": ["Next.js 15", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "react-i18next"],
+    "tech": [
+      "Next.js 15",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "react-i18next"
+    ],
     "github": "https://github.com/islamux/voices-of-truth",
     "demo": "https://voices-of-truth.vercel.app",
     "image": "/images/projects/voice-of-truth.png",
@@ -57,6 +64,25 @@
     "github": "https://github.com/islamux/huawei-router-controle",
     "featured": true,
     "year": "2024"
+  },
+  {
+    "id": "new-muslims",
+    "name": "Yeni Müslüman Hikayeleri",
+    "description": "Dünya genelinde İslam'ı seçen insanların ilham verici hikayelerini sergileyen çok dilli bir platform.",
+    "longDescription": "Yeni Müslüman Hikayeleri, Next.js ve TypeScript ile geliştirilmiş modern bir web uygulamasıdır. İslam'ı seçen bireylerin gerçek yaşam hikayelerini sunarak onların yolculuklarını, geçmişlerini ve rehberlik anlarını öne çıkarır. Platform, Arapça (RTL) ve İngilizce (LTR) desteği ile çok dilli destek, ülke veya geçmişe göre gelişmiş filtreleme, arama işlevi, günlük öne çıkan hikayeler ve Framer Motion kullanılarak zarif animasyonlar ile sakin ve ruhani bir kullanıcı deneyimine odaklanır. İçerik Markdown veya CMS aracılığıyla yönetilir ve erişilebilirlik, duyarlılık ve duygusal hikaye anlatımına güçlü bir vurgu yapılır.",
+    "tech": [
+      "Next.js 16",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "next-intl",
+      "i18n",
+      "Markdown"
+    ],
+    "github": "https://github.com/islamux/new-muslim-stories",
+    "demo": "https://new-muslim-stories.vercel.app/en",
+    "image": "/images/projects/new_muslims.png",
+    "featured": true,
+    "year": "2025"
   }
 ]
-
