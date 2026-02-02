@@ -29,7 +29,14 @@
     "name": "Voces de la Verdad",
     "description": "Un directorio multilingüe de renombrados eruditos y predicadores islámicos con soporte RTL árabe y LTR inglés, con filtrado del lado del servidor y animaciones fluidas de Framer Motion.",
     "longDescription": "Voices of Truth es una sofisticada aplicación web que sirve como un directorio completo de eruditos y predicadores islámicos en todo el mundo. Construida con Next.js 15 y aprovechando los componentes del servidor para un rendimiento óptimo, presenta una internacionalización perfecta que admite tanto el árabe (RTL) como el inglés (LTR). La aplicación incluye capacidades de filtrado avanzadas por categoría, país e idioma, junto con una potente funcionalidad de búsqueda. Con un diseño hermoso y responsivo mejorado por animaciones de Framer Motion y un sistema de tema oscuro/claro personalizado, demuestra las mejores prácticas de desarrollo full-stack moderno y los estándares de accesibilidad.",
-    "tech": ["Next.js 15", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "react-i18next"],
+    "tech": [
+      "Next.js 15",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "react-i18next"
+    ],
     "github": "https://github.com/islamux/voices-of-truth",
     "demo": "https://voices-of-truth.vercel.app",
     "image": "/images/projects/voice-of-truth.png",
@@ -57,5 +64,25 @@
     "github": "https://github.com/islamux/huawei-router-controle",
     "featured": true,
     "year": "2024"
+  },
+  {
+    "id": "new-muslims",
+    "name": "Historias de Nuevos Musulmanes",
+    "description": "Una plataforma multilingüe que muestra historias inspiradoras de personas que abrazaron el Islam en todo el mundo.",
+    "longDescription": "Historias de Nuevos Musulmanes es una aplicación web moderna construida con Next.js y TypeScript. Presenta historias reales de individuos que abrazaron el Islam, destacando sus viajes, antecedentes y momentos de guía. La plataforma se centra en una experiencia de usuario tranquila y espiritual con soporte multilingüe (árabe RTL e inglés LTR), filtrado avanzado por país o antecedentes, funcionalidad de búsqueda, historias destacadas diarias y animaciones elegantes usando Framer Motion. El contenido se gestiona a través de Markdown o CMS, con un fuerte énfasis en la accesibilidad, la capacidad de respuesta y la narrativa emocional.",
+    "tech": [
+      "Next.js 16",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "next-intl",
+      "i18n",
+      "Markdown"
+    ],
+    "github": "https://github.com/islamux/new-muslim-stories",
+    "demo": "https://new-muslim-stories.vercel.app/en",
+    "image": "/images/projects/new_muslims.png",
+    "featured": true,
+    "year": "2025"
   }
 ]
