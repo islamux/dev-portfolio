@@ -22,10 +22,10 @@ export function getLocalizedHref(locale: Locale, route: keyof typeof baseRoutes)
     // For static export, include locale prefix and .html extension
     if (route === 'home') {
       // Home page: /en.html or /index.html for default locale
-      return locale === defaultLocale ? '/index.html' : `/${locale}.html`;
+      return locale === defaultLocale ? '/' : `/${locale}/`;
     }
     // Other pages: /en/about.html
-    return `/${locale}${basePath}.html`;
+    return `/${locale}${basePath}/`;
   }
   // For dev server: /en/about
   return `/${locale}${basePath}`;
@@ -34,7 +34,7 @@ export function getLocalizedHref(locale: Locale, route: keyof typeof baseRoutes)
 // Helper function to get localized project detail href
 export function getProjectHref(locale: Locale, projectId: string): string {
   if (isStatic) {
-    return `/${locale}/projects/${projectId}.html`;
+    return `/${locale}/projects/${projectId}/`;
   }
   return `/${locale}/projects/${projectId}`;
 }

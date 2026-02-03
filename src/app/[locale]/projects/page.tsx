@@ -27,23 +27,35 @@ export default async function ProjectsPage({ params }: ProjectsPageProps) {
   setRequestLocale(locale);
   const projects = await ProjectService.getAllProjects(locale);
 
+  // For static export, import messages directly instead of using getTranslations
+  // to avoid headers() dependency
+  let translations: any = {};
+  try {
+    const messages = (await import(`@/messages/${locale}.json`)).default;
+    translations = messages?.home || {};
+  } catch (error) {
+    console.warn(`Failed to load messages for locale ${locale}:`, error);
+  }
+
   return (
     <div className="py-12 md:py-20">
       <Container>
         {/*Header*/}
         <header className="mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Projects
+            {/*Projects*/}
+            {translations.title || "Projects"}
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400">
-            My portfolio projects
+            {/*My portfolio projects*/} 
+            {translations.description || "My portfolio projects"}
           </p>
         </header>
         <ProjectsList
           initialProjects={projects}
           translations={{
-            code: "Code",
-            demo: "Demo"
+            code: translations?.card?.code ,
+            demo: translations?.card?.demo 
           }}
           locale={locale}
         ></ProjectsList>

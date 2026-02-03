@@ -106,7 +106,7 @@ export default function ProjectCard({ project, translations, locale }: ProjectCa
             <ProjectLink
               href={project.demo}
               icon="globe"
-              text={translations?.demo || "Live Demo"}
+              text={translations?.demo || "Complete Project (Open Source)"}
               className="ml-auto"
             />
           )}
