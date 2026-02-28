@@ -1,5 +1,17 @@
 [
   {
+    "id": "salam-app-flutter",
+    "name": "Salam",
+    "description": "Flutter ile geliştirilmiş günlük zikir ve ayetler içeren İslami manevi yansımalar uygulaması",
+    "longDescription": "Günlük manevi yansımalar (Khutbah), zikirler ve Kur'an ayetleri içeren İslami uygulama. Flutter ve GetX ile çoklu platform uyumluluğu, tam Arapça RTL desteği, akıcı sayfa navigasyonu ve planlanmış günlük bildirimler içerir.",
+    "tech": ["Flutter", "Dart", "GetX"],
+    "github": "https://github.com/islamux/salam",
+    "apk": "https://github.com/islamux/salam/releases/download/v1.0/app-release.apk",
+    "image": "/images/projects/salam-app-cover.png",
+    "featured": true,
+    "year": "2024"
+  },
+  {
     "id": "athkarix",
     "name": "Athkarix",
     "description": "Flutter ile geliştirilmiş İslami zikir uygulaması",

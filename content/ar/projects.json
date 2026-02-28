@@ -1,5 +1,17 @@
 [
   {
+    "id": "salam-app-flutter",
+    "name": "سلام",
+    "description": "تطبيق خواطر إيمانية مبني باستخدام Flutter مع الأذكار اليومية والآيات القرآنية",
+    "longDescription": "تطبيق إسلامي يضم الخواطر اليومية والأذكار والآيات القرآنية. مبني باستخدام Flutter و GetX للدعم عبر المنصات، مع دعم كامل للغة العربية RTL، تنقل سلس بين الصفحات، وإشعارات يومية مجدولة.",
+    "tech": ["Flutter", "Dart", "GetX"],
+    "github": "https://github.com/islamux/salam",
+    "apk": "https://github.com/islamux/salam/releases/download/v1.0/app-release.apk",
+    "image": "/images/projects/salam-app-cover.png",
+    "featured": true,
+    "year": "2024"
+  },
+  {
     "id": "athkarix",
     "name": "أذكاري",
     "description": "تطبيق أذكار إسلامية مبني باستخدام Flutter",
