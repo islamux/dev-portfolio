@@ -1,5 +1,17 @@
 [
   {
+    "id": "salam-app-flutter",
+    "name": "Salam",
+    "description": "Application de réflexions spirituelles islamiques construite avec Flutter avec Athkar quotidien et versets coraniques",
+    "longDescription": "Application islamique présentant des réflexions spirituelles quotidiennes (Khutbah), Athkar et versets coraniques. Construite avec Flutter et GetX pour une compatibilité multiplateforme, avec un support complet de l'arabe RTL, une navigation fluide entre les pages et des notifications quotidiennes programmées.",
+    "tech": ["Flutter", "Dart", "GetX"],
+    "github": "https://github.com/islamux/salam",
+    "apk": "https://github.com/islamux/salam/releases/download/v1.0/app-release.apk",
+    "image": "/images/projects/salam-app-cover.png",
+    "featured": true,
+    "year": "2024"
+  },
+  {
     "id": "athkarix",
     "name": "Athkarix",
     "description": "Application Athkar construite avec Flutter",
