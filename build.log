@@ -1,0 +1,63 @@
+
+> dev_portfolio@0.1.0 build:static /media/islamux/Variety/JavaScriptProjects/dev_portfolio
+> DEPLOY_TARGET=static next build
+
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+   ▲ Next.js 16.0.10 (Turbopack)
+
+   Creating an optimized production build ...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ ✓ Compiled successfully in 6.7s
+   Running TypeScript ...
+   Collecting page data using 7 workers ...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+   Generating static pages using 7 workers (0/55) ...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+   Generating static pages using 7 workers (13/55) 
+   Generating static pages using 7 workers (27/55) 
+   Generating static pages using 7 workers (41/55) 
+ ✓ Generating static pages using 7 workers (55/55) in 2.5s
+   Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ● /[locale]
+│ ├ /en
+│ ├ /fr
+│ ├ /ar
+│ └ [+2 more paths]
+├ ● /[locale]/about
+│ ├ /en/about
+│ ├ /fr/about
+│ ├ /ar/about
+│ └ [+2 more paths]
+├ ● /[locale]/contact
+│ ├ /en/contact
+│ ├ /fr/contact
+│ ├ /ar/contact
+│ └ [+2 more paths]
+├ ● /[locale]/projects
+│ ├ /en/projects
+│ ├ /fr/projects
+│ ├ /ar/projects
+│ └ [+2 more paths]
+├ ● /[locale]/projects/[id]
+│ ├ /en/projects/athkarix
+│ ├ /en/projects/portfolio
+│ ├ /en/projects/voices-of-truth
+│ └ [+27 more paths]
+└ ○ /test
+
+
+○  (Static)  prerendered as static content
+●  (SSG)     prerendered as static HTML (uses generateStaticParams)
+

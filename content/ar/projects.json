@@ -100,5 +100,17 @@
     "image": "/images/projects/new_muslims.png",
     "featured": true,
     "year": "2025"
+  },
+  {
+    "id": "bassaer",
+    "name": "بصائر",
+    "description": "منصة قراءة رقمية حديثة ومتميزة تعرض كتاب 'بصائر في الكون والحياة والدين' للدكتور هيثم طلعت.",
+    "longDescription": "بصائر هي منصة قراءة رقمية حديثة ومصممة بشكل جميل باستخدام Next.js 15 App Router. تقوم بتحويل كتاب عربي كلاسيكي بصيغة PDF يتجاوز 900 صفحة إلى تطبيق ويب تفاعلي بسرعة فائقة، يتميز بطباعة عربية أصيلة باستخدام خط 'تجوال'. تعتمد مرحلة الاستخراج على Python وPyMuPDF لتحليل الكتاب وتقسيمه إلى فصول منظمة بصيغة Markdown. تقدم المنصة وضع قراءة ليلي/نهاري أنيق بنمت 'الرق والحبر'، وقائمة محتويات جانبية ثابتة، وتنقلاً سلساً بين الفصول لتجربة قراءة مثالية.",
+    "tech": ["Next.js 15", "TypeScript", "Tailwind CSS v4", "Python", "Markdown", "Arabic RTL"],
+    "github": "https://github.com/islamux/bassaer",
+    "demo": "https://bassaer.vercel.app",
+    "image": "/images/projects/bassaer.png",
+    "featured": true,
+    "year": "2025"
   }
 ]

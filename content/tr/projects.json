@@ -96,5 +96,17 @@
     "image": "/images/projects/new_muslims.png",
     "featured": true,
     "year": "2025"
+  },
+  {
+    "id": "bassaer",
+    "name": "Bassaer (بصائر)",
+    "description": "Arapça kitap 'Evren, Hayat ve Din Üzerine İçgörüler'i sergileyen modern ve premium bir dijital okuma platformu.",
+    "longDescription": "Bassaer, Next.js 15 App Router ile güzel tasarlanmış, modern bir dijital okuma platformudur. 900'den fazla sayfalık klasik bir Arapça PDF kitabını, Tajawal fontu ile güzel RTL tipografisi kullanan anlık yüklenen etkileşimli bir web uygulamasına dönüştürür. Python tabanlı çıkarma aşaması, kitabı yapılandırılmış Markdown bölümlerine ayrıştırmak ve segmentlere ayırmak için PyMuPDF kullanır. Web platformu 'Parşömen ve Mürekkep' temalı zarif aydınlık/karanlık mod, sabit bir kenar çubuğu içindekiler tablosu ve en iyi okuma deneyimi için akıcı sıralı gezinme sunar.",
+    "tech": ["Next.js 15", "TypeScript", "Tailwind CSS v4", "Python", "Markdown", "Arabic RTL"],
+    "github": "https://github.com/islamux/bassaer",
+    "demo": "https://bassaer.vercel.app",
+    "image": "/images/projects/bassaer.png",
+    "featured": true,
+    "year": "2025"
   }
 ]

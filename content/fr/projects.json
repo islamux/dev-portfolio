@@ -96,5 +96,17 @@
     "image": "/images/projects/new_muslims.png",
     "featured": true,
     "year": "2025"
+  },
+  {
+    "id": "bassaer",
+    "name": "Bassaer (بصائر)",
+    "description": "Une plate-forme de lecture numérique moderne et premium présentant le livre arabe 'Aperçus sur l'Univers, la Vie et la Religion'.",
+    "longDescription": "Bassaer est une plate-forme de lecture numérique moderne et magnifiquement conçue avec Next.js 15 App Router. Elle transforme un livre PDF arabe classique de plus de 900 pages en une application web interactive à chargement instantané, avec une belle typographie RTL utilisant la police Tajawal. La phase d'extraction en Python utilise PyMuPDF pour analyser et segmenter le livre en chapitres Markdown structurés. La plate-forme web propose un élégant mode clair/sombre 'Parchemin et Encre', une table des matières latérale fixe et une navigation séquentielle fluide pour une expérience de lecture ultime.",
+    "tech": ["Next.js 15", "TypeScript", "Tailwind CSS v4", "Python", "Markdown", "Arabic RTL"],
+    "github": "https://github.com/islamux/bassaer",
+    "demo": "https://bassaer.vercel.app",
+    "image": "/images/projects/bassaer.png",
+    "featured": true,
+    "year": "2025"
   }
 ]
