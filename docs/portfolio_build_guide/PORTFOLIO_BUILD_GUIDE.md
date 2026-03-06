@@ -96,7 +96,7 @@ Before diving into phases, understand this roadmap as a junior:
 | Phase 4 - i18n & RTL        | 2-3            | 16-24             | Intermediate-Advanced | ✅ Completed |
 | Phase 5 - API & Features    | 2-3            | 16-24             | Intermediate-Advanced | Pending      |
 | Phase 6 - PWA & Performance | 2-3            | 16-24             | Intermediate          | Pending      |
-| Phase 7 - Testing & Deploy  | 3-4            | 24-32             | Intermediate-Advanced | Pending      |
+| Phase 7 - Testing & Deploy  | 3-4            | 24-32             | Intermediate-Advanced | ✅ Completed |
 | **TOTAL**                   | **15-21 days** | **120-168 hours** | -                     | -            |
 
 ### Week 1-2: Foundation (Before Phase 0)
@@ -999,20 +999,20 @@ className = "bg-white dark:bg-gray-900 text-gray-900 dark:text-white";
      */
     export function getContentBySlug(
       slug: string,
-      locale: string = "en"
+      locale: string = "en",
     ): ContentData {
       try {
         const filePath = path.join(
           process.cwd(),
           "content",
           locale,
-          `${slug}.md`
+          `${slug}.md`,
         );
 
         // Check if file exists before reading
         if (!fs.existsSync(filePath)) {
           throw new Error(
-            `Content file not found: content/${locale}/${slug}.md`
+            `Content file not found: content/${locale}/${slug}.md`,
           );
         }
 
@@ -1044,7 +1044,7 @@ className = "bg-white dark:bg-gray-900 text-gray-900 dark:text-white";
      */
     export function getAllContent(
       directory: string,
-      locale: string = "en"
+      locale: string = "en",
     ): ContentData[] {
       const contentDir = path.join(process.cwd(), "content", locale, directory);
 
@@ -1086,7 +1086,7 @@ className = "bg-white dark:bg-gray-900 text-gray-900 dark:text-white";
           process.cwd(),
           "content",
           locale,
-          "projects.json"
+          "projects.json",
         );
 
         if (!fs.existsSync(filePath)) {
@@ -1095,7 +1095,7 @@ className = "bg-white dark:bg-gray-900 text-gray-900 dark:text-white";
             process.cwd(),
             "content",
             "en",
-            "projects.json"
+            "projects.json",
           );
 
           if (!fs.existsSync(fallbackPath)) {
@@ -1127,7 +1127,7 @@ className = "bg-white dark:bg-gray-900 text-gray-900 dark:text-white";
 
     export function getContentBySlugCached(
       slug: string,
-      locale: string = "en"
+      locale: string = "en",
     ): ContentData {
       const cacheKey = `${locale}-${slug}`;
 
@@ -1208,7 +1208,7 @@ className = "bg-white dark:bg-gray-900 text-gray-900 dark:text-white";
 
     export async function GET(
       request: NextRequest,
-      { params }: { params: { slug: string } }
+      { params }: { params: { slug: string } },
     ) {
       try {
         const locale = request.nextUrl.searchParams.get("locale") || "en";
@@ -1218,7 +1218,7 @@ className = "bg-white dark:bg-gray-900 text-gray-900 dark:text-white";
       } catch (error) {
         return NextResponse.json(
           { error: "Content not found" },
-          { status: 404 }
+          { status: 404 },
         );
       }
     }

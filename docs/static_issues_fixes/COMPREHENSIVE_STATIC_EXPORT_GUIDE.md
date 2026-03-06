@@ -41,7 +41,7 @@ This document combines three key resources into one comprehensive guide:
 **Framework:** Next.js 15+ with App Router
 **i18n Solution:** next-intl
 **Deployment Target:** Static hosting (requires `output: 'export'`)
-**Build Date:** December 2025
+**Build Date:** March 2026
 
 ### Technology Stack
 

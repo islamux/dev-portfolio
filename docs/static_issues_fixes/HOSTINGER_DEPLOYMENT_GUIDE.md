@@ -83,3 +83,8 @@ Hostinger uses Apache (LiteSpeed). Adding an `.htaccess` file helps handle 404 e
 3.  Upload the contents of the `out` directory to your Hostinger `public_html` (or the appropriate subdirectory).
 
 4.  Visit `https://islamux.me/en` and refresh. The 403 error should be resolved.
+
+---
+
+> [!NOTE]
+> **Update (March 7, 2026):** The project was successfully deployed to Hostinger using the steps outlined in this guide and the [Comprehensive Static Export Guide](./COMPREHENSIVE_STATIC_EXPORT_GUIDE.md). Routing and internationalization are confirmed working.
