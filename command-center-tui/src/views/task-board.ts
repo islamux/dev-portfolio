@@ -92,7 +92,7 @@ function renderFilterBar(parent: blessed.Widgets.BlessedElement, totalCount: num
 
   const parts = filters.map(f => {
     const isActive = activeFilter === f.type
-    const tag = isActive ? `{bold}{fg:${COLORS.accent.ansi}}[${f.key}:${f.label}]{/}` : `{fg:${COLORS.muted.ansi}}[${f.key}:${f.label}]{/}`
+    const tag = isActive ? `{bold}{ansi:${COLORS.accent.ansi}}[${f.key}:${f.label}]{/}` : `{ansi:${COLORS.muted.ansi}}[${f.key}:${f.label}]{/}`
     return tag
   })
 
@@ -130,7 +130,7 @@ function renderKanbanColumns(parent: blessed.Widgets.BlessedElement, milestone: 
     }
 
     const items = colTasks.map(t => {
-      const prio = `{fg:${col.color}}${t.priority}{/}`
+      const prio = `{ansi:${statusColor(col.id)}}${t.priority}{/}`
       const assignee = t.assignee ? ` {ansi:63}@${t.assignee}{/}` : ''
       const blocked = t.status === 'blocked' && t.blocked_reason
         ? `\n  {ansi:196}⊘ ${t.blocked_reason}{/}` : ''
@@ -234,7 +234,7 @@ function openDetailModal(parent: blessed.Widgets.BlessedElement, task: Subtask, 
   const lines: string[] = []
   lines.push(`{bold}${task.label}{/}`)
   lines.push('')
-  lines.push(`  Status: {fg:${statusColor(task.status)}}${task.status}{/}   Priority: ${task.priority}   Mode: ${task.execution_mode}`)
+  lines.push(`  Status: {ansi:${statusColor(task.status)}}${task.status}{/}   Priority: ${task.priority}   Mode: ${task.execution_mode}`)
   if (task.assignee) lines.push(`  Assignee: {ansi:63}${task.assignee}{/}`)
   if (task.blocked_reason) lines.push(`  Blocked: {ansi:196}${task.blocked_reason}{/}`)
   lines.push('')

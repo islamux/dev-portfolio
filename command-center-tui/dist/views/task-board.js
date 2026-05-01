@@ -75,7 +75,7 @@ function renderFilterBar(parent, totalCount, filteredCount) {
     ];
     const parts = filters.map(f => {
         const isActive = activeFilter === f.type;
-        const tag = isActive ? `{bold}{fg:${COLORS.accent.ansi}}[${f.key}:${f.label}]{/}` : `{fg:${COLORS.muted.ansi}}[${f.key}:${f.label}]{/}`;
+        const tag = isActive ? `{bold}{ansi:${COLORS.accent.ansi}}[${f.key}:${f.label}]{/}` : `{ansi:${COLORS.muted.ansi}}[${f.key}:${f.label}]{/}`;
         return tag;
     });
     blessed.box({
@@ -107,7 +107,7 @@ function renderKanbanColumns(parent, milestone, tasks) {
             return;
         }
         const items = colTasks.map(t => {
-            const prio = `{fg:${col.color}}${t.priority}{/}`;
+            const prio = `{ansi:${statusColor(col.id)}}${t.priority}{/}`;
             const assignee = t.assignee ? ` {ansi:63}@${t.assignee}{/}` : '';
             const blocked = t.status === 'blocked' && t.blocked_reason
                 ? `\n  {ansi:196}⊘ ${t.blocked_reason}{/}` : '';
