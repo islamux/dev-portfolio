@@ -208,7 +208,7 @@ function openDetailModal(parent, task, milestone) {
     const lines = [];
     lines.push(`{bold}${task.label}{/}`);
     lines.push('');
-    lines.push(`  Status: {fg:${statusColor(task.status)}}${task.status}{/}   Priority: ${task.priority}   Mode: ${task.execution_mode}`);
+    lines.push(`  Status: {ansi:${statusColor(task.status)}}${task.status}{/}   Priority: ${task.priority}   Mode: ${task.execution_mode}`);
     if (task.assignee)
         lines.push(`  Assignee: {ansi:63}${task.assignee}{/}`);
     if (task.blocked_reason)
