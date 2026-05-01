@@ -25,9 +25,9 @@ export function updateStatusBar(bar) {
     const counts = selectTaskCounts();
     const pct = counts.total > 0 ? Math.round((counts.done / counts.total) * 100) : 0;
     const scheduleStatus = state.tracker?.project.schedule_status ?? 'on_track';
-    const scheduleColor = scheduleStatus === 'behind' ? COLORS.behind.hex : COLORS.onTrack.hex;
-    const syncTag = state.synced ? '{fg:#22c55e}● Sync{/}' : '{fg:#ef4444}● Desync{/}';
-    const scheduleTag = `{fg:${scheduleColor}}${scheduleStatus.toUpperCase()}{/}`;
+    const scheduleColor = scheduleStatus === 'behind' ? COLORS.behind.ansi : COLORS.onTrack.ansi;
+    const syncTag = state.synced ? `{ansi:35}● Sync{/}` : `{ansi:196}● Desync{/}`;
+    const scheduleTag = `{ansi:${scheduleColor}}${scheduleStatus.toUpperCase()}{/}`;
     const left = ` WEEK ${week}${phase ? ` · ${phase}` : ''}`;
     const center = `${counts.done}/${counts.total} (${pct}%)`;
     const right = `${scheduleTag}  ${syncTag} `;

@@ -23,6 +23,8 @@ export declare const COLORS: {
         readonly hex: "#9B9BAA";
         readonly ansi: 247;
     };
+    readonly accentTag: "{ansi:63}";
+    readonly mutedTag: "{ansi:247}";
     readonly surface: {
         readonly hex: "#111118";
         readonly ansi: 233;

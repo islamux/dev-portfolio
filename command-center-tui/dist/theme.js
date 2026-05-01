@@ -5,6 +5,8 @@ export const COLORS = {
     behind: { hex: '#ef4444', ansi: 196 },
     review: { hex: '#f59e0b', ansi: 214 },
     muted: { hex: '#9B9BAA', ansi: 247 },
+    accentTag: `{ansi:63}`,
+    mutedTag: `{ansi:247}`,
     surface: { hex: '#111118', ansi: 233 },
     dark: { hex: '#0A0A10', ansi: 16 },
     border: { hex: '#1a1a2e', ansi: 234 },

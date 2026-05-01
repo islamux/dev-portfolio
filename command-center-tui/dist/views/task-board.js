@@ -56,8 +56,8 @@ function renderContextBar(parent, milestone, milestones) {
     const total = milestone.subtasks.length;
     const idx = state.selectedMilestoneIndex;
     const max = milestones.length - 1;
-    const navL = idx > 0 ? '{fg:#585CF0}[{/} ' : '  ';
-    const navR = idx < max ? ' {fg:#585CF0}]{/}' : '  ';
+    const navL = idx > 0 ? `{ansi:63}[{/} ` : '  ';
+    const navR = idx < max ? ` {ansi:63}]{/}` : '  ';
     const info = `{bold}[${done}/${total}]{/}  ${milestone.domain} · W${milestone.week} · {bold}${milestone.title}{/}`;
     blessed.box({
         parent,
@@ -75,7 +75,7 @@ function renderFilterBar(parent, totalCount, filteredCount) {
     ];
     const parts = filters.map(f => {
         const isActive = activeFilter === f.type;
-        const tag = isActive ? `{bold}{fg:#585CF0}[${f.key}:${f.label}]{/}` : `{fg:#9B9BAA}[${f.key}:${f.label}]{/}`;
+        const tag = isActive ? `{bold}{fg:${COLORS.accent.ansi}}[${f.key}:${f.label}]{/}` : `{fg:${COLORS.muted.ansi}}[${f.key}:${f.label}]{/}`;
         return tag;
     });
     blessed.box({
@@ -108,9 +108,9 @@ function renderKanbanColumns(parent, milestone, tasks) {
         }
         const items = colTasks.map(t => {
             const prio = `{fg:${col.color}}${t.priority}{/}`;
-            const assignee = t.assignee ? ` {fg:#585CF0}@${t.assignee}{/}` : '';
+            const assignee = t.assignee ? ` {ansi:63}@${t.assignee}{/}` : '';
             const blocked = t.status === 'blocked' && t.blocked_reason
-                ? `\n  {fg:#ef4444}⊘ ${t.blocked_reason}{/}` : '';
+                ? `\n  {ansi:196}⊘ ${t.blocked_reason}{/}` : '';
             return `${prio} ${t.label}${assignee}${blocked}`;
         });
         const list = blessed.list({
@@ -210,9 +210,9 @@ function openDetailModal(parent, task, milestone) {
     lines.push('');
     lines.push(`  Status: {fg:${statusColor(task.status)}}${task.status}{/}   Priority: ${task.priority}   Mode: ${task.execution_mode}`);
     if (task.assignee)
-        lines.push(`  Assignee: {fg:#585CF0}${task.assignee}{/}`);
+        lines.push(`  Assignee: {ansi:63}${task.assignee}{/}`);
     if (task.blocked_reason)
-        lines.push(`  Blocked: {fg:#ef4444}${task.blocked_reason}{/}`);
+        lines.push(`  Blocked: {ansi:196}${task.blocked_reason}{/}`);
     lines.push('');
     if (task.acceptance_criteria.length > 0) {
         lines.push('{bold}Acceptance Criteria:{/}');
@@ -237,7 +237,7 @@ function openDetailModal(parent, task, milestone) {
     blessed.box({
         parent: detailModal,
         bottom: 0, left: 0, right: 0, height: 1,
-        content: ' {fg:#9B9BAA}[s:Status] [p:Priority] [ESC:Close]{/}',
+        content: ' {ansi:247}[s:Status] [p:Priority] [ESC:Close]{/}',
         style: { bg: COLORS.border.hex },
         tags: true,
     });
