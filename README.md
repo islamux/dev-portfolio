@@ -87,15 +87,15 @@ dev_portfolio/
 ├── public/                # Static assets
 │   └── images/           # Images and media
 ├── docs/                  # 📚 Documentation
-│   ├── PORTFOLIO_BUILD_GUIDE.md  # Complete build guide
-│   ├── PHASE_1_EXECUTION_PLAN.md # Repo + baseline setup
-│   ├── PHASE_2_EXECUTION_PLAN.md # Layout & design system
-│   ├── PHASE_3_EXECUTION_PLAN.md # Pages & content
-│   ├── PHASE_4_EXECUTION_PLAN.md # i18n & RTL support
-│   ├── PHASE_5_EXECUTION_PLAN.md # API & features
-│   ├── PHASE_6_EXECUTION_PLAN.md # PWA & performance
-│   └── PHASE_7_EXECUTION_PLAN.md # Testing & deployment
-└── .claude_init.md        # AI assistant context
+│   ├── README.md          # Documentation index
+│   ├── project/           # Command center, AI rules, workflow
+│   ├── build/             # Portfolio build guide and phase plans
+│   ├── deployment/        # Static export and Hostinger guides
+│   ├── architecture/      # Refactoring plans and summaries
+│   ├── learning/          # Tutorials and references
+│   └── troubleshooting/   # Issue logs and fixes
+├── AGENTS.md              # AI agent guidelines
+└── CLAUDE.md              # Claude config
 ```
 
 ## 📜 Available Scripts
@@ -134,7 +134,7 @@ This script will:
 2. Build static version with `DEPLOY_TARGET=static`
 3. Provide instructions for local testing and Hostinger deployment
 
-**See [docs/STATIC_VS_SSR_ANALYSIS.md](./docs/STATIC_VS_SSR_ANALYSIS.md) for complete workflow documentation.**
+**See [STATIC_VS_SSR_ANALYSIS.md](./docs/deployment/static-export/STATIC_VS_SSR_ANALYSIS.md) for complete workflow documentation.**
 
 ## 🔧 Tech Stack
 
@@ -215,11 +215,13 @@ Set these in your deployment platform:
 
 Comprehensive documentation located in `/docs`:
 
-- **[PORTFOLIO_BUILD_GUIDE.md](./docs/PORTFOLIO_BUILD_GUIDE.md)** - Complete build guide with best practices
-- **[PHASE_1_EXECUTION_PLAN.md](./docs/PHASE_1_EXECUTION_PLAN.md)** - Repo + Baseline setup
-- **[PHASE_2_EXECUTION_PLAN.md](./docs/PHASE_2_EXECUTION_PLAN.md)** - Layout & Design System
-- **[PHASE_3_EXECUTION_PLAN.md](./docs/PHASE_3_EXECUTION_PLAN.md)** - Pages & Content
-- **[PHASE_4-7_EXECUTION_PLANS.md](./docs/)** - i18n, API, PWA, Testing & Deploy
+- **[Documentation index](./docs/README.md)** - Start here for the full docs map
+- **[PORTFOLIO_BUILD_GUIDE.md](./docs/build/PORTFOLIO_BUILD_GUIDE.md)** - Complete build guide with best practices
+- **[PHASE_1_EXECUTION_PLAN.md](./docs/build/PHASE_1_EXECUTION_PLAN.md)** - Repo + Baseline setup
+- **[PHASE_2_EXECUTION_PLAN.md](./docs/build/PHASE_2_EXECUTION_PLAN.md)** - Layout & Design System
+- **[PHASE_3_EXECUTION_PLAN.md](./docs/build/PHASE_3_EXECUTION_PLAN.md)** - Pages & Content
+- **[Static export docs](./docs/deployment/static-export/COMPREHENSIVE_STATIC_EXPORT_GUIDE.md)** - Hostinger/static deployment
+- **[Architecture docs](./docs/architecture/SOC_REFACTORING_PLAN.md)** - Refactoring plans and summaries
 
 Each execution plan includes:
 
@@ -232,7 +234,7 @@ Each execution plan includes:
 
 ### Next.js 16.0.3 Font Loading
 
-There's a known bug with `next/font/google` in Next.js 16.0.3. This project uses CSS `@font-face` as a workaround. See [docs/PHASE_2_EXECUTION_PLAN.md](./docs/PHASE_2_EXECUTION_PLAN.md#critical-nextjs-1603-turbopack-font-bug) for details.
+There's a known bug with `next/font/google` in Next.js 16.0.3. This project uses CSS `@font-face` as a workaround. See [PHASE_2_EXECUTION_PLAN.md](./docs/build/PHASE_2_EXECUTION_PLAN.md#critical-nextjs-1603-turbopack-font-bug) for details.
 
 ## ✨ Recent Updates
 

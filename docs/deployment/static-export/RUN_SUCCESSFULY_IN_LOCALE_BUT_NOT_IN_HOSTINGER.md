@@ -8,7 +8,7 @@ Create a comprehensive markdown troubleshooting guide for Hostinger deployment i
 
 ## File to Create
 
-- **Path**: `docs/static_issues_fixes/HOSTINGER_STATIC_EXPORT_ROUTING_FIX.md`
+- **Path**: `docs/deployment/static-export/HOSTINGER_STATIC_EXPORT_ROUTING_FIX.md`
 - **Purpose**: Document the routing conflict between `next.config.ts` and `src/i18n/navigation.ts` and provide solutions
 
 ## Problem Summary
@@ -21,7 +21,7 @@ Create a comprehensive markdown troubleshooting guide for Hostinger deployment i
 
 - **[Comprehensive Static Export Guide](./COMPREHENSIVE_STATIC_EXPORT_GUIDE.md)** - Complete guide to static exports with i18n
 - **[Dual Static/SSR Compatibility Guide](./DUAL_STATIC_SSR_COMPATIBILITY_GUIDE.md)** - Best practices for maintaining both modes
-- **[Hostinger Fix Steps](./HOSTINGER_FIX_STEPS.md)** - Quick step-by-step deployment guide
+- **[Hostinger Deployment Guide](./HOSTINGER_DEPLOYMENT_GUIDE.md)** - Quick step-by-step deployment guide
 - **[Static vs SSR Analysis](./STATIC_VS_SSR_ANALYSIS.md)** - Deep dive into configuration conflicts
 
 ## Content Outline
@@ -214,7 +214,7 @@ cd out && node server.js
 
 ## Execution Steps
 
-1. Create `docs/static_issues_fixes/HOSTINGER_STATIC_EXPORT_ROUTING_FIX.md` with the outlined content
+1. Create `docs/deployment/static-export/HOSTINGER_STATIC_EXPORT_ROUTING_FIX.md` with the outlined content
 2. Include code examples for each solution option
 3. Add clear step-by-step instructions for deployment
 4. Include troubleshooting checklist
@@ -233,7 +233,7 @@ cd out && node server.js
 
 - **[Comprehensive Static Export Guide](./COMPREHENSIVE_STATIC_EXPORT_GUIDE.md)** - Complete guide to static exports with i18n
 - **[Dual Static/SSR Compatibility Guide](./DUAL_STATIC_SSR_COMPATIBILITY_GUIDE.md)** - Best practices for maintaining both modes
-- **[Hostinger Fix Steps](./HOSTINGER_FIX_STEPS.md)** - Quick step-by-step deployment guide
+- **[Hostinger Deployment Guide](./HOSTINGER_DEPLOYMENT_GUIDE.md)** - Quick step-by-step deployment guide
 - **[Static vs SSR Analysis](./STATIC_VS_SSR_ANALYSIS.md)** - Deep dive into configuration conflicts
 
 ## Quick Reference: Build Commands After Fix

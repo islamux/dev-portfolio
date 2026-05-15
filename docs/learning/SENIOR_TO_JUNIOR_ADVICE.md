@@ -320,7 +320,7 @@ pnpm dev
 
 ## Screenshots
 
-![Screenshot](./screenshot.png)
+![Screenshot](../../public/images/projects/portfolio.png)
 
 ## Live Demo
 

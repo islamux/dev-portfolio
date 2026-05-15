@@ -42,3 +42,6 @@ next-env.d.ts
 node_modules/
 command-center-mcp/node_modules/
 command-center-tui/node_modules/
+
+# opencode config
+.opencode/

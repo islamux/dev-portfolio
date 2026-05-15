@@ -21,7 +21,7 @@ pnpm lint                    # ESLint check
 | [PROJECT_CONTEXT.md](./PROJECT_CONTEXT.md) | Project purpose, tech stack, current state |
 | [PROJECT_ARCHITECTURE.md](./PROJECT_ARCHITECTURE.md) | Codebase structure, patterns, technical debt |
 | [PROJECT_WORKFLOW.md](./PROJECT_WORKFLOW.md) | Dev workflows, checklists, release process |
-| [PROJECT_TRACKER.json](./PROJECT_TRACKER.json) | Milestones, tasks, agent logs |
+| [project-tracker.json](../../project-tracker.json) | Milestones, tasks, agent logs |
 | [AI_AGENT_RULES.md](./AI_AGENT_RULES.md) | Rules for AI-assisted development |
 | [AI_HANDOFF.md](./AI_HANDOFF.md) | Context for agent switching |
 
