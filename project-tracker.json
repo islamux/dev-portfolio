@@ -325,15 +325,17 @@
       "actual_start": "2026-01-01",
       "actual_end": null,
       "drift_days": 0,
-      "is_key_milestone": false,
-      "key_milestone_label": null,
+      "is_key_milestone": true,
+      "key_milestone_label": "Bugs Fixed, Code Cleaned",
       "dependencies": [
         "m4"
       ],
       "notes": [
         "Fix known bugs",
         "Remove dead code",
-        "Improve i18n coverage"
+        "Fix CSS/SVG rendering bugs",
+        "TypeScript strict compliance",
+        "i18n string coverage"
       ],
       "subtasks": [
         {
@@ -348,13 +350,11 @@
           "completed_by": null,
           "priority": "high",
           "notes": "Should be generateMetadata (capital M)",
-          "prompt": "Fix the typo in src/app/[locale]/page.tsx: generateMetaData -> generateMetadata",
+          "prompt": null,
           "context_files": [
             "src/app/[locale]/page.tsx"
           ],
-          "reference_docs": [
-            "PROJECT_ARCHITECTURE.md"
-          ],
+          "reference_docs": [],
           "acceptance_criteria": [
             "Metadata generates correctly",
             "pnpm build succeeds"
@@ -378,14 +378,12 @@
           "completed_by": null,
           "priority": "high",
           "notes": "Should use siteConfig.url not siteConfig.name",
-          "prompt": "In src/app/[locale]/page.tsx line 32, change siteConfig.name to siteConfig.url for openGraph.url",
+          "prompt": null,
           "context_files": [
             "src/app/[locale]/page.tsx",
             "src/app/metadata.ts"
           ],
-          "reference_docs": [
-            "PROJECT_ARCHITECTURE.md"
-          ],
+          "reference_docs": [],
           "acceptance_criteria": [
             "openGraph.url correct",
             "Metadata validates"
@@ -409,15 +407,13 @@
           "completed_by": null,
           "priority": "medium",
           "notes": "generateStaticParams.ts, guards.ts, types/project.ts",
-          "prompt": "Delete dead code files: src/app/[locale]/generateStaticParams.ts, src/i18n/guards.ts, src/types/project.ts",
+          "prompt": null,
           "context_files": [
             "src/app/[locale]/generateStaticParams.ts",
             "src/i18n/guards.ts",
             "src/types/project.ts"
           ],
-          "reference_docs": [
-            "PROJECT_ARCHITECTURE.md"
-          ],
+          "reference_docs": [],
           "acceptance_criteria": [
             "Files deleted",
             "pnpm build succeeds",
@@ -432,7 +428,7 @@
         },
         {
           "id": "m5_004",
-          "label": "Fix CSS class typos",
+          "label": "Fix CSS/SVG class typos",
           "status": "todo",
           "done": false,
           "assignee": null,
@@ -441,18 +437,18 @@
           "completed_at": null,
           "completed_by": null,
           "priority": "medium",
-          "notes": "md:py24 -> md:py-24, text-gray-900dar -> text-gray-900 dark:text-gray-100",
-          "prompt": "Fix CSS typos in page.tsx and ContactForm.tsx",
+          "notes": "md:py24 -> md:py-24, text-gray-900dar -> text-gray-900 dark:text-gray-100, SVG M19 91-7 -> M19 9l-7",
+          "prompt": null,
           "context_files": [
             "src/app/[locale]/page.tsx",
-            "src/components/sections/ContactForm.tsx"
+            "src/components/sections/ContactForm.tsx",
+            "src/components/sections/LanguagesSwitcher.tsx"
           ],
-          "reference_docs": [
-            "PROJECT_ARCHITECTURE.md"
-          ],
+          "reference_docs": [],
           "acceptance_criteria": [
             "All CSS classes valid",
-            "Visual check passes"
+            "SVG renders correctly",
+            "pnpm build succeeds"
           ],
           "constraints": [],
           "agent_target": "opencode",
@@ -473,7 +469,7 @@
           "completed_by": null,
           "priority": "low",
           "notes": "API route only logs to console, needs email sending",
-          "prompt": "Implement email sending in src/api/contact/route.ts using a service like Nodemailer or Resend",
+          "prompt": null,
           "context_files": [
             "src/api/contact/route.ts",
             "src/hooks/useContactForm.ts"
@@ -489,6 +485,367 @@
           "agent_target": null,
           "execution_mode": "human",
           "depends_on": [],
+          "last_run_id": null,
+          "builder_prompt": null
+        },
+        {
+          "id": "m5_006",
+          "label": "Fix messages?.home -> messages?.projects in projects page",
+          "status": "todo",
+          "done": false,
+          "assignee": null,
+          "blocked_by": null,
+          "blocked_reason": null,
+          "completed_at": null,
+          "completed_by": null,
+          "priority": "high",
+          "notes": "Projects page reads home translations instead of its own",
+          "prompt": null,
+          "context_files": [
+            "src/app/[locale]/projects/page.tsx"
+          ],
+          "reference_docs": [],
+          "acceptance_criteria": [
+            "Projects page uses correct translations",
+            "pnpm build succeeds"
+          ],
+          "constraints": [],
+          "agent_target": "opencode",
+          "execution_mode": "agent",
+          "depends_on": [],
+          "last_run_id": null,
+          "builder_prompt": null
+        },
+        {
+          "id": "m5_007",
+          "label": "Fix Contact-Type header typo in useContactForm",
+          "status": "todo",
+          "done": false,
+          "assignee": null,
+          "blocked_by": null,
+          "blocked_reason": null,
+          "completed_at": null,
+          "completed_by": null,
+          "priority": "high",
+          "notes": "\"Contact-Type\" should be \"Content-Type\"",
+          "prompt": null,
+          "context_files": [
+            "src/hooks/useContactForm.ts"
+          ],
+          "reference_docs": [],
+          "acceptance_criteria": [
+            "Correct Content-Type header sent",
+            "pnpm build succeeds"
+          ],
+          "constraints": [],
+          "agent_target": "opencode",
+          "execution_mode": "agent",
+          "depends_on": [],
+          "last_run_id": null,
+          "builder_prompt": null
+        },
+        {
+          "id": "m5_008",
+          "label": "Fix comment typos across codebase (Feactured, dosn't, etc.)",
+          "status": "todo",
+          "done": false,
+          "assignee": null,
+          "blocked_by": null,
+          "blocked_reason": null,
+          "completed_at": null,
+          "completed_by": null,
+          "priority": "medium",
+          "notes": "Feactured -> Featured, dosn't -> doesn't, sepecifi -> specific, translaiton -> translation",
+          "prompt": null,
+          "context_files": [
+            "src/app/[locale]/page.tsx"
+          ],
+          "reference_docs": [],
+          "acceptance_criteria": [
+            "No comment typos in source files",
+            "pnpm lint passes"
+          ],
+          "constraints": [],
+          "agent_target": "opencode",
+          "execution_mode": "agent",
+          "depends_on": [],
+          "last_run_id": null,
+          "builder_prompt": null
+        },
+        {
+          "id": "m5_009",
+          "label": "Remove unused images.json, middleware.ts.disabled, getAllContent()",
+          "status": "todo",
+          "done": false,
+          "assignee": null,
+          "blocked_by": null,
+          "blocked_reason": null,
+          "completed_at": null,
+          "completed_by": null,
+          "priority": "medium",
+          "notes": "Dead code cleanup: messages/images.json, middleware.ts.disabled, lib/content.ts getAllContent()",
+          "prompt": null,
+          "context_files": [
+            "src/messages/images.json",
+            "src/middleware.ts.disabled",
+            "src/lib/content.ts"
+          ],
+          "reference_docs": [],
+          "acceptance_criteria": [
+            "Files removed",
+            "No imports broken",
+            "pnpm build succeeds"
+          ],
+          "constraints": [],
+          "agent_target": "opencode",
+          "execution_mode": "agent",
+          "depends_on": [
+            "m5_003"
+          ],
+          "last_run_id": null,
+          "builder_prompt": null
+        },
+        {
+          "id": "m5_010",
+          "label": "Render SiteFooter in layout or delete component",
+          "status": "todo",
+          "done": false,
+          "assignee": null,
+          "blocked_by": null,
+          "blocked_reason": null,
+          "completed_at": null,
+          "completed_by": null,
+          "priority": "medium",
+          "notes": "SiteFooter component exists but is never rendered anywhere",
+          "prompt": null,
+          "context_files": [
+            "src/components/sections/SiteFooter.tsx",
+            "src/app/[locale]/layout.tsx"
+          ],
+          "reference_docs": [],
+          "acceptance_criteria": [
+            "Footer renders on pages or removed cleanly",
+            "pnpm build succeeds"
+          ],
+          "constraints": [],
+          "agent_target": "opencode",
+          "execution_mode": "agent",
+          "depends_on": [],
+          "last_run_id": null,
+          "builder_prompt": null
+        },
+        {
+          "id": "m5_011",
+          "label": "Replace any types with proper types (4 files)",
+          "status": "todo",
+          "done": false,
+          "assignee": null,
+          "blocked_by": null,
+          "blocked_reason": null,
+          "completed_at": null,
+          "completed_by": null,
+          "priority": "medium",
+          "notes": "any used for translations in page.tsx, projects/page.tsx, about/page.tsx, projects/[id]/page.tsx",
+          "prompt": null,
+          "context_files": [
+            "src/app/[locale]/page.tsx",
+            "src/app/[locale]/projects/page.tsx",
+            "src/app/[locale]/about/page.tsx",
+            "src/app/[locale]/projects/[id]/page.tsx"
+          ],
+          "reference_docs": [],
+          "acceptance_criteria": [
+            "No any type usage in page files",
+            "pnpm build succeeds"
+          ],
+          "constraints": [],
+          "agent_target": "opencode",
+          "execution_mode": "agent",
+          "depends_on": [],
+          "last_run_id": null,
+          "builder_prompt": null
+        },
+        {
+          "id": "m5_012",
+          "label": "Consolidate duplicate NavLink interface into types/",
+          "status": "todo",
+          "done": false,
+          "assignee": null,
+          "blocked_by": null,
+          "blocked_reason": null,
+          "completed_at": null,
+          "completed_by": null,
+          "priority": "medium",
+          "notes": "NavLink interface duplicated in DesktopNavigation.tsx and MobileNavigation.tsx",
+          "prompt": null,
+          "context_files": [
+            "src/components/sections/DesktopNavigation.tsx",
+            "src/components/sections/MobileNavigation.tsx",
+            "src/types/content.ts"
+          ],
+          "reference_docs": [],
+          "acceptance_criteria": [
+            "Single NavLink definition in types/",
+            "pnpm build succeeds"
+          ],
+          "constraints": [],
+          "agent_target": "opencode",
+          "execution_mode": "agent",
+          "depends_on": [],
+          "last_run_id": null,
+          "builder_prompt": null
+        },
+        {
+          "id": "m5_013",
+          "label": "Consolidate translation loading into shared utility",
+          "status": "todo",
+          "done": false,
+          "assignee": null,
+          "blocked_by": null,
+          "blocked_reason": null,
+          "completed_at": null,
+          "completed_by": null,
+          "priority": "medium",
+          "notes": "Same try/catch import block duplicated in page.tsx, projects/page.tsx, about/page.tsx",
+          "prompt": null,
+          "context_files": [
+            "src/app/[locale]/page.tsx",
+            "src/app/[locale]/projects/page.tsx",
+            "src/app/[locale]/about/page.tsx",
+            "src/lib/content.ts"
+          ],
+          "reference_docs": [],
+          "acceptance_criteria": [
+            "Single utility for loading translations",
+            "All pages use the utility",
+            "pnpm build succeeds"
+          ],
+          "constraints": [],
+          "agent_target": "opencode",
+          "execution_mode": "agent",
+          "depends_on": [
+            "m5_011"
+          ],
+          "last_run_id": null,
+          "builder_prompt": null
+        },
+        {
+          "id": "m5_014",
+          "label": "Consolidate RTL font-family CSS in globals.css",
+          "status": "todo",
+          "done": false,
+          "assignee": null,
+          "blocked_by": null,
+          "blocked_reason": null,
+          "completed_at": null,
+          "completed_by": null,
+          "priority": "medium",
+          "notes": "Font-family repeated ~10 times for Arabic RTL, consolidate into single rule",
+          "prompt": null,
+          "context_files": [
+            "src/app/globals.css"
+          ],
+          "reference_docs": [],
+          "acceptance_criteria": [
+            "No duplicate font-family declarations",
+            "Arabic RTL still renders correctly",
+            "pnpm build succeeds"
+          ],
+          "constraints": [],
+          "agent_target": "opencode",
+          "execution_mode": "agent",
+          "depends_on": [],
+          "last_run_id": null,
+          "builder_prompt": null
+        },
+        {
+          "id": "m5_015",
+          "label": "Fix home /about markdown link to be locale-prefixed",
+          "status": "todo",
+          "done": false,
+          "assignee": null,
+          "blocked_by": null,
+          "blocked_reason": null,
+          "completed_at": null,
+          "completed_by": null,
+          "priority": "low",
+          "notes": "content/en/home.md links to /about instead of /en/about",
+          "prompt": null,
+          "context_files": [
+            "content/en/home.md"
+          ],
+          "reference_docs": [],
+          "acceptance_criteria": [
+            "Link includes locale prefix",
+            "Navigation works from home page"
+          ],
+          "constraints": [],
+          "agent_target": "opencode",
+          "execution_mode": "agent",
+          "depends_on": [],
+          "last_run_id": null,
+          "builder_prompt": null
+        },
+        {
+          "id": "m5_016",
+          "label": "Add clsx/cn utility for className merging",
+          "status": "todo",
+          "done": false,
+          "assignee": null,
+          "blocked_by": null,
+          "blocked_reason": null,
+          "completed_at": null,
+          "completed_by": null,
+          "priority": "low",
+          "notes": "Add clsx dependency and create cn() utility for conditional className merging",
+          "prompt": null,
+          "context_files": [
+            "package.json",
+            "src/lib/utils.ts"
+          ],
+          "reference_docs": [],
+          "acceptance_criteria": [
+            "clsx installed",
+            "cn() exported from src/lib/utils.ts",
+            "pnpm build succeeds"
+          ],
+          "constraints": [],
+          "agent_target": "opencode",
+          "execution_mode": "agent",
+          "depends_on": [],
+          "last_run_id": null,
+          "builder_prompt": null
+        },
+        {
+          "id": "m5_017",
+          "label": "Translate hardcoded English strings in contact page",
+          "status": "todo",
+          "done": false,
+          "assignee": null,
+          "blocked_by": null,
+          "blocked_reason": null,
+          "completed_at": null,
+          "completed_by": null,
+          "priority": "low",
+          "notes": "Contact form labels, placeholders, filter buttons still hardcoded in English",
+          "prompt": null,
+          "context_files": [
+            "src/components/sections/ContactForm.tsx",
+            "src/components/sections/ProjectsList.tsx",
+            "src/messages/"
+          ],
+          "reference_docs": [],
+          "acceptance_criteria": [
+            "All UI strings reference translations",
+            "All 5 locales updated",
+            "pnpm build succeeds"
+          ],
+          "constraints": [],
+          "agent_target": "opencode",
+          "execution_mode": "agent",
+          "depends_on": [
+            "m5_006"
+          ],
           "last_run_id": null,
           "builder_prompt": null
         }
@@ -822,6 +1179,20 @@
         "colors",
         "blessed",
         "wip"
+      ]
+    },
+    {
+      "id": "log_1746200000_plan_bugs",
+      "agent_id": "opencode",
+      "action": "plan_bug_fixes",
+      "target_type": "project",
+      "target_id": "fix/bugs-and-code-quality",
+      "description": "Expanded m5 milestone with 17 subtasks across 5 groups: actual bugs, CSS/SVG, dead code, TS refactoring, i18n enhancements",
+      "timestamp": "2026-05-15T12:00:00Z",
+      "tags": [
+        "planning",
+        "bugs",
+        "quality"
       ]
     }
   ],
