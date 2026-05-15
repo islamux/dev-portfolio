@@ -12,7 +12,21 @@
     "build:static:full": "pnpm build:clean && pnpm build:static",
     "serve:static": "pnpm dlx serve out",
     "test:static": "pnpm build:static:full && pnpm serve:static",
-    "lint": "eslint"
+    "lint": "eslint",
+    "ccui": "cd command-center && pnpm ccui",
+    "cc:status": "cd command-center && pnpm cc:status",
+    "cc:list": "cd command-center && pnpm cc:list",
+    "cc:start": "cd command-center && pnpm cc:start",
+    "cc:complete": "cd command-center && pnpm _cc complete_task",
+    "cc:approve": "cd command-center && pnpm _cc approve_task",
+    "cc:task": "cd command-center && pnpm _cc get_task_context",
+    "cc:mstone": "cd command-center && pnpm _cc get_milestone_overview",
+    "cc:activity": "cd command-center && pnpm _cc get_activity_feed",
+    "cc:agents": "cd command-center && pnpm _cc list_agents",
+    "cc:block": "cd command-center && pnpm _cc block_task",
+    "cc:unblock": "cd command-center && pnpm _cc unblock_task",
+    "cc:activate": "cd command-center && pnpm _cc activate_milestone",
+    "cc:complete-milestone": "cd command-center && pnpm _cc complete_milestone"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
