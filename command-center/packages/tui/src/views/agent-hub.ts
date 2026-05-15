@@ -33,13 +33,13 @@ export function createAgentHub(screen: Widgets.Screen, state: TrackerState | nul
       lines.push('{bold} REGISTERED AGENTS{/}')
       lines.push('─'.repeat(60))
       for (const a of agents) {
-        const status = a.status === 'active' ? '{green-fg}●{/}' : '{muted}○{/}'
-        lines.push(`  ${status} {bold}${a.name}{/} {muted}(${a.id}){/}`)
+        const status = a.status === 'active' ? '{green-fg}●{/}' : '{#6a6a6a-fg}○{/}'
+        lines.push(`  ${status} {bold}${a.name}{/} {#6a6a6a-fg}(${a.id}){/}`)
         lines.push(`    Type: ${a.type}  Permissions: ${a.permissions.join(', ')}  Actions: ${a.session_action_count}`)
         lines.push('')
       }
     } else {
-      lines.push('{muted}  No agents registered{/}')
+      lines.push('{#6a6a6a-fg}  No agents registered{/}')
       lines.push('')
     }
 
@@ -55,12 +55,12 @@ export function createAgentHub(screen: Widgets.Screen, state: TrackerState | nul
         lines.push(`{bold}  ${entry.date}{/}`)
       }
       const text = entry.event || entry.action || ''
-      const agent = entry.agent ? ` {muted}[${entry.agent}]{/}` : ''
+      const agent = entry.agent ? ` {#6a6a6a-fg}[${entry.agent}]{/}` : ''
       lines.push(`    ${text}${agent}`)
     }
 
     if (log.length === 0) {
-      lines.push('{muted}  No activity logged{/}')
+      lines.push('{#6a6a6a-fg}  No activity logged{/}')
     }
 
     box.setContent(lines.join('\n'))

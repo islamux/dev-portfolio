@@ -686,13 +686,13 @@
           {
             "id": "m7_005",
             "label": "Fix TUI color rendering (blessed tags)",
-            "status": "in_progress",
-            "done": false,
+            "status": "done",
+            "done": true,
             "assignee": "opencode",
             "blocked_by": null,
             "blocked_reason": null,
-            "completed_at": null,
-            "completed_by": null,
+            "completed_at": "2026-05-15T17:13:02Z",
+            "completed_by": "opencode",
             "priority": "high",
             "notes": "blessed uses {38;5;NNN} format not {fg:#RRGGBB}. Fixed task-board, status-bar, agent-hub, calendar, swim-lane. Some parts still showing raw tags.",
             "prompt": "Find remaining {fg:#} or broken color tags in TUI views, replace with {38;5;NNN} format. Also check if style properties using hex values cause issues.",
@@ -1225,6 +1225,21 @@
         "schema",
         "tui",
         "fix"
+      ]
+    },
+    {
+      "id": "log_1778854382_tui_colors",
+      "agent_id": "opencode",
+      "action": "fix_tui_colors",
+      "target_type": "component",
+      "target_id": "command-center-tui",
+      "description": "Replaced all 15+ invalid {muted} tags with valid blessed {#6a6a6a-fg} tags across all TUI views (task-board, swim-lane, agent-hub, calendar, status-bar)",
+      "timestamp": "2026-05-15T17:13:02Z",
+      "tags": [
+        "tui",
+        "colors",
+        "blessed",
+        "done"
       ]
     }
   ],
