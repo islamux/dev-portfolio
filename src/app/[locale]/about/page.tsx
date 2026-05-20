@@ -4,6 +4,7 @@ import { getContentBySlug } from "@/lib/content";
 import Container from '@/components/ui/Container';
 import { MarkdownContent } from '@/components/ui/MarkdownContent';
 import { siteConfig } from '@/app/metadata';
+import type { ContentFrontmatter } from '@/types/content';
 
 interface AboutPageProps {
   params: Promise<{ locale: string }>;
@@ -27,7 +28,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  let frontmatter: any = { title: "About", description: "About me" };
+  let frontmatter: ContentFrontmatter = { title: "About", description: "About me" };
   let content: string = "About me content";
 
   try {

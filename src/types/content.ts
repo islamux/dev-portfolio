@@ -28,6 +28,46 @@ export interface Project {
   year?: string;
 }
 
+export interface NavLink {
+  href: string;
+  label: string;
+  key: string;
+}
+
+export interface HomeTranslations {
+  hero?: { cta?: { projects?: string; contact?: string } };
+  featured?: { title?: string; viewAll?: string; viewAllEnd?: string };
+  card?: { code?: string; demo?: string };
+}
+
+export interface ProjectsTranslations {
+  title?: string;
+  description?: string;
+  card?: { code?: string; demo?: string };
+}
+
+export interface ContactFormTranslations {
+  name?: string;
+  email?: string;
+  message?: string;
+  submit?: string;
+  sending?: string;
+  success?: string;
+  error?: string;
+}
+
+export interface ContactPageTranslations {
+  title?: string;
+  description?: string;
+  form?: ContactFormTranslations;
+  other?: { title?: string };
+}
+
+export interface ProjectFilterTranslations {
+  all?: string;
+  noResults?: string;
+}
+
 export interface ContactFormData {
   name: string;
   email: string;

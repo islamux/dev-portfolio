@@ -21,9 +21,29 @@
   "projects": {
     "title": "Projeler",
     "description": "Çalışmalarım ve katkılarımın bir koleksiyonu",
+    "filter": {
+      "all": "Tümü",
+      "noResults": "{tech} ile proje bulunamadı"
+    },
     "card": {
       "code": "Kod",
       "demo": "Tam Proje (Açık Kaynak)"
+    }
+  },
+  "contact": {
+    "title": "İletişim",
+    "description": "Aklınızda bir proje mi var? Konuşalım.",
+    "form": {
+      "name": "İsim",
+      "email": "E-posta",
+      "message": "Mesaj",
+      "submit": "Mesaj Gönder",
+      "sending": "Gönderiliyor...",
+      "success": "Mesaj başarıyla gönderildi! En kısa sürede size döneceğim.",
+      "error": "Mesaj gönderilemedi. Lütfen tekrar deneyin."
+    },
+    "other": {
+      "title": "Benimle İletişime Geçmenin Diğer Yolları"
     }
   }
 }

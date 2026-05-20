@@ -2,6 +2,8 @@ import "../globals.css";
 import { SkipToContent } from "@/components/ui/SkipToContent";
 import { Providers } from "../providers";
 import { SiteHeader } from "@/components/sections/SiteHeader";
+import { SiteFooter } from "@/components/sections/SiteFooter";
+import { socialLinks } from '@/data/socialLinks';
 import { isRTL, locales, Locale } from "@/i18n/config";
 import { NextIntlClientProvider } from "next-intl";
 import { setRequestLocale } from 'next-intl/server';
@@ -53,6 +55,7 @@ export default async function LocaleLayout(
               <main id="main-content" className="grow">
                 {children}
               </main>
+              <SiteFooter socialLinks={socialLinks} locale={locale} />
             </Providers>
           </NextIntlClientProvider>
         ) : (
@@ -63,6 +66,7 @@ export default async function LocaleLayout(
               <main id="main-content" className="grow">
                 {children}
               </main>
+              <SiteFooter socialLinks={socialLinks} locale={locale} />
             </Providers>
           </>
         )}

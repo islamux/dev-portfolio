@@ -1,6 +1,7 @@
 'use client';
 
 import { Project } from "@/types/content";
+import type { ProjectFilterTranslations } from "@/types/content";
 import Button from "../ui/Button";
 import ProjectCard from "./ProjectCard";
 import { useProjectFilter } from "@/hooks/useProjectFilter";
@@ -11,11 +12,12 @@ interface ProjectsListProps {
     code?: string;
     demo?: string;
   };
+  filterTranslations?: ProjectFilterTranslations;
   locale: string;
 }
 
 
-export default function ProjectsList({ initialProjects, translations, locale }: ProjectsListProps) {
+export default function ProjectsList({ initialProjects, translations, filterTranslations, locale }: ProjectsListProps) {
 
   // GetProject Filter
   const { selectedTech, setSelectedTech, allTech, filteredProjects } = useProjectFilter(initialProjects);
@@ -24,7 +26,7 @@ export default function ProjectsList({ initialProjects, translations, locale }: 
       {/*Tech Filter*/}
       <div className="mb-8 flex flex-wrap gap-2 justify-center md:justify-center">
         <Button size="sm" onClick={() => setSelectedTech(null)} active={selectedTech === null}>
-          All
+          {filterTranslations?.all || "All"}
         </Button>
         {allTech.map((tech) => (
           <Button key={tech} size="sm" onClick={() => setSelectedTech(tech)} active={selectedTech === tech}>
@@ -43,7 +45,7 @@ export default function ProjectsList({ initialProjects, translations, locale }: 
       ) : (
         <div className="text-center py-12">
           <p className="text-gray-600 dark:text-gray-400">
-            No Projects found with <strong>{selectedTech}</strong>
+            {(filterTranslations?.noResults || "No Projects found with {tech}").replace("{tech}", selectedTech!)}
           </p>
         </div>
       )}

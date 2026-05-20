@@ -6,4 +6,4 @@ image: "/images/hero.jpg"
 
 Je crée des applications web et mobiles modernes en utilisant les technologies les plus récentes. Passionné par les projets open source et la création d'expériences utilisateur exceptionnelles.
 
-[Découvrir mon parcours et mon expertise →](/about)
+[Découvrir mon parcours et mon expertise →](/fr/about)

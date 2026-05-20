@@ -5,6 +5,8 @@ import { ContactForm } from '@/components/sections/ContactForm';
 import { Icon } from '@/components/ui/Icon';
 import { socialLinks } from '@/data/socialLinks';
 import { siteConfig } from '@/app/metadata';
+import { loadMessages } from '@/lib/content';
+import type { ContactPageTranslations } from '@/types/content';
 
 interface ContactPageProps {
   params: Promise<{ locale: string }>;
@@ -25,6 +27,10 @@ export default async function ContactPage({ params }: ContactPageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
 
+  const messages = await loadMessages(locale);
+  const contactTranslations = (messages.contact ?? {}) as ContactPageTranslations;
+  const formTranslations = contactTranslations.form;
+
   return (
     <div className='py-12 md:py-20'>
       <Container>
@@ -33,17 +39,17 @@ export default async function ContactPage({ params }: ContactPageProps) {
           {/*Header*/}
           <header className='mb-12 text-center'>
             <h1 className='text-4xl md:text-4xl font-semibold text-gray-900 dark:text-white mb-4'>
-              Contact
+              {contactTranslations.title || "Contact"}
             </h1>
             <p className='text-xl text-gray-600 dark:text-gray-400'>
-              Get in touch with me
+              {contactTranslations.description || "Get in touch with me"}
             </p>
           </header>
 
           {/*Contact*/}
           <div className='mb-12 p-6 bg-gray-50 dark:bg-gray-900 rounded-lg border-gray-200 dark:border-gray-800'>
             <h2 className='text-lg font-semibold text-gray-900 dark:text-white mb-4'>
-              Other Ways to Reach Me
+              {contactTranslations.other?.title || "Other Ways to Reach Me"}
             </h2>
             <div className='space-y-3'>
               <a
@@ -69,7 +75,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
             </div>
 
             {/* Contact Form*/}
-            <ContactForm />
+            <ContactForm translations={formTranslations} />
           </div>
         </div>
       </Container>
