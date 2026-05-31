@@ -2,7 +2,7 @@
 
 > A modern, multilingual portfolio built with Next.js 16, TypeScript, and Tailwind CSS
 
-[![Next.js](https://img.shields.io/badge/Next.js-16.0.3-black)](https://nextjs.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-16.2.6-black)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0-38bdf8)](https://tailwindcss.com/)
 
@@ -13,7 +13,7 @@
 - ✅ **Centralized Metadata** - Single source of truth for SEO and site config
 - ✅ **Responsive Design** - Mobile-first with Tailwind CSS
 - ✅ **Dark Mode** - Automatic theme switching with persistence
-- ✅ **i18n Support** - Full internationalization with English, French, Arabic (RTL)
+- ✅ **i18n Support** - Full internationalization with English, French, Arabic (RTL), Turkish, Spanish
 - ✅ **Performance Optimized** - Lighthouse score >90
 - ✅ **Accessible** - WCAG AA compliant
 - ✅ **Clean Codebase** - ESLint + Prettier, zero warnings
@@ -60,7 +60,7 @@ pnpm --version  # Should be 8.0+
 dev_portfolio/
 ├── src/
 │   ├── app/                # Next.js app router
-│   │   ├── [locale]/       # Locale-specific routes (en, fr, ar)
+│   │   ├── [locale]/       # Locale-specific routes (en, fr, ar, es, tr)
 │   │   │   ├── layout.tsx  # Locale layout with lang & dir
 │   │   │   ├── page.tsx    # Home page
 │   │   │   ├── about/      # About page
@@ -82,8 +82,9 @@ dev_portfolio/
 │   ├── lib/               # Utilities & helpers
 │   ├── hooks/             # Custom React hooks
 │   └── types/             # TypeScript type definitions
-├── messages/              # Translation files (en, fr, ar)
-├── content/               # Markdown content
+├── command-center/        # Project management CLI & TUI
+├── messages/              # Translation files (en, fr, ar, es, tr)
+├── content/               # Per-locale content (about.md, home.md, projects.json)
 ├── public/                # Static assets
 │   └── images/           # Images and media
 ├── docs/                  # 📚 Documentation
@@ -116,8 +117,11 @@ pnpm test:static        # Build + serve static version
 
 # Code Quality
 pnpm lint               # Run ESLint
-pnpm typecheck          # Check TypeScript types (if configured)
-pnpm format             # Format code with Prettier (if configured)
+pnpm typecheck          # Check TypeScript types
+pnpm format             # Format code with Prettier
+pnpm cc:status          # Command center status overview
+pnpm cc:start           # Start a tracked task
+pnpm cc:complete        # Complete a tracked task
 ```
 
 ### Automated Build Script
@@ -140,7 +144,7 @@ This script will:
 
 | Technology                                                | Purpose                         |
 | --------------------------------------------------------- | ------------------------------- |
-| [Next.js 16](https://nextjs.org/)                         | React framework with App Router |
+| [Next.js 16](https://nextjs.org/)                         | React framework with App Router (16.2.6) |
 | [TypeScript](https://www.typescriptlang.org/)             | Type safety                     |
 | [Tailwind CSS](https://tailwindcss.com/)                  | Utility-first CSS               |
 | [next-themes](https://github.com/pacocoursey/next-themes) | Dark mode                       |
@@ -238,35 +242,28 @@ There's a known bug with `next/font/google` in Next.js 16.0.3. This project uses
 
 ## ✨ Recent Updates
 
+### May 2026
+
+- ✅ **Next.js 16.2.6 & React 19.2.6 Upgrade** - Latest framework versions with improved performance
+- ✅ **Command Center** - Built-in project management CLI with task tracking, milestones, swim lanes, and TUI
+- ✅ **MCP Integration** - Model Context Protocol support for AI tool coordination
+- ✅ **Turkish & Spanish** - Two new locales added (5 languages total: EN, AR, TR, ES, FR)
+- ✅ **Project Tracker** - Centralized milestone tracking with status reporting
+- ✅ **Docs Reorganization** - Flattened and restructured documentation under `docs/`
+- ✅ **Lint Migration** - ESLint flat config with strict rules
+
 ### March 2026
 
-- ✅ **Successful Hostinger Deployment** - Portfolio successfully uploaded to Hostinger using static export strategy (March 7, 2026)
-- ✅ **Static Export Optimization** - Fine-tuned `trailingSlash` and `.htaccess` for perfect routing on LiteSpeed servers
-- ✅ **Documentation Audit** - Updated all build guides and deployment documentation
+- ✅ **Successful Hostinger Deployment** - Portfolio uploaded using static export strategy (March 7, 2026)
+- ✅ **Static Export Optimization** - Fine-tuned `trailingSlash` and `.htaccess` for LiteSpeed servers
+- ✅ **Documentation Audit** - Updated build guides and deployment documentation
 
 ### December 2024
 
-- ✅ **Separation of Concerns Refactoring** - Complete codebase architecture improvement
-  - Created ProjectService abstraction layer for centralized data management
-  - Extracted 7 reusable components from monolithic pages
-  - Improved code organization, testability, and maintainability
-  - Fixed all TypeScript errors and build issues
-  - Enhanced component reusability across the application
-
-- ✅ **Added "Voices of Truth" Project** - Islamic scholars directory with multilingual support (EN/AR/FR)
-  - Next.js 15 with Server Components
-  - Arabic RTL and English LTR support
-  - Advanced filtering and search functionality
-  - Framer Motion animations
-  - Featured project in portfolio
-- ✅ **Phase 4 Complete** - Full i18n support with next-intl
-- ✅ **Multi-language** - English, French, Arabic with RTL support
-- ✅ **Locale routing** - `/en`, `/fr`, `/ar` routes with middleware
-- ✅ **Type-safe i18n** - Locale validation guards for Next.js 15+
-- ✅ **Centralized metadata system** - All site config in `src/app/metadata.ts`
-- ✅ **ESLint clean** - Zero errors, zero warnings
-- ✅ **Type safety improvements** - Changed `any` to `unknown` for better type checking
-- ✅ **Documentation** - Complete Phase 1-7 execution plans
+- ✅ **Separation of Concerns Refactoring** - Codebase architecture improvement with ProjectService abstraction
+- ✅ **"Voices of Truth" Project** - Islamic scholars directory (EN/AR/FR) with filtering and search
+- ✅ **Phase 4 Complete** - Full i18n with next-intl (EN, FR, AR)
+- ✅ **Centralized metadata** - SEO config in `src/app/metadata.ts`
 
 ## 🤝 Contributing
 

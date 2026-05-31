@@ -17,6 +17,10 @@ Multilingual (EN, AR, TR, ES, FR) developer portfolio. Next.js 16.2.6, React 19.
 | `pnpm serve:static` | Serve static `out/` dir |
 | `pnpm test:static` | Clean → static → serve cycle |
 | `pnpm lint` | ESLint (strict) |
+| `pnpm cc:status` | Command center status |
+| `pnpm cc:start` | Start a task |
+| `pnpm cc:complete` | Complete a task |
+| `pnpm ccui` | Launch command center TUI |
 
 ## Code Rules
 
