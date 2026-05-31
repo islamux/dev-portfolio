@@ -111,18 +111,6 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-[dir="rtl"] p,
-[dir="rtl"] li,
-[dir="rtl"] span,
-[dir="rtl"] a {
-  font-family: "Amiri", "Tajawal", system-ui, sans-serif !important;
-  line-height: 1.8;
-  word-spacing: 0.02em;
-  font-feature-settings: "rlig" 1, "calt" 1, "liga" 1;
-  text-rendering: optimizeLegibility;
-  font-weight: 400;
-}
-
 /* Special styling for headings */
 [dir="rtl"] h1 {
   font-size: 2.5rem;
@@ -158,23 +146,6 @@ body {
 [dir="rtl"] .prose a,
 [dir="rtl"] .prose ul,
 [dir="rtl"] .prose ol {
-  font-family: "Amiri", "Tajawal", system-ui, sans-serif !important;
-}
-
-/* Override Tailwind prose classes for RTL */
-[dir="rtl"] .prose-prose,
-[dir="rtl"] .prose-prose-slate {
-  font-family: "Amiri", "Tajawal", system-ui, sans-serif !important;
-}
-
-[dir="rtl"] article.prose {
-  font-family: "Amiri", "Tajawal", system-ui, sans-serif !important;
-}
-
-[dir="rtl"] article.prose p,
-[dir="rtl"] article.prose span,
-[dir="rtl"] article.prose li,
-[dir="rtl"] article.prose a {
   font-family: "Amiri", "Tajawal", system-ui, sans-serif !important;
 }
 
@@ -243,14 +214,5 @@ body {
   text-align: left;
 }
 
-/* Fix common RTL layout issues */
-[dir="rtl"] .prose {
-  text-align: right;
-}
 
-[dir="rtl"] .prose ul,
-[dir="rtl"] .prose ol {
-  padding-inline-start: 1.5em;
-  padding-inline-end: 0;
-}
 

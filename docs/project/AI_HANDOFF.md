@@ -12,7 +12,7 @@
 - New Muslims Stories project added (content + images)
 - Hostinger deployment fixes (`.htaccess` routing)
 - Comprehensive docs added (`docs/` subdirectory)
-- Phase-based build guide created (`docs/portfolio_build_guide/`)
+- Phase-based build guide created (`docs/build/`)
 - **This session:** Full codebase audit, command center files generated
 
 ## What's Left (Priority Order)
@@ -95,13 +95,14 @@ pnpm dev  # Starts at localhost:3000
 ## Documentation Map
 ```
 docs/
-├── SETUP_COMMAND_CENTER.md          # Source template (this session's input)
 ├── README.md                        # Documentation index
-├── guides/                          # HOOKS_GUIDE, TAILWIND_TUTORIAL, etc.
-├── portfolio_build_guide/           # Phase 1-7 execution plans
-├── refactoring/                     # I18N_FIX_PLAN, SOC_REFACTORING_PLAN
-├── troubleshooting/                 # ISSUES_AND_SOLUTIONS, etc.
-└── static_issues_fixes/            # Static export guides for Hostinger
+├── project/                         # Command center, AI rules, workflow
+├── getting-started/                 # Command center setup
+├── build/                           # Portfolio guide + Phase 1-7 execution plans
+├── deployment/static-export/        # Static export guides for Hostinger
+├── architecture/                    # I18N_FIX_PLAN, SOC_REFACTORING_PLAN
+├── learning/                        # HOOKS_GUIDE, TAILWIND_TUTORIAL, etc.
+└── troubleshooting/                 # ISSUES_AND_SOLUTIONS, etc.
 ```
 
 ## Message to Next Agent

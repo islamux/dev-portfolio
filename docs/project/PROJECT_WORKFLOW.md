@@ -44,9 +44,9 @@ git push origin feat/your-feature-name
 
 ## Bugfix Workflow
 
-1. **Identify bug** — check `PROJECT_ARCHITECTURE.md` Technical Debt table
+1. **Identify bug** — check `./PROJECT_ARCHITECTURE.md` Technical Debt table
 2. **Create fix branch:** `git checkout -b fix/bug-description`
-3. **Fix the issue** — follow existing code conventions (see AGENTS.md)
+3. **Fix the issue** — follow existing code conventions (see ../../AGENTS.md)
 4. **Verify:** `pnpm lint && pnpm build`
 5. **Static check:** `pnpm build:static:full` (if bug affects static export)
 6. **Commit with `fix:` prefix**
@@ -165,8 +165,8 @@ pnpm start
 ## Context Preservation Strategy
 
 ### For AI Agents
-1. **Read AGENTS.md first** — contains project conventions
-2. **Read PROJECT_ARCHITECTURE.md** — understand technical debt before editing
+1. **Read ../../AGENTS.md first** — contains project conventions
+2. **Read ./PROJECT_ARCHITECTURE.md** — understand technical debt before editing
 3. **Check todo.md** — author's known issues list
 4. **Run `pnpm lint` after every edit session**
 5. **Test static build** if editing i18n or layout files

@@ -3,6 +3,16 @@ import path from "path";
 import matter from "gray-matter";
 import { ContentData, ContentFrontmatter, Project } from "@/types/content";
 
+export async function loadMessages(locale: string): Promise<Record<string, unknown>> {
+  try {
+    const msgModule = await import(`@/messages/${locale}.json`);
+    return msgModule.default as Record<string, unknown>;
+  } catch (error) {
+    console.warn(`Failed to load messages for locale ${locale}:`, error);
+    return {};
+  }
+}
+
 export function getContentBySlug(
   slug: string,
   locale: string = "en"
@@ -28,36 +38,6 @@ export function getContentBySlug(
   }
 }
 
-// Get All markdown from sepecifi dir. (TO GENERATE STATIC PATHS, LISTING ALL POSTS)
-export function getAllContent(
-  directory: string,
-  locale: string = "en"
-): ContentData[] {
-  const contentDir = path.join(process.cwd(), "content", locale, directory);
-
-  // Return empty arr if dir dosn't exist.
-  if (!fs.existsSync(contentDir)) {
-    console.warn(`Content directory not found: ${contentDir}`);
-    return [];
-  }
-
-  const files = fs.readdirSync(contentDir);
-  const markdownFiles = files.filter((file) => file.endsWith(".md"));
-
-  return markdownFiles.map((filename) => {
-    const slug = filename.replace(/\.md$/, "");
-    const fullPath = path.join(contentDir, filename);
-    const fileContents = fs.readFileSync(fullPath, "utf8");
-    const { data, content } = matter(fileContents);
-
-    return {
-      frontmatter: data as ContentFrontmatter,
-      content,
-      slug,
-    };
-  });
-}
-
 // GET PROJECT DATA FROM JSON FILE 
 export function getProjectData(locale: string = "en"): Project[] {
   try {
@@ -65,7 +45,7 @@ export function getProjectData(locale: string = "en"): Project[] {
 
 
     if (!fs.existsSync(filePath)) {
-      // fallback to defautl locale if transliton dosnt exist.
+      // fallback to default locale if translation doesn't exist.
       const fallbackPath = path.join(process.cwd(), "content", "en", "projects.json");
 
       if (!fs.existsSync(fallbackPath)) {

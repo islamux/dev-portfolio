@@ -6,740 +6,657 @@
     "target_date": "2026-09-01",
     "current_week": 70,
     "schedule_status": "on_track",
-    "overall_progress": 0.6111
+    "overall_progress": 0.72
   },
-  "milestones": [
-    {
-      "id": "m1",
-      "title": "Core Setup & Layout",
-      "domain": "core",
-      "week": 4,
-      "phase": "1",
-      "planned_start": "2025-01-01",
-      "planned_end": "2025-03-01",
-      "actual_start": "2025-01-01",
-      "actual_end": "2025-03-01",
-      "drift_days": 0,
-      "is_key_milestone": true,
-      "key_milestone_label": "Foundation Complete",
-      "dependencies": [],
-      "notes": [
-        "Next.js 16 setup",
-        "Tailwind CSS v4",
-        "App Router",
-        "i18n config for 5 locales"
-      ],
-      "subtasks": [
-        {
-          "id": "m1_001",
-          "label": "Initialize Next.js 16 project",
-          "status": "done",
-          "done": true,
-          "assignee": "human",
-          "blocked_by": null,
-          "blocked_reason": null,
-          "completed_at": "2025-01-15",
-          "completed_by": "human",
-          "priority": "high",
-          "notes": null,
-          "prompt": null,
-          "context_files": [
-            "package.json",
-            "tsconfig.json",
-            "next.config.ts"
-          ],
-          "reference_docs": [],
-          "acceptance_criteria": [
-            "Next.js 16 running",
-            "TypeScript strict mode",
-            "Tailwind CSS v4"
-          ],
-          "constraints": [],
-          "agent_target": null,
-          "execution_mode": "human",
-          "depends_on": [],
-          "last_run_id": null,
-          "builder_prompt": null
-        },
-        {
-          "id": "m1_002",
-          "label": "Configure next-intl for 5 locales",
-          "status": "done",
-          "done": true,
-          "assignee": "human",
-          "blocked_by": null,
-          "blocked_reason": null,
-          "completed_at": "2025-02-01",
-          "completed_by": "human",
-          "priority": "high",
-          "notes": null,
-          "prompt": null,
-          "context_files": [
-            "src/i18n/config.ts",
-            "src/messages/"
-          ],
-          "reference_docs": [],
-          "acceptance_criteria": [
-            "en, ar, tr, es, fr locales",
-            "RTL support for Arabic"
-          ],
-          "constraints": [],
-          "agent_target": null,
-          "execution_mode": "human",
-          "depends_on": [],
-          "last_run_id": null,
-          "builder_prompt": null
-        }
-      ]
-    },
-    {
-      "id": "m2",
-      "title": "Pages & Content",
-      "domain": "content",
-      "week": 20,
-      "phase": "2",
-      "planned_start": "2025-03-01",
-      "planned_end": "2025-06-01",
-      "actual_start": "2025-03-01",
-      "actual_end": "2025-06-01",
-      "drift_days": 0,
-      "is_key_milestone": true,
-      "key_milestone_label": "All Pages Live",
-      "dependencies": [
-        "m1"
-      ],
-      "notes": [
-        "Home, About, Projects, Contact pages",
-        "Markdown content",
-        "Project JSON data"
-      ],
-      "subtasks": [
-        {
-          "id": "m2_001",
-          "label": "Create home page with hero section",
-          "status": "done",
-          "done": true,
-          "assignee": "human",
-          "blocked_by": null,
-          "blocked_reason": null,
-          "completed_at": "2025-04-01",
-          "completed_by": "human",
-          "priority": "high",
-          "notes": null,
-          "prompt": null,
-          "context_files": [
-            "src/app/[locale]/page.tsx",
-            "content/en/home.md"
-          ],
-          "reference_docs": [],
-          "acceptance_criteria": [
-            "Hero section rendered",
-            "Featured projects shown",
-            "i18n working"
-          ],
-          "constraints": [],
-          "agent_target": null,
-          "execution_mode": "human",
-          "depends_on": [],
-          "last_run_id": null,
-          "builder_prompt": null
-        },
-        {
-          "id": "m2_002",
-          "label": "Create projects listing page",
-          "status": "done",
-          "done": true,
-          "assignee": "human",
-          "blocked_by": null,
-          "blocked_reason": null,
-          "completed_at": "2025-05-01",
-          "completed_by": "human",
-          "priority": "high",
-          "notes": null,
-          "prompt": null,
-          "context_files": [
-            "src/app/[locale]/projects/page.tsx",
-            "src/components/sections/ProjectsList.tsx"
-          ],
-          "reference_docs": [],
-          "acceptance_criteria": [
-            "Project cards rendered",
-            "Tech filter working",
-            "All locales"
-          ],
-          "constraints": [],
-          "agent_target": null,
-          "execution_mode": "human",
-          "depends_on": [],
-          "last_run_id": null,
-          "builder_prompt": null
-        }
-      ]
-    },
-    {
-      "id": "m3",
-      "title": "Internationalization",
-      "domain": "i18n",
-      "week": 36,
-      "phase": "3",
-      "planned_start": "2025-06-01",
-      "planned_end": "2025-09-01",
-      "actual_start": "2025-06-01",
-      "actual_end": "2025-09-01",
-      "drift_days": 0,
-      "is_key_milestone": true,
-      "key_milestone_label": "5 Locales Complete",
-      "dependencies": [
-        "m2"
-      ],
-      "notes": [
-        "All UI strings translated",
-        "RTL Arabic tested",
-        "Content translated"
-      ],
-      "subtasks": [
-        {
-          "id": "m3_001",
-          "label": "Add Arabic RTL support",
-          "status": "done",
-          "done": true,
-          "assignee": "human",
-          "blocked_by": null,
-          "blocked_reason": null,
-          "completed_at": "2025-07-15",
-          "completed_by": "human",
-          "priority": "high",
-          "notes": null,
-          "prompt": null,
-          "context_files": [
-            "src/app/globals.css",
-            "src/i18n/config.ts"
-          ],
-          "reference_docs": [],
-          "acceptance_criteria": [
-            "RTL layout works",
-            "Arabic fonts loaded",
-            "No layout breaks"
-          ],
-          "constraints": [],
-          "agent_target": null,
-          "execution_mode": "human",
-          "depends_on": [],
-          "last_run_id": null,
-          "builder_prompt": null
-        }
-      ]
-    },
-    {
-      "id": "m4",
-      "title": "Static Export & Deployment",
-      "domain": "devops",
-      "week": 52,
-      "phase": "4",
-      "planned_start": "2025-09-01",
-      "planned_end": "2026-01-01",
-      "actual_start": "2025-09-01",
-      "actual_end": "2026-01-01",
-      "drift_days": 0,
-      "is_key_milestone": true,
-      "key_milestone_label": "Deployed to Hostinger",
-      "dependencies": [
-        "m3"
-      ],
-      "notes": [
-        "Static export working",
-        "Hostinger deployment",
-        ".htaccess routing"
-      ],
-      "subtasks": [
-        {
-          "id": "m4_001",
-          "label": "Configure static export mode",
-          "status": "done",
-          "done": true,
-          "assignee": "human",
-          "blocked_by": null,
-          "blocked_reason": null,
-          "completed_at": "2025-11-01",
-          "completed_by": "human",
-          "priority": "high",
-          "notes": null,
-          "prompt": null,
-          "context_files": [
-            "next.config.ts",
-            "src/app/[locale]/layout.tsx"
-          ],
-          "reference_docs": [],
-          "acceptance_criteria": [
-            "DEPLOY_TARGET=static works",
-            "All pages generate"
-          ],
-          "constraints": [],
-          "agent_target": null,
-          "execution_mode": "human",
-          "depends_on": [],
-          "last_run_id": null,
-          "builder_prompt": null
-        },
-        {
-          "id": "m4_002",
-          "label": "Deploy to Hostinger",
-          "status": "done",
-          "done": true,
-          "assignee": "human",
-          "blocked_by": null,
-          "blocked_reason": null,
-          "completed_at": "2026-01-01",
-          "completed_by": "human",
-          "priority": "high",
-          "notes": null,
-          "prompt": null,
-          "context_files": [
-            "scripts/build-static.sh",
-            "public/.htaccess"
-          ],
-          "reference_docs": [],
-          "acceptance_criteria": [
-            "Site live on Hostinger",
-            "All routes work"
-          ],
-          "constraints": [],
-          "agent_target": null,
-          "execution_mode": "human",
-          "depends_on": [
-            "m4_001"
-          ],
-          "last_run_id": null,
-          "builder_prompt": null
-        }
-      ]
-    },
-    {
-      "id": "m5",
-      "title": "Code Quality & Bug Fixes",
-      "domain": "quality",
-      "week": 70,
-      "phase": "5",
-      "planned_start": "2026-01-01",
-      "planned_end": "2026-06-01",
-      "actual_start": "2026-01-01",
-      "actual_end": null,
-      "drift_days": 0,
-      "is_key_milestone": false,
-      "key_milestone_label": null,
-      "dependencies": [
-        "m4"
-      ],
-      "notes": [
-        "Fix known bugs",
-        "Remove dead code",
-        "Improve i18n coverage"
-      ],
-      "subtasks": [
-        {
-          "id": "m5_001",
-          "label": "Fix generateMetaData typo in home page",
-          "status": "todo",
-          "done": false,
-          "assignee": null,
-          "blocked_by": null,
-          "blocked_reason": null,
-          "completed_at": null,
-          "completed_by": null,
-          "priority": "high",
-          "notes": "Should be generateMetadata (capital M)",
-          "prompt": "Fix the typo in src/app/[locale]/page.tsx: generateMetaData -> generateMetadata",
-          "context_files": [
-            "src/app/[locale]/page.tsx"
-          ],
-          "reference_docs": [
-            "PROJECT_ARCHITECTURE.md"
-          ],
-          "acceptance_criteria": [
-            "Metadata generates correctly",
-            "pnpm build succeeds"
-          ],
-          "constraints": [],
-          "agent_target": "opencode",
-          "execution_mode": "agent",
-          "depends_on": [],
-          "last_run_id": null,
-          "builder_prompt": null
-        },
-        {
-          "id": "m5_002",
-          "label": "Fix openGraph.url using siteConfig.name",
-          "status": "todo",
-          "done": false,
-          "assignee": null,
-          "blocked_by": null,
-          "blocked_reason": null,
-          "completed_at": null,
-          "completed_by": null,
-          "priority": "high",
-          "notes": "Should use siteConfig.url not siteConfig.name",
-          "prompt": "In src/app/[locale]/page.tsx line 32, change siteConfig.name to siteConfig.url for openGraph.url",
-          "context_files": [
-            "src/app/[locale]/page.tsx",
-            "src/app/metadata.ts"
-          ],
-          "reference_docs": [
-            "PROJECT_ARCHITECTURE.md"
-          ],
-          "acceptance_criteria": [
-            "openGraph.url correct",
-            "Metadata validates"
-          ],
-          "constraints": [],
-          "agent_target": "opencode",
-          "execution_mode": "agent",
-          "depends_on": [],
-          "last_run_id": null,
-          "builder_prompt": null
-        },
-        {
-          "id": "m5_003",
-          "label": "Remove dead code files",
-          "status": "todo",
-          "done": false,
-          "assignee": null,
-          "blocked_by": null,
-          "blocked_reason": null,
-          "completed_at": null,
-          "completed_by": null,
-          "priority": "medium",
-          "notes": "generateStaticParams.ts, guards.ts, types/project.ts",
-          "prompt": "Delete dead code files: src/app/[locale]/generateStaticParams.ts, src/i18n/guards.ts, src/types/project.ts",
-          "context_files": [
-            "src/app/[locale]/generateStaticParams.ts",
-            "src/i18n/guards.ts",
-            "src/types/project.ts"
-          ],
-          "reference_docs": [
-            "PROJECT_ARCHITECTURE.md"
-          ],
-          "acceptance_criteria": [
-            "Files deleted",
-            "pnpm build succeeds",
-            "pnpm lint passes"
-          ],
-          "constraints": [],
-          "agent_target": "opencode",
-          "execution_mode": "agent",
-          "depends_on": [],
-          "last_run_id": null,
-          "builder_prompt": null
-        },
-        {
-          "id": "m5_004",
-          "label": "Fix CSS class typos",
-          "status": "todo",
-          "done": false,
-          "assignee": null,
-          "blocked_by": null,
-          "blocked_reason": null,
-          "completed_at": null,
-          "completed_by": null,
-          "priority": "medium",
-          "notes": "md:py24 -> md:py-24, text-gray-900dar -> text-gray-900 dark:text-gray-100",
-          "prompt": "Fix CSS typos in page.tsx and ContactForm.tsx",
-          "context_files": [
-            "src/app/[locale]/page.tsx",
-            "src/components/sections/ContactForm.tsx"
-          ],
-          "reference_docs": [
-            "PROJECT_ARCHITECTURE.md"
-          ],
-          "acceptance_criteria": [
-            "All CSS classes valid",
-            "Visual check passes"
-          ],
-          "constraints": [],
-          "agent_target": "opencode",
-          "execution_mode": "agent",
-          "depends_on": [],
-          "last_run_id": null,
-          "builder_prompt": null
-        },
-        {
-          "id": "m5_005",
-          "label": "Make contact form functional",
-          "status": "todo",
-          "done": false,
-          "assignee": null,
-          "blocked_by": null,
-          "blocked_reason": null,
-          "completed_at": null,
-          "completed_by": null,
-          "priority": "low",
-          "notes": "API route only logs to console, needs email sending",
-          "prompt": "Implement email sending in src/api/contact/route.ts using a service like Nodemailer or Resend",
-          "context_files": [
-            "src/api/contact/route.ts",
-            "src/hooks/useContactForm.ts"
-          ],
-          "reference_docs": [],
-          "acceptance_criteria": [
-            "Contact form sends email",
-            "Error handling works"
-          ],
-          "constraints": [
-            "Must work in SSR mode only (not static)"
-          ],
-          "agent_target": null,
-          "execution_mode": "human",
-          "depends_on": [],
-          "last_run_id": null,
-          "builder_prompt": null
-        }
-      ]
-    },
-    {
-      "id": "m6",
-      "title": "UI Polish & Features",
-      "domain": "ui",
-      "week": 85,
-      "phase": "6",
-      "planned_start": "2026-06-01",
-      "planned_end": "2026-09-01",
-      "actual_start": null,
-      "actual_end": null,
-      "drift_days": 0,
-      "is_key_milestone": false,
-      "key_milestone_label": null,
-      "dependencies": [
-        "m5"
-      ],
-      "notes": [
-        "Shadcn integration",
-        "Icon library",
-        "Analytics"
-      ],
-      "subtasks": [
-        {
-          "id": "m6_001",
-          "label": "Integrate shadcn/ui components",
-          "status": "todo",
-          "done": false,
-          "assignee": null,
-          "blocked_by": null,
-          "blocked_reason": null,
-          "completed_at": null,
-          "completed_by": null,
-          "priority": "medium",
-          "notes": "Already in todo.md",
-          "prompt": "Install and configure shadcn/ui, replace custom components where appropriate",
-          "context_files": [
-            "package.json",
-            "tailwind.config.js"
-          ],
-          "reference_docs": [],
-          "acceptance_criteria": [
-            "shadcn/ui installed",
-            "Button component migrated"
-          ],
-          "constraints": [],
-          "agent_target": null,
-          "execution_mode": "human",
-          "depends_on": [],
-          "last_run_id": null,
-          "builder_prompt": null
-        }
-      ]
-    },
-    {
-      "id": "m7",
-      "title": "Command Center Setup",
-      "domain": "devops",
-      "week": 70,
-      "phase": "5",
-      "planned_start": "2026-05-01",
-      "planned_end": "2026-05-02",
-      "actual_start": "2026-05-01",
-      "actual_end": null,
-      "drift_days": 0,
-      "is_key_milestone": true,
-      "key_milestone_label": "AI Command Center Live",
-      "dependencies": [
-        "m4"
-      ],
-      "notes": [
-        "MCP server + TUI dashboard",
-        "Project tracking",
-        "AI agent integration"
-      ],
-      "subtasks": [
-        {
-          "id": "m7_001",
-          "label": "Full codebase audit and architecture docs",
-          "status": "done",
-          "done": true,
-          "assignee": "opencode",
-          "blocked_by": null,
-          "blocked_reason": null,
-          "completed_at": "2026-05-01T20:30:00Z",
-          "completed_by": "opencode",
-          "priority": "high",
-          "notes": "48 TS/TSX files, ~2352 lines, 8 bugs found, 6 dead code items",
-          "prompt": null,
-          "context_files": [],
-          "reference_docs": [
-            "PROJECT_ARCHITECTURE.md",
-            "PROJECT_CONTEXT.md",
-            "AI_HANDOFF.md"
-          ],
-          "acceptance_criteria": [
-            "All files audited",
-            "Docs generated"
-          ],
-          "constraints": [],
-          "agent_target": "opencode",
-          "execution_mode": "agent",
-          "depends_on": [],
-          "last_run_id": null,
-          "builder_prompt": null
-        },
-        {
-          "id": "m7_002",
-          "label": "Generate command center documentation",
-          "status": "done",
-          "done": true,
-          "assignee": "opencode",
-          "blocked_by": null,
-          "blocked_reason": null,
-          "completed_at": "2026-05-01T21:00:00Z",
-          "completed_by": "opencode",
-          "priority": "high",
-          "notes": "PROJECT_COMMAND_CENTER.md, PROJECT_CONTEXT.md, PROJECT_ARCHITECTURE.md, PROJECT_WORKFLOW.md, AI_AGENT_RULES.md, AI_HANDOFF.md",
-          "prompt": null,
-          "context_files": [],
-          "reference_docs": [],
-          "acceptance_criteria": [
-            "7 files generated",
-            "MCP schema matched"
-          ],
-          "constraints": [],
-          "agent_target": "opencode",
-          "execution_mode": "agent",
-          "depends_on": [
-            "m7_001"
-          ],
-          "last_run_id": null,
-          "builder_prompt": null
-        },
-        {
-          "id": "m7_003",
-          "label": "Configure MCP server and .mcp.json",
-          "status": "done",
-          "done": true,
-          "assignee": "opencode",
-          "blocked_by": null,
-          "blocked_reason": null,
-          "completed_at": "2026-05-01T21:30:00Z",
-          "completed_by": "opencode",
-          "priority": "high",
-          "notes": ".mcp.json created, opencode agent registered",
-          "prompt": null,
-          "context_files": [
-            ".mcp.json"
-          ],
-          "reference_docs": [],
-          "acceptance_criteria": [
-            "MCP CLI works",
-            "get_project_status returns data"
-          ],
-          "constraints": [],
-          "agent_target": "opencode",
-          "execution_mode": "agent",
-          "depends_on": [],
-          "last_run_id": null,
-          "builder_prompt": null
-        },
-        {
-          "id": "m7_004",
-          "label": "Add ccui alias to dotfiles",
-          "status": "done",
-          "done": true,
-          "assignee": "opencode",
-          "blocked_by": null,
-          "blocked_reason": null,
-          "completed_at": "2026-05-01T21:45:00Z",
-          "completed_by": "opencode",
-          "priority": "medium",
-          "notes": "PROJECT_ROOT export + ccui alias in ~/dotfiles/bash/",
-          "prompt": null,
-          "context_files": [
-            "~/dotfiles/bash/.bash_aliases",
-            "~/dotfiles/bash/.bash_exports"
-          ],
-          "reference_docs": [],
-          "acceptance_criteria": [
-            "ccui launches TUI dashboard"
-          ],
-          "constraints": [],
-          "agent_target": "opencode",
-          "execution_mode": "agent",
-          "depends_on": [],
-          "last_run_id": null,
-          "builder_prompt": null
-        },
-        {
-          "id": "m7_005",
-          "label": "Fix TUI color rendering (blessed tags)",
-          "status": "in_progress",
-          "done": false,
-          "assignee": "opencode",
-          "blocked_by": null,
-          "blocked_reason": null,
-          "completed_at": null,
-          "completed_by": null,
-          "priority": "high",
-          "notes": "blessed uses {38;5;NNN} format not {fg:#RRGGBB}. Fixed task-board, status-bar, agent-hub, calendar, swim-lane. Some parts still showing raw tags.",
-          "prompt": "Find remaining {fg:#} or broken color tags in TUI views, replace with {38;5;NNN} format. Also check if style properties using hex values cause issues.",
-          "context_files": [
-            "command-center-tui/src/views/task-board.ts",
-            "command-center-tui/src/views/agent-hub.ts",
-            "command-center-tui/src/views/calendar.ts",
-            "command-center-tui/src/views/swim-lane.ts",
-            "command-center-tui/src/components/status-bar.ts",
-            "command-center-tui/src/theme.ts"
-          ],
-          "reference_docs": [],
-          "acceptance_criteria": [
-            "All TUI colors render correctly",
-            "No raw tag text visible"
-          ],
-          "constraints": [
-            "blessed tag format: {38;5;NNN} for fg, {48;5;NNN} for bg"
-          ],
-          "agent_target": "opencode",
-          "execution_mode": "agent",
-          "depends_on": [
-            "m7_004"
-          ],
-          "last_run_id": null,
-          "builder_prompt": null
-        }
-      ]
-    },
-    {
-      "id": "textual_tui",
-      "title": "Textual TUI Integration",
-      "domain": "core",
-      "week": 70,
-      "phase": "textual_tui",
-      "planned_start": "2026-05-04",
-      "planned_end": null,
-      "actual_start": null,
-      "actual_end": null,
-      "drift_days": 0,
-      "is_key_milestone": false,
-      "key_milestone_label": null,
-      "subtasks": [],
-      "dependencies": [],
-      "notes": []
-    }
-  ],
+  "milestones": {
+    "backlog": [
+      {
+        "id": "m6",
+        "title": "UI Polish & Features",
+        "domain": "ui",
+        "week": 85,
+        "phase": "6",
+        "planned_start": "2026-06-01",
+        "planned_end": "2026-09-01",
+        "actual_start": null,
+        "actual_end": null,
+        "drift_days": 0,
+        "is_key_milestone": false,
+        "key_milestone_label": null,
+        "dependencies": [
+          "m5"
+        ],
+        "notes": [
+          "Shadcn integration",
+          "Icon library",
+          "Analytics"
+        ],
+        "subtasks": [
+          {
+            "id": "m6_001",
+            "label": "Integrate shadcn/ui components",
+            "status": "todo",
+            "done": false,
+            "assignee": null,
+            "blocked_by": null,
+            "blocked_reason": null,
+            "completed_at": null,
+            "completed_by": null,
+            "priority": "medium",
+            "notes": "Already in todo.md",
+            "prompt": "Install and configure shadcn/ui, replace custom components where appropriate",
+            "context_files": [
+              "package.json",
+              "tailwind.config.js"
+            ],
+            "reference_docs": [],
+            "acceptance_criteria": [
+              "shadcn/ui installed",
+              "Button component migrated"
+            ],
+            "constraints": [],
+            "agent_target": null,
+            "execution_mode": "human",
+            "depends_on": [],
+            "last_run_id": null,
+            "builder_prompt": null
+          },
+          {
+            "id": "m6_002",
+            "label": "Upgrade Next.js to latest stable (16.0.10 → 16.2.6)",
+            "status": "done",
+            "done": true,
+            "assignee": "opencode",
+            "blocked_by": null,
+            "blocked_reason": null,
+            "completed_at": "2026-05-20",
+            "completed_by": "opencode",
+            "priority": "high",
+            "notes": "Also upgrade react, react-dom, eslint-config-next. Font bug (Issue 2.1) not verified — CDN workaround kept. next/font/google testing deferred.",
+            "prompt": null,
+            "context_files": [
+              "package.json",
+              "next.config.ts",
+              "src/app/globals.css",
+              "docs/troubleshooting/ISSUES_AND_SOLUTIONS.md",
+              "docs/deployment/static-export/"
+            ],
+            "reference_docs": [],
+            "acceptance_criteria": [
+              "pnpm build succeeds",
+              "pnpm build:static succeeds",
+              "pnpm lint passes",
+              "All pages render correctly"
+            ],
+            "constraints": [],
+            "agent_target": "opencode",
+            "execution_mode": "agent",
+            "depends_on": [],
+            "last_run_id": null,
+            "builder_prompt": null
+          }
+        ]
+      },
+      {
+        "id": "textual_tui",
+        "title": "Textual TUI Integration",
+        "domain": "core",
+        "week": 70,
+        "phase": "textual_tui",
+        "planned_start": "2026-05-04",
+        "planned_end": null,
+        "actual_start": null,
+        "actual_end": null,
+        "drift_days": 0,
+        "is_key_milestone": false,
+        "key_milestone_label": null,
+        "subtasks": [],
+        "dependencies": [],
+        "notes": []
+      }
+    ],
+    "completed": [
+      {
+        "id": "m5",
+        "title": "Code Quality & Bug Fixes",
+        "domain": "quality",
+        "week": 70,
+        "phase": "5",
+        "planned_start": "2026-01-01",
+        "planned_end": "2026-06-01",
+        "actual_start": "2026-01-01",
+        "actual_end": "2026-05-20",
+        "drift_days": 0,
+        "is_key_milestone": true,
+        "key_milestone_label": "Bugs Fixed, Code Cleaned",
+        "dependencies": ["m4"],
+        "notes": [
+          "Fix known bugs",
+          "Remove dead code",
+          "Fix CSS/SVG rendering bugs",
+          "TypeScript strict compliance",
+          "i18n string coverage"
+        ],
+        "subtasks": [
+          {"id": "m5_001", "label": "Fix generateMetaData typo", "status": "done", "done": true, "assignee": "opencode", "priority": "high"},
+          {"id": "m5_002", "label": "Fix openGraph.url using siteConfig.name", "status": "done", "done": true, "assignee": "opencode", "priority": "high"},
+          {"id": "m5_003", "label": "Remove dead code files", "status": "done", "done": true, "assignee": "opencode", "priority": "medium"},
+          {"id": "m5_004", "label": "Fix CSS/SVG class typos", "status": "done", "done": true, "assignee": "opencode", "priority": "medium"},
+          {"id": "m5_005", "label": "Make contact form functional", "status": "todo", "done": false, "assignee": null, "priority": "low"},
+          {"id": "m5_006", "label": "Fix messages?.home -> messages?.projects", "status": "done", "done": true, "assignee": "opencode", "priority": "high"},
+          {"id": "m5_007", "label": "Fix Contact-Type header typo", "status": "done", "done": true, "assignee": "opencode", "priority": "high"},
+          {"id": "m5_008", "label": "Fix comment typos", "status": "done", "done": true, "assignee": "opencode", "priority": "medium"},
+          {"id": "m5_009", "label": "Remove unused images.json, middleware.ts.disabled, getAllContent()", "status": "done", "done": true, "assignee": "opencode", "priority": "medium"},
+          {"id": "m5_010", "label": "Render SiteFooter in layout", "status": "done", "done": true, "assignee": "opencode", "priority": "medium"},
+          {"id": "m5_011", "label": "Replace any types with proper types", "status": "done", "done": true, "assignee": "opencode", "priority": "medium"},
+          {"id": "m5_012", "label": "Consolidate duplicate NavLink interface", "status": "done", "done": true, "assignee": "opencode", "priority": "medium"},
+          {"id": "m5_013", "label": "Consolidate translation loading into shared utility", "status": "done", "done": true, "assignee": "opencode", "priority": "medium"},
+          {"id": "m5_014", "label": "Consolidate RTL font-family CSS", "status": "done", "done": true, "assignee": "opencode", "priority": "medium"},
+          {"id": "m5_015", "label": "Fix /about markdown link to be locale-prefixed", "status": "done", "done": true, "assignee": "opencode", "priority": "low"},
+          {"id": "m5_016", "label": "Add clsx/cn utility", "status": "done", "done": true, "assignee": "opencode", "priority": "low"},
+          {"id": "m5_017", "label": "Translate hardcoded English strings", "status": "done", "done": true, "assignee": "opencode", "priority": "low"}
+        ],
+        "status": "completed",
+        "completed_at": "2026-05-20",
+        "summary": "17 subtasks: 8 bug fixes, 3 dead code cleanups, 3 TS refactors, 3 i18n enhancements"
+      },
+      {
+        "id": "m1",
+        "title": "Core Setup & Layout",
+        "domain": "core",
+        "week": 4,
+        "phase": "1",
+        "planned_start": "2025-01-01",
+        "planned_end": "2025-03-01",
+        "actual_start": "2025-01-01",
+        "actual_end": "2025-03-01",
+        "drift_days": 0,
+        "is_key_milestone": true,
+        "key_milestone_label": "Foundation Complete",
+        "dependencies": [],
+        "notes": [
+          "Next.js 16 setup",
+          "Tailwind CSS v4",
+          "App Router",
+          "i18n config for 5 locales"
+        ],
+        "subtasks": [
+          {
+            "id": "m1_001",
+            "label": "Initialize Next.js 16 project",
+            "status": "done",
+            "done": true,
+            "assignee": "human",
+            "blocked_by": null,
+            "blocked_reason": null,
+            "completed_at": "2025-01-15",
+            "completed_by": "human",
+            "priority": "high",
+            "notes": null,
+            "prompt": null,
+            "context_files": [
+              "package.json",
+              "tsconfig.json",
+              "next.config.ts"
+            ],
+            "reference_docs": [],
+            "acceptance_criteria": [
+              "Next.js 16 running",
+              "TypeScript strict mode",
+              "Tailwind CSS v4"
+            ],
+            "constraints": [],
+            "agent_target": null,
+            "execution_mode": "human",
+            "depends_on": [],
+            "last_run_id": null,
+            "builder_prompt": null
+          },
+          {
+            "id": "m1_002",
+            "label": "Configure next-intl for 5 locales",
+            "status": "done",
+            "done": true,
+            "assignee": "human",
+            "blocked_by": null,
+            "blocked_reason": null,
+            "completed_at": "2025-02-01",
+            "completed_by": "human",
+            "priority": "high",
+            "notes": null,
+            "prompt": null,
+            "context_files": [
+              "src/i18n/config.ts",
+              "src/messages/"
+            ],
+            "reference_docs": [],
+            "acceptance_criteria": [
+              "en, ar, tr, es, fr locales",
+              "RTL support for Arabic"
+            ],
+            "constraints": [],
+            "agent_target": null,
+            "execution_mode": "human",
+            "depends_on": [],
+            "last_run_id": null,
+            "builder_prompt": null
+          }
+        ],
+        "status": "completed",
+        "completed_at": "2025-03-01",
+        "summary": "Next.js 16 setup | Tailwind CSS v4 | App Router | i18n config for 5 locales"
+      },
+      {
+        "id": "m2",
+        "title": "Pages & Content",
+        "domain": "content",
+        "week": 20,
+        "phase": "2",
+        "planned_start": "2025-03-01",
+        "planned_end": "2025-06-01",
+        "actual_start": "2025-03-01",
+        "actual_end": "2025-06-01",
+        "drift_days": 0,
+        "is_key_milestone": true,
+        "key_milestone_label": "All Pages Live",
+        "dependencies": [
+          "m1"
+        ],
+        "notes": [
+          "Home, About, Projects, Contact pages",
+          "Markdown content",
+          "Project JSON data"
+        ],
+        "subtasks": [
+          {
+            "id": "m2_001",
+            "label": "Create home page with hero section",
+            "status": "done",
+            "done": true,
+            "assignee": "human",
+            "blocked_by": null,
+            "blocked_reason": null,
+            "completed_at": "2025-04-01",
+            "completed_by": "human",
+            "priority": "high",
+            "notes": null,
+            "prompt": null,
+            "context_files": [
+              "src/app/[locale]/page.tsx",
+              "content/en/home.md"
+            ],
+            "reference_docs": [],
+            "acceptance_criteria": [
+              "Hero section rendered",
+              "Featured projects shown",
+              "i18n working"
+            ],
+            "constraints": [],
+            "agent_target": null,
+            "execution_mode": "human",
+            "depends_on": [],
+            "last_run_id": null,
+            "builder_prompt": null
+          },
+          {
+            "id": "m2_002",
+            "label": "Create projects listing page",
+            "status": "done",
+            "done": true,
+            "assignee": "human",
+            "blocked_by": null,
+            "blocked_reason": null,
+            "completed_at": "2025-05-01",
+            "completed_by": "human",
+            "priority": "high",
+            "notes": null,
+            "prompt": null,
+            "context_files": [
+              "src/app/[locale]/projects/page.tsx",
+              "src/components/sections/ProjectsList.tsx"
+            ],
+            "reference_docs": [],
+            "acceptance_criteria": [
+              "Project cards rendered",
+              "Tech filter working",
+              "All locales"
+            ],
+            "constraints": [],
+            "agent_target": null,
+            "execution_mode": "human",
+            "depends_on": [],
+            "last_run_id": null,
+            "builder_prompt": null
+          }
+        ],
+        "status": "completed",
+        "completed_at": "2025-06-01",
+        "summary": "Home, About, Projects, Contact pages | Markdown content | Project JSON data"
+      },
+      {
+        "id": "m3",
+        "title": "Internationalization",
+        "domain": "i18n",
+        "week": 36,
+        "phase": "3",
+        "planned_start": "2025-06-01",
+        "planned_end": "2025-09-01",
+        "actual_start": "2025-06-01",
+        "actual_end": "2025-09-01",
+        "drift_days": 0,
+        "is_key_milestone": true,
+        "key_milestone_label": "5 Locales Complete",
+        "dependencies": [
+          "m2"
+        ],
+        "notes": [
+          "All UI strings translated",
+          "RTL Arabic tested",
+          "Content translated"
+        ],
+        "subtasks": [
+          {
+            "id": "m3_001",
+            "label": "Add Arabic RTL support",
+            "status": "done",
+            "done": true,
+            "assignee": "human",
+            "blocked_by": null,
+            "blocked_reason": null,
+            "completed_at": "2025-07-15",
+            "completed_by": "human",
+            "priority": "high",
+            "notes": null,
+            "prompt": null,
+            "context_files": [
+              "src/app/globals.css",
+              "src/i18n/config.ts"
+            ],
+            "reference_docs": [],
+            "acceptance_criteria": [
+              "RTL layout works",
+              "Arabic fonts loaded",
+              "No layout breaks"
+            ],
+            "constraints": [],
+            "agent_target": null,
+            "execution_mode": "human",
+            "depends_on": [],
+            "last_run_id": null,
+            "builder_prompt": null
+          }
+        ],
+        "status": "completed",
+        "completed_at": "2025-09-01",
+        "summary": "All UI strings translated | RTL Arabic tested | Content translated"
+      },
+      {
+        "id": "m4",
+        "title": "Static Export & Deployment",
+        "domain": "devops",
+        "week": 52,
+        "phase": "4",
+        "planned_start": "2025-09-01",
+        "planned_end": "2026-01-01",
+        "actual_start": "2025-09-01",
+        "actual_end": "2026-01-01",
+        "drift_days": 0,
+        "is_key_milestone": true,
+        "key_milestone_label": "Deployed to Hostinger",
+        "dependencies": [
+          "m3"
+        ],
+        "notes": [
+          "Static export working",
+          "Hostinger deployment",
+          ".htaccess routing"
+        ],
+        "subtasks": [
+          {
+            "id": "m4_001",
+            "label": "Configure static export mode",
+            "status": "done",
+            "done": true,
+            "assignee": "human",
+            "blocked_by": null,
+            "blocked_reason": null,
+            "completed_at": "2025-11-01",
+            "completed_by": "human",
+            "priority": "high",
+            "notes": null,
+            "prompt": null,
+            "context_files": [
+              "next.config.ts",
+              "src/app/[locale]/layout.tsx"
+            ],
+            "reference_docs": [],
+            "acceptance_criteria": [
+              "DEPLOY_TARGET=static works",
+              "All pages generate"
+            ],
+            "constraints": [],
+            "agent_target": null,
+            "execution_mode": "human",
+            "depends_on": [],
+            "last_run_id": null,
+            "builder_prompt": null
+          },
+          {
+            "id": "m4_002",
+            "label": "Deploy to Hostinger",
+            "status": "done",
+            "done": true,
+            "assignee": "human",
+            "blocked_by": null,
+            "blocked_reason": null,
+            "completed_at": "2026-01-01",
+            "completed_by": "human",
+            "priority": "high",
+            "notes": null,
+            "prompt": null,
+            "context_files": [
+              "scripts/build-static.sh",
+              "public/.htaccess"
+            ],
+            "reference_docs": [],
+            "acceptance_criteria": [
+              "Site live on Hostinger",
+              "All routes work"
+            ],
+            "constraints": [],
+            "agent_target": null,
+            "execution_mode": "human",
+            "depends_on": [
+              "m4_001"
+            ],
+            "last_run_id": null,
+            "builder_prompt": null
+          }
+        ],
+        "status": "completed",
+        "completed_at": "2026-01-01",
+        "summary": "Static export working | Hostinger deployment | .htaccess routing"
+      },
+      {
+        "id": "m7",
+        "title": "Command Center Setup",
+        "domain": "devops",
+        "week": 70,
+        "phase": "5",
+        "planned_start": "2026-05-01",
+        "planned_end": "2026-05-02",
+        "actual_start": "2026-05-01",
+        "actual_end": null,
+        "drift_days": 0,
+        "is_key_milestone": true,
+        "key_milestone_label": "AI Command Center Live",
+        "dependencies": [
+          "m4"
+        ],
+        "notes": [
+          "MCP server + TUI dashboard",
+          "Project tracking",
+          "AI agent integration"
+        ],
+        "subtasks": [
+          {
+            "id": "m7_001",
+            "label": "Full codebase audit and architecture docs",
+            "status": "done",
+            "done": true,
+            "assignee": "opencode",
+            "blocked_by": null,
+            "blocked_reason": null,
+            "completed_at": "2026-05-01T20:30:00Z",
+            "completed_by": "opencode",
+            "priority": "high",
+            "notes": "48 TS/TSX files, ~2352 lines, 8 bugs found, 6 dead code items",
+            "prompt": null,
+            "context_files": [],
+            "reference_docs": [
+              "PROJECT_ARCHITECTURE.md",
+              "PROJECT_CONTEXT.md",
+              "AI_HANDOFF.md"
+            ],
+            "acceptance_criteria": [
+              "All files audited",
+              "Docs generated"
+            ],
+            "constraints": [],
+            "agent_target": "opencode",
+            "execution_mode": "agent",
+            "depends_on": [],
+            "last_run_id": null,
+            "builder_prompt": null
+          },
+          {
+            "id": "m7_002",
+            "label": "Generate command center documentation",
+            "status": "done",
+            "done": true,
+            "assignee": "opencode",
+            "blocked_by": null,
+            "blocked_reason": null,
+            "completed_at": "2026-05-01T21:00:00Z",
+            "completed_by": "opencode",
+            "priority": "high",
+            "notes": "PROJECT_COMMAND_CENTER.md, PROJECT_CONTEXT.md, PROJECT_ARCHITECTURE.md, PROJECT_WORKFLOW.md, AI_AGENT_RULES.md, AI_HANDOFF.md",
+            "prompt": null,
+            "context_files": [],
+            "reference_docs": [],
+            "acceptance_criteria": [
+              "7 files generated",
+              "MCP schema matched"
+            ],
+            "constraints": [],
+            "agent_target": "opencode",
+            "execution_mode": "agent",
+            "depends_on": [
+              "m7_001"
+            ],
+            "last_run_id": null,
+            "builder_prompt": null
+          },
+          {
+            "id": "m7_003",
+            "label": "Configure MCP server and .mcp.json",
+            "status": "done",
+            "done": true,
+            "assignee": "opencode",
+            "blocked_by": null,
+            "blocked_reason": null,
+            "completed_at": "2026-05-01T21:30:00Z",
+            "completed_by": "opencode",
+            "priority": "high",
+            "notes": ".mcp.json created, opencode agent registered",
+            "prompt": null,
+            "context_files": [
+              ".mcp.json"
+            ],
+            "reference_docs": [],
+            "acceptance_criteria": [
+              "MCP CLI works",
+              "get_project_status returns data"
+            ],
+            "constraints": [],
+            "agent_target": "opencode",
+            "execution_mode": "agent",
+            "depends_on": [],
+            "last_run_id": null,
+            "builder_prompt": null
+          },
+          {
+            "id": "m7_004",
+            "label": "Add ccui alias to dotfiles",
+            "status": "done",
+            "done": true,
+            "assignee": "opencode",
+            "blocked_by": null,
+            "blocked_reason": null,
+            "completed_at": "2026-05-01T21:45:00Z",
+            "completed_by": "opencode",
+            "priority": "medium",
+            "notes": "PROJECT_ROOT export + ccui alias in ~/dotfiles/bash/",
+            "prompt": null,
+            "context_files": [
+              "~/dotfiles/bash/.bash_aliases",
+              "~/dotfiles/bash/.bash_exports"
+            ],
+            "reference_docs": [],
+            "acceptance_criteria": [
+              "ccui launches TUI dashboard"
+            ],
+            "constraints": [],
+            "agent_target": "opencode",
+            "execution_mode": "agent",
+            "depends_on": [],
+            "last_run_id": null,
+            "builder_prompt": null
+          },
+          {
+            "id": "m7_005",
+            "label": "Fix TUI color rendering (blessed tags)",
+            "status": "done",
+            "done": true,
+            "assignee": "opencode",
+            "blocked_by": null,
+            "blocked_reason": null,
+            "completed_at": "2026-05-15T17:13:02Z",
+            "completed_by": "opencode",
+            "priority": "high",
+            "notes": "blessed uses {38;5;NNN} format not {fg:#RRGGBB}. Fixed task-board, status-bar, agent-hub, calendar, swim-lane. Some parts still showing raw tags.",
+            "prompt": "Find remaining {fg:#} or broken color tags in TUI views, replace with {38;5;NNN} format. Also check if style properties using hex values cause issues.",
+            "context_files": [
+              "command-center-tui/src/views/task-board.ts",
+              "command-center-tui/src/views/agent-hub.ts",
+              "command-center-tui/src/views/calendar.ts",
+              "command-center-tui/src/views/swim-lane.ts",
+              "command-center-tui/src/components/status-bar.ts",
+              "command-center-tui/src/theme.ts"
+            ],
+            "reference_docs": [],
+            "acceptance_criteria": [
+              "All TUI colors render correctly",
+              "No raw tag text visible"
+            ],
+            "constraints": [
+              "blessed tag format: {38;5;NNN} for fg, {48;5;NNN} for bg"
+            ],
+            "agent_target": "opencode",
+            "execution_mode": "agent",
+            "depends_on": [
+              "m7_004"
+            ],
+            "last_run_id": null,
+            "builder_prompt": null
+          }
+        ],
+        "status": "completed",
+        "completed_at": "2026-05-15",
+        "summary": "Command center setup complete: MCP server, TUI dashboard, docs, dotfiles, color fixes"
+      }
+    ]
+  },
   "agents": [
     {
       "id": "opencode",
@@ -823,6 +740,73 @@
         "blessed",
         "wip"
       ]
+    },
+    {
+      "id": "log_1746200000_plan_bugs",
+      "agent_id": "opencode",
+      "action": "plan_bug_fixes",
+      "target_type": "project",
+      "target_id": "fix/bugs-and-code-quality",
+      "description": "Expanded m5 milestone with 17 subtasks across 5 groups: actual bugs, CSS/SVG, dead code, TS refactoring, i18n enhancements",
+      "timestamp": "2026-05-15T12:00:00Z",
+      "tags": [
+        "planning",
+        "bugs",
+        "quality"
+      ]
+    },
+    {
+      "id": "log_1778853828_schema_fix",
+      "agent_id": "opencode",
+      "action": "fix_tracker_schema",
+      "target_type": "config",
+      "target_id": "project-tracker.json",
+      "description": "Restructured milestones from flat array to categorized {active, backlog, completed} format. Added dashboard field. Fixed Zod schema validation for TUI.",
+      "timestamp": "2026-05-15T17:03:48Z",
+      "tags": [
+        "schema",
+        "tui",
+        "fix"
+      ]
+    },
+    {
+      "id": "log_1778854382_tui_colors",
+      "agent_id": "opencode",
+      "action": "fix_tui_colors",
+      "target_type": "component",
+      "target_id": "command-center-tui",
+      "description": "Replaced all 15+ invalid {muted} tags with valid blessed {#6a6a6a-fg} tags across all TUI views (task-board, swim-lane, agent-hub, calendar, status-bar)",
+      "timestamp": "2026-05-15T17:13:02Z",
+      "tags": [
+        "tui",
+        "colors",
+        "blessed",
+        "done"
+      ]
+    },
+    {
+      "id": "log_1778854390_upgrade_next",
+      "agent_id": "opencode",
+      "action": "upgrade_packages",
+      "target_type": "config",
+      "target_id": "package.json",
+      "description": "Upgraded next 16.0.10→16.2.6, react 19.2.0→19.2.6, react-dom 19.2.0→19.2.6, eslint-config-next 16.0.3→16.2.6. Verified: SSR build (65 pages), static export (65 pages), lint clean on src/. Added .npmrc for build approvals, cleaned up package.json (removed deprecated pnpm field). Font bug (Issue 2.1) fix not verified.",
+      "timestamp": "2026-05-20T16:00:00Z",
+      "tags": [
+        "upgrade",
+        "nextjs",
+        "done"
+      ]
+    },
+    {
+      "id": "log_1779310000001_root_sync",
+      "agent_id": "opencode",
+      "action": "sync_tracker",
+      "target_type": "config",
+      "target_id": "project-tracker.json",
+      "description": "Synced command-center tracker to match root state: m5 completed, 16 subtasks approved to done, m6_002 added, progress 72%",
+      "timestamp": "2026-05-21T00:00:00Z",
+      "tags": ["sync", "cleanup"]
     }
   ],
   "schedule": {
@@ -864,5 +848,12 @@
         "end_week": 104
       }
     ]
+  },
+  "dashboard": {
+    "current_focus": "UI Polish & Features (m6)",
+    "active_milestone": "m6",
+    "next_priority": "m6_001: Integrate shadcn/ui components",
+    "blockers": "None",
+    "health": "good"
   }
 }

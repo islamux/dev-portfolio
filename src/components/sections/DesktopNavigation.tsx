@@ -2,12 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-interface NavLink {
-  href: string;
-  label: string;
-  key: string;
-}
+import type { NavLink } from "@/types/content";
 
 interface DesktopNavigationProps {
   navLinks: NavLink[];

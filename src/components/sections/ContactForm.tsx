@@ -2,8 +2,13 @@
 
 import { useContactForm } from "@/hooks/useContactForm";
 import Button from "../ui/Button";
+import type { ContactFormTranslations } from "@/types/content";
 
-export function ContactForm() {
+interface ContactFormProps {
+  translations?: ContactFormTranslations;
+}
+
+export function ContactForm({ translations }: ContactFormProps) {
 
   const { formData, status, errorMessage, updateField, handleSubmit } = useContactForm();
 
@@ -27,7 +32,7 @@ export function ContactForm() {
         <label
           htmlFor="name"
           className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb2">
-          Name *
+          {translations?.name || "Name *"}
         </label>
         <input
           type="text"
@@ -35,9 +40,8 @@ export function ContactForm() {
           required
           value={formData.name}
           onChange={(e) => updateField("name", e.target.value)}
-          className="w-full px-4 py-2 border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-gray-900dar
-    text-white focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-          placeholder="Islamux"
+          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+          placeholder={translations?.name || "Name"}
         />
       </div>
 
@@ -47,7 +51,7 @@ export function ContactForm() {
           htmlFor="email"
           className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb2"
         >
-          fathi733@gmail.com
+          {translations?.email || "Email *"}
         </label>
         <input
           type="email"
@@ -56,7 +60,7 @@ export function ContactForm() {
           value={formData.email}
           onChange={(e) => updateField("email", e.target.value)}
           className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-brand-500"
-          placeholder="fathi733@gmail.com"
+          placeholder={translations?.email || "Email"}
         />
       </div>
 
@@ -65,7 +69,7 @@ export function ContactForm() {
         <label
           htmlFor="message"
           className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-          Message*
+          {translations?.message || "Message *"}
         </label>
         <textarea
           id="message"
@@ -74,7 +78,7 @@ export function ContactForm() {
           value={formData.message}
           onChange={(e) => updateField("message", e.target.value)}
           className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent resize-none"
-          placeholder="Your Message ...."
+          placeholder={translations?.message || "Your Message"}
         />
       </div>
 
@@ -82,7 +86,7 @@ export function ContactForm() {
       {status === "success" && (
         <div className="p-4 bg-green-50 dark:bg-gray-900/20 border border-green-200 dark:border-gray-800 rounded-lg">
           <p className="text-gray-800 dark:text-gray-400">
-            ✓ Message sent successfully! I&apos;ll get back to you soon.
+            ✓ {translations?.success || "Message sent successfully! I'll get back to you soon."}
           </p>
         </div>
       )}
@@ -102,7 +106,7 @@ export function ContactForm() {
         size="lg"
         disabled={status === "loading"}
       >
-        {status === "loading" ? "Sending" : "Send Message"}
+        {status === "loading" ? (translations?.sending || "Sending") : (translations?.submit || "Send Message")}
       </Button>
     </form>
 

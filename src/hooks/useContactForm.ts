@@ -36,7 +36,7 @@ export function useContactForm() {
 
       const response = await fetch("/api/contact", {
         method: "POST",
-        headers: { "Contact-Type": "application/json" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
@@ -46,7 +46,7 @@ export function useContactForm() {
 
     } catch (error) {
       setStatus("error");
-      setErrorMessage(error instanceof Error ? error.message : "Somthing went wrong");
+      setErrorMessage(error instanceof Error ? error.message : "Something went wrong");
 
     }
   };

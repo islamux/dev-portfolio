@@ -47,16 +47,16 @@ export function createTaskBoard(screen: Widgets.Screen, state: TrackerState | nu
 
     const indicator = allMilestones.length > 1 ? ` [${_milestoneIdx + 1}/${allMilestones.length}] ` : ' '
     const key = current.is_key_milestone ? ' ★' : ''
-    lines.push(`{bold}${current.title}${key}{/}${indicator}{muted}(${current.id}) — ${current.domain} — ${current.phase}{/}`)
+    lines.push(`{bold}${current.title}${key}{/}${indicator}{#6a6a6a-fg}(${current.id}) — ${current.domain} — ${current.phase}{/}`)
     lines.push('')
 
     const done = subtasks.filter(t => t.status === 'done').length
     const total = subtasks.length
-    lines.push(`Progress: ${done}/${total} {muted}│ [ ] navigate  [s] cycle status  [Enter] details{/}`)
+    lines.push(`Progress: ${done}/${total} {#6a6a6a-fg}│ [ ] navigate  [s] cycle status  [Enter] details{/}`)
     lines.push('─'.repeat(80))
 
     if (subtasks.length === 0) {
-      lines.push('{muted}  No tasks in this milestone{/}')
+      lines.push('{#6a6a6a-fg}  No tasks in this milestone{/}')
       box.setContent(lines.join('\n'))
       return
     }
@@ -71,7 +71,7 @@ export function createTaskBoard(screen: Widgets.Screen, state: TrackerState | nu
       for (const t of tasks) {
         const icon = statusIcon(t.status)
         const pri = t.priority && t.priority.startsWith('P') ? ` {bold}{${color}-fg}[${t.priority}]{/}{/}` : ''
-        const assignee = t.assignee ? ` {muted}→ ${t.assignee}{/}` : ''
+        const assignee = t.assignee ? ` {#6a6a6a-fg}→ ${t.assignee}{/}` : ''
         lines.push(`  {${color}-fg}${icon}{/} {bold}${t.id}{/}${pri} ${t.label}${assignee}`)
       }
       lines.push('')

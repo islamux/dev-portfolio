@@ -3,7 +3,7 @@
 ## Foundational Rules
 
 ### 1. Read Before You Edit
-- **ALWAYS** read `AGENTS.md` first — contains project conventions
+- **ALWAYS** read `../../AGENTS.md` first — contains project conventions
 - Read `PROJECT_ARCHITECTURE.md` to understand technical debt before touching code
 - Read `todo.md` to see author's known issues
 - Check `src/messages/{locale}.json` before adding hardcoded strings
@@ -39,7 +39,7 @@
 - Interfaces: PascalCase with descriptive names (e.g., `ProjectMetadata`, `SiteConfig`)
 - **Prefer interfaces over type aliases** for object shapes
 - Use `null` not `undefined` for intentional absence
-- Imports: external → `@/` → relative (see AGENTS.md)
+- Imports: external → `@/` → relative (see ../../AGENTS.md)
 
 ### 7. Styling Rules
 - Use `brand-*` colors from `tailwind.config.js` (`brand-500` is primary)

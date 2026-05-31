@@ -6,7 +6,7 @@
 > **Preventing Recurring Issues**  
 > To avoid repeating the same Static/SSR issues after every edit:
 >
-> - **[Static vs SSR Analysis](./STATIC_VS_SSR_ANALYSIS.md)** - Comprehensive problem analysis and prevention strategies
+> - **[Static vs SSR Analysis](../deployment/static-export/STATIC_VS_SSR_ANALYSIS.md)** - Comprehensive problem analysis and prevention strategies
 > - **Automated Workflow**: Use `pnpm run build:static:full` or `./scripts/build-static.sh`
 
 **Project:** Developer Portfolio  
@@ -125,7 +125,7 @@ Use CSS `@font-face` instead of `next/font/google`:
 **References:**
 
 - [Next.js Issue #71234](https://github.com/vercel/next.js/issues/71234) (example)
-- Documentation: `docs/PHASE_2_EXECUTION_PLAN.md#critical-font-bug`
+- Documentation: `docs/build/PHASE_2_EXECUTION_PLAN.md#critical-font-bug`
 
 ---
 
@@ -1184,7 +1184,7 @@ export default async function Page({ params }: Props) {
 
 This document (ISSUES_AND_SOLUTIONS.md) covers development-phase issues across Phases 1-7. For **detailed static export deployment guidance** with internationalization (i18n) support, see:
 
-**[Comprehensive Static Export Guide](COMPREHENSIVE_STATIC_EXPORT_GUIDE.md)**
+**[Comprehensive Static Export Guide](../deployment/static-export/COMPREHENSIVE_STATIC_EXPORT_GUIDE.md)**
 
 This specialized guide covers:
 
@@ -1212,8 +1212,8 @@ This specialized guide covers:
 
 ### Additional Resources
 
-- **[Dual-Compatibility Guide](DUAL_STATIC_SSR_COMPATIBILITY_GUIDE.md)** - How to maintain code that deploys to both Vercel (dynamic) and static hosts
-- **[Portfolio Build Guide](PORTFOLIO_BUILD_GUIDE.md)** - Complete step-by-step portfolio building process
+- **[Dual-Compatibility Guide](../deployment/static-export/DUAL_STATIC_SSR_COMPATIBILITY_GUIDE.md)** - How to maintain code that deploys to both Vercel (dynamic) and static hosts
+- **[Portfolio Build Guide](../build/PORTFOLIO_BUILD_GUIDE.md)** - Complete step-by-step portfolio building process
 
 ---
 

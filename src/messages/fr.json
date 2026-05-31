@@ -21,9 +21,29 @@
   "projects": {
     "title": "Projets",
     "description": "Une collection de mes travaux et contributions",
+    "filter": {
+      "all": "Tous",
+      "noResults": "Aucun projet trouvé avec {tech}"
+    },
     "card": {
       "code": "Code",
       "demo": "Projet complet (Open Source)"
+    }
+  },
+  "contact": {
+    "title": "Me Contacter",
+    "description": "Vous avez un projet en tête? Parlons-en.",
+    "form": {
+      "name": "Nom",
+      "email": "Email",
+      "message": "Message",
+      "submit": "Envoyer",
+      "sending": "Envoi en cours...",
+      "success": "Message envoyé avec succès! Je vous répondrai bientôt.",
+      "error": "Échec de l'envoi. Veuillez réessayer."
+    },
+    "other": {
+      "title": "Autres Moyens de Me Contacter"
     }
   }
 }

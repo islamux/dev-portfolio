@@ -1,11 +1,12 @@
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import Link from "next/link";
-import { getContentBySlug } from "@/lib/content";
+import { getContentBySlug, loadMessages } from "@/lib/content";
 import { ProjectService } from "@/services/projectService";
 import { getLocalizedHref } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/config";
 import { siteConfig } from '@/app/metadata';
+import type { HomeTranslations } from '@/types/content';
 
 import Container from "@/components/ui/Container";
 import { MarkdownContent } from "@/components/ui/MarkdownContent";
@@ -16,7 +17,7 @@ interface PageProps {
   params: Promise<{ locale: string }>;
 }
 
-export async function generateMetaData({
+export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { locale } = await params;
@@ -29,7 +30,7 @@ export async function generateMetaData({
     openGraph: {
       type: "website",
       locale: locale === "ar" ? "ar_SA" : locale === "fr" ? "fr_FR" : "en_US",
-      url: siteConfig.name,
+      url: siteConfig.url,
       images: [
         {
           url: "images/og-image.jpg",
@@ -57,13 +58,8 @@ export default async function Page({ params }: PageProps) {
 
   // For static export, import messages directly instead of using getTranslations
   // to avoid headers() dependency
-  let translations: any = {};
-  try {
-    const messages = (await import(`@/messages/${locale}.json`)).default;
-    translations = messages?.home || {};
-  } catch (error) {
-    console.warn(`Failed to load messages for locale ${locale}:`, error);
-  }
+  const messages = await loadMessages(locale);
+  const translations = (messages.home ?? {}) as HomeTranslations;
 
   return (
     <>
@@ -92,9 +88,9 @@ export default async function Page({ params }: PageProps) {
         </Container>
       </section>
 
-      {/*Feactured Projects Section*/}
+      {/*Featured Projects Section*/}
       {featuredProjects.length > 0 && (
-        <section className="py-16 md:py24">
+        <section className="py-16 md:py-24">
           <Container>
             <div className="flex items-center justify-between mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">

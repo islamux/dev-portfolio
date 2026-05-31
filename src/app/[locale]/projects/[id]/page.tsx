@@ -15,7 +15,12 @@ interface ProjectData {
   name: string;
   description: string;
   longDescription: string;
-  [key: string]: any;
+  tech?: string[];
+  github?: string;
+  demo?: string;
+  image?: string;
+  featured?: boolean;
+  year?: string;
 }
 
 export async function generateStaticParams() {

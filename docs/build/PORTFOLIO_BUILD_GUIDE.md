@@ -5,17 +5,17 @@
 **Tech Stack:** Next.js 15+ (App Router), TypeScript, Tailwind CSS  
 **Package Manager:** pnpm  
 **Target Deployment:** Vercel (Dynamic) & Hostinger (Static)
-**Deployment Strategy:** [Dual Compatibility Guide](DUAL_STATIC_SSR_COMPATIBILITY_GUIDE.md)
+**Deployment Strategy:** [Dual Compatibility Guide](../deployment/static-export/DUAL_STATIC_SSR_COMPATIBILITY_GUIDE.md)
 
 > [!IMPORTANT]
 > **New: Automated Static/SSR Workflow**  
 > This guide is now supplemented with automated build processes:
 >
-> - **[Static vs SSR Analysis](./STATIC_VS_SSR_ANALYSIS.md)** - Complete problem analysis, prevention strategies, and automation guide
+> - **[Static vs SSR Analysis](../deployment/static-export/STATIC_VS_SSR_ANALYSIS.md)** - Complete problem analysis, prevention strategies, and automation guide
 > - **Build Scripts**: Use `pnpm run build:static:full` or `./scripts/build-static.sh`
 > - **Prevents Recurring Issues**: Automates the static build process to avoid the cycle of breaking/fixing after each edit
 
-> **Advanced Deployment:** For detailed guidance on static exports with internationalization (i18n), see the [Comprehensive Static Export Guide](COMPREHENSIVE_STATIC_EXPORT_GUIDE.md). It covers locale-aware navigation, clean URL routing, and common pitfalls when deploying multilingual Next.js sites to static hosts.
+> **Advanced Deployment:** For detailed guidance on static exports with internationalization (i18n), see the [Comprehensive Static Export Guide](../deployment/static-export/COMPREHENSIVE_STATIC_EXPORT_GUIDE.md). It covers locale-aware navigation, clean URL routing, and common pitfalls when deploying multilingual Next.js sites to static hosts.
 
 ---
 
@@ -78,7 +78,7 @@ If you're targeting static hosting (like Hostinger) in addition to Vercel:
   - All data must be fetched at build time
   - Images must be `unoptimized: true` in next.config.ts
 
-- **See also:** [Dual-Compatibility Guide](DUAL_STATIC_SSR_COMPATIBILITY_GUIDE.md) for detailed patterns
+- **See also:** [Dual-Compatibility Guide](../deployment/static-export/DUAL_STATIC_SSR_COMPATIBILITY_GUIDE.md) for detailed patterns
 
 ---
 
@@ -394,8 +394,8 @@ This refactoring serves as an excellent case study for understanding:
 
 **Related Documentation:**
 
-- [SOC_REFACTORING_PLAN.md](./SOC_REFACTORING_PLAN.md) - Detailed refactoring plan
-- [REFACTORING_FIXES.md](../REFACTORING_FIXES.md) - Complete list of fixes applied
+- [SOC_REFACTORING_PLAN.md](../architecture/SOC_REFACTORING_PLAN.md) - Detailed refactoring plan
+- [I18N_FIX_SUMMARY.md](../architecture/I18N_FIX_SUMMARY.md) - Complete list of fixes applied
 
 ### Inspiration (Study These)
 
@@ -1765,7 +1765,7 @@ export function Hero() {
 5.  **Static Export Testing** (if targeting static hosts like Hostinger):
     - Test static build: `DEPLOY_TARGET=static pnpm build`
     - Serve locally: `npx http-server out -p 3000`
-    - Verify all links work (see [Comprehensive Static Export Guide](COMPREHENSIVE_STATIC_EXPORT_GUIDE.md))
+    - Verify all links work (see [Comprehensive Static Export Guide](../deployment/static-export/COMPREHENSIVE_STATIC_EXPORT_GUIDE.md))
     - Configure redirects for clean URLs (Netlify `_redirects`, Vercel `vercel.json`)
 
 6.  **Netlify (secondary):**

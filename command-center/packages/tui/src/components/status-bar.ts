@@ -26,7 +26,7 @@ export function createStatusBar(screen: Widgets.Screen, state: TrackerState | nu
     const backlog = s.milestones.backlog.length
     const completed = s.milestones.completed.length
     const focus = s.dashboard?.current_focus || ''
-    bar.setContent(` Week ${week} │ ${status} │ ${progress} │ Active:${active} Backlog:${backlog} Done:${completed} │ ${focus} │ {muted}r:refresh t:theme q:quit{/}`)
+    bar.setContent(` Week ${week} │ ${status} │ ${progress} │ Active:${active} Backlog:${backlog} Done:${completed} │ ${focus} │ {#6a6a6a-fg}r:refresh t:theme q:quit{/}`)
   }
 
   render(state)

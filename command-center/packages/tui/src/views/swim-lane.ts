@@ -41,16 +41,16 @@ export function createSwimLane(screen: Widgets.Screen, state: TrackerState | nul
       const pct = total > 0 ? Math.round((done / total) * 100) : 0
       const bar = progressBar(pct, 20)
       const key = m.is_key_milestone ? ' ★' : ''
-      lines.push(`  {bold}${m.title}{/} ${key} {muted}(${m.id}){/}`)
+      lines.push(`  {bold}${m.title}{/} ${key} {#6a6a6a-fg}(${m.id}){/}`)
       lines.push(`  ${bar} ${pct}%  ${done}/${total} tasks  Phase: ${m.phase}  Domain: ${m.domain}`)
       if (m.planned_start) {
-        lines.push(`  {muted}Planned: ${m.planned_start} → ${m.planned_end || '?'}{/}  ${m.actual_start ? `Actual: ${m.actual_start} → ${m.actual_end || '?'}` : ''}`)
+        lines.push(`  {#6a6a6a-fg}Planned: ${m.planned_start} → ${m.planned_end || '?'}{/}  ${m.actual_start ? `Actual: ${m.actual_start} → ${m.actual_end || '?'}` : ''}`)
       }
       lines.push('')
     }
 
     if (s.milestones.active.length === 0) {
-      lines.push('  {muted}(no active milestones){/}')
+      lines.push('  {#6a6a6a-fg}(no active milestones){/}')
       lines.push('')
     }
 
@@ -60,20 +60,20 @@ export function createSwimLane(screen: Widgets.Screen, state: TrackerState | nul
       const done = (m.subtasks || []).filter(t => t.status === 'done').length
       const total = (m.subtasks || []).length
       const key = m.is_key_milestone ? ' ★' : ''
-      lines.push(`  {muted}${m.title}${key} (${m.id}) — ${done}/${total} tasks — ${m.phase}{/}`)
+      lines.push(`  {#6a6a6a-fg}${m.title}${key} (${m.id}) — ${done}/${total} tasks — ${m.phase}{/}`)
     }
     if (s.milestones.backlog.length === 0) {
-      lines.push('  {muted}(backlog empty){/}')
+      lines.push('  {#6a6a6a-fg}(backlog empty){/}')
     }
     lines.push('')
 
     lines.push('{bold} COMPLETED{/}')
     lines.push('─'.repeat(70))
     for (const c of completed.slice(-5)) {
-      lines.push(`  {green-fg}✓ ${c.title}{/} {muted}(${c.completed_at}){/}`)
+      lines.push(`  {green-fg}✓ ${c.title}{/} {#6a6a6a-fg}(${c.completed_at}){/}`)
     }
     if (completed.length > 5) {
-      lines.push(`  {muted}... and ${completed.length - 5} more{/}`)
+      lines.push(`  {#6a6a6a-fg}... and ${completed.length - 5} more{/}`)
     }
 
     box.setContent(lines.join('\n'))

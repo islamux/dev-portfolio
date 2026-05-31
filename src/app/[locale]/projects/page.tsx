@@ -3,6 +3,8 @@ import ProjectsList from "@/components/sections/ProjectsList";
 import { ProjectService } from "@/services/projectService";
 import { Metadata } from "next";
 import { setRequestLocale } from 'next-intl/server';
+import { loadMessages } from '@/lib/content';
+import type { ProjectsTranslations, ProjectFilterTranslations } from '@/types/content';
 
 interface ProjectsPageProps {
   params: Promise<{ locale: string }>;
@@ -29,13 +31,10 @@ export default async function ProjectsPage({ params }: ProjectsPageProps) {
 
   // For static export, import messages directly instead of using getTranslations
   // to avoid headers() dependency
-  let translations: any = {};
-  try {
-    const messages = (await import(`@/messages/${locale}.json`)).default;
-    translations = messages?.home || {};
-  } catch (error) {
-    console.warn(`Failed to load messages for locale ${locale}:`, error);
-  }
+  const messages = await loadMessages(locale);
+  const translations = (messages.projects ?? {}) as ProjectsTranslations;
+  const projectsMessages = messages.projects as Record<string, unknown> | undefined;
+  const filterTranslations = projectsMessages?.filter as ProjectFilterTranslations | undefined;
 
   return (
     <div className="py-12 md:py-20">
@@ -43,11 +42,9 @@ export default async function ProjectsPage({ params }: ProjectsPageProps) {
         {/*Header*/}
         <header className="mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            {/*Projects*/}
             {translations.title || "Projects"}
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400">
-            {/*My portfolio projects*/} 
             {translations.description || "My portfolio projects"}
           </p>
         </header>
@@ -55,8 +52,9 @@ export default async function ProjectsPage({ params }: ProjectsPageProps) {
           initialProjects={projects}
           translations={{
             code: translations?.card?.code ,
-            demo: translations?.card?.demo 
+            demo: translations?.card?.demo
           }}
+          filterTranslations={filterTranslations}
           locale={locale}
         ></ProjectsList>
       </Container>

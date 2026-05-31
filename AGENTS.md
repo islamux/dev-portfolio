@@ -1,44 +1,32 @@
-# AGENTS.md - Developer Portfolio Project Guidelines
+# AGENTS.md
 
-This document provides guidelines for AI agents working on this Next.js developer portfolio project.
+## Project
 
-## Project Overview
+Multilingual (EN, AR, TR, ES, FR) developer portfolio. Next.js 16.2.6, React 19.2.6, TypeScript, Tailwind CSS v4, next-intl, pnpm.
 
-A multilingual (EN, AR, TR, ES, FR) developer portfolio built with Next.js 16, React 19, TypeScript, Tailwind CSS, and next-intl for internationalization. Uses pnpm as the package manager.
+## Commands
 
-## Build Commands (use pnpm)
+| Command | Purpose |
+|---------|---------|
+| `pnpm dev` | Dev server on :3000 |
+| `pnpm build` | Production build (SSR) |
+| `pnpm start` | Production server |
+| `pnpm build:static` | Static export (`DEPLOY_TARGET=static`) |
+| `pnpm build:clean` | Remove `.next` and `out` |
+| `pnpm build:static:full` | Clean + static build |
+| `pnpm serve:static` | Serve static `out/` dir |
+| `pnpm test:static` | Clean → static → serve cycle |
+| `pnpm lint` | ESLint (strict) |
+| `pnpm cc:status` | Command center status |
+| `pnpm cc:start` | Start a task |
+| `pnpm cc:complete` | Complete a task |
+| `pnpm ccui` | Launch command center TUI |
 
-```bash
-# Development
-pnpm dev                      # Start development server (http://localhost:3000)
-pnpm build                    # Production build
-pnpm start                    # Start production server
-pnpm build:static             # Build static HTML export (DEPLOY_TARGET=static)
-pnpm build:clean              # Clean .next and out directories
-pnpm build:static:full        # Clean + static build
-pnpm serve:static             # Serve static build (uses out directory)
-pnpm test:static              # Full static build test cycle
+## Code Rules
 
-# Linting
-pnpm lint                     # Run ESLint on all files
+**TypeScript:** Explicit types, interfaces over type aliases, `null` not `undefined`, strict mode on.
 
-# No test framework is currently configured
-```
-
-## Code Style Guidelines
-
-### TypeScript
-
-- Use explicit types for function parameters and return types
-- Prefer interfaces over type aliases for object shapes
-- Use `null` instead of `undefined` for intentional absence of value
-- Enable `strict: true` in tsconfig.json (already configured)
-
-### Imports
-
-- Use absolute imports with `@/` alias (configured in tsconfig.json)
-- Order imports: external modules → internal @/ imports → relative imports
-- Group imports by type (React, Next.js, components, utilities, types)
+**Imports:** external → `@/` → relative. Group by type.
 
 ```typescript
 import React from "react";
@@ -49,73 +37,41 @@ import { getProjectHref } from "@/i18n/navigation";
 import { ProjectCard } from "./ProjectCard";
 ```
 
-### Naming Conventions
+**Naming:** PascalCase for components/types, camelCase for vars/fns, SCREAMING_SNAKE_CASE for constants, kebab-case for files (utilities/hooks).
 
-- **Components**: PascalCase for component files and function components
-- **Variables/functions**: camelCase
-- **Constants**: SCREAMING_SNAKE_CASE
-- **Types/Interfaces**: PascalCase with descriptive names (e.g., `ProjectMetadata`, `ProjectPageProps`)
-- **Files**: Use kebab-case for utilities and hooks (e.g., `useProjectFilter.ts`)
+**Components:** Default export for pages, named export for UI. Interface = `ComponentNameProps`.
 
-### Components
+**Tailwind:** Use `brand-*` colors, `dark:` prefix. Class order: layout → spacing → typography → colors → effects. No custom CSS when utility suffices.
 
-- Use default exports for page components
-- Use named exports for reusable UI components
-- Prefix component props interfaces with component name (e.g., `ProjectCardProps`)
-- Use functional components with TypeScript interfaces
-- Include JSDoc comments for complex logic
+**Error handling:** try/catch + console.error, return null/[] on failure, no secrets in messages.
 
-### Tailwind CSS
+**i18n:** `useTranslations` hook, keys from `src/messages/*.json`, content in `content/{locale}/`.
 
-- Use `brand-*` colors from tailwind.config.js (brand-500 is primary)
-- Support dark mode with `dark:` prefix
-- Use `className` order: layout → spacing → typography → colors → effects
-- Avoid custom CSS; use Tailwind utility classes
+**Next.js:** App Router. Server components by default. `fill` on Image with relative parent. `generateStaticParams` on dynamic routes.
 
-```tsx
-<div className="group relative bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800">
-```
+## Implementation Workflow
 
-### Error Handling
+Before any implementation:
 
-- Use try/catch with console.error for async operations
-- Return null or empty arrays on error (graceful degradation)
-- Never expose sensitive information in error messages
+1. **Create branch** first
+2. **Update project-tracker.json** — set task `in_progress`
+3. **Update Swim Lane percentages** immediately after change
+4. **Update Task Board** immediately after change
+5. Keep tracker in sync on every state transition (start/complete/block/unblock)
 
-### Internationalization (next-intl)
+## Lint
 
-- Use the `useTranslations` hook in components
-- Access translations via keys (e.g., `t('nav.home')`)
-- Keep locale-specific content in `src/messages/*.json`
-- Content data in `content/{locale}/projects.json`
+`pnpm lint` skips `command-center/` (separate internal tool). Only `src/` is linted.
 
-### File Structure
+## Build Scripts
 
-```
-src/
-├── app/           # Next.js App Router pages
-├── components/    # Reusable UI components (ui/, sections/)
-├── hooks/         # Custom React hooks (useMounted, useProjectFilter)
-├── i18n/          # Internationalization config
-├── lib/           # Utility functions
-├── services/      # Business logic (ProjectService)
-├── types/         # TypeScript interfaces
-├── api/           # Next.js API routes
-└── messages/      # Translation JSON files
-```
+`.npmrc` approves `@swc/core`, `sharp`, `unrs-resolver` native builds. Don't remove.
 
-### Next.js Specifics
+## Static Export Rules
 
-- Use `page.tsx` for routes, `layout.tsx` for shared layouts
-- Server components by default (use "use client" for interactivity)
-- Use `fill` prop on Next.js Image with parent relative div
-- Generate static params for static export compatibility
-
-### Additional Guidelines (from CLAUDE.md)
-
-- Always use pnpm, not npm or yarn
-- When applying docs/UI_IMPROVEMENTS_PLAN.md, ask for details on section 4.1 before proceeding
-
-## ESLint Configuration
-
-Uses `eslint-config-next` with strict mode. Run `pnpm lint` to check.
+- `DEPLOY_TARGET=static` enables `output: 'export'` + `trailingSlash: true` + `images.unoptimized: true`
+- Bypass `NextIntlClientProvider` in static mode (see layout.tsx)
+- Pass locale/data as props, don't use `useLocale()`/`useTranslations()` in clients
+- Use `next/navigation` not `next-intl/navigation` for static compatibility
+- `setRequestLocale(locale)` in every page + layout
+- No `headers()`/`cookies()` in static mode

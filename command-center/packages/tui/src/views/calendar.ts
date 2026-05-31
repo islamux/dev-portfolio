@@ -47,12 +47,12 @@ export function createCalendar(screen: Widgets.Screen, state: TrackerState | nul
       } else if (w <= currentWeek) {
         weekLine.push('{green-fg}─{/}')
       } else {
-        weekLine.push('{muted}─{/}')
+        weekLine.push('{#6a6a6a-fg}─{/}')
       }
       weekMarkers.push(`W${w}`.padEnd(3).slice(0, 3))
     }
     lines.push(`  ${weekLine.join('')}`)
-    lines.push(`  {muted}${weekMarkers.join('')}{/}`)
+    lines.push(`  {#6a6a6a-fg}${weekMarkers.join('')}{/}`)
     lines.push('')
 
     const completedByDate: Record<string, string[]> = {}
@@ -74,7 +74,7 @@ export function createCalendar(screen: Widgets.Screen, state: TrackerState | nul
       }
     }
     if (dates.length === 0) {
-      lines.push('{muted}  No completed milestones yet{/}')
+      lines.push('{#6a6a6a-fg}  No completed milestones yet{/}')
     }
 
     lines.push('')
@@ -91,7 +91,7 @@ export function createCalendar(screen: Widgets.Screen, state: TrackerState | nul
       lines.push(`  {bold}${d}{/} (${byDate[d].length} events)`)
     }
     if (logDates.length === 0) {
-      lines.push('{muted}  No history entries{/}')
+      lines.push('{#6a6a6a-fg}  No history entries{/}')
     }
 
     box.setContent(lines.join('\n'))
