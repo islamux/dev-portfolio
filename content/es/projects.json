@@ -18,6 +18,7 @@
     "longDescription": "Un proyecto de reestructuración completa (refactoring) de una aplicación Android que contiene más de 500 páginas de contenido árabe. Fue desarrollada siguiendo la arquitectura MVVM y la identidad visual Material 3. La aplicación se caracteriza por su soporte completo para funcionar sin conexión a Internet (Offline-First) sin solicitar ningún permiso de red para garantizar los más altos niveles de privacidad y rendimiento, con personalización completa de fuentes y uso compartido instantáneo a través de WhatsApp.",
     "tech": ["Kotlin", "Jetpack Compose", "Android", "Material 3", "Gradle"],
     "github": "https://github.com/islamux/salam-kotlin",
+    "apk": "https://github.com/islamux/salam-kotlin/releases/tag/v1.0",
     "image": "/images/projects/salam-kotlin-cover.png",
     "featured": true,
     "year": "2026"

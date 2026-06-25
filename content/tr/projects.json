@@ -18,6 +18,7 @@
     "longDescription": "500'den fazla sayfadan oluşan Arapça içerikli bir Android uygulamasının kapsamlı bir şekilde yeniden yapılandırılması (refactoring) projesidir. MVVM mimarisi ve Material 3 görsel kimliği izlenerek geliştirilmiştir. Uygulama, en üst düzeyde gizlilik ve performans sağlamak amacıyla hiçbir ağ izni (network permissions) talep etmeden tamamen çevrimdışı çalışma (Offline-First) desteği sunmasının yanı sıra, yazı tiplerinin tamamen özelleştirilebilmesi ve WhatsApp üzerinden anında paylaşım özelliklerine sahiptir.",
     "tech": ["Kotlin", "Jetpack Compose", "Android", "Material 3", "Gradle"],
     "github": "https://github.com/islamux/salam-kotlin",
+    "apk": "https://github.com/islamux/salam-kotlin/releases/tag/v1.0",
     "image": "/images/projects/salam-kotlin-cover.png",
     "featured": true,
     "year": "2026"
