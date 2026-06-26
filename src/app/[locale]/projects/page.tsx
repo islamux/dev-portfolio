@@ -4,6 +4,7 @@ import { ProjectService } from "@/services/projectService";
 import { Metadata } from "next";
 import { setRequestLocale } from 'next-intl/server';
 import { loadMessages } from '@/lib/content';
+import { defaultMetadata } from '@/app/metadata';
 import type { ProjectsTranslations, ProjectFilterTranslations } from '@/types/content';
 
 interface ProjectsPageProps {
@@ -19,6 +20,7 @@ export async function generateMetadata({
 
   // For static export, use static metadata
   return {
+    metadataBase: defaultMetadata.metadataBase,
     title: `Projects - Islamux`,
     description: "My portfolio projects",
   };

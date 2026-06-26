@@ -30,33 +30,20 @@ export function LanguageSwitcher({ locale: localeString }: { locale: string }) {
     setIsOpen(false);
     if (!pathname) return;
 
-    // Manual replacement logic
-    // pathname is like "/en/about" or "/en/about.html" or "/" (root)
     let newPath = pathname;
 
-    // Handle root "/" -> "/fr" (redirects to default usually but for static we want /fr)
     if (pathname === '/' && newLocale !== 'en') {
        newPath = `/${newLocale}`;
     } else {
-       // Replace segment /en/ with /fr/
-       // Regex to replace first segment if it matches a locale
-       // We can assume path starts with /<locale>/ or is just /<locale>
-       // Or we can rely on current 'locale' prop to know what to replace.
        const currentPrefix = `/${locale}`;
        if (pathname.startsWith(currentPrefix)) {
           newPath = pathname.replace(currentPrefix, `/${newLocale}`);
        } else if (pathname === `/${locale}`) {
           newPath = `/${newLocale}`;
        } else {
-          // If path doesn't start with locale (e.g. /), try to prepend?
-          // But usually we are already inside a locale based path.
-          // Fallback
           newPath = `/${newLocale}${pathname}`;
        }
     }
-    
-    // For static, check .html? Hosting usually handles it, but let's be safe.
-    // If it ends with .html, keep it.
     
     router.push(newPath);
   };

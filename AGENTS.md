@@ -17,6 +17,7 @@ Multilingual (EN, AR, TR, ES, FR) developer portfolio. Next.js 16.2.6, React 19.
 | `pnpm serve:static` | Serve static `out/` dir |
 | `pnpm test:static` | Clean → static → serve cycle |
 | `pnpm lint` | ESLint (strict) |
+| `scripts/test-routes.sh` | Test all routes locally (41 checks) |
 
 
 ## Code Rules
@@ -65,6 +66,9 @@ Before any implementation:
 ## Static Export Rules
 
 - `DEPLOY_TARGET=static` enables `output: 'export'` + `trailingSlash: true` + `images.unoptimized: true`
+- Build command: `NEXT_PUBLIC_DEPLOY_TARGET=static DEPLOY_TARGET=static next build`
+  - `DEPLOY_TARGET` for `next.config.ts` (server-side config)
+  - `NEXT_PUBLIC_DEPLOY_TARGET` for client components (e.g., root redirect URL)
 - Bypass `NextIntlClientProvider` in static mode (see layout.tsx)
 - Pass locale/data as props, don't use `useLocale()`/`useTranslations()` in clients
 - Use `next/navigation` not `next-intl/navigation` for static compatibility

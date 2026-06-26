@@ -15,7 +15,8 @@ Create a comprehensive markdown troubleshooting guide for Hostinger deployment i
 
 - Local `pnpm dlx serve out` works correctly at `http://localhost:3000/en/projects`
 - Routing breaks when uploading `out/` folder to Hostinger
-- Root cause: `trailingSlash: true` in `next.config.ts` conflicts with `.html` extensions in `navigation.ts`
+- Root cause: LiteSpeed (Hostinger) auto-adds trailing slashes to paths it treats as directories. With file-based routing (`.html` files), `/en` → `/en/` → 403 (no `en/index.html`)
+- Resolution: **Directory-based routing** with `trailingSlash: true` — generates `en/index.html`, not `en.html`. This is the standard static site structure.
 
 **Related Documentation:**
 
@@ -212,22 +213,66 @@ cd out && node server.js
 
 **For troubleshooting these issues, see:** **[Comprehensive Static Export Guide - Common Issues Section](./COMPREHENSIVE_STATIC_EXPORT_GUIDE.md#issues-encountered)**
 
+## Actual Implementation (June 2026)
+
+**Option 1 was implemented** — directory-based routing. Key differences from the original plan:
+
+1. **Simplified `navigation.ts`**: Removed the `isStatic` conditional entirely. `getLocalizedHref` and `getProjectHref` now return the same path in both dev and static modes (`/en/`, `/en/about/`). No `.html` suffix logic needed.
+
+2. **`trailingSlash: true` only in static mode**: `next.config.ts` has `trailingSlash: isStatic ? true : undefined`, so dev mode is unaffected.
+
+3. **Environment variables**: Two env vars required for build:
+   ```bash
+   NEXT_PUBLIC_DEPLOY_TARGET=static DEPLOY_TARGET=static pnpm build
+   ```
+   - `DEPLOY_TARGET=static` — for `next.config.ts` (server-side)
+   - `NEXT_PUBLIC_DEPLOY_TARGET=static` — for client components (e.g., root redirect in `page.tsx`)
+
+4. **Deployment prerequisite**: Must delete old `en/`, `ar/`, `fr/`, `es/`, `tr/` directories from Hostinger before uploading. LiteSpeed treats stale directories as real paths and returns 403.
+
+5. **Test script**: `scripts/test-routes.sh` verifies 41 routes work correctly.
+
+**File Structure (after fix):**
+```
+out/
+├── index.html            # Root redirect → /en/
+├── en/
+│   ├── index.html        # English home
+│   ├── about/
+│   │   └── index.html    # English about
+│   ├── projects/
+│   │   ├── index.html    # Projects list
+│   │   └── athkarix/
+│   │       └── index.html # Project detail
+│   └── contact/
+│       └── index.html
+├── ar/
+│   └── ...               # Same structure, Arabic
+├── 404/
+│   └── index.html        # Custom 404
+└── public/
+    ├── .htaccess
+    ├── robots.txt
+    └── sitemap.xml
+```
+
 ## Execution Steps
 
-1. Create `docs/deployment/static-export/HOSTINGER_STATIC_EXPORT_ROUTING_FIX.md` with the outlined content
-2. Include code examples for each solution option
-3. Add clear step-by-step instructions for deployment
-4. Include troubleshooting checklist
+1. The fix was implemented directly — no new doc file was created (this file serves as the reference).
+2. See `HOSTINGER_DEPLOYMENT_GUIDE.md` for quick-setup steps.
+3. See `ISSUES_AND_SOLUTIONS.md` (Issue 8.5) for the root cause and fix details.
 
 ## Dependencies
 
-- None (standalone documentation file)
+- None (documentation only)
 
 ## Related Files
 
-- `src/i18n/navigation.ts` - Contains the navigation helper functions that need updating
-- `next.config.ts` - Contains the trailing slash configuration
-- `src/app/[locale]/layout.tsx` - Main layout file that uses the navigation helpers
+- `src/i18n/navigation.ts` — Simplified, no `isStatic` branching
+- `next.config.ts` — `trailingSlash: isStatic ? true : undefined`
+- `src/app/(index)/page.tsx` — Root redirect for static mode
+- `public/.htaccess` — DirectoryIndex + trailing-slash handling
+- `scripts/test-routes.sh` — 41-route test suite
 
 ## See Also
 
@@ -235,6 +280,7 @@ cd out && node server.js
 - **[Dual Static/SSR Compatibility Guide](./DUAL_STATIC_SSR_COMPATIBILITY_GUIDE.md)** - Best practices for maintaining both modes
 - **[Hostinger Deployment Guide](./HOSTINGER_DEPLOYMENT_GUIDE.md)** - Quick step-by-step deployment guide
 - **[Static vs SSR Analysis](./STATIC_VS_SSR_ANALYSIS.md)** - Deep dive into configuration conflicts
+- **[Issues and Solutions](../../troubleshooting/ISSUES_AND_SOLUTIONS.md)** — Issue 8.5: Hostinger 403 fix
 
 ## Quick Reference: Build Commands After Fix
 

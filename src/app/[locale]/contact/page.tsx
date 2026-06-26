@@ -4,7 +4,7 @@ import Container from '@/components/ui/Container';
 import { ContactForm } from '@/components/sections/ContactForm';
 import { Icon } from '@/components/ui/Icon';
 import { socialLinks } from '@/data/socialLinks';
-import { siteConfig } from '@/app/metadata';
+import { siteConfig, defaultMetadata } from '@/app/metadata';
 import { loadMessages } from '@/lib/content';
 import type { ContactPageTranslations } from '@/types/content';
 
@@ -18,6 +18,7 @@ export async function generateMetadata({ params }: ContactPageProps): Promise<Me
 
   // For static export, use static metadata
   return {
+    metadataBase: defaultMetadata.metadataBase,
     title: `Contact - ${siteConfig.name}`,
     description: "Get in touch with me"
   };
