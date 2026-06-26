@@ -80,9 +80,17 @@ Hostinger uses Apache (LiteSpeed). Adding an `.htaccess` file helps handle 404 e
 
 2.  Check the `out` directory. You should now see folders like `en/` containing `index.html` instead of just `en.html`.
 
-3.  Upload the contents of the `out` directory to your Hostinger `public_html` (or the appropriate subdirectory).
+3.  **⚠️ CRITICAL: Delete all old files from Hostinger before uploading.**
+    
+    LiteSpeed (Hostinger's server) auto-adds trailing slashes to existing directories. If old `en/`, `ar/`, `fr/`, `es/`, `tr/` directories remain from a previous deployment, LiteSpeed will treat them as real directories and return **403 Forbidden** even when new files are uploaded alongside them.
+    
+    Either:
+    - Delete everything in `public_html/` via FTP/File Manager, then upload fresh
+    - Or at minimum delete the locale directories (`en/`, `ar/`, `fr/`, `es/`, `tr/`)
 
-4.  Visit `https://islamux.me/en` and refresh. The 403 error should be resolved.
+4.  Upload the contents of the `out` directory to your Hostinger `public_html` (or the appropriate subdirectory).
+
+5.  Visit `https://islamux.me/en/` and refresh. The 403 error should be resolved.
 
 ---
 

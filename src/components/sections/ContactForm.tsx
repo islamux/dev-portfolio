@@ -14,7 +14,7 @@ export function ContactForm({ translations }: ContactFormProps) {
 
 
   return (
-    <form onSubmit={handleSubmit} className="space-x-6">
+    <form onSubmit={handleSubmit} className="space-y-6">
 
       {/*Honeypoot field (hidden from humans)*/}
       <input

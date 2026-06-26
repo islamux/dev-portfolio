@@ -1178,6 +1178,62 @@ export default async function Page({ params }: Props) {
 }
 ```
 
+### Issue 8.5: Hostinger 403 Forbidden on All Locale Pages Except English
+
+**Error:**
+
+```
+https://islamux.me/en       → 200 OK
+https://islamux.me/ar       → 403 Forbidden
+https://islamux.me/fr       → 403 Forbidden
+https://islamux.me/en/about → 403 Forbidden
+```
+
+**Root Cause:**
+
+LiteSpeed server (Hostinger) auto-adds trailing slashes to paths it detects as directories. With file-based routing (`.html` files at root):
+
+1. User visits `/en` → LiteSpeed adds trailing slash → `/en/`
+2. No `en/index.html` exists (file is `en.html`) → **403 Forbidden**
+3. `/en.html` works correctly (direct file access)
+
+This happens because LiteSpeed's `DirectorySlash` runs before `.htaccess` rewrite rules can fire.
+
+**Solution: Directory-based routing with `trailingSlash: true`**
+
+Switched from file-based routing (`.html` files) to directory-based routing (`en/index.html`, `en/about/index.html`).
+
+**Files Changed:**
+
+- `next.config.ts` — added `trailingSlash: isStatic ? true : undefined`
+- `src/i18n/navigation.ts` — removed `.html` suffix logic, URLs are plain `/en/`, `/en/about/`
+- `src/app/(index)/page.tsx` — root redirect → `/en/` instead of `/en.html`
+- `public/.htaccess` — simplified to just `DirectoryIndex index.html` + trailing-slash redirect
+- `scripts/test-routes.sh` — updated to test trailing-slash routes
+
+**Deployment Prerequisite: Delete old directories before uploading.**
+
+Old `en/`, `ar/`, etc. directories from previous deployments cause LiteSpeed to treat them as real directories and return 403 even with new files. Always delete all old files from `public_html/` before uploading fresh build.
+
+**Test Results (41/41 pass):**
+
+```
+✅ /en/           → 200
+✅ /en/about/     → 200
+✅ /ar/           → 200
+✅ /ar/about/     → 200
+✅ /en            → 301 (redirect to /en/)
+✅ /              → 200
+```
+
+**Prevention:**
+
+- Use `trailingSlash: true` in static exports
+- Always clean `public_html/` before deploying
+- Test with `scripts/test-routes.sh` before uploading
+
+---
+
 ## Related Documentation
 
 ### For Static Export Deployment Issues

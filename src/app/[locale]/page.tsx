@@ -5,7 +5,7 @@ import { getContentBySlug, loadMessages } from "@/lib/content";
 import { ProjectService } from "@/services/projectService";
 import { getLocalizedHref } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/config";
-import { siteConfig } from '@/app/metadata';
+import { siteConfig, defaultMetadata } from '@/app/metadata';
 import type { HomeTranslations } from '@/types/content';
 
 import Container from "@/components/ui/Container";
@@ -25,6 +25,7 @@ export async function generateMetadata({
 
   // For static export, use static metadata to avoid headers() usage
   return {
+    metadataBase: defaultMetadata.metadataBase,
     title: "Islamux - Software Developer",
     description: "Full-stack developer specializing in modern web applications",
     openGraph: {

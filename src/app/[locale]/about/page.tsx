@@ -3,7 +3,7 @@ import { setRequestLocale } from 'next-intl/server';
 import { getContentBySlug } from "@/lib/content";
 import Container from '@/components/ui/Container';
 import { MarkdownContent } from '@/components/ui/MarkdownContent';
-import { siteConfig } from '@/app/metadata';
+import { siteConfig, defaultMetadata } from '@/app/metadata';
 import type { ContentFrontmatter } from '@/types/content';
 
 interface AboutPageProps {
@@ -18,6 +18,7 @@ export async function generateMetadata({
 
   // For static export, use static metadata
   return {
+    metadataBase: defaultMetadata.metadataBase,
     title: `About - ${siteConfig.name}`,
     description: "About me - Full-stack developer",
   };

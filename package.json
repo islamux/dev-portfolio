@@ -7,7 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "build:static": "DEPLOY_TARGET=static next build",
+    "build:static": "NEXT_PUBLIC_DEPLOY_TARGET=static DEPLOY_TARGET=static next build",
     "build:clean": "rm -rf .next out",
     "build:static:full": "pnpm build:clean && pnpm build:static",
     "serve:static": "pnpm dlx serve out",
