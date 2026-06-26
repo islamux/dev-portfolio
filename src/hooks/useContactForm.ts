@@ -40,7 +40,10 @@ export function useContactForm() {
         body: JSON.stringify(formData),
       });
 
-      if (!response.ok) throw new Error("Failed to send message");
+      if (!response.ok) {
+        const body = await response.json().catch(() => ({}));
+        throw new Error(body.error || "Failed to send message");
+      }
       setStatus("success");
       setFormData({ name: "", email: "", message: "", honeypot: "" });
 

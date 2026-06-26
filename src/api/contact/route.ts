@@ -1,21 +1,13 @@
-/**
- * POST /api/contact
- * Handles contact form submissions
- */
 import { NextRequest, NextResponse } from "next/server";
+import { Resend } from "resend";
 import { ContactFormData } from "@/types/content";
 
-
-interface ContactSuccessResponse {
-  success: boolean;
-  message: string;
-}
+const resendApiKey = process.env.RESEND_API_KEY;
 
 export async function POST(request: NextRequest) {
   try {
     const data: ContactFormData = await request.json();
 
-    // Validation
     if (!data.name || !data.email || !data.message) {
       return NextResponse.json(
         { error: "Missing required fields" },
@@ -23,7 +15,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(data.email)) {
       return NextResponse.json(
@@ -32,7 +23,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Message length validation
     if (data.message.length < 10) {
       return NextResponse.json(
         { error: "Message too short (minimum 10 characters)" },
@@ -40,28 +30,40 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // TODO: Send email using a service like SendGrid, Resend, or Nodemailer
-    // For now, just log it
-    console.log("Contact form submission:", {
-      name: data.name,
-      email: data.email,
-      message: data.message,
-      timestamp: new Date().toISOString(),
-    });
+    if (resendApiKey) {
+      const resend = new Resend(resendApiKey);
+      const contactEmail = process.env.CONTACT_EMAIL || "fathi733@gmail.com";
 
-    // Simple mailto fallback (opens user's email client)
-    // You can replace this with actual email sending service
-    return NextResponse.json<ContactSuccessResponse>(
-      {
-        success: true,
-        message: "Message received successfully",
-      },
+      await resend.emails.send({
+        from: `Portfolio Contact <onboarding@resend.dev>`,
+        to: [contactEmail],
+        replyTo: data.email,
+        subject: `Portfolio Contact from ${data.name}`,
+        html: `
+          <h2>New Contact Form Submission</h2>
+          <p><strong>Name:</strong> ${data.name}</p>
+          <p><strong>Email:</strong> ${data.email}</p>
+          <p><strong>Message:</strong></p>
+          <p>${data.message.replace(/\n/g, "<br>")}</p>
+        `,
+      });
+    } else {
+      console.log("Contact form submission (no RESEND_API_KEY):", {
+        name: data.name,
+        email: data.email,
+        message: data.message,
+        timestamp: new Date().toISOString(),
+      });
+    }
+
+    return NextResponse.json(
+      { success: true, message: "Message sent successfully" },
       { status: 200 }
     );
   } catch (error) {
     console.error("Contact form error:", error);
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: "Failed to send message. Please try emailing directly." },
       { status: 500 }
     );
   }
