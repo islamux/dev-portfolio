@@ -4,7 +4,6 @@ This directory is organized by the kind of decision you are trying to make: setu
 
 ## Start Here
 
-- [Command Center setup](./getting-started/SETUP_COMMAND_CENTER.md) - how to reuse the command center workflow in another project.
 - [Portfolio build guide](./build/PORTFOLIO_BUILD_GUIDE.md) - full phase-based guide for building the portfolio.
 - [Static export guide](./deployment/static-export/COMPREHENSIVE_STATIC_EXPORT_GUIDE.md) - Hostinger/static export deployment notes.
 - [Issues and solutions](./troubleshooting/ISSUES_AND_SOLUTIONS.md) - error log and fixes collected during development.
@@ -13,19 +12,12 @@ This directory is organized by the kind of decision you are trying to make: setu
 
 ### Project Management
 
-Command center, AI handoff, agent rules, and workflow docs for AI-assisted development.
-
-- [PROJECT_COMMAND_CENTER.md](./project/PROJECT_COMMAND_CENTER.md) - Command center overview
 - [PROJECT_CONTEXT.md](./project/PROJECT_CONTEXT.md) - Project purpose, tech stack, current state
 - [PROJECT_ARCHITECTURE.md](./project/PROJECT_ARCHITECTURE.md) - Codebase structure, patterns, technical debt
 - [PROJECT_WORKFLOW.md](./project/PROJECT_WORKFLOW.md) - Dev workflows, checklists, release process
 - [AI_AGENT_RULES.md](./project/AI_AGENT_RULES.md) - Rules for AI-assisted development
 - [AI_HANDOFF.md](./project/AI_HANDOFF.md) - Context for agent switching
 - [todo.md](./project/todo.md) - Known issues and planned improvements
-
-### Getting Started
-
-- [SETUP_COMMAND_CENTER.md](./getting-started/SETUP_COMMAND_CENTER.md)
 
 ### Build
 
