@@ -43,3 +43,6 @@ node_modules/
 
 # opencode config
 .opencode/
+
+# FUSE temp files
+.fuse_hidden*
