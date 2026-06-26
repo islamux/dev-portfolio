@@ -12,6 +12,18 @@
     "year": "2024"
   },
   {
+    "id": "salam-kotlin",
+    "name": "Salam",
+    "description": "A comprehensive refactoring project of an Android application containing over 500 pages of Arabic content. It was developed following the MVVM architecture and Material 3 visual identity. The application features full support for working without an internet connection (Offline-First) without requesting any network permissions to ensure the highest levels of privacy and performance, along with full font customization and instant sharing via WhatsApp.",
+    "longDescription": "A comprehensive refactoring project of an Android application containing over 500 pages of Arabic content. It was developed following the MVVM architecture and Material 3 visual identity. The application features full support for working without an internet connection (Offline-First) without requesting any network permissions to ensure the highest levels of privacy and performance, along with full font customization and instant sharing via WhatsApp.",
+    "tech": ["Kotlin", "Jetpack Compose", "Android", "Material 3", "Gradle"],
+    "github": "https://github.com/islamux/salam-kotlin",
+    "apk": "https://github.com/islamux/salam-kotlin/releases/tag/v1.0",
+    "image": "/images/projects/salam-kotlin-cover.png",
+    "featured": true,
+    "year": "2026"
+  },
+  {
     "id": "athkarix",
     "name": "Athkarix",
     "description": "Islamic Athkar app built with Flutter",

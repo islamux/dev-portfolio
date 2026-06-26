@@ -97,23 +97,6 @@
           }
         ]
       },
-      {
-        "id": "textual_tui",
-        "title": "Textual TUI Integration",
-        "domain": "core",
-        "week": 70,
-        "phase": "textual_tui",
-        "planned_start": "2026-05-04",
-        "planned_end": null,
-        "actual_start": null,
-        "actual_end": null,
-        "drift_days": 0,
-        "is_key_milestone": false,
-        "key_milestone_label": null,
-        "subtasks": [],
-        "dependencies": [],
-        "notes": []
-      }
     ],
     "completed": [
       {
@@ -477,202 +460,8 @@
         "completed_at": "2026-01-01",
         "summary": "Static export working | Hostinger deployment | .htaccess routing"
       },
-      {
-        "id": "m7",
-        "title": "Command Center Setup",
-        "domain": "devops",
-        "week": 70,
-        "phase": "5",
-        "planned_start": "2026-05-01",
-        "planned_end": "2026-05-02",
-        "actual_start": "2026-05-01",
-        "actual_end": null,
-        "drift_days": 0,
-        "is_key_milestone": true,
-        "key_milestone_label": "AI Command Center Live",
-        "dependencies": [
-          "m4"
-        ],
-        "notes": [
-          "MCP server + TUI dashboard",
-          "Project tracking",
-          "AI agent integration"
-        ],
-        "subtasks": [
-          {
-            "id": "m7_001",
-            "label": "Full codebase audit and architecture docs",
-            "status": "done",
-            "done": true,
-            "assignee": "opencode",
-            "blocked_by": null,
-            "blocked_reason": null,
-            "completed_at": "2026-05-01T20:30:00Z",
-            "completed_by": "opencode",
-            "priority": "high",
-            "notes": "48 TS/TSX files, ~2352 lines, 8 bugs found, 6 dead code items",
-            "prompt": null,
-            "context_files": [],
-            "reference_docs": [
-              "PROJECT_ARCHITECTURE.md",
-              "PROJECT_CONTEXT.md",
-              "AI_HANDOFF.md"
-            ],
-            "acceptance_criteria": [
-              "All files audited",
-              "Docs generated"
-            ],
-            "constraints": [],
-            "agent_target": "opencode",
-            "execution_mode": "agent",
-            "depends_on": [],
-            "last_run_id": null,
-            "builder_prompt": null
-          },
-          {
-            "id": "m7_002",
-            "label": "Generate command center documentation",
-            "status": "done",
-            "done": true,
-            "assignee": "opencode",
-            "blocked_by": null,
-            "blocked_reason": null,
-            "completed_at": "2026-05-01T21:00:00Z",
-            "completed_by": "opencode",
-            "priority": "high",
-            "notes": "PROJECT_COMMAND_CENTER.md, PROJECT_CONTEXT.md, PROJECT_ARCHITECTURE.md, PROJECT_WORKFLOW.md, AI_AGENT_RULES.md, AI_HANDOFF.md",
-            "prompt": null,
-            "context_files": [],
-            "reference_docs": [],
-            "acceptance_criteria": [
-              "7 files generated",
-              "MCP schema matched"
-            ],
-            "constraints": [],
-            "agent_target": "opencode",
-            "execution_mode": "agent",
-            "depends_on": [
-              "m7_001"
-            ],
-            "last_run_id": null,
-            "builder_prompt": null
-          },
-          {
-            "id": "m7_003",
-            "label": "Configure MCP server and .mcp.json",
-            "status": "done",
-            "done": true,
-            "assignee": "opencode",
-            "blocked_by": null,
-            "blocked_reason": null,
-            "completed_at": "2026-05-01T21:30:00Z",
-            "completed_by": "opencode",
-            "priority": "high",
-            "notes": ".mcp.json created, opencode agent registered",
-            "prompt": null,
-            "context_files": [
-              ".mcp.json"
-            ],
-            "reference_docs": [],
-            "acceptance_criteria": [
-              "MCP CLI works",
-              "get_project_status returns data"
-            ],
-            "constraints": [],
-            "agent_target": "opencode",
-            "execution_mode": "agent",
-            "depends_on": [],
-            "last_run_id": null,
-            "builder_prompt": null
-          },
-          {
-            "id": "m7_004",
-            "label": "Add ccui alias to dotfiles",
-            "status": "done",
-            "done": true,
-            "assignee": "opencode",
-            "blocked_by": null,
-            "blocked_reason": null,
-            "completed_at": "2026-05-01T21:45:00Z",
-            "completed_by": "opencode",
-            "priority": "medium",
-            "notes": "PROJECT_ROOT export + ccui alias in ~/dotfiles/bash/",
-            "prompt": null,
-            "context_files": [
-              "~/dotfiles/bash/.bash_aliases",
-              "~/dotfiles/bash/.bash_exports"
-            ],
-            "reference_docs": [],
-            "acceptance_criteria": [
-              "ccui launches TUI dashboard"
-            ],
-            "constraints": [],
-            "agent_target": "opencode",
-            "execution_mode": "agent",
-            "depends_on": [],
-            "last_run_id": null,
-            "builder_prompt": null
-          },
-          {
-            "id": "m7_005",
-            "label": "Fix TUI color rendering (blessed tags)",
-            "status": "done",
-            "done": true,
-            "assignee": "opencode",
-            "blocked_by": null,
-            "blocked_reason": null,
-            "completed_at": "2026-05-15T17:13:02Z",
-            "completed_by": "opencode",
-            "priority": "high",
-            "notes": "blessed uses {38;5;NNN} format not {fg:#RRGGBB}. Fixed task-board, status-bar, agent-hub, calendar, swim-lane. Some parts still showing raw tags.",
-            "prompt": "Find remaining {fg:#} or broken color tags in TUI views, replace with {38;5;NNN} format. Also check if style properties using hex values cause issues.",
-            "context_files": [
-              "command-center-tui/src/views/task-board.ts",
-              "command-center-tui/src/views/agent-hub.ts",
-              "command-center-tui/src/views/calendar.ts",
-              "command-center-tui/src/views/swim-lane.ts",
-              "command-center-tui/src/components/status-bar.ts",
-              "command-center-tui/src/theme.ts"
-            ],
-            "reference_docs": [],
-            "acceptance_criteria": [
-              "All TUI colors render correctly",
-              "No raw tag text visible"
-            ],
-            "constraints": [
-              "blessed tag format: {38;5;NNN} for fg, {48;5;NNN} for bg"
-            ],
-            "agent_target": "opencode",
-            "execution_mode": "agent",
-            "depends_on": [
-              "m7_004"
-            ],
-            "last_run_id": null,
-            "builder_prompt": null
-          }
-        ],
-        "status": "completed",
-        "completed_at": "2026-05-15",
-        "summary": "Command center setup complete: MCP server, TUI dashboard, docs, dotfiles, color fixes"
-      }
     ]
   },
-  "agents": [
-    {
-      "id": "opencode",
-      "name": "OpenCode",
-      "type": "orchestrator",
-      "parent_id": null,
-      "color": "#9B9BAA",
-      "status": "active",
-      "permissions": [
-        "read",
-        "write"
-      ],
-      "last_action_at": "2026-05-01T21:00:00Z",
-      "session_action_count": 8
-    }
-  ],
   "agent_log": [
     {
       "id": "log_1746134400_abc123",
@@ -685,60 +474,6 @@
       "tags": [
         "audit",
         "analysis"
-      ]
-    },
-    {
-      "id": "log_1746138000_def456",
-      "agent_id": "opencode",
-      "action": "generate_command_center",
-      "target_type": "project",
-      "target_id": "dev_portfolio",
-      "description": "Generated 7 command center files: PROJECT_COMMAND_CENTER.md, PROJECT_CONTEXT.md, PROJECT_ARCHITECTURE.md, PROJECT_WORKFLOW.md, project-tracker.json, AI_AGENT_RULES.md, AI_HANDOFF.md",
-      "timestamp": "2026-05-01T20:30:00Z",
-      "tags": [
-        "setup",
-        "documentation"
-      ]
-    },
-    {
-      "id": "log_1746141600_ghi789",
-      "agent_id": "opencode",
-      "action": "configure_mcp",
-      "target_type": "config",
-      "target_id": ".mcp.json",
-      "description": "Created .mcp.json, fixed project-tracker.json to match MCP schema (subtasks structure, decimal progress), registered opencode agent",
-      "timestamp": "2026-05-01T21:00:00Z",
-      "tags": [
-        "mcp",
-        "config"
-      ]
-    },
-    {
-      "id": "log_1746145200_jkl012",
-      "agent_id": "opencode",
-      "action": "setup_dotfiles",
-      "target_type": "config",
-      "target_id": "dotfiles",
-      "description": "Added PROJECT_ROOT export to .bash_exports and ccui alias to .bash_aliases in ~/dotfiles",
-      "timestamp": "2026-05-01T21:30:00Z",
-      "tags": [
-        "dotfiles",
-        "alias"
-      ]
-    },
-    {
-      "id": "log_1746148800_mno345",
-      "agent_id": "opencode",
-      "action": "fix_tui_colors",
-      "target_type": "component",
-      "target_id": "command-center-tui",
-      "description": "Fixed blessed color tag format: {fg:#RRGGBB} and {ansi:NNN} both broken. Correct format is {38;5;NNN}. Fixed task-board.ts, status-bar.ts, agent-hub.ts, calendar.ts, swim-lane.ts. Some remaining issues to fix next session.",
-      "timestamp": "2026-05-01T22:00:00Z",
-      "tags": [
-        "tui",
-        "colors",
-        "blessed",
-        "wip"
       ]
     },
     {
@@ -756,35 +491,6 @@
       ]
     },
     {
-      "id": "log_1778853828_schema_fix",
-      "agent_id": "opencode",
-      "action": "fix_tracker_schema",
-      "target_type": "config",
-      "target_id": "project-tracker.json",
-      "description": "Restructured milestones from flat array to categorized {active, backlog, completed} format. Added dashboard field. Fixed Zod schema validation for TUI.",
-      "timestamp": "2026-05-15T17:03:48Z",
-      "tags": [
-        "schema",
-        "tui",
-        "fix"
-      ]
-    },
-    {
-      "id": "log_1778854382_tui_colors",
-      "agent_id": "opencode",
-      "action": "fix_tui_colors",
-      "target_type": "component",
-      "target_id": "command-center-tui",
-      "description": "Replaced all 15+ invalid {muted} tags with valid blessed {#6a6a6a-fg} tags across all TUI views (task-board, swim-lane, agent-hub, calendar, status-bar)",
-      "timestamp": "2026-05-15T17:13:02Z",
-      "tags": [
-        "tui",
-        "colors",
-        "blessed",
-        "done"
-      ]
-    },
-    {
       "id": "log_1778854390_upgrade_next",
       "agent_id": "opencode",
       "action": "upgrade_packages",
@@ -798,16 +504,6 @@
         "done"
       ]
     },
-    {
-      "id": "log_1779310000001_root_sync",
-      "agent_id": "opencode",
-      "action": "sync_tracker",
-      "target_type": "config",
-      "target_id": "project-tracker.json",
-      "description": "Synced command-center tracker to match root state: m5 completed, 16 subtasks approved to done, m6_002 added, progress 72%",
-      "timestamp": "2026-05-21T00:00:00Z",
-      "tags": ["sync", "cleanup"]
-    }
   ],
   "schedule": {
     "phases": [
@@ -849,11 +545,4 @@
       }
     ]
   },
-  "dashboard": {
-    "current_focus": "UI Polish & Features (m6)",
-    "active_milestone": "m6",
-    "next_priority": "m6_001: Integrate shadcn/ui components",
-    "blockers": "None",
-    "health": "good"
-  }
 }

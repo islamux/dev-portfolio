@@ -33,7 +33,7 @@ export async function generateMetadata({
       url: siteConfig.url,
       images: [
         {
-          url: "images/og-image.jpg",
+          url: "images/og-image.svg",
           width: 1200,
           height: 630,
           alt: "Islamux - Software Developer",

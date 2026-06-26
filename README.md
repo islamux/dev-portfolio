@@ -82,7 +82,6 @@ dev_portfolio/
 │   ├── lib/               # Utilities & helpers
 │   ├── hooks/             # Custom React hooks
 │   └── types/             # TypeScript type definitions
-├── command-center/        # Project management CLI & TUI
 ├── messages/              # Translation files (en, fr, ar, es, tr)
 ├── content/               # Per-locale content (about.md, home.md, projects.json)
 ├── public/                # Static assets
@@ -119,9 +118,6 @@ pnpm test:static        # Build + serve static version
 pnpm lint               # Run ESLint
 pnpm typecheck          # Check TypeScript types
 pnpm format             # Format code with Prettier
-pnpm cc:status          # Command center status overview
-pnpm cc:start           # Start a tracked task
-pnpm cc:complete        # Complete a tracked task
 ```
 
 ### Automated Build Script
@@ -245,8 +241,6 @@ There's a known bug with `next/font/google` in Next.js 16.0.3. This project uses
 ### May 2026
 
 - ✅ **Next.js 16.2.6 & React 19.2.6 Upgrade** - Latest framework versions with improved performance
-- ✅ **Command Center** - Built-in project management CLI with task tracking, milestones, swim lanes, and TUI
-- ✅ **MCP Integration** - Model Context Protocol support for AI tool coordination
 - ✅ **Turkish & Spanish** - Two new locales added (5 languages total: EN, AR, TR, ES, FR)
 - ✅ **Project Tracker** - Centralized milestone tracking with status reporting
 - ✅ **Docs Reorganization** - Flattened and restructured documentation under `docs/`

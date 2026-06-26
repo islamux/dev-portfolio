@@ -46,7 +46,7 @@ export const defaultMetadata: Metadata = {
     siteName: siteConfig.name,
     images: [
       {
-        url: "/images/og-image.jpg",
+        url: "/images/og-image.svg",
         width: 1200,
         height: 630,
         alt: siteConfig.title,
@@ -57,7 +57,7 @@ export const defaultMetadata: Metadata = {
     card: "summary_large_image",
     title: siteConfig.title,
     description: siteConfig.description,
-    images: ["/images/og-image.jpg"],
+    images: ["/images/og-image.svg"],
     creator: "@islamux",
   },
   robots: {

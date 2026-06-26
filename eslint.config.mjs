@@ -12,8 +12,7 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
-    // Internal tools — not part of the portfolio codebase
-    "command-center/**",
+
   ]),
 ]);
 
