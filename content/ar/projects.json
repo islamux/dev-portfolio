@@ -124,5 +124,17 @@
     "image": "/images/projects/bassaer.png",
     "featured": true,
     "year": "2025"
+  },
+  {
+    "id": "athkari",
+    "name": "أذكاري",
+    "description": "تطبيق إسلامي Minimalist أعيد بناؤه من الصفر بتقنيات أندرويد الأصيلة (Native) باستخدام Kotlin ومعمارية MVVM، بحجم استثنائي 2 ميجابايت فقط.",
+    "longDescription": "تطبيق إسلامي يجمع بين عمق المحتوى الشرعي وبساطة التصميم النظيف. بعد إطلاق النسخة الأولى باستخدام Flutter، تمت إعادة كتابة التطبيق بالكامل من الصفر كمشروع أصيل (Native Android) باستخدام لغة Kotlin وبنية MVVM. تم تبني فلسفة تصميم تقليلية (Minimalistic) تبتعد عن البهرجة الزائدة أو الإعلانات لتوفير تجربة مستخدم هادئة، مع تحقيق قفزة نوعية في الأداء الخفيف ليصبح حجم التطبيق في حدود 2 ميجابايت فقط. يتميز التطبيق بدعمه الكامل للعمل دون اتصال بالإنترنت (Offline-First)، وعرض حصن المسلم اليومي (أذكار الصباح والمساء والنوم)، ودليل الفضائل والصيغ، والمكتبة الرقمية المدمجة التي تضم كتاب الأذكار من الكتاب والسنة وكتاب أسماء الله الحسنى.",
+    "tech": ["Kotlin", "Jetpack Compose", "Android", "Material 3"],
+    "github": "https://github.com/islamux/athkari-kotlin",
+    "apk": "https://github.com/islamux/athkari-kotlin/releases/download/v1.1.0/app-release.apk",
+    "image": "/images/athkarix-kotlin.png",
+    "featured": true,
+    "year": "2026"
   }
 ]
