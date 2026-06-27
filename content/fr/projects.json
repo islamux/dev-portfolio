@@ -120,5 +120,17 @@
     "image": "/images/projects/bassaer.png",
     "featured": true,
     "year": "2025"
+  },
+  {
+    "id": "athkari",
+    "name": "Athkari",
+    "description": "Une application islamique minimaliste reconstruite de zéro en natif Android avec Kotlin et l'architecture MVVM, atteignant une taille remarquable d'environ 2 Mo.",
+    "longDescription": "Une application islamique minimaliste qui allie la profondeur du contenu religieux à une expérience utilisateur épurée et sans distraction. Après la version Flutter, l'application a été entièrement réécrite de zéro en tant qu'application Android Native avec Kotlin et l'architecture MVVM. Adoptant une philosophie de design strictement minimaliste, 'Azkari' élimine toute fioriture visuelle superflue et toute publicité, réduisant sa taille finale à environ 2 Mo. Fonctionnalités : approche Offline-First, La Citadelle du Musulman (invocations du matin, soir et coucher), Guide des Vertus et Formulations, et Bibliothèque Numérique Intégrée avec le Livre des Invocations et les Noms d'Allah.",
+    "tech": ["Kotlin", "Jetpack Compose", "Android", "Material 3"],
+    "github": "https://github.com/islamux/athkari-kotlin",
+    "apk": "https://github.com/islamux/athkari-kotlin/releases/download/v1.1.0/app-release.apk",
+    "image": "/images/athkarix-kotlin.png",
+    "featured": true,
+    "year": "2026"
   }
 ]

@@ -46,3 +46,6 @@ node_modules/
 
 # FUSE temp files
 .fuse_hidden*
+
+# graphify code index
+graphify-out/

@@ -19,6 +19,35 @@ Multilingual (EN, AR, TR, ES, FR) developer portfolio. Next.js 16.2.6, React 19.
 | `pnpm lint` | ESLint (strict) |
 | `scripts/test-routes.sh` | Test all routes locally (41 checks) |
 
+## ⚠️ CRITICAL: Static Export Rules (Read Before Any Static Build)
+
+This project deploys to **Hostinger (LiteSpeed)** via static export. The following rules are **mandatory** — violations will cause 403 errors or build failures.
+
+### Configuration
+- `DEPLOY_TARGET=static` enables `output: 'export'` + `trailingSlash: true` + `images.unoptimized: true`
+- Build: `NEXT_PUBLIC_DEPLOY_TARGET=static DEPLOY_TARGET=static next build`
+  - `DEPLOY_TARGET` → `next.config.ts` (server-side config)
+  - `NEXT_PUBLIC_DEPLOY_TARGET` → client components (root redirect URL)
+
+### ⚡ Routing (Most Common Breakage Point)
+- **Hostinger 403 root cause**: LiteSpeed auto-redirects `/en` → `/en/`, then 403s if no `en/index.html`. Solution: `trailingSlash: true` produces `en/index.html` files.
+- **NEVER use file-based routing** (`.html` filenames). Always use **directory-based** (`en/index.html`, `en/about/index.html`).
+- `src/i18n/navigation.ts` returns plain paths like `/en/`, `/en/about/` — no `.html` suffixes.
+
+### Client Components in Static Mode
+- Bypass `NextIntlClientProvider` (see `src/app/[locale]/layout.tsx`)
+- Pass locale/data as props — **never** use `useLocale()` or `useTranslations()` in client components
+- Use `next/navigation`, **never** `next-intl/navigation`
+- Call `setRequestLocale(locale)` in every page and layout
+- **No** `headers()` / `cookies()`
+
+### Before Deploying to Hostinger
+1. Delete all old files from `public_html/` (stale locale dirs cause 403)
+2. Run `pnpm build:static:full`
+3. Run `scripts/test-routes.sh` — all 41 checks must pass
+4. Upload `out/` contents to `public_html/`
+
+---
 
 ## Code Rules
 
@@ -57,20 +86,15 @@ Before any implementation:
 4. **Update Task Board** immediately after change
 5. Keep tracker in sync on every state transition (start/complete/block/unblock)
 
-
-
 ## Build Scripts
 
 `.npmrc` approves `@swc/core`, `sharp`, `unrs-resolver` native builds. Don't remove.
 
-## Static Export Rules
+## Troubleshooting
 
-- `DEPLOY_TARGET=static` enables `output: 'export'` + `trailingSlash: true` + `images.unoptimized: true`
-- Build command: `NEXT_PUBLIC_DEPLOY_TARGET=static DEPLOY_TARGET=static next build`
-  - `DEPLOY_TARGET` for `next.config.ts` (server-side config)
-  - `NEXT_PUBLIC_DEPLOY_TARGET` for client components (e.g., root redirect URL)
-- Bypass `NextIntlClientProvider` in static mode (see layout.tsx)
-- Pass locale/data as props, don't use `useLocale()`/`useTranslations()` in clients
-- Use `next/navigation` not `next-intl/navigation` for static compatibility
-- `setRequestLocale(locale)` in every page + layout
-- No `headers()`/`cookies()` in static mode
+| Problem | Diagnosis | Fix |
+|---------|-----------|-----|
+| 403 on all locale pages except English | Stale locale dirs on server or missing `trailingSlash` | Delete `public_html/` contents, rebuild with `build:static:full`, re-upload |
+| Build fails — "missing generateStaticParams" | Dynamic route without static params | Add `generateStaticParams()` reading from `content/{locale}/projects.json` |
+| Context errors in static mode | Client component using `next-intl` hooks | Pass locale as prop, use `next/navigation` instead |
+| Routes broken after edit | Forgot `setRequestLocale(locale)` | Add to every page and layout component |

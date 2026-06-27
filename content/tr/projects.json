@@ -120,5 +120,17 @@
     "image": "/images/projects/bassaer.png",
     "featured": true,
     "year": "2025"
+  },
+  {
+    "id": "athkari",
+    "name": "Athkari",
+    "description": "Kotlin ve MVVM mimarisi kullanılarak sıfırdan yerel Android uygulaması olarak yeniden yazılmış, yalnızca ~2 MB boyutunda minimalist bir İslami uygulama.",
+    "longDescription": "Dini içeriğin derinliğini, temiz ve dikkat dağıtıcı unsurlardan arındırılmış bir kullanıcı deneyimiyle birleştiren minimalist bir İslami uygulamadır. Flutter sürümünün ardından uygulama, Kotlin dili ve MVVM mimarisi kullanılarak sıfırdan tamamen yerel (Native Android) bir proje olarak yeniden yazılmıştır. Tamamen minimalist bir tasarım felsefesini benimseyen 'Azkari', gereksiz görsel karmaşayı ve reklamları ortadan kaldırarak APK boyutunu yaklaşık 2 MB'a indirmiştir. Özellikler: Offline-First yaklaşımı, Müslümanın Sığınağı (sabah, akşam ve uyku öncesi zikirleri), Faziletler ve Okunuşlar Rehberi, ve Kitap ve Sünnetten Zikirler Kitabı ile Esmâ-i Hüsnâ Kitabı'nı içeren Entegre Dijital Kütüphane.",
+    "tech": ["Kotlin", "Jetpack Compose", "Android", "Material 3"],
+    "github": "https://github.com/islamux/athkari-kotlin",
+    "apk": "https://github.com/islamux/athkari-kotlin/releases/download/v1.1.0/app-release.apk",
+    "image": "/images/athkarix-kotlin.png",
+    "featured": true,
+    "year": "2026"
   }
 ]
