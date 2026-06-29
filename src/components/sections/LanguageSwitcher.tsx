@@ -1,20 +1,16 @@
 'use client';
 
 import { localeFlag, localeNames, locales, type Locale } from "@/i18n/config";
-// import { useLocale } from "next-intl"; // Removed
-// import { usePathname, useRouter } from "@/i18n/navigation"; // Removed
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 export function LanguageSwitcher({ locale: localeString }: { locale: string }) {
-
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
   const locale = localeString as Locale;
-  const router = useRouter(); // Native Next.js router
-  const pathname = usePathname(); // Native path (includes locale)
+  const router = useRouter();
+  const pathname = usePathname();
 
-  // 1
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -25,7 +21,6 @@ export function LanguageSwitcher({ locale: localeString }: { locale: string }) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // 2
   const handleLocaleChange = (newLocale: Locale) => {
     setIsOpen(false);
     if (!pathname) return;
@@ -44,13 +39,12 @@ export function LanguageSwitcher({ locale: localeString }: { locale: string }) {
           newPath = `/${newLocale}${pathname}`;
        }
     }
-    
+
     router.push(newPath);
   };
 
   return (
     <div className="relative" ref={dropdownRef}>
-      {/* Current Locale Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
@@ -73,7 +67,6 @@ export function LanguageSwitcher({ locale: localeString }: { locale: string }) {
         </svg>
       </button>
 
-      {/*Dropdown Menu*/}
       {isOpen && (
         <div className="absolute end-0 mt-2 w-48 bg-white dark:bg-gray-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-800 py-1 z-50">
           {locales.map((loc) => (

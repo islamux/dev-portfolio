@@ -70,9 +70,9 @@ import { ProjectCard } from "./ProjectCard";
 
 **Tailwind:** Use `brand-*` colors, `dark:` prefix. Class order: layout → spacing → typography → colors → effects. No custom CSS when utility suffices.
 
-**Error handling:** try/catch + console.error, return null/[] on failure, no secrets in messages.
+**Error handling:** Let errors propagate from service/data layer. Catch only at component level for meaningful UI fallback. No secrets in messages.
 
-**i18n:** `useTranslations` hook, keys from `src/messages/*.json`, content in `content/{locale}/`.
+**i18n:** Pass locale/data as props from server components. Import messages JSON directly (`import messages from '@/messages/${locale}.json'`). Content in `content/{locale}/`. Avoid `next-intl` hooks in client components.
 
 **Next.js:** App Router. Server components by default. `fill` on Image with relative parent. `generateStaticParams` on dynamic routes.
 
@@ -82,9 +82,7 @@ Before any implementation:
 
 1. **Create branch** first
 2. **Update project-tracker.json** — set task `in_progress`
-3. **Update Swim Lane percentages** immediately after change
-4. **Update Task Board** immediately after change
-5. Keep tracker in sync on every state transition (start/complete/block/unblock)
+3. Keep tracker in sync on every state transition (start/complete/block/unblock)
 
 ## Build Scripts
 

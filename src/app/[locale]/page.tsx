@@ -64,8 +64,7 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <>
-      {/*Hero section*/}
-      <section className="py-20 md:py-32 bg-gradient-to-b from-white  to-gray-50 dark:from-gray-950 dark:to-gray-900">
+      <section className="py-20 md:py-32 bg-gradient-to-b from-white to-gray-50 dark:from-gray-950 dark:to-gray-900">
         <Container>
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-6xl font-bold from-gray-900 to-gray-900 dark:text-white mb-6">
@@ -80,16 +79,14 @@ export default async function Page({ params }: PageProps) {
                   {translations?.hero?.cta?.projects || "View Projects"}
                 </Button>
               </Link>
-              {/*Link 2 */}
-              <Link href={contactHref}>
-                <Button variant="secondary" size="lg">{translations?.hero?.cta?.contact || "Get in Touch"}</Button>
-              </Link>
+            <Link href={contactHref}>
+              <Button variant="secondary" size="lg">{translations?.hero?.cta?.contact || "Get in Touch"}</Button>
+            </Link>
             </div>
           </div>
         </Container>
       </section>
 
-      {/*Featured Projects Section*/}
       {featuredProjects.length > 0 && (
         <section className="py-16 md:py-24">
           <Container>
@@ -97,7 +94,6 @@ export default async function Page({ params }: PageProps) {
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
                 {translations?.featured?.title || "Featured Projects"}
               </h2>
-              {/*Link 3*/}
               <Link href={projectsHref} className="text-brand-500 hover:text-brand-600 font-medium">
                 {translations?.featured?.viewAll || "View All"}
               </Link>
@@ -110,7 +106,6 @@ export default async function Page({ params }: PageProps) {
                 }} locale={locale} />
               ))}
             </div>
-            {/*View All Link at the end*/}
             <div className="mt-12 text-center">
               <Link href={projectsHref} className="text-brand-500 hover:text-brand-600 font-medium">
                 {translations?.featured?.viewAllEnd || "View All"}

@@ -4,9 +4,9 @@
     "name": "Dev Portfolio",
     "start_date": "2025-01-01",
     "target_date": "2026-09-01",
-    "current_week": 70,
+    "current_week": 78,
     "schedule_status": "on_track",
-    "overall_progress": 0.72
+    "overall_progress": 0.82
   },
   "milestones": {
     "backlog": [
@@ -108,8 +108,8 @@
         "planned_start": "2026-01-01",
         "planned_end": "2026-06-01",
         "actual_start": "2026-01-01",
-        "actual_end": "2026-05-20",
-        "drift_days": 0,
+        "actual_end": "2026-06-29",
+        "drift_days": 28,
         "is_key_milestone": true,
         "key_milestone_label": "Bugs Fixed, Code Cleaned",
         "dependencies": ["m4"],
@@ -118,7 +118,8 @@
           "Remove dead code",
           "Fix CSS/SVG rendering bugs",
           "TypeScript strict compliance",
-          "i18n string coverage"
+          "i18n string coverage",
+          "Clean code review executed 2026-06-29"
         ],
         "subtasks": [
           {"id": "m5_001", "label": "Fix generateMetaData typo", "status": "done", "done": true, "assignee": "opencode", "priority": "high"},
@@ -136,12 +137,17 @@
           {"id": "m5_013", "label": "Consolidate translation loading into shared utility", "status": "done", "done": true, "assignee": "opencode", "priority": "medium"},
           {"id": "m5_014", "label": "Consolidate RTL font-family CSS", "status": "done", "done": true, "assignee": "opencode", "priority": "medium"},
           {"id": "m5_015", "label": "Fix /about markdown link to be locale-prefixed", "status": "done", "done": true, "assignee": "opencode", "priority": "low"},
-          {"id": "m5_016", "label": "Add clsx/cn utility", "status": "done", "done": true, "assignee": "opencode", "priority": "low"},
-          {"id": "m5_017", "label": "Translate hardcoded English strings", "status": "done", "done": true, "assignee": "opencode", "priority": "low"}
+          {"id": "m5_016", "label": "Remove clsx/cn() — dead code, use native className", "status": "done", "done": true, "assignee": "opencode", "priority": "low"},
+          {"id": "m5_017", "label": "Translate hardcoded English strings", "status": "done", "done": true, "assignee": "opencode", "priority": "low"},
+          {"id": "m5_018", "label": "Strip comment pollution (~30+ instances across 7 files)", "status": "done", "done": true, "assignee": "opencode", "priority": "medium"},
+          {"id": "m5_019", "label": "Delete unused components (ProjectBreadcrumb, ProjectBackButton, ProjectDescription, ProjectDetailContainer, ProjectHeader, ProjectImage, ProjectLinks)", "status": "done", "done": true, "assignee": "opencode", "priority": "medium"},
+          {"id": "m5_020", "label": "Rename LanguagesSwitcher.tsx → LanguageSwitcher.tsx (match export)", "status": "done", "done": true, "assignee": "opencode", "priority": "low"},
+          {"id": "m5_021", "label": "Simplify ProjectService error handling (let errors propagate)", "status": "done", "done": true, "assignee": "opencode", "priority": "medium"},
+          {"id": "m5_022", "label": "Remove tailwindcss-rtl dep + languageInfo/getLanguagesInfo", "status": "done", "done": true, "assignee": "opencode", "priority": "low"}
         ],
         "status": "completed",
-        "completed_at": "2026-05-20",
-        "summary": "17 subtasks: 8 bug fixes, 3 dead code cleanups, 3 TS refactors, 3 i18n enhancements"
+        "completed_at": "2026-06-29",
+        "summary": "Full clean code review: 22 subtasks — dead code removal (10 files), comment cleanup (7 files), LanguageSwitcher rename, error handling fix, dep cleanup (clsx, tailwindcss-rtl), config cleanup"
       },
       {
         "id": "m1",
@@ -471,10 +477,7 @@
       "target_id": "dev_portfolio",
       "description": "Full codebase analysis: 48 TS/TSX files, ~2352 lines, identified 8 bugs, 6 dead code items, multiple duplications",
       "timestamp": "2026-05-01T20:00:00Z",
-      "tags": [
-        "audit",
-        "analysis"
-      ]
+      "tags": ["audit", "analysis"]
     },
     {
       "id": "log_1746200000_plan_bugs",
@@ -484,11 +487,7 @@
       "target_id": "fix/bugs-and-code-quality",
       "description": "Expanded m5 milestone with 17 subtasks across 5 groups: actual bugs, CSS/SVG, dead code, TS refactoring, i18n enhancements",
       "timestamp": "2026-05-15T12:00:00Z",
-      "tags": [
-        "planning",
-        "bugs",
-        "quality"
-      ]
+      "tags": ["planning", "bugs", "quality"]
     },
     {
       "id": "log_1778854390_upgrade_next",
@@ -498,12 +497,18 @@
       "target_id": "package.json",
       "description": "Upgraded next 16.0.10→16.2.6, react 19.2.0→19.2.6, react-dom 19.2.0→19.2.6, eslint-config-next 16.0.3→16.2.6. Verified: SSR build (65 pages), static export (65 pages), lint clean on src/. Added .npmrc for build approvals, cleaned up package.json (removed deprecated pnpm field). Font bug (Issue 2.1) fix not verified.",
       "timestamp": "2026-05-20T16:00:00Z",
-      "tags": [
-        "upgrade",
-        "nextjs",
-        "done"
-      ]
+      "tags": ["upgrade", "nextjs", "done"]
     },
+    {
+      "id": "log_1778854400_clean_code",
+      "agent_id": "opencode",
+      "action": "clean_code_review",
+      "target_type": "project",
+      "target_id": "dev_portfolio",
+      "description": "Full clean code review: removed clsx dep, removed tailwindcss-rtl dep, deleted 10 dead code files (components + utils + types), renamed LanguagesSwitcher→LanguageSwitcher, stripped comment pollution (30+), simplified ProjectService error handling, removed languageInfo/getLanguagesInfo, removed ContentData.slug, cleaned empty SiteFooter div. Lint passes.",
+      "timestamp": "2026-06-29T00:00:00Z",
+      "tags": ["clean-code", "refactor", "dead-code", "done"]
+    }
   ],
   "schedule": {
     "phases": [
@@ -544,5 +549,5 @@
         "end_week": 104
       }
     ]
-  },
+  }
 }

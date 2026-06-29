@@ -5,17 +5,6 @@ import { ProjectLink } from "../ui/ProjectLink";
 import { getProjectHref } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/config";
 
-/**
- * ProjectCard Component
- *
- * Displays a project card with image, title, description, and action links.
- *
- * DRY Improvements:
- * - Uses ProjectLink component instead of duplicated link structures
- * - Centralized link styling and behavior
- * - Reduced code duplication by ~66%
- */
-
 interface ProjectCardProps {
   project: Project;
   translations?: {

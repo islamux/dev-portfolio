@@ -12,7 +12,7 @@ Once Next.js releases a fix (likely 16.1.0+), you can switch back to `next/font/
 - i18 : 1- How in  @layout.tsx  "Validate Locale" works because its out the bloc of return.
 2- in validate locale i see as Locale , what the alternative way .
 - analyze the project , is there any dublications, break best practice .
-- maybe remove generateStaticParams.ts
+- ~~maybe remove generateStaticParams.ts~~ ✅ done
 - search on 'as Locale' , apply alternative solution
 - alternative for 'as Node'
 - make LangugaSwitcher is smaller 

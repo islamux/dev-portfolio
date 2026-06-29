@@ -1,41 +1,41 @@
 # AI Handoff Document - Dev Portfolio
 
-## Current State (as of 2026-05-01)
+## Current State (as of 2026-06-29)
 
-**Status:** Mid-stage functional portfolio with known bugs  
+**Status:** Cleaned codebase with resolved tech debt  
 **Build:** ✅ SSR mode works, ✅ Static export works  
 **Deployment:** Hostinger (static export) + Vercel (SSR available)
 
 ## What's Been Done Recently
-- Turkish language support added (`feat/add-turkish-language`)
-- New Muslims Stories project added (content + images)
-- Hostinger deployment fixes (`.htaccess` routing)
-- Comprehensive docs added (`docs/` subdirectory)
-- Phase-based build guide created (`docs/build/`)
-
+- Full clean code review executed — 10+ findings addressed
+- Dead code removed: `generateStaticParams.ts`, `i18n/guards.ts`, `types/project.ts`, `ProjectBreadcrumb`, `ProjectBackButton`, `ProjectDescription`, `ProjectDetailContainer`, `ProjectHeader`, `ProjectImage`, `ProjectLinks`
+- `LanguagesSwitcher.tsx` → `LanguageSwitcher.tsx` (file matches export name)
+- `clsx` dependency removed — `cn()` utility was dead code; used native `className` merging
+- `tailwindcss-rtl` removed (incompatible with Tailwind v4)
+- Comment pollution stripped (~30+ instances across 7 files)
+- Error handling simplified: `ProjectService` now lets errors propagate instead of returning `null`/`[]`
+- `languageInfo` interface + `getLanguagesInfo()` removed from config
+- `ContentData.slug` removed (unused)
+- Empty `<div>` removed from `SiteFooter.tsx`
+- Service layer methods cleaned up — removed `generateStaticParams()` wrapper
 
 ## What's Left (Priority Order)
 
 ### 🔴 High Priority (Fix Soon)
-1. **`generateMetaData` typo** in `src/app/[locale]/page.tsx` — metadata not being applied
-2. **`openGraph.url: siteConfig.name`** — should be `siteConfig.url`
-3. **Dead code removal:** `generateStaticParams.ts`, `i18n/guards.ts`, `types/project.ts`
-4. **SiteFooter not rendered** — either render it in `layout.tsx` or delete the component
-5. **CSS typos:** `md:py24` → `md:py-24` in page.tsx, `text-gray-900dar` in ContactForm.tsx
+1. **Project detail page** (`projects/[id]/page.tsx`) bypasses `ProjectService` — reads JSON directly
+2. **Contact form non-functional** — API route only logs to console (no email sending)
+3. **i18n gaps:** Many hardcoded English strings in contact page, form labels, filter buttons
 
 ### 🟡 Medium Priority
-6. **i18n gaps:** Many hardcoded English strings in contact page, form labels, filter buttons
-7. **Project detail page** (`projects/[id]/page.tsx`) bypasses `ProjectService` — reads JSON directly
-8. **Consolidate RTL CSS** in `globals.css` — ~200 lines with repeated font-family declarations
-9. **Unify translation loading** pattern across pages (currently duplicated in 3 pages)
-10. **LanguageSwitcher SVG path typo:** `M19 91-7` → `M19 9l-7`
+4. **Unify translation loading** pattern across pages (currently duplicated in 3 pages)
+5. **Logo link has no locale prefix** — `SiteHeader.tsx:43` (`<Link href="/">`)
+6. **Consolidate RTL CSS** in `globals.css` — ~200 lines with repeated font-family declarations
 
 ### 🟢 Low Priority
-11. **Contact form non-functional** — API route only logs to console (no email sending)
-12. **Replace hardcoded SVG icons** in `Icon.tsx` with icon library (lucide-react?)
-13. **Add `clsx`/`cn()` utility** for className merging in components
-14. **Add analytics** (Plausible or Vercel Analytics)
-15. **Shadcn/ui integration** (already in todo.md)
+7. **Replace hardcoded SVG icons** in `Icon.tsx` with icon library (lucide-react?)
+8. **Add analytics** (Plausible or Vercel Analytics)
+9. **Shadcn/ui integration** (already in todo.md)
+10. **LanguageSwitcher SVG path typo:** `M19 91-7` → `M19 9l-7` (low visual impact)
 
 ## Known Workarounds in Place
 | Workaround | Location | Why |
@@ -78,12 +78,12 @@ pnpm dev  # Starts at localhost:3000
 5. **Author prefers incremental fixes** — todo.md shows awareness of issues but prioritizes shipping
 
 ## Repository Stats
-- **48 TypeScript/TSX files** (~2352 lines)
+- **~40 TypeScript/TSX files** (~2000 lines, cleaned)
 - **5 locales** with translation files
-- **5+ projects** in portfolio
+- **6+ projects** in portfolio
 - **15+ stale branches** on remote (cleanup candidate)
-- **~8 known bugs** documented in this handoff
-- **~6 dead code items** ready for removal
+- **~3 known bugs** documented in this handoff
+- **~1 dead code item** remaining (`getAllContent()` in content.ts)
 
 ## Git Branch Strategy
 - **Main branch:** `main` (stable, deployed)
@@ -104,12 +104,13 @@ docs/
 
 ## Message to Next Agent
 
-This is a functional but imperfect portfolio. The author (Fathi) is aware of most issues (see `todo.md`). Focus on:
+This is a cleaned-up portfolio. The high-impact dead code and bug fixes have been addressed. Focus remaining effort on:
 
-1. **Fixing the `generateMetaData` bug** — highest impact, easy win
-2. **Removing dead code** — low risk, cleans up repo
-3. **Improving i18n coverage** — many hardcoded strings need translation
-4. **Don't over-engineer** — author prefers practical improvements over architectural overhauls
+1. **Fix project detail page** to use `ProjectService` instead of direct `fs.readFileSync`
+2. **Make contact form functional** — implement email sending or remove
+3. **Improve i18n coverage** — translate remaining hardcoded strings
+4. **Fix logo locale bug** — `SiteHeader.tsx` logo link needs locale prefix
+5. **Don't over-engineer** — author prefers practical improvements over architectural overhauls
 
 
 

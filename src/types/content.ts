@@ -10,7 +10,6 @@ export interface ContentFrontmatter {
 export interface ContentData {
   frontmatter: ContentFrontmatter;
   content: string;
-  slug: string;
 }
 
 export interface Project {

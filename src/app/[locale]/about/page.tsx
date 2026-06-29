@@ -44,7 +44,6 @@ export default async function AboutPage({ params }: AboutPageProps) {
     <div className='py-12 md:py-20'>
       <Container>
         <div className='max-w-4xl mx-auto'>
-          {/*Header*/}
           <header className='mb-12'>
             <h1 className='text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4'>
               {frontmatter.title}
@@ -55,7 +54,6 @@ export default async function AboutPage({ params }: AboutPageProps) {
               </p>
             )}
           </header>
-          {/*Content*/}
           <MarkdownContent content={content} />
         </div>
       </Container>

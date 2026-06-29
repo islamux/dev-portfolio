@@ -37,7 +37,6 @@ export default async function ContactPage({ params }: ContactPageProps) {
       <Container>
         <div className='max-w-2xl mx-auto'>
 
-          {/*Header*/}
           <header className='mb-12 text-center'>
             <h1 className='text-4xl md:text-4xl font-semibold text-gray-900 dark:text-white mb-4'>
               {contactTranslations.title || "Contact"}
@@ -47,7 +46,6 @@ export default async function ContactPage({ params }: ContactPageProps) {
             </p>
           </header>
 
-          {/*Contact*/}
           <div className='mb-12 p-6 bg-gray-50 dark:bg-gray-900 rounded-lg border-gray-200 dark:border-gray-800'>
             <h2 className='text-lg font-semibold text-gray-900 dark:text-white mb-4'>
               {contactTranslations.other?.title || "Other Ways to Reach Me"}
@@ -75,7 +73,6 @@ export default async function ContactPage({ params }: ContactPageProps) {
               ))}
             </div>
 
-            {/* Contact Form*/}
             <ContactForm translations={formTranslations} />
           </div>
         </div>
