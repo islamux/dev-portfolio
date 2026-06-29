@@ -152,15 +152,16 @@ pnpm start
 
 ## Refactor Targets (from todo.md)
 
-| Target | Priority | File(s) |
-|--------|----------|---------|
-| Remove dead code (`generateStaticParams.ts`, `guards.ts`, `types/project.ts`) | High | Multiple |
-| Fix `SiteFooter` — render in layout or delete | Medium | `layout.tsx`, `SiteFooter.tsx` |
-| Unify translation loading pattern | Medium | `page.tsx`, `projects/page.tsx` |
-| Replace hardcoded SVG icons with icon library | Low | `src/components/ui/Icon.tsx` |
-| Add `clsx`/`cn()` utility for className merging | Low | Multiple UI components |
-| Consolidate RTL CSS in `globals.css` | Medium | `src/app/globals.css` |
-| Make contact form functional (email sending) | Low | `src/api/contact/route.ts` |
+| Target | Priority | File(s) | Status |
+|--------|----------|---------|--------|
+| Remove dead code (`generateStaticParams.ts`, `guards.ts`, `types/project.ts`) | High | Multiple | ✅ Done |
+| Fix `SiteFooter` — render in layout or delete | Medium | `layout.tsx`, `SiteFooter.tsx` | ✅ Done (kept in layout) |
+| Unify translation loading pattern | Medium | `page.tsx`, `projects/page.tsx` | 🟡 Open |
+| Replace hardcoded SVG icons with icon library | Low | `src/components/ui/Icon.tsx` | 🟡 Open |
+| Consolidate RTL CSS in `globals.css` | Medium | `src/app/globals.css` | 🟡 Open |
+| Make contact form functional (email sending) | Low | `src/api/contact/route.ts` | 🟡 Open |
+| Fix project detail page to use ProjectService | High | `projects/[id]/page.tsx` | 🟡 Open |
+| Fix logo link locale prefix | High | `SiteHeader.tsx` | 🟡 Open |
 
 ## Context Preservation Strategy
 

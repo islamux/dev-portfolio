@@ -49,7 +49,7 @@ Data Layer: content/{locale}/*.md + *.json
 | SiteHeader | `src/components/sections/SiteHeader.tsx` | useState, usePathname |
 | DesktopNavigation | `src/components/sections/DesktopNavigation.tsx` | usePathname |
 | MobileNavigation | `src/components/sections/MobileNavigation.tsx` | usePathname |
-| LanguageSwitcher | `src/components/sections/LanguagesSwitcher.tsx` | useState, useRouter |
+| LanguageSwitcher | `src/components/sections/LanguageSwitcher.tsx` | useState, useRouter |
 | ProjectsList | `src/components/sections/ProjectsList.tsx` | useProjectFilter |
 | ContactForm | `src/components/sections/ContactForm.tsx` | useContactForm |
 | MarkdownContent | `src/components/ui/MarkdownContent.tsx` | react-markdown (should be "use client") |
@@ -82,7 +82,7 @@ src/i18n/
 ├── config.ts         # locales[], defaultLocale, rtlLocales, isRTL()
 ├── request.ts        # getRequestConfig for next-intl server
 ├── navigation.ts     # Link, useRouter, getLocalizedHref() helpers
-└── guards.ts         # isValidateLocale() — DEAD CODE, never used
+└── guards.ts         # isValidateLocale() — REMOVED (was dead code)
 ```
 
 **Static vs SSR i18n:**
@@ -102,7 +102,6 @@ src/i18n/
 ```
 src/types/
 ├── content.ts    # ContentFrontmatter, ContentData, Project, ContactFormData
-├── project.ts    # ProjectMetadata, ProjectPageProps — DEAD CODE, never used
 └── index.ts      # Only exports SocialLink (barrel incomplete)
 ```
 
@@ -132,25 +131,24 @@ src/api/contact/route.ts  →  POST handler (validates + logs only)
 | CSS `md:py24` missing hyphen | `src/app/[locale]/page.tsx` | 97 |
 | `"Contact-Type"` header typo (should be `Content-Type`) | `src/hooks/useContactForm.ts` | 39 |
 | Broken CSS class `text-gray-900dar` | `src/components/sections/ContactForm.tsx` | 38 |
-| SVG path `M19 91-7` typo | `src/components/sections/LanguagesSwitcher.tsx` | 84 |
+| SVG path `M19 91-7` typo | `src/components/sections/LanguageSwitcher.tsx` | 84 |
 | Home markdown `/about` link not locale-prefixed | `content/en/home.md` | — |
 | Projects page reads `messages?.home` instead of `messages?.projects` | `projects/page.tsx` | — |
 
-### Dead Code
-| File | Reason |
+### Dead Code (Some Now Removed)
+| File | Status |
 |------|--------|
-| `src/app/[locale]/generateStaticParams.ts` | Never imported |
-| `src/i18n/guards.ts` | Never imported |
-| `src/types/project.ts` | Exports never used |
-| `src/lib/content.ts` → `getAllContent()` | Never called |
-| `src/messages/images.json` | Never imported |
-| `src/components/sections/SiteFooter.tsx` | Never rendered in layout |
+| `src/app/[locale]/generateStaticParams.ts` | **REMOVED** |
+| `src/i18n/guards.ts` | **REMOVED** |
+| `src/types/project.ts` | **REMOVED** |
+| `src/lib/content.ts` → `getAllContent()` | Still present, never called |
+| `src/messages/images.json` | **REMOVED** |
 | `src/middleware.ts.disabled` | Disabled, not active |
 
 ### Duplications
 | Duplication | Locations |
 |-------------|-----------|
-| `generateStaticParams` logic | `layout.tsx` + `generateStaticParams.ts` |
+| `generateStaticParams` logic | `layout.tsx` (duplication resolved — extra file removed) |
 | `NavLink` interface | `DesktopNavigation.tsx` + `MobileNavigation.tsx` |
 | Social URLs | `metadata.ts` (`siteConfig.social`) + `socialLinks.ts` |
 | RTL font-family CSS | Repeated ~10 times in `globals.css` |
@@ -159,6 +157,6 @@ src/api/contact/route.ts  →  POST handler (validates + logs only)
 ### Code Style Issues
 - Multiple typos in comments across files (`translaiton`, `Feactured`, `sepecifi`, `dosn't`)
 - `any` type used in page.tsx for translations
-- `languageInfo` interface uses lowercase `l` (violates PascalCase convention)
-- `isValidateLocale` function name awkward (should be `isValidLocale`)
+- `languageInfo` interface uses lowercase `l` (violates PascalCase convention — REMOVED)
+- `isValidateLocale` function name awkward (should be `isValidLocale` — REMOVED)
 - `siteConfig.url` vs `siteConfig.name` confusion in metadata
