@@ -133,5 +133,17 @@
     "image": "/images/athkarix-kotlin.png",
     "featured": true,
     "year": "2026"
+  },
+  {
+    "id": "who-wants-million",
+    "name": "Who Wants to Be a Millionaire",
+    "description": "An interactive trivia game built with React, TypeScript, and Vite",
+    "longDescription": "An interactive trivia game built with React, TypeScript, and Vite featuring 15 questions across general knowledge topics, 3 lifelines (50:50, Audience Poll, Walk Away), a 30-second timer with SVG circular countdown, Tone.js audio effects, and PWA support for full offline play. Responsive RTL layout optimized for mobile.",
+    "tech": ["React 19", "TypeScript 6", "Vite 8", "Tailwind CSS 4", "Tone.js", "PWA"],
+    "github": "https://github.com/islamux/who-wants-million",
+    "demo": "https://who-wants-million.vercel.app",
+    "image": "/images/projects/millionaire-cover.png",
+    "featured": true,
+    "year": "2025"
   }
 ]
