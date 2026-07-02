@@ -135,7 +135,7 @@
   },
   {
     "id": "who-wants-million",
-    "name": "Qui Veut Gagner des Millions",
+    "name": "Qui veut gagner des millions ?",
     "description": "Un jeu de quiz interactif construit avec React, TypeScript et Vite",
     "longDescription": "Un jeu de quiz interactif construit avec React, TypeScript et Vite, avec 15 questions de culture générale, 3 jokers (50:50, Vote du Public, Abandon), un minuteur de 30 secondes avec compte à rebours circulaire SVG, des effets sonores Tone.js et un support PWA pour jouer hors ligne. Disposition RTL responsive optimisée pour mobile.",
     "tech": ["React 19", "TypeScript 6", "Vite 8", "Tailwind CSS 4", "Tone.js", "PWA"],
