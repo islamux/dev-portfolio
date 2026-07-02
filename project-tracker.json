@@ -94,6 +94,38 @@
             "depends_on": [],
             "last_run_id": null,
             "builder_prompt": null
+          },
+          {
+            "id": "m6_003",
+            "label": "Add Who Wants to Be a Millionaire project",
+            "status": "in_progress",
+            "done": false,
+            "assignee": "opencode",
+            "blocked_by": null,
+            "blocked_reason": null,
+            "completed_at": null,
+            "completed_by": null,
+            "priority": "medium",
+            "notes": "5 locale files + screenshot",
+            "prompt": null,
+            "context_files": [
+              "content/en/projects.json",
+              "content/ar/projects.json",
+              "content/tr/projects.json",
+              "content/es/projects.json",
+              "content/fr/projects.json"
+            ],
+            "reference_docs": [],
+            "acceptance_criteria": [
+              "Project appears on /projects page",
+              "Project appears on homepage if featured"
+            ],
+            "constraints": [],
+            "agent_target": "opencode",
+            "execution_mode": "agent",
+            "depends_on": [],
+            "last_run_id": null,
+            "builder_prompt": null
           }
         ]
       },
