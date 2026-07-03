@@ -25,6 +25,7 @@ export interface Project {
   image?: string;
   featured?: boolean;
   year?: string;
+  span?: number;
 }
 
 export interface NavLink {

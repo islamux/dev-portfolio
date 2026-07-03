@@ -1,5 +1,18 @@
 [
   {
+    "id": "who-wants-million",
+    "name": "Qui veut gagner des millions ?",
+    "description": "Un jeu de quiz interactif construit avec React, TypeScript et Vite",
+    "longDescription": "Un jeu de quiz interactif construit avec React, TypeScript et Vite, avec 15 questions de culture générale, 3 jokers (50:50, Vote du Public, Abandon), un minuteur de 30 secondes avec compte à rebours circulaire SVG, des effets sonores Tone.js et un support PWA pour jouer hors ligne. Disposition RTL responsive optimisée pour mobile.",
+    "tech": ["React 19", "TypeScript 6", "Vite 8", "Tailwind CSS 4", "Tone.js", "PWA"],
+    "github": "https://github.com/islamux/who-wants-million",
+    "demo": "https://who-wants-million.vercel.app",
+    "image": "/images/projects/millionaire-cover.png",
+    "featured": true,
+    "year": "2025",
+    "span": 2
+  },
+  {
     "id": "salam-app-flutter",
     "name": "Salam",
     "description": "Application de réflexions spirituelles islamiques construite avec Flutter avec Athkar quotidien et versets coraniques",
@@ -71,7 +84,7 @@
     "id": "khwater",
     "name": "Khwater",
     "description": "Réflexions spirituelles et intellectuelles inspirées des valeurs islamiques, apportant la beauté de la réflexion islamique dans le monde numérique.",
-    "longDescription": "Khwater – Réflexions sur la Foi et la Vie est une application spirituelle complète qui présente des écrits arabes sous une forme numérique moderne, accessible et élégante. Construit à l'origine avec Flutter, ce projet a été entièrement migré vers Next.js (TypeScript) en suivant un plan de migration structuré en 7 phases. L'application dispose de capacités PWA avec mode hors ligne, support de thème clair/sombre, fonctionnalité de signets, recherche avancée et support complet de la langue arabe. Conçu avec la performance à l'esprit en utilisant SSG et ISR, garantissant des temps de chargement rapides tout en maintenant la conformité WCAG AA pour l'accessibilité et l'optimisation SEO.",
+    "longDescription": "Khwater – Réflexions sur la Foi et la Vie est une application spirituelle complète qui présente des écrits arabes sous une forme numérique moderne, accessible et élégante. Construit à l'origine avec Flutter, ce projet a été entièrement migré vers Next.js (TypeScript) en suivant un plan de migration structuré en 7 phases. L'application dispose de capacités PWA avec mode hors ligne, support de thème clair/sombre, fonctionnalité de signets, recherche avancée et support complet de la langue arabe. Conçu avec la performance à l'esprit en utilisant SSG et ISR, garantissant des temps de charge rapides tout en maintenant la conformité WCAG AA pour l'accessibilité et l'optimisation SEO.",
     "tech": ["Next.js", "TypeScript", "Tailwind CSS", "PWA", "Arabic RTL"],
     "github": "https://github.com/islamux/khwater",
     "demo": "https://khwater.vercel.app",

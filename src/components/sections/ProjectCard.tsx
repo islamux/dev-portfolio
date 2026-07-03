@@ -17,19 +17,20 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project, translations, locale }: ProjectCardProps) {
   const projectHref = getProjectHref(locale as Locale, project.id);
+  const isSpan = project.span === 2;
 
   return (
-    <article className="group relative bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 overflow-hidden hover:shadow-xl transition-all duration-300">
+    <article className={`group relative bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 overflow-hidden hover:shadow-xl transition-all duration-300 ${isSpan ? 'md:col-span-2 lg:col-span-2' : ''}`}>
       {/*Project Image*/}
       {project.image && (
-        <div className="relative h-48 w-full overflow-hidden bg-gray-100 dark:bg-gray-800">
+        <div className={`relative w-full overflow-hidden bg-gray-200 dark:bg-gray-700 ${isSpan ? 'h-72 md:h-96' : 'h-48'}`}>
           <Link href={projectHref}>
             <Image
               src={project.image}
               alt={project.name}
               fill
-              className="object-cover group-hover:scale-105 transform duration-300"
-              sizes="(max-width:768px) 100vw, (max-width:1024px) 50vw, 33vw"
+              className={`transform duration-300 ${isSpan ? 'object-cover group-hover:scale-105' : 'object-cover group-hover:scale-105'}`}
+              sizes={isSpan ? "(max-width:768px) 100vw, 66vw" : "(max-width:768px) 100vw, (max-width:1024px) 50vw, 33vw"}
             />
           </Link>
         </div>
@@ -48,7 +49,7 @@ export default function ProjectCard({ project, translations, locale }: ProjectCa
         </h3>
 
         {/*Description*/}
-        <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">
+        <p className={`text-gray-600 dark:text-gray-400 mb-4 ${isSpan ? 'line-clamp-4' : 'line-clamp-2'}`}>
           {project.description}
         </p>
         {/*Tech Stack*/}

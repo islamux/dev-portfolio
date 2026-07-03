@@ -1,5 +1,18 @@
 [
   {
+    "id": "who-wants-million",
+    "name": "من سيربح المليون",
+    "description": "لعبة تفاعلية لأسئلة المعلومات العامة مبنية باستخدام React وTypeScript وVite",
+    "longDescription": "لعبة تفاعلية لأسئلة المعلومات العامة مبنية باستخدام React وTypeScript وVite، تحتوي على 15 سؤالاً في مواضيع متنوعة، مع 3 مساعدات (50:50، رأي الجمهور، الانسحاب)، مؤقت 30 ثانية مع عداد دائري SVG، تأثيرات صوتية باستخدام Tone.js، ودعم تطبيقات الويب التقدمية (PWA) للتشغيل الكامل دون اتصال بالإنترنت.",
+    "tech": ["React 19", "TypeScript 6", "Vite 8", "Tailwind CSS 4", "Tone.js", "PWA"],
+    "github": "https://github.com/islamux/who-wants-million",
+    "demo": "https://who-wants-million.vercel.app",
+    "image": "/images/projects/millionaire-cover.png",
+    "featured": true,
+    "year": "2025",
+    "span": 2
+  },
+  {
     "id": "salam-app-flutter",
     "name": "سلام",
     "description": "تطبيق خواطر إيمانية مبني باستخدام Flutter مع الأذكار اليومية والآيات القرآنية",
