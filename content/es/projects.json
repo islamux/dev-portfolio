@@ -1,5 +1,18 @@
 [
   {
+    "id": "who-wants-million",
+    "name": "¿Quién Quiere Ser Millonario?",
+    "description": "Un juego interactivo de trivia construido con React, TypeScript y Vite",
+    "longDescription": "Un juego interactivo de trivia construido con React, TypeScript y Vite, con 15 preguntas de cultura general, 3 comodines (50:50, Voto del Público, Retirarse), un temporizador de 30 segundos con cuenta regresiva circular SVG, efectos de sonido con Tone.js y soporte PWA para jugar sin conexión. Diseño RTL responsivo optimizado para móviles.",
+    "tech": ["React 19", "TypeScript 6", "Vite 8", "Tailwind CSS 4", "Tone.js", "PWA"],
+    "github": "https://github.com/islamux/who-wants-million",
+    "demo": "https://who-wants-million.vercel.app",
+    "image": "/images/projects/millionaire-cover.png",
+    "featured": true,
+    "year": "2025",
+    "span": 2
+  },
+  {
     "id": "salam-app-flutter",
     "name": "Salam",
     "description": "Aplicación de reflexiones espirituales islámicas construida con Flutter con Athkar diario y versículos coránicos",
@@ -132,17 +145,5 @@
     "image": "/images/athkarix-kotlin.png",
     "featured": true,
     "year": "2026"
-  },
-  {
-    "id": "who-wants-million",
-    "name": "¿Quién Quiere Ser Millonario?",
-    "description": "Un juego interactivo de trivia construido con React, TypeScript y Vite",
-    "longDescription": "Un juego interactivo de trivia construido con React, TypeScript y Vite, con 15 preguntas de cultura general, 3 comodines (50:50, Voto del Público, Retirarse), un temporizador de 30 segundos con cuenta regresiva circular SVG, efectos de sonido con Tone.js y soporte PWA para jugar sin conexión. Diseño RTL responsivo optimizado para móviles.",
-    "tech": ["React 19", "TypeScript 6", "Vite 8", "Tailwind CSS 4", "Tone.js", "PWA"],
-    "github": "https://github.com/islamux/who-wants-million",
-    "demo": "https://who-wants-million.vercel.app",
-    "image": "/images/projects/millionaire-cover.png",
-    "featured": true,
-    "year": "2025"
   }
 ]
