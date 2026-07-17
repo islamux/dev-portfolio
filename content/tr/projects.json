@@ -145,5 +145,17 @@
     "image": "/images/athkarix-kotlin.png",
     "featured": true,
     "year": "2026"
+  },
+  {
+    "id": "fi-dhilal-al-quran",
+    "name": "Fi Dhilal el-Kur'an",
+    "description": "Seyyid Kutub'un büyük tefsir eseri için tamamen çevrimdışı çalışan dijital okuyucu; 110 surede tam metin arama, karanlık/aydınlık tema, yer imleri, ayet vurgulama ve PWA desteği.",
+    "longDescription": "Fi Dhilal el-Kur'an (Kur'an'ın Gölgelerinde), Seyyid Kutub'un büyük Kur'an tefsiri için kapsamlı bir dijital okuyucudur. React 19 ve TypeScript ile SPA olarak geliştirilmiştir; 110 sure ve 305 ayet aralığında tefsir metni içerir — tüm içerik harici API bağımlılığı olmadan yerel olarak saklanır. Özellikler: kelime eşleme puanlamalı tam metin arama, altın vurgulu karanlık/aydınlık tema sistemi, isteğe bağlı Supabase senkronizasyonlu sure/ayet yer imleri, okuma geçmişi, ayet vurgulama, cüz bazlı gezinme ve tam PWA çevrimdışı desteği. ~18 MB'lık tefsir veri seti, ihtiyaç anında yüklenir.",
+    "tech": ["React 19", "TypeScript 6", "Tailwind CSS v4", "Vite 8", "Express", "PWA", "Supabase", "Motion"],
+    "github": "https://github.com/islamux/fi-dhilal-al-quran",
+    "demo": "https://fi-dhilal-al-quran.vercel.app",
+    "image": "/images/projects/fi-dhilal-cover.png",
+    "featured": true,
+    "year": "2026"
   }
 ]

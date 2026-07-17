@@ -149,5 +149,17 @@
     "image": "/images/athkarix-kotlin.png",
     "featured": true,
     "year": "2026"
+  },
+  {
+    "id": "fi-dhilal-al-quran",
+    "name": "في ظلال القرآن",
+    "description": "قارئ رقمي يعمل بدون إنترنت لتفسير سيد قطب، مع بحث نصي كامل في 110 سورة، وثيمات داكنة/فاتحة، وإشارات مرجعية، وتمييز آيات، ودعم PWA.",
+    "longDescription": "في ظلال القرآن هو قارئ رقمي شامل لتفسير سيد قطب. مبني كتطبيق أحادي الصفحة (SPA) باستخدام React 19 وTypeScript، يحتوي على 110 سورة مع 305 مقطعًا من التفسير — جميعها مخزنة محليًا دون أي اعتماد على واجهات خارجية. يتميز ببحث نصي كامل فائق السرعة مع تسجيل درجة تطابق، ونظام ثيمات ذهبية داكنة/فاتحة، وإشارات مرجعية مع مزامنة Supabase اختيارية، وتتبع تاريخ القراءة، وتمييز الآيات، وتصفح بالأجزاء، ودعم كامل للعمل دون اتصال. مجموعة بيانات التفسير (~18 ميجابايت) تُحمَّل عند الحاجة.",
+    "tech": ["React 19", "TypeScript 6", "Tailwind CSS v4", "Vite 8", "Express", "PWA", "Supabase", "Motion"],
+    "github": "https://github.com/islamux/fi-dhilal-al-quran",
+    "demo": "https://fi-dhilal-al-quran.vercel.app",
+    "image": "/images/projects/fi-dhilal-cover.png",
+    "featured": true,
+    "year": "2026"
   }
 ]

@@ -146,5 +146,17 @@
     "image": "/images/athkarix-kotlin.png",
     "featured": true,
     "year": "2026"
+  },
+  {
+    "id": "fi-dhilal-al-quran",
+    "name": "Fi Dhilal al-Quran",
+    "description": "A fully offline digital reader for Sayyid Qutb's monumental tafsir, featuring full-text search across 110 surahs, dark/light themes, bookmarks, verse highlighting, and PWA support.",
+    "longDescription": "في ظلال القرآن (Fi Dhilal al-Quran — 'In the Shades of the Quran') is a comprehensive digital reader for Sayyid Qutb's monumental Quranic exegesis. Built as an SPA with React 19 and TypeScript, it contains 110 surahs with 305 verse-range sections of tafsir text — all stored locally with no external API dependencies. Features include blazing-fast full-text search with word-match scoring, a gilded gold dark/light theme system, surah/verse bookmarks with optional Supabase cloud sync, reading history tracking, Quranic verse highlighting, Juz-based navigation, and full PWA offline support. The ~18MB tafsir dataset is lazy-loaded on demand.",
+    "tech": ["React 19", "TypeScript 6", "Tailwind CSS v4", "Vite 8", "Express", "PWA", "Supabase", "Motion"],
+    "github": "https://github.com/islamux/fi-dhilal-al-quran",
+    "demo": "https://fi-dhilal-al-quran.vercel.app",
+    "image": "/images/projects/fi-dhilal-cover.png",
+    "featured": true,
+    "year": "2026"
   }
 ]
