@@ -145,5 +145,17 @@
     "image": "/images/athkarix-kotlin.png",
     "featured": true,
     "year": "2026"
+  },
+  {
+    "id": "fi-dhilal-al-quran",
+    "name": "Fi Dhilal al-Quran",
+    "description": "Un lector digital completamente sin conexión para el monumental tafsir de Sayyid Qutb, con búsqueda de texto completo en 110 suras, temas oscuro/claro, marcadores, resaltado de versículos y soporte PWA.",
+    "longDescription": "Fi Dhilal al-Quran ('A la Sombra del Corán') es un lector digital integral para el monumental tafsir (exégesis coránica) de Sayyid Qutb. Construido como SPA con React 19 y TypeScript, contiene 110 suras con 305 secciones de texto de tafsir, todo almacenado localmente sin dependencias de API externas. Incluye búsqueda ultrarrápida de texto completo con puntuación de coincidencia, un sistema de tema oscuro/claro con acentos dorados, marcadores de suras y versículos con sincronización opcional en la nube mediante Supabase, historial de lectura, resaltado de versículos, navegación por juz y soporte completo de PWA sin conexión. El conjunto de datos de tafsir (~18 MB) se carga de forma diferida.",
+    "tech": ["React 19", "TypeScript 6", "Tailwind CSS v4", "Vite 8", "Express", "PWA", "Supabase", "Motion"],
+    "github": "https://github.com/islamux/fi-dhilal-al-quran",
+    "demo": "https://fi-dhilal-al-quran.vercel.app",
+    "image": "/images/projects/fi-dhilal-cover.png",
+    "featured": true,
+    "year": "2026"
   }
 ]
