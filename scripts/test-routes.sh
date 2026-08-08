@@ -92,7 +92,6 @@ test_url "/tr" 301
 test_url "/robots.txt"
 test_url "/sitemap.xml"
 test_url "/404.html"
-test_url "/_next/static/chunks/0f5zbsjmlh51c.css"
 
 # — 404 —
 test_url "/nonexistent" 404
