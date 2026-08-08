@@ -12,6 +12,7 @@ import Container from "@/components/ui/Container";
 import { MarkdownContent } from "@/components/ui/MarkdownContent";
 import Button from "@/components/ui/Button";
 import ProjectCard from "@/components/sections/ProjectCard";
+import TerminalCard from "@/components/sections/TerminalCard";
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -66,22 +67,27 @@ export default async function Page({ params }: PageProps) {
     <>
       <section className="py-20 md:py-32 bg-gradient-to-b from-white to-gray-50 dark:from-gray-950 dark:to-gray-900">
         <Container>
-          <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-6xl font-bold from-gray-900 to-gray-900 dark:text-white mb-6">
-              {frontmatter.title}
-            </h1>
-            <div className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8">
-              <MarkdownContent content={content} />
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-7">
+              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
+                {frontmatter.title}
+              </h1>
+              <div className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8">
+                <MarkdownContent content={content} />
+              </div>
+              <div className="flex flex-wrap gap-4">
+                <Link href={projectsHref}>
+                  <Button variant="primary" size="lg">
+                    {translations?.hero?.cta?.projects || "View Projects"}
+                  </Button>
+                </Link>
+                <Link href={contactHref}>
+                  <Button variant="secondary" size="lg">{translations?.hero?.cta?.contact || "Get in Touch"}</Button>
+                </Link>
+              </div>
             </div>
-            <div className="flex flex-wrap gap-4">
-              <Link href={projectsHref}>
-                <Button variant="primary" size="lg">
-                  {translations?.hero?.cta?.projects || "View Projects"}
-                </Button>
-              </Link>
-            <Link href={contactHref}>
-              <Button variant="secondary" size="lg">{translations?.hero?.cta?.contact || "Get in Touch"}</Button>
-            </Link>
+            <div className="lg:col-span-5 flex justify-center">
+              <TerminalCard />
             </div>
           </div>
         </Container>

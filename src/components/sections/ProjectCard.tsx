@@ -18,6 +18,7 @@ interface ProjectCardProps {
 export default function ProjectCard({ project, translations, locale }: ProjectCardProps) {
   const projectHref = getProjectHref(locale as Locale, project.id);
   const isSpan = project.span === 2;
+  const isMobile = project.apk || project.tech.some(t => /kotlin|flutter|android/i.test(t));
 
   return (
     <article className={`group relative bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 overflow-hidden hover:shadow-xl transition-all duration-300 ${isSpan ? 'md:col-span-2 lg:col-span-2' : ''}`}>
@@ -33,6 +34,12 @@ export default function ProjectCard({ project, translations, locale }: ProjectCa
               sizes={isSpan ? "(max-width:768px) 100vw, 66vw" : "(max-width:768px) 100vw, (max-width:1024px) 50vw, 33vw"}
             />
           </Link>
+          {isMobile && (
+            <div className="absolute top-3 left-3 bg-black/70 backdrop-blur-md text-emerald-400 text-xs px-2.5 py-1 rounded-full border border-emerald-500/30 flex items-center space-x-1 shadow-md">
+              <span>📱</span>
+              <span>Mobile App</span>
+            </div>
+          )}
         </div>
       )}
       {/*Content*/}

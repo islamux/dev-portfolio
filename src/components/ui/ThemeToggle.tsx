@@ -1,6 +1,6 @@
 'use client';
 import Button from "./Button";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/app/providers";
 import { Icon } from "./Icon";
 import { useMounted } from "@/hooks/useMounted";
 
