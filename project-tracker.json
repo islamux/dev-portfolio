@@ -540,6 +540,26 @@
       "description": "Full clean code review: removed clsx dep, removed tailwindcss-rtl dep, deleted 10 dead code files (components + utils + types), renamed LanguagesSwitcher→LanguageSwitcher, stripped comment pollution (30+), simplified ProjectService error handling, removed languageInfo/getLanguagesInfo, removed ContentData.slug, cleaned empty SiteFooter div. Lint passes.",
       "timestamp": "2026-06-29T00:00:00Z",
       "tags": ["clean-code", "refactor", "dead-code", "done"]
+    },
+    {
+      "id": "log_1778854500_footer_layout",
+      "agent_id": "opencode",
+      "action": "fix_ui_bug",
+      "target_type": "component",
+      "target_id": "src/components/sections/SiteFooter.tsx",
+      "description": "Fixed malformed footer JSX: the 3-column grid was closed early while empty, dropping Quick Links/Connect/copyright out of the padded wrapper and injecting dead mb-8 space — caused large empty gap between 'Featured Projects' and footer on home page. Restructured into proper grid (About | Quick Links | Connect) + copyright row inside py-12 wrapper.",
+      "timestamp": "2026-08-08T00:00:00Z",
+      "tags": ["ui", "bugfix", "footer", "layout", "done"]
+    },
+    {
+      "id": "log_1778854600_sticky_footer_gap",
+      "agent_id": "opencode",
+      "action": "fix_ui_bug",
+      "target_type": "layout",
+      "target_id": "src/app/[locale]/layout.tsx",
+      "description": "Root cause of persistent viewport-driven gap between content and footer: body used flex flex-col min-h-screen + main had grow (sticky-footer pattern). main expanded to fill viewport, leaving variable empty space before footer — largest on tall windows, and padding edits did not reduce it. Removed min-h-screen/flex-col from body and grow from both main instances (SSR + static branches). Sticky header unaffected (uses own sticky top-0).",
+      "timestamp": "2026-08-08T01:00:00Z",
+      "tags": ["ui", "bugfix", "layout", "flexbox", "root-cause", "done"]
     }
   ],
   "schedule": {

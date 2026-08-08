@@ -46,13 +46,13 @@ export default async function LocaleLayout(
 
   return (
     <html lang={locale} dir={direction} suppressHydrationWarning>
-      <body className="antialiased flex flex-col min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100">
+      <body className="antialiased bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100">
         {!isStatic ? (
           <NextIntlClientProvider locale={locale} messages={messages}>
             <SkipToContent />
             <Providers>
               <SiteHeader navDict={navDict} locale={locale} />
-              <main id="main-content" className="grow">
+              <main id="main-content">
                 {children}
               </main>
               <SiteFooter socialLinks={socialLinks} locale={locale} />
@@ -63,7 +63,7 @@ export default async function LocaleLayout(
             <SkipToContent />
             <Providers>
               <SiteHeader navDict={navDict} locale={locale} />
-              <main id="main-content" className="grow">
+              <main id="main-content">
                 {children}
               </main>
               <SiteFooter socialLinks={socialLinks} locale={locale} />
