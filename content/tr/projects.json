@@ -127,7 +127,7 @@
     "tech": ["Kotlin", "Jetpack Compose", "Android"],
     "github": "https://github.com/islamux/athkari-kotlin",
     "apk": "https://github.com/islamux/athkari-kotlin/releases/download/v1.1.0/app-release.apk",
-    "image": "/images/athkarix-kotlin.png",
+    "image": "/images/projects/athkari-kotlin-cover.png",
     "featured": true,
     "year": "2026"
   },
@@ -140,6 +140,18 @@
     "github": "https://github.com/islamux/fi-dhilal-al-quran",
     "demo": "https://fi-dhilal-al-quran.vercel.app",
     "image": "/images/projects/fi-dhilal-cover.png",
+    "featured": true,
+    "year": "2026"
+  },
+  {
+    "id": "badeel-atr2",
+    "name": "Badeel Atr 2",
+    "description": "En yüksek puanlı erkek parfümlerini, her birine güvenilir bir Arap veya ekonomik alternatifle birlikte sunan tek dosyalık interaktif Arapça rehber — notalar, kalıcılık ve iz bırakma oranları ve benzerlik puanlarıyla.",
+    "longDescription": "بديل عطر ٢ (Badeel Atr 2), her birine özenle seçilmiş Arap veya ekonomik bir alternatif eşliğinde en yüksek puanlı erkek kokularını sunan, bağımlılığı ve derleme adımı olmayan tek dosyalık (perfumes.html) interaktif bir rehberdir. Kodla üretilen SVG şişelerle (görüntü veya varlık yok) on renk kodlu koku ailesi, Arapça harf normalizasyonlu (harekeler, elif, ة/ه, ى/ي) anında arama, aile, ev ve favorilere göre filtreleme artı 'kör alım' düğmesi, çok kriterli sıralama, dereceli benzerlik rozetleri (ikiz / güçlü eşleşme / yakın / benzer ruh), URL'de durum kalıcılığı ve SEO için JSON-LD yapılandırılmış verileri sunar. Tamamen RTL, Arap-Hint rakamlarıyla UTF-8 ve prefers-reduced-motion'a saygılı.",
+    "tech": ["HTML", "CSS", "JavaScript", "SVG"],
+    "github": "https://github.com/islamux/badilatr2",
+    "demo": "https://badeelatr.islamux.me/",
+    "image": "/images/projects/badeelatr-cover.png",
     "featured": true,
     "year": "2026"
   }

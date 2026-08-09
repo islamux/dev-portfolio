@@ -131,7 +131,7 @@
     "tech": ["Kotlin", "Jetpack Compose", "Android"],
     "github": "https://github.com/islamux/athkari-kotlin",
     "apk": "https://github.com/islamux/athkari-kotlin/releases/download/v1.1.0/app-release.apk",
-    "image": "/images/athkarix-kotlin.png",
+    "image": "/images/projects/athkari-kotlin-cover.png",
     "featured": true,
     "year": "2026"
   },
@@ -144,6 +144,18 @@
     "github": "https://github.com/islamux/fi-dhilal-al-quran",
     "demo": "https://fi-dhilal-al-quran.vercel.app",
     "image": "/images/projects/fi-dhilal-cover.png",
+    "featured": true,
+    "year": "2026"
+  },
+  {
+    "id": "badeel-atr2",
+    "name": "بديل عطر ٢",
+    "description": "دليل تفاعلي عربي في ملف واحد، يضم نخبة العطور الرجالية الأعلى تقييماً، إلى جانب البديل العربي/الاقتصادي الموثوق لكل قارورة — مع النوتات العطرية، نسب الثبات والفوحان، ودرجة تشابه لكل بديل.",
+    "longDescription": "بديل عطر ٢: تطبيق في ملف واحد بلا خادم ولا اعتماد خارجي ولا خطوة بناء، يضم نخبة العطور الرجالية الأعلى تقييماً، مع البديل العربي/الاقتصادي المُدروس لكل قارورة. مصنّف في عشر عائلات عطرية ملوّنة بقوارير SVG مولّدة برمجياً بلا صور، وبحث فوري يطبّع الحروف العربية (التشكيل، الألف، ة/ه، ى/ي)، وفلترة بالعائلة والدار والمفضّلة وزر الشراء الأعمى، وترتيب بعدة معايير، ودرجة تشابه لكل بديل كشارة ملوّنة (توأم موثق/تطابق قوي/قريب/بروح مشابهة)، وحفظ الحالة في رابط الصفحة، وبيانات منظمة JSON-LD لمحركات البحث. واجهة RTL بترميز UTF-8 وأرقام عربية-هندية مع دعم prefers-reduced-motion.",
+    "tech": ["HTML", "CSS", "JavaScript", "SVG"],
+    "github": "https://github.com/islamux/badilatr2",
+    "demo": "https://badeelatr.islamux.me/",
+    "image": "/images/projects/badeelatr-cover.png",
     "featured": true,
     "year": "2026"
   }

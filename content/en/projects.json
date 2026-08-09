@@ -128,7 +128,7 @@
     "tech": ["Kotlin", "Jetpack Compose", "Android"],
     "github": "https://github.com/islamux/athkari-kotlin",
     "apk": "https://github.com/islamux/athkari-kotlin/releases/download/v1.1.0/app-release.apk",
-    "image": "/images/athkarix-kotlin.png",
+    "image": "/images/projects/athkari-kotlin-cover.png",
     "featured": true,
     "year": "2026"
   },
@@ -141,6 +141,18 @@
     "github": "https://github.com/islamux/fi-dhilal-al-quran",
     "demo": "https://fi-dhilal-al-quran.vercel.app",
     "image": "/images/projects/fi-dhilal-cover.png",
+    "featured": true,
+    "year": "2026"
+  },
+  {
+    "id": "badeel-atr2",
+    "name": "Badeel Atr 2",
+    "description": "A single-file interactive Arabic guide to the highest-rated men's perfumes, each paired with a trusted Arabic or budget-friendly alternative — with notes, longevity and sillage ratings, and similarity scores.",
+    "longDescription": "بديل عطر ٢ (Badeel Atr 2) is a zero-dependency, single-file (perfumes.html) interactive guide showcasing top-rated men's fragrances alongside a carefully chosen Arabic or economical alternative for each one. It features ten colour-coded fragrance families with programmatically generated SVG bottles (no images or assets), instant search with Arabic letter normalisation (diacritics, aleph, ة/ه, ى/ي), filtering by family, house, and favourites plus a 'blind-buy' toggle, multi-criteria sorting, colour-graded similarity badges (twin / strong match / close / similar spirit), URL state persistence, and JSON-LD structured data for SEO. Fully RTL, UTF-8 with Arabic-Indic numerals, and respects prefers-reduced-motion.",
+    "tech": ["HTML", "CSS", "JavaScript", "SVG"],
+    "github": "https://github.com/islamux/badilatr2",
+    "demo": "https://badeelatr.islamux.me/",
+    "image": "/images/projects/badeelatr-cover.png",
     "featured": true,
     "year": "2026"
   }
