@@ -1,5 +1,8 @@
 import { useMemo, useState } from "react";
 import { Project } from "@/types/content";
+
+const EXCLUDED_FILTER_TECH = new Set(["Tone.js", "next-intl", "Express", "Framer Motion", "react-i18next"]);
+
 export function useProjectFilter(projects: Project[]) {
 
   const [selectedTech, setSelectedTech] = useState<string | null>(null);
@@ -7,7 +10,11 @@ export function useProjectFilter(projects: Project[]) {
   const allTech = useMemo(() => {
     const techSet = new Set<string>();
     projects.forEach((project) => {
-      project.tech.forEach((tech) => techSet.add(tech));
+      project.tech.forEach((tech) => {
+        if (!EXCLUDED_FILTER_TECH.has(tech)) {
+          techSet.add(tech);
+        }
+      });
     });
     return Array.from(techSet).sort();
   }, [projects]);
