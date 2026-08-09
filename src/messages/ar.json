@@ -45,5 +45,18 @@
     "other": {
       "title": "طرق أخرى للتواصل"
     }
+  },
+  "footer": {
+    "about": {
+      "title": "حول",
+      "text": "مطوّر متكامل شغوف بالمصادر المفتوحة وبناء تجارب مستخدم رائعة."
+    },
+    "quickLinks": {
+      "title": "روابط سريعة"
+    },
+    "connect": {
+      "title": "تابعني"
+    },
+    "copyright": "بُني بـ Next.js وTailwind CSS."
   }
 }

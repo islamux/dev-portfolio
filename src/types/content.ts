@@ -68,6 +68,13 @@ export interface ProjectFilterTranslations {
   noResults?: string;
 }
 
+export interface FooterMessages {
+  about?: { title?: string; text?: string };
+  quickLinks?: { title?: string };
+  connect?: { title?: string };
+  copyright?: string;
+}
+
 export interface ContactFormData {
   name: string;
   email: string;

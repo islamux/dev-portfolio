@@ -45,5 +45,18 @@
     "other": {
       "title": "Autres Moyens de Me Contacter"
     }
+  },
+  "footer": {
+    "about": {
+      "title": "À propos",
+      "text": "Développeur full-stack passionné par l'open source et la création de superbes expériences utilisateur."
+    },
+    "quickLinks": {
+      "title": "Liens rapides"
+    },
+    "connect": {
+      "title": "Me suivre"
+    },
+    "copyright": "Construit avec Next.js et Tailwind CSS."
   }
 }

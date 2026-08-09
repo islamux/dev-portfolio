@@ -4,13 +4,8 @@ import matter from "gray-matter";
 import { ContentData, ContentFrontmatter, Project } from "@/types/content";
 
 export async function loadMessages(locale: string): Promise<Record<string, unknown>> {
-  try {
-    const msgModule = await import(`@/messages/${locale}.json`);
-    return msgModule.default as Record<string, unknown>;
-  } catch (error) {
-    console.warn(`Failed to load messages for locale ${locale}:`, error);
-    return {};
-  }
+  const msgModule = await import(`@/messages/${locale}.json`);
+  return msgModule.default as Record<string, unknown>;
 }
 
 export function getContentBySlug(slug: string, locale: string = "en"): ContentData {

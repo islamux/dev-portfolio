@@ -7,6 +7,8 @@ import { socialLinks } from '@/data/socialLinks';
 import { isRTL, locales, Locale } from "@/i18n/config";
 import { NextIntlClientProvider } from "next-intl";
 import { setRequestLocale } from 'next-intl/server';
+import { loadMessages } from "@/lib/content";
+import type { FooterMessages } from "@/types/content";
 
 interface LocaleLayoutProps {
   children: React.ReactNode;
@@ -22,53 +24,43 @@ export function generateStaticParams() {
 export default async function LocaleLayout(
   { children, params }: LocaleLayoutProps) {
   const { locale } = await params;
-  
-  // Enable static rendering
   setRequestLocale(locale);
 
-  // load translaiton messages
-  let messages: { nav?: Record<string, string> };
-  try {
-    messages = (await import(`@/messages/${locale}.json`)).default;
-  } catch (e) {
-    console.error("Messages not found", e);
-    messages = {};
-  }
+  const messages = await loadMessages(locale);
+  const navDict = (messages.nav ?? {}) as Record<string, string>;
+  const footerMessages = messages.footer as FooterMessages | undefined;
 
-  const navDict = messages?.nav || {};
-
-  // Direction
   const direction = isRTL(locale as Locale) ? "rtl" : "ltr";
-
-  // For static export, avoid NextIntlClientProvider to prevent headers() usage
-  // The 'static' check is crucial for the build command.
   const isStatic = process.env.DEPLOY_TARGET === 'static';
+
+  const content = (
+    <>
+      <SkipToContent />
+      <Providers>
+        <SiteHeader navDict={navDict} locale={locale} />
+        <main id="main-content">
+          {children}
+        </main>
+        <SiteFooter
+          socialLinks={socialLinks}
+          locale={locale}
+          navDict={navDict}
+          footerMessages={footerMessages}
+        />
+      </Providers>
+    </>
+  );
 
   return (
     <html lang={locale} dir={direction} suppressHydrationWarning>
       <body className="antialiased bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100">
-        {!isStatic ? (
-          <NextIntlClientProvider locale={locale} messages={messages}>
-            <SkipToContent />
-            <Providers>
-              <SiteHeader navDict={navDict} locale={locale} />
-              <main id="main-content">
-                {children}
-              </main>
-              <SiteFooter socialLinks={socialLinks} locale={locale} />
-            </Providers>
-          </NextIntlClientProvider>
+        {isStatic ? (
+          // Static export: NextIntlClientProvider pulls headers() at request time, so bypass it.
+          content
         ) : (
-          <>
-            <SkipToContent />
-            <Providers>
-              <SiteHeader navDict={navDict} locale={locale} />
-              <main id="main-content">
-                {children}
-              </main>
-              <SiteFooter socialLinks={socialLinks} locale={locale} />
-            </Providers>
-          </>
+          <NextIntlClientProvider locale={locale} messages={messages}>
+            {content}
+          </NextIntlClientProvider>
         )}
       </body>
     </html>
