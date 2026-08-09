@@ -81,8 +81,6 @@ import { ProjectCard } from "./ProjectCard";
 Before any implementation:
 
 1. **Create branch** first
-2. **Update project-tracker.json** — set task `in_progress`
-3. Keep tracker in sync on every state transition (start/complete/block/unblock)
 
 ## Build Scripts
 
