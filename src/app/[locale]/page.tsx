@@ -65,9 +65,9 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <>
-      <section className="py-20 md:py-32 bg-gradient-to-b from-white to-gray-50 dark:from-gray-950 dark:to-gray-900">
+      <section className="py-8 md:py-12 bg-gradient-to-b from-white to-gray-50 dark:from-gray-950 dark:to-gray-900">
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center">
             <div className="lg:col-span-7">
               <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
                 {frontmatter.title}
@@ -94,7 +94,7 @@ export default async function Page({ params }: PageProps) {
       </section>
 
       {featuredProjects.length > 0 && (
-        <section className="py-16 md:py-24">
+        <section className="py-8 md:py-12">
           <Container>
             <div className="flex items-center justify-between mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">

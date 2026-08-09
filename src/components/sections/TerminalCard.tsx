@@ -13,7 +13,7 @@ export default function TerminalCard() {
   };
 
   return (
-    <div className="w-full max-w-2xl bg-gray-950 border border-gray-800 rounded-xl overflow-hidden shadow-2xl font-mono text-sm text-gray-200 my-8">
+    <div className="w-full max-w-2xl bg-gray-950 border border-gray-800 rounded-xl overflow-hidden shadow-2xl font-mono text-sm text-gray-200">
       {/* Terminal Header */}
       <div className="bg-gray-900 px-4 py-3 flex items-center justify-between border-b border-gray-800">
         <div className="flex items-center space-x-2">

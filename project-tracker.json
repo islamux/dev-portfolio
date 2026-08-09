@@ -560,6 +560,16 @@
       "description": "Root cause of persistent viewport-driven gap between content and footer: body used flex flex-col min-h-screen + main had grow (sticky-footer pattern). main expanded to fill viewport, leaving variable empty space before footer — largest on tall windows, and padding edits did not reduce it. Removed min-h-screen/flex-col from body and grow from both main instances (SSR + static branches). Sticky header unaffected (uses own sticky top-0).",
       "timestamp": "2026-08-08T01:00:00Z",
       "tags": ["ui", "bugfix", "layout", "flexbox", "root-cause", "done"]
+    },
+    {
+      "id": "log_1778854700_full_height_hero",
+      "agent_id": "opencode",
+      "action": "ui_improvement",
+      "target_type": "page",
+      "target_id": "src/app/[locale]/page.tsx",
+      "description": "Resolved ugly empty bands in hero (section[1]): the earlier full-height + vertical-centering approach floated modest content mid-viewport, leaving dead whitespace above/below. Reverted to a compact top-aligned content-height hero (py-8 md:py-12, no min-h, no centering). Also removed TerminalCard built-in my-8 margin (unexplained vertical gap) and tightened hero grid gap to gap-8 md:gap-12. Featured Projects kept at py-8 md:py-12. Page now flows at natural length with tight, intentional spacing.",
+      "timestamp": "2026-08-08T02:00:00Z",
+      "tags": ["ui", "hero", "layout", "responsive", "done"]
     }
   ],
   "schedule": {
