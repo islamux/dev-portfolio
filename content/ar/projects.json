@@ -158,5 +158,17 @@
     "image": "/images/projects/badeelatr-cover.png",
     "featured": true,
     "year": "2026"
+  },
+  {
+    "id": "alshaebsweets",
+    "name": "حلويات الشعب",
+    "description": "متجر PWA يعمل دون إنترنت لحلويات الشعب في تعز — ٥٠ عامًا من الحلويات اليمنية والعدنية، مع سلة وطلب وتتبع ولوحة إدارة تعمل بالكامل داخل المتصفح.",
+    "longDescription": "متجر إلكتروني ثابت لـحلويات الشعب في تعز، اليمن — ٥٠ عامًا من الحلويات اليمنية والعدنية. مبني بـ Vite ووحدات JavaScript أصيلة دون أي اعتمادات زمن تشغيل، ويُشحن كتطبيق ويب (PWA) قابل للتثبيت ويعمل دون إنترنت أولًا: عامل خدمة Workbox يخزّن المتجر كاملًا مسبقًا ليعمل بلا اتصال. السلة، وإتمام الطلب متعدد الخطوات، وتتبع الطلبات، ولوحة إدارة للموظفين (الطلبات والأسعار ورسوم التوصيل والطلبات الخاصة) تعمل بالكامل في المتصفح وتُحفظ في localStorage. تصميم عربي أولًا باتجاه RTL مع رسومات SVG مرسومة يدويًا وإرسال الطلبات عبر واتساب.",
+    "tech": ["Vite", "JavaScript", "PWA", "Workbox"],
+    "github": "https://github.com/islamux/alshaebsweets",
+    "demo": "https://alshaebsweets.vercel.app",
+    "image": "/images/projects/alshaebsweets.png",
+    "featured": true,
+    "year": "2026"
   }
 ]
