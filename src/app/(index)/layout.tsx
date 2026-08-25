@@ -4,9 +4,6 @@ interface RootLayoutProps {
   children: React.ReactNode;
 }
 
-/**
- * Root layout for the index route (redirect)
- */
 export default function RootLayout({
   children,
 }: RootLayoutProps) {

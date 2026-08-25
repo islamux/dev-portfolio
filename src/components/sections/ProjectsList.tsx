@@ -20,11 +20,9 @@ interface ProjectsListProps {
 
 export default function ProjectsList({ initialProjects, translations, filterTranslations, locale }: ProjectsListProps) {
 
-  // GetProject Filter
   const { selectedTech, setSelectedTech, allTech, filteredProjects } = useProjectFilter(initialProjects);
   return (
     <>
-      {/*Tech Filter*/}
       <div className="mb-8 flex flex-wrap gap-2 justify-center md:justify-center">
         <Button size="sm" onClick={() => setSelectedTech(null)} active={selectedTech === null}>
           {filterTranslations?.all || "All"}
@@ -36,7 +34,6 @@ export default function ProjectsList({ initialProjects, translations, filterTran
         ))}
       </div>
 
-      {/*Projects Grid*/}
       {filteredProjects.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProjects.map((project) => (
