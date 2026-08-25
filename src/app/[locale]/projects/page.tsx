@@ -1,10 +1,11 @@
 import Container from "@/components/ui/Container";
 import ProjectsList from "@/components/sections/ProjectsList";
-import { ProjectService } from "@/services/projectService";
+import { getAllProjects } from "@/services/projectService";
 import { Metadata } from "next";
 import { setRequestLocale } from 'next-intl/server';
 import { loadMessages } from '@/lib/content';
-import { defaultMetadata } from '@/app/metadata';
+import { parseLocale } from '@/i18n/config';
+import { buildPageMetadata, siteConfig } from '@/app/metadata';
 import type { ProjectsTranslations, ProjectFilterTranslations } from '@/types/content';
 
 interface ProjectsPageProps {
@@ -15,21 +16,19 @@ export async function generateMetadata({
   params,
 }: ProjectsPageProps
 ): Promise<Metadata> {
-  const { locale } = await params;
+  const locale = parseLocale((await params).locale);
   setRequestLocale(locale);
-
-  // For static export, use static metadata
-  return {
-    metadataBase: defaultMetadata.metadataBase,
-    title: `Projects - Islamux`,
+  return buildPageMetadata({
+    title: `Projects - ${siteConfig.name}`,
     description: "My portfolio projects",
-  };
+    locale,
+  });
 }
 
 export default async function ProjectsPage({ params }: ProjectsPageProps) {
-  const { locale } = await params;
+  const locale = parseLocale((await params).locale);
   setRequestLocale(locale);
-  const projects = await ProjectService.getAllProjects(locale);
+  const projects = getAllProjects(locale);
 
   // For static export, import messages directly instead of using getTranslations
   // to avoid headers() dependency

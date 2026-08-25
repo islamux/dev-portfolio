@@ -2,10 +2,10 @@ import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import Link from "next/link";
 import { getContentBySlug, loadMessages } from "@/lib/content";
-import { ProjectService } from "@/services/projectService";
+import { getFeaturedProjects } from "@/services/projectService";
 import { getLocalizedHref } from "@/i18n/navigation";
-import type { Locale } from "@/i18n/config";
-import { siteConfig, defaultMetadata } from '@/app/metadata';
+import { parseLocale } from "@/i18n/config";
+import { buildPageMetadata, siteConfig } from '@/app/metadata';
 import type { HomeTranslations } from '@/types/content';
 
 import Container from "@/components/ui/Container";
@@ -21,40 +21,24 @@ interface PageProps {
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { locale } = await params;
+  const locale = parseLocale((await params).locale);
   setRequestLocale(locale);
 
-  // For static export, use static metadata to avoid headers() usage
-  return {
-    metadataBase: defaultMetadata.metadataBase,
-    title: "Islamux - Software Developer",
+  return buildPageMetadata({
+    title: `${siteConfig.name} - Software Developer`,
     description: "Full-stack developer specializing in modern web applications",
-    openGraph: {
-      type: "website",
-      locale: locale === "ar" ? "ar_SA" : locale === "fr" ? "fr_FR" : "en_US",
-      url: siteConfig.url,
-      images: [
-        {
-          url: "images/og-image.svg",
-          width: 1200,
-          height: 630,
-          alt: "Islamux - Software Developer",
-        }
-      ]
-    }
-  }
+    locale,
+  });
 };
 
 export default async function Page({ params }: PageProps) {
-  const { locale } = await params;
+  const locale = parseLocale((await params).locale);
   setRequestLocale(locale);
 
-  // use service layer for featured projects
-  const featuredProjects = await ProjectService.getFeaturedProjects(locale, 3);
+  const featuredProjects = getFeaturedProjects(locale, 3);
 
-  // Get localized hrefs for links
-  const projectsHref = getLocalizedHref(locale as Locale, 'projects');
-  const contactHref = getLocalizedHref(locale as Locale, 'contact');
+  const projectsHref = getLocalizedHref(locale, 'projects');
+  const contactHref = getLocalizedHref(locale, 'contact');
 
   const { frontmatter, content } = getContentBySlug("home", locale);
 

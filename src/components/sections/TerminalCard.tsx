@@ -6,10 +6,14 @@ export default function TerminalCard() {
   const [copied, setCopied] = useState(false);
   const command = 'neofetch --profile islamux';
 
-  const copyCommand = () => {
-    navigator.clipboard.writeText(command);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const copyCommand = async () => {
+    try {
+      await navigator.clipboard.writeText(command);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Clipboard API blocked on HTTP or non-secure contexts
+    }
   };
 
   return (

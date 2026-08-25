@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { getContentBySlug } from "@/lib/content";
+import { parseLocale } from "@/i18n/config";
 import Container from '@/components/ui/Container';
 import { MarkdownContent } from '@/components/ui/MarkdownContent';
-import { siteConfig, defaultMetadata } from '@/app/metadata';
+import { siteConfig, buildPageMetadata } from '@/app/metadata';
 import type { ContentFrontmatter } from '@/types/content';
 
 interface AboutPageProps {
@@ -13,20 +14,18 @@ interface AboutPageProps {
 export async function generateMetadata({
   params,
 }: AboutPageProps): Promise<Metadata> {
-  const { locale } = await params;
+  const locale = parseLocale((await params).locale);
   setRequestLocale(locale);
-
-  // For static export, use static metadata
-  return {
-    metadataBase: defaultMetadata.metadataBase,
+  return buildPageMetadata({
     title: `About - ${siteConfig.name}`,
     description: "About me - Full-stack developer",
-  };
+    locale,
+  });
 }
 
 
 export default async function AboutPage({ params }: AboutPageProps) {
-  const { locale } = await params;
+  const locale = parseLocale((await params).locale);
   setRequestLocale(locale);
 
   let frontmatter: ContentFrontmatter = { title: "About", description: "About me" };

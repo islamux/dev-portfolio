@@ -154,5 +154,17 @@
     "image": "/images/projects/badeelatr-cover.png",
     "featured": true,
     "year": "2026"
+  },
+  {
+    "id": "alshaebsweets",
+    "name": "Shaab Sweets (حلويات الشعب)",
+    "description": "Taiz'deki 50 yıllık bir Yemen tatlıcısı için çevrimdışı öncelikli PWA mağaza — sepet, sipariş, takip ve personel paneli tamamen tarayıcıda.",
+    "longDescription": "Yemen, Taiz'deki Shaab Sweets için statik bir mağaza — 50 yıllık Yemen ve Aden tatlıları. Hiç çalışma zamanı bağımlılığı olmadan Vite ve vanilla ES modülleriyle inşa edildi; kurulabilir, çevrimdışı öncelikli bir PWA olarak dağıtılıyor: Workbox service worker tüm mağazayı önceden önbelleğe alarak internetsiz çalışmayı sağlıyor. Sepet, çok adımlı sipariş, sipariş takibi ve personel yönetim paneli (siparişler, fiyatlar, teslimat ücretleri, özel istekler) tamamen istemci tarafında çalışıyor ve localStorage'da saklanıyor. El çizimi SVG sanatıyla Arapça öncelikli RTL tasarım ve WhatsApp sipariş akışı.",
+    "tech": ["Vite", "JavaScript", "PWA", "Workbox"],
+    "github": "https://github.com/islamux/alshaebsweets",
+    "demo": "https://alshaebsweets.vercel.app",
+    "image": "/images/projects/alshaebsweets.png",
+    "featured": true,
+    "year": "2026"
   }
 ]

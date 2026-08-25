@@ -1,13 +1,13 @@
 'use client';
 
 import { localeFlag, localeNames, locales, type Locale } from "@/i18n/config";
+import { buildLocalePath } from "@/i18n/navigation";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
-export function LanguageSwitcher({ locale: localeString }: { locale: string }) {
+export function LanguageSwitcher({ locale }: { locale: Locale }) {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
-  const locale = localeString as Locale;
   const router = useRouter();
   const pathname = usePathname();
 
@@ -24,23 +24,7 @@ export function LanguageSwitcher({ locale: localeString }: { locale: string }) {
   const handleLocaleChange = (newLocale: Locale) => {
     setIsOpen(false);
     if (!pathname) return;
-
-    let newPath = pathname;
-
-    if (pathname === '/' && newLocale !== 'en') {
-       newPath = `/${newLocale}`;
-    } else {
-       const currentPrefix = `/${locale}`;
-       if (pathname.startsWith(currentPrefix)) {
-          newPath = pathname.replace(currentPrefix, `/${newLocale}`);
-       } else if (pathname === `/${locale}`) {
-          newPath = `/${newLocale}`;
-       } else {
-          newPath = `/${newLocale}${pathname}`;
-       }
-    }
-
-    router.push(newPath);
+    router.push(buildLocalePath(pathname, locale, newLocale));
   };
 
   return (

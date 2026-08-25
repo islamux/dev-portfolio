@@ -154,5 +154,17 @@
     "image": "/images/projects/badeelatr-cover.png",
     "featured": true,
     "year": "2026"
+  },
+  {
+    "id": "alshaebsweets",
+    "name": "Shaab Sweets (حلويات الشعب)",
+    "description": "Tienda PWA offline-first para una dulcería yemení de 50 años en Taiz — carrito, pedido, seguimiento y panel de administración, todo en el navegador.",
+    "longDescription": "Una tienda estática para Shaab Sweets en Taiz, Yemen — 50 años de dulces yemeníes y adeníes. Construida con Vite y módulos ES vanilla sin dependencias en tiempo de ejecución, se distribuye como una PWA instalable offline-first: un service worker de Workbox precacha toda la tienda para que funcione sin internet. El carrito, el checkout multipaso, el seguimiento de pedidos y un panel de administración para el personal (pedidos, precios, tarifas de entrega, solicitudes especiales) funcionan íntegramente en el cliente y persisten en localStorage. Diseño RTL árabe con arte SVG dibujado a mano y flujo de pedidos por WhatsApp.",
+    "tech": ["Vite", "JavaScript", "PWA", "Workbox"],
+    "github": "https://github.com/islamux/alshaebsweets",
+    "demo": "https://alshaebsweets.vercel.app",
+    "image": "/images/projects/alshaebsweets.png",
+    "featured": true,
+    "year": "2026"
   }
 ]

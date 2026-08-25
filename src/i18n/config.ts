@@ -21,6 +21,14 @@ export const localeFlag: Record<Locale, string> = {
 
 export const rtlLocales: Locale[] = ["ar"];
 
+export function isLocale(value: string): value is Locale {
+  return locales.includes(value as Locale);
+}
+
+export function parseLocale(input: string): Locale {
+  return isLocale(input) ? input : defaultLocale;
+}
+
 export function isRTL(locale: Locale): boolean {
   return rtlLocales.includes(locale);
 }

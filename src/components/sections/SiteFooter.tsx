@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Container from "../ui/Container";
-import type { SocialLink } from "@/types";
+import type { SocialLink } from "@/data/socialLinks";
 import type { FooterMessages } from "@/types/content";
 import { Icon } from "@/components/ui/Icon";
 import { siteConfig } from "@/app/metadata";
@@ -9,7 +9,7 @@ import type { Locale } from "@/i18n/config";
 
 interface SiteFooterProps {
   socialLinks: SocialLink[];
-  locale: string;
+  locale: Locale;
   navDict: Record<string, string>;
   footerMessages?: FooterMessages;
 }
@@ -17,9 +17,9 @@ interface SiteFooterProps {
 export function SiteFooter({ socialLinks, locale, navDict, footerMessages }: SiteFooterProps) {
   const currentYear = new Date().getFullYear();
 
-  const aboutHref = getLocalizedHref(locale as Locale, 'about');
-  const projectsHref = getLocalizedHref(locale as Locale, 'projects');
-  const contactHref = getLocalizedHref(locale as Locale, 'contact');
+  const aboutHref = getLocalizedHref(locale, 'about');
+  const projectsHref = getLocalizedHref(locale, 'projects');
+  const contactHref = getLocalizedHref(locale, 'contact');
   return (
     <footer className="border-t border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-900">
       <Container>

@@ -4,8 +4,9 @@ import Container from '@/components/ui/Container';
 import { ContactForm } from '@/components/sections/ContactForm';
 import { Icon } from '@/components/ui/Icon';
 import { socialLinks } from '@/data/socialLinks';
-import { siteConfig, defaultMetadata } from '@/app/metadata';
+import { siteConfig, buildPageMetadata } from '@/app/metadata';
 import { loadMessages } from '@/lib/content';
+import { parseLocale } from '@/i18n/config';
 import type { ContactPageTranslations } from '@/types/content';
 
 interface ContactPageProps {
@@ -13,19 +14,17 @@ interface ContactPageProps {
 }
 
 export async function generateMetadata({ params }: ContactPageProps): Promise<Metadata> {
-  const { locale } = await params;
+  const locale = parseLocale((await params).locale);
   setRequestLocale(locale);
-
-  // For static export, use static metadata
-  return {
-    metadataBase: defaultMetadata.metadataBase,
+  return buildPageMetadata({
     title: `Contact - ${siteConfig.name}`,
-    description: "Get in touch with me"
-  };
+    description: "Get in touch with me",
+    locale,
+  });
 }
 
 export default async function ContactPage({ params }: ContactPageProps) {
-  const { locale } = await params;
+  const locale = parseLocale((await params).locale);
   setRequestLocale(locale);
 
   const messages = await loadMessages(locale);

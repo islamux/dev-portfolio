@@ -16,7 +16,7 @@ export function ContactForm({ translations }: ContactFormProps) {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
 
-      {/*Honeypoot field (hidden from humans)*/}
+      {/* Honeypot: bots autofill hidden fields; humans never see this */}
       <input
         type="text"
         name="website"
@@ -27,11 +27,10 @@ export function ContactForm({ translations }: ContactFormProps) {
         autoComplete="off"
       />
 
-      {/* Name field*/}
       <div>
         <label
           htmlFor="name"
-          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb2">
+          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
           {translations?.name || "Name *"}
         </label>
         <input
@@ -45,11 +44,10 @@ export function ContactForm({ translations }: ContactFormProps) {
         />
       </div>
 
-      {/* Email Field*/}
       <div>
         <label
           htmlFor="email"
-          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb2"
+          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
         >
           {translations?.email || "Email *"}
         </label>
@@ -64,7 +62,6 @@ export function ContactForm({ translations }: ContactFormProps) {
         />
       </div>
 
-      {/*Message Field*/}
       <div>
         <label
           htmlFor="message"
@@ -82,7 +79,6 @@ export function ContactForm({ translations }: ContactFormProps) {
         />
       </div>
 
-      {/* Status Message*/}
       {status === "success" && (
         <div className="p-4 bg-green-50 dark:bg-gray-900/20 border border-green-200 dark:border-gray-800 rounded-lg">
           <p className="text-gray-800 dark:text-gray-400">
@@ -99,7 +95,6 @@ export function ContactForm({ translations }: ContactFormProps) {
         </div>
       )}
 
-      {/*Submit Button*/}
       <Button
         type="submit"
         variant="primary"

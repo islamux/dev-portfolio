@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { Locale } from "@/i18n/config";
 
 export const siteConfig = {
   name: "Islamux",
@@ -7,6 +8,7 @@ export const siteConfig = {
     "Full-stack developer specializing in Next.js, TypeScript, and Flutter. Building modern web applications.",
   url: "https://islamux.me",
   email: "fathi733@gmail.com",
+  twitterHandle: "@islamux",
   social: {
     github: "https://github.com/islamux",
     twitter: "https://twitter.com/islamux",
@@ -14,61 +16,47 @@ export const siteConfig = {
   },
 };
 
-export const defaultMetadata: Metadata = {
-  metadataBase: new URL(siteConfig.url),
-  title: {
-    default: siteConfig.title,
-    template: `%s - ${siteConfig.name}`,
-  },
-  description: siteConfig.description,
-  keywords: [
-    "full-stack developer",
-    "web developer",
-    "Next.js",
-    "TypeScript",
-    "React",
-    "Flutter",
-    "open source",
-  ],
-  authors: [
-    {
-      name: siteConfig.name,
-      url: siteConfig.url,
-    },
-  ],
-  creator: siteConfig.name,
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: siteConfig.url,
-    title: siteConfig.title,
-    description: siteConfig.description,
-    siteName: siteConfig.name,
-    images: [
-      {
-        url: "/images/og-image.svg",
-        width: 1200,
-        height: 630,
-        alt: siteConfig.title,
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: siteConfig.title,
-    description: siteConfig.description,
-    images: ["/images/og-image.svg"],
-    creator: "@islamux",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
+const OPEN_GRAPH_LOCALES: Record<Locale, string> = {
+  en: "en_US",
+  fr: "fr_FR",
+  ar: "ar_SA",
+  es: "es_ES",
+  tr: "tr_TR",
 };
+
+interface PageMetadataInput {
+  title: string;
+  description: string;
+  locale: Locale;
+}
+
+export function buildPageMetadata({ title, description, locale }: PageMetadataInput): Metadata {
+  return {
+    metadataBase: new URL(siteConfig.url),
+    title,
+    description,
+    openGraph: {
+      type: "website",
+      locale: OPEN_GRAPH_LOCALES[locale],
+      url: siteConfig.url,
+      title,
+      description,
+      siteName: siteConfig.name,
+      images: [
+        {
+          url: "/images/og-image.svg",
+          width: 1200,
+          height: 630,
+          alt: siteConfig.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ["/images/og-image.svg"],
+      creator: siteConfig.twitterHandle,
+    },
+  };
+}

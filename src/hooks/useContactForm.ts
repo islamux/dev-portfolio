@@ -3,26 +3,24 @@ import { ContactFormData } from "@/types/content";
 
 type Status = "idle" | "loading" | "success" | "error";
 
+const EMPTY_CONTACT_FORM: ContactFormData = {
+  name: "",
+  email: "",
+  message: "",
+  honeypot: "",
+};
+
 export function useContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState("");
-  const [formData, setFormData] = useState<ContactFormData>({
-    name: "",
-    email: "",
-    message: "",
-    honeypot: "",
-  });
+  const [formData, setFormData] = useState<ContactFormData>(EMPTY_CONTACT_FORM);
 
-  // updateField 
   const updateField = (field: keyof ContactFormData, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   }
 
-  // handleSubmit
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-
-    // Spam check
     if (formData.honeypot) {
       setStatus("error");
       setErrorMessage("Spam detected");
@@ -33,7 +31,6 @@ export function useContactForm() {
     setErrorMessage("");
 
     try {
-
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -45,19 +42,12 @@ export function useContactForm() {
         throw new Error(body.error || "Failed to send message");
       }
       setStatus("success");
-      setFormData({ name: "", email: "", message: "", honeypot: "" });
+      setFormData(EMPTY_CONTACT_FORM);
 
     } catch (error) {
       setStatus("error");
       setErrorMessage(error instanceof Error ? error.message : "Something went wrong");
-
     }
-  };
-
-  const reset = () => {
-    setFormData({ name: "", email: "", message: "", honeypot: "" });
-    setStatus("idle");
-    setErrorMessage("");
   };
 
   return {
@@ -66,7 +56,5 @@ export function useContactForm() {
     errorMessage,
     updateField,
     handleSubmit,
-    reset,
   };
-
 }
