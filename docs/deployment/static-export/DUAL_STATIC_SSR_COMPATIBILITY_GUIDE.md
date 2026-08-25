@@ -51,7 +51,7 @@ The constraints for Hostinger (Static Export) are stricter than Vercel. If code 
 **Requirement**: The server is not there to read request headers at runtime.
 
 - **Don't**: Use `cookies()`, `headers()`, or `middleware.ts` for logic involved in rendering page content.
-- **Exceptions**: You _can_ use Middleware for Auth/Redirects on **Vercel**, but you must ensure your Static Build doesn't depend on it (e.g., use the client-side `src/app/page.tsx` redirect for Hostinger).
+- **Exceptions**: You _can_ use Middleware for Auth/Redirects on **Vercel**, but you must ensure your Static Build doesn't depend on it (e.g., use the client-side `src/app/(index)/page.tsx` redirect for Hostinger).
 
 ### 4. Images
 
@@ -63,6 +63,10 @@ The constraints for Hostinger (Static Export) are stricter than Vercel. If code 
 ### 5. Forms (Contact, Newsletter)
 
 **Requirement**: No backend to process `POST` requests.
+
+- The contact handler currently lives in `src/api/contact/route.ts` — unreachable everywhere; it would need relocation to `src/app/api/` for SSR use.
+- The static target needs a third-party form backend (Formspree/Web3Forms).
+- The honeypot check is client-side only.
 
 ### 6. Component-Level Divergence
 

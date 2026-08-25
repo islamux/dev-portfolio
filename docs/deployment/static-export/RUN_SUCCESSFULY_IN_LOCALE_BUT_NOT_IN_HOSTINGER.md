@@ -138,10 +138,7 @@ After implementing Solution Option 1 (Directory-based routing), use these comman
 # Clean previous builds
 pnpm run build:clean
 
-# Build static version with the fix
-DEPLOY_TARGET=static pnpm run build
-
-# Or use the convenience script
+# Build static version with the fix (sets both env vars)
 pnpm run build:static
 
 # For a complete clean build cycle
@@ -155,9 +152,6 @@ Test your static export locally before deploying to Hostinger:
 ```bash
 # Serve the static export locally
 pnpm dlx serve out
-
-# Or use the custom server for clean URLs
-cd out && node server.js
 
 # Access your site at http://localhost:3000
 ```
@@ -230,7 +224,7 @@ cd out && node server.js
 
 4. **Deployment prerequisite**: Must delete old `en/`, `ar/`, `fr/`, `es/`, `tr/` directories from Hostinger before uploading. LiteSpeed treats stale directories as real paths and returns 403.
 
-5. **Test script**: `scripts/test-routes.sh` verifies 41 routes work correctly.
+5. **Test script**: `scripts/test-routes.sh` verifies 40 routes work correctly.
 
 **File Structure (after fix):**
 ```
@@ -250,10 +244,9 @@ out/
 │   └── ...               # Same structure, Arabic
 ├── 404/
 │   └── index.html        # Custom 404
-└── public/
-    ├── .htaccess
-    ├── robots.txt
-    └── sitemap.xml
+├── .htaccess
+├── robots.txt
+└── sitemap.xml
 ```
 
 ## Execution Steps
@@ -272,7 +265,7 @@ out/
 - `next.config.ts` — `trailingSlash: isStatic ? true : undefined`
 - `src/app/(index)/page.tsx` — Root redirect for static mode
 - `public/.htaccess` — DirectoryIndex + trailing-slash handling
-- `scripts/test-routes.sh` — 41-route test suite
+- `scripts/test-routes.sh` — 40-route test suite
 
 ## See Also
 
@@ -291,15 +284,12 @@ out/
 pnpm run build:static:full
 
 # 2. Build only (if already clean)
-DEPLOY_TARGET=static pnpm run build
+pnpm run build:static
 
 # 3. Test locally
 pnpm dlx serve out
 
-# 4. Test with custom server (clean URLs)
-cd out && node server.js
-
-# 5. Clean up
+# 4. Clean up
 pnpm run build:clean
 ```
 
@@ -332,7 +322,7 @@ out/
 - [ ] `pnpm run build:static` completes without errors
 - [ ] `out/` directory contains proper trailing slash structure
 - [ ] Local testing with `pnpm dlx serve out` works
-- [ ] All locale pages (en/, ar/, fr/) are accessible
+- [ ] All locale pages (en/, ar/, fr/, es/, tr/) are accessible
 - [ ] Project detail pages use trailing slash URLs
 - [ ] Language switching maintains URL structure
 - [ ] 404 page works for non-existent routes

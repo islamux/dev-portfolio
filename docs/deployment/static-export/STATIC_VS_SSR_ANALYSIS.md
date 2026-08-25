@@ -24,8 +24,10 @@ The user experiences a cycle where "fixing" the project for a Static Export brea
 
 ```typescript
 const isStatic = process.env.DEPLOY_TARGET === "static";
+
 const nextConfig: NextConfig = {
-  output: isStatic ? "export" : undefined,
+  output: isStatic ? 'export' : undefined,
+  trailingSlash: isStatic ? true : undefined,
   images: {
     unoptimized: isStatic,
   },
@@ -55,14 +57,11 @@ const isStatic = process.env.DEPLOY_TARGET === "static";
 
 Components check this flag to conditionally use Next.js features that don't work in static export (like `headers()`, `cookies()`).
 
-### 2.4 Middleware (`src/middleware.ts.disabled`)
+### 2.4 Middleware
 
-**Current State**: ⚠️ **Disabled for Static Export**
+**Current State**: ✅ **None**
 
-- For SSR: Middleware handles i18n redirects
-- For Static Export: Middleware must be disabled (causes build errors)
-
-**Current Solution**: The file is renamed to `.disabled` - this is a manual workaround.
+- Middleware: none. The file was first renamed `.disabled`, then deleted outright; locale switching is client-side (`LanguageSwitcher` + `buildLocalePath`).
 
 ---
 
@@ -227,7 +226,7 @@ pnpm start
 | Image Optimization       | ✅ Automatic             | ❌ Disabled             |
 | Server Components        | ✅ Full support          | ⚠️ Pre-rendered only    |
 | `headers()`, `cookies()` | ✅ Available             | ❌ Must avoid           |
-| Middleware               | ✅ Required for i18n     | ❌ Must disable         |
+| Middleware               | Possible (would need re-adding) | Removed                |
 
 ---
 
@@ -241,21 +240,7 @@ pnpm start
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "build:static": "DEPLOY_TARGET=static next build",
-    "lint": "eslint"
-  }
-}
-```
-
-### 7.2 Enhanced Scripts (To Be Added)
-
-```json
-{
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "build:static": "DEPLOY_TARGET=static next build",
+    "build:static": "NEXT_PUBLIC_DEPLOY_TARGET=static DEPLOY_TARGET=static next build",
     "build:clean": "rm -rf .next out",
     "build:static:full": "pnpm build:clean && pnpm build:static",
     "serve:static": "pnpm dlx serve out",
@@ -264,6 +249,12 @@ pnpm start
   }
 }
 ```
+
+> **Note:** `build:static` sets **both** env vars — `NEXT_PUBLIC_DEPLOY_TARGET` (client components) and `DEPLOY_TARGET` (`next.config.ts`).
+
+### 7.2 Enhanced Scripts (Added)
+
+All four enhanced scripts now exist in `package.json` (see 7.1 above): `build:clean`, `build:static:full`, `serve:static`, and `test:static`.
 
 ### 7.3 Build Script (scripts/build-static.sh)
 
@@ -277,7 +268,7 @@ echo "🧹 Cleaning previous builds..."
 rm -rf .next out
 
 echo "🔨 Building static version..."
-DEPLOY_TARGET=static pnpm run build
+NEXT_PUBLIC_DEPLOY_TARGET=static DEPLOY_TARGET=static pnpm run build
 
 echo "✅ Static build complete!"
 echo "📦 Output directory: ./out"
