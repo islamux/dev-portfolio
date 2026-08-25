@@ -24,18 +24,18 @@
 ### 4. Static Export Compatibility
 - `DEPLOY_TARGET=static` mode strips `NextIntlClientProvider` and disables API routes
 - **NEVER** use `headers()`, `cookies()`, or `useSearchParams` in pages
-- API routes (`src/api/`) won't work in static export — contact form is non-functional
+- API routes: the contact handler is unreachable in every mode (`src/api/` ≠ `src/app/api/`); email logic implemented but never invoked
 - Check `next.config.ts` — `output: 'export'` when `DEPLOY_TARGET=static`
 - Verify: `pnpm build:static:full` must succeed after your changes
 
 ### 5. Component Type Rules
 - **Server components by default** — only add `"use client"` when using hooks or browser APIs
-- Current server/client split: ~55% server / 45% client
+- Current server/client split: 10 of 41 files are `'use client'` (~24% client)
 - `src/components/ui/*` should generally be server-compatible (no hooks)
 - `src/components/sections/*` — check existing pattern before adding `"use client"`
 
 ### 6. TypeScript Conventions
-- **Strict mode enabled** — no `any` types (current codebase has some violations in pages)
+- **Strict mode enabled** — no `any` types (pages use typed translations interfaces)
 - Interfaces: PascalCase with descriptive names (e.g., `ProjectMetadata`, `SiteConfig`)
 - **Prefer interfaces over type aliases** for object shapes
 - Use `null` not `undefined` for intentional absence
@@ -55,7 +55,7 @@ src/
 ├── components/ui/         # Reusable UI (Button, Icon, Container)
 ├── components/sections/   # Page sections (SiteHeader, ProjectCard)
 ├── i18n/                 # next-intl config only
-├── services/              # Business logic (ProjectService)
+├── services/              # Business logic (projectService functions)
 ├── types/                 # TypeScript interfaces
 ├── hooks/                 # Custom React hooks (must be "use client")
 ├── messages/              # Translation JSONs (en, ar, tr, es, fr)
@@ -81,14 +81,14 @@ src/
 - `next.config.ts` — dual static/SSR mode config
 - `tsconfig.json` — strict mode enabled
 - `package.json` — dependency changes
-- `src/middleware.ts.disabled` — disabled for a reason
 
 ## Code Patterns to Follow
 
 ### Page Component (Server)
 ```typescript
-import { getTranslations } from "next-intl/server";
+import { loadMessages } from "@/lib/content";
 import { Container } from "@/components/ui/Container";
+import type { HomeTranslations } from "@/types/content";
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -101,6 +101,8 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function Page({ params }: PageProps) {
   const { locale } = await params;
+  const messages = await loadMessages(locale);
+  const home = messages.home as HomeTranslations;
   // Server-side data fetching
   return (
     <Container>
@@ -138,10 +140,10 @@ import messages from "@/messages/en.json";
 
 ### Project Data Access
 ```typescript
-// Use ProjectService (not direct fs calls)
-import { ProjectService } from "@/services/projectService";
-const projects = await ProjectService.getAllProjects(locale);
-const project = await ProjectService.getProjectById(id, locale);
+// Use projectService plain functions (not direct fs calls)
+import { getAllProjects, getFeaturedProjects, getProjectById } from "@/services/projectService";
+const projects = getAllProjects(locale);
+const project = getProjectById(id, locale);
 ```
 
 ## Common Mistakes to Avoid
@@ -151,7 +153,7 @@ const project = await ProjectService.getProjectById(id, locale);
 | Hardcoding English strings | Breaks i18n for 4 other locales | Use `src/messages/{locale}.json` |
 | Using `any` type | Violates strict mode convention | Define proper TypeScript interface |
 | Adding `"use client"` unnecessarily | Forces client bundle | Server components by default |
-| Direct `fs.readFileSync` in pages | Bypasses ProjectService, no fallback | Use `ProjectService` methods |
+| Direct `fs.readFileSync` in pages | Bypasses projectService, no fallback | Use `projectService` functions |
 | `generateMetaData` (typo) | Next.js won't call it | Must be `generateMetadata` |
 | Missing locale prefix in links | Breaks non-English locales | Use `getLocalizedHref()` |
 | Editing `md:py24` (no hyphen) | CSS class won't apply | Always `md:py-24` |
@@ -159,7 +161,7 @@ const project = await ProjectService.getProjectById(id, locale);
 ## Linting
 - **ALWAYS** run `pnpm lint` after editing code
 - ESLint config: `eslint-config-next` + TypeScript + Prettier
-- Pre-commit: `lint-staged` configured (see package.json)
+- Pre-commit: none — `lint-staged` + `prettier` are devDependencies; no pre-commit hook is configured (add husky/lint-staged config if enforcement is wanted)
 
 ## Commit Messages
 Follow conventional commits:
