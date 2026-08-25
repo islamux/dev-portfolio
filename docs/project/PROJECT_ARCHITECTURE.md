@@ -26,7 +26,7 @@ Data Layer: content/{locale}/*.md + *.json
 
 ## Component Map (41 TS/TSX files, ~2037 lines)
 
-### Server Components (11)
+### Server Components (14)
 | Component | Location | Purpose |
 |-----------|----------|---------|
 | LocaleLayout | `src/app/[locale]/layout.tsx` | Locale wrapper, RTL, providers |
