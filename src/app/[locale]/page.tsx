@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import Link from "next/link";
 import { getContentBySlug, loadMessages } from "@/lib/content";
-import { ProjectService } from "@/services/projectService";
+import { getFeaturedProjects } from "@/services/projectService";
 import { getLocalizedHref } from "@/i18n/navigation";
 import { parseLocale } from "@/i18n/config";
 import { siteConfig, defaultMetadata } from '@/app/metadata';
@@ -48,7 +48,7 @@ export default async function Page({ params }: PageProps) {
   const locale = parseLocale((await params).locale);
   setRequestLocale(locale);
 
-  const featuredProjects = await ProjectService.getFeaturedProjects(locale, 3);
+  const featuredProjects = getFeaturedProjects(locale, 3);
 
   const projectsHref = getLocalizedHref(locale, 'projects');
   const contactHref = getLocalizedHref(locale, 'contact');
