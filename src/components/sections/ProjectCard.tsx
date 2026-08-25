@@ -5,6 +5,8 @@ import { ProjectLink } from "../ui/ProjectLink";
 import { getProjectHref } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/config";
 
+const MOBILE_TECH_PATTERN = /kotlin|flutter|android/i;
+
 interface ProjectCardProps {
   project: Project;
   translations?: {
@@ -18,7 +20,7 @@ interface ProjectCardProps {
 export default function ProjectCard({ project, translations, locale }: ProjectCardProps) {
   const projectHref = getProjectHref(locale, project.id);
   const isSpan = project.span === 2;
-  const isMobile = project.apk || project.tech.some(t => /kotlin|flutter|android/i.test(t));
+  const isMobile = Boolean(project.apk) || project.tech.some((t) => MOBILE_TECH_PATTERN.test(t));
 
   return (
     <article className={`group relative bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 overflow-hidden hover:shadow-xl transition-all duration-300 ${isSpan ? 'md:col-span-2 lg:col-span-2' : ''}`}>
@@ -30,7 +32,7 @@ export default function ProjectCard({ project, translations, locale }: ProjectCa
               src={project.image}
               alt={project.name}
               fill
-              className={`transform duration-300 ${isSpan ? 'object-cover group-hover:scale-105' : 'object-cover group-hover:scale-105'}`}
+              className="transform duration-300 object-cover group-hover:scale-105"
               sizes={isSpan ? "(max-width:768px) 100vw, 66vw" : "(max-width:768px) 100vw, (max-width:1024px) 50vw, 33vw"}
             />
           </Link>

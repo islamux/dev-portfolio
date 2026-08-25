@@ -1,8 +1,4 @@
-import { createNavigation } from 'next-intl/navigation';
-import { defaultLocale, locales, type Locale } from './config';
-
-export const { Link, redirect, usePathname, useRouter } =
-  createNavigation({ locales });
+import { defaultLocale, type Locale } from './config';
 
 const baseRoutes = {
   home: "/",
