@@ -1,10 +1,9 @@
 import { createNavigation } from 'next-intl/navigation';
-import { locales, type Locale } from './config';
+import { defaultLocale, locales, type Locale } from './config';
 
 export const { Link, redirect, usePathname, useRouter } =
   createNavigation({ locales });
 
-// Base routes without locale prefix
 const baseRoutes = {
   home: "/",
   about: "/about",
@@ -21,7 +20,17 @@ export function getProjectHref(locale: Locale, projectId: string): string {
   return `/${locale}/projects/${projectId}`;
 }
 
-// navLinks for use in components - these will be processed at runtime
+export function buildLocalePath(pathname: string, currentLocale: Locale, nextLocale: Locale): string {
+  if (pathname === "/" && nextLocale !== defaultLocale) {
+    return `/${nextLocale}`;
+  }
+  const currentPrefix = `/${currentLocale}`;
+  if (pathname.startsWith(currentPrefix)) {
+    return pathname.replace(currentPrefix, `/${nextLocale}`);
+  }
+  return `/${nextLocale}${pathname}`;
+}
+
 export const navLinkKeys = [
   { key: "home" as const, label: "home" },
   { key: "about" as const, label: "about" },
