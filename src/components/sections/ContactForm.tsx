@@ -30,7 +30,7 @@ export function ContactForm({ translations }: ContactFormProps) {
       <div>
         <label
           htmlFor="name"
-          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb2">
+          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
           {translations?.name || "Name *"}
         </label>
         <input
@@ -47,7 +47,7 @@ export function ContactForm({ translations }: ContactFormProps) {
       <div>
         <label
           htmlFor="email"
-          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb2"
+          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
         >
           {translations?.email || "Email *"}
         </label>

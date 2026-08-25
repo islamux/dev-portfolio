@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { ContactFormData } from "@/types/content";
+import { escapeHtml } from "@/lib/escapeHtml";
 
 const resendApiKey = process.env.RESEND_API_KEY;
 
@@ -38,13 +39,13 @@ export async function POST(request: NextRequest) {
         from: `Portfolio Contact <onboarding@resend.dev>`,
         to: [contactEmail],
         replyTo: data.email,
-        subject: `Portfolio Contact from ${data.name}`,
+        subject: `Portfolio Contact from ${escapeHtml(data.name)}`,
         html: `
           <h2>New Contact Form Submission</h2>
-          <p><strong>Name:</strong> ${data.name}</p>
-          <p><strong>Email:</strong> ${data.email}</p>
+          <p><strong>Name:</strong> ${escapeHtml(data.name)}</p>
+          <p><strong>Email:</strong> ${escapeHtml(data.email)}</p>
           <p><strong>Message:</strong></p>
-          <p>${data.message.replace(/\n/g, "<br>")}</p>
+          <p>${escapeHtml(data.message).replace(/\n/g, "<br>")}</p>
         `,
       });
     } else {
