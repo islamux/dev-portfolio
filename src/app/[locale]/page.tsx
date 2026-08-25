@@ -5,7 +5,7 @@ import { getContentBySlug, loadMessages } from "@/lib/content";
 import { getFeaturedProjects } from "@/services/projectService";
 import { getLocalizedHref } from "@/i18n/navigation";
 import { parseLocale } from "@/i18n/config";
-import { siteConfig, defaultMetadata } from '@/app/metadata';
+import { buildPageMetadata, siteConfig } from '@/app/metadata';
 import type { HomeTranslations } from '@/types/content';
 
 import Container from "@/components/ui/Container";
@@ -24,24 +24,11 @@ export async function generateMetadata({
   const locale = parseLocale((await params).locale);
   setRequestLocale(locale);
 
-  return {
-    metadataBase: defaultMetadata.metadataBase,
-    title: "Islamux - Software Developer",
+  return buildPageMetadata({
+    title: `${siteConfig.name} - Software Developer`,
     description: "Full-stack developer specializing in modern web applications",
-    openGraph: {
-      type: "website",
-      locale: locale === "ar" ? "ar_SA" : locale === "fr" ? "fr_FR" : "en_US",
-      url: siteConfig.url,
-      images: [
-        {
-          url: "images/og-image.svg",
-          width: 1200,
-          height: 630,
-          alt: "Islamux - Software Developer",
-        }
-      ]
-    }
-  }
+    locale,
+  });
 };
 
 export default async function Page({ params }: PageProps) {

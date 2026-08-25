@@ -5,7 +5,7 @@ import { Metadata } from "next";
 import { setRequestLocale } from 'next-intl/server';
 import { loadMessages } from '@/lib/content';
 import { parseLocale } from '@/i18n/config';
-import { defaultMetadata } from '@/app/metadata';
+import { buildPageMetadata, siteConfig } from '@/app/metadata';
 import type { ProjectsTranslations, ProjectFilterTranslations } from '@/types/content';
 
 interface ProjectsPageProps {
@@ -18,11 +18,11 @@ export async function generateMetadata({
 ): Promise<Metadata> {
   const locale = parseLocale((await params).locale);
   setRequestLocale(locale);
-  return {
-    metadataBase: defaultMetadata.metadataBase,
-    title: `Projects - Islamux`,
+  return buildPageMetadata({
+    title: `Projects - ${siteConfig.name}`,
     description: "My portfolio projects",
-  };
+    locale,
+  });
 }
 
 export default async function ProjectsPage({ params }: ProjectsPageProps) {
