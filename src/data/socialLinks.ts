@@ -1,9 +1,15 @@
-import { SocialLink } from '@/types';
+import type { IconName } from "@/components/ui/icons";
 
 /**
  * Social media links displayed in site footer
  * Update this array to add/remove social links
  */
+export interface SocialLink {
+  name: string;
+  href: string;
+  icon: IconName;
+}
+
 export const socialLinks: SocialLink[] = [
   {
     name: 'GitHub',

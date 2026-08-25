@@ -16,10 +16,11 @@
  * @param className - Additional CSS classes for customization
  */
 import { Icon } from "./Icon";
+import type { IconName } from "./icons";
 
 interface ProjectLinkProps {
   href: string;
-  icon: string;
+  icon: IconName;
   text: string;
   className?: string;
 }

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Container from "../ui/Container";
-import type { SocialLink } from "@/types";
+import type { SocialLink } from "@/data/socialLinks";
 import type { FooterMessages } from "@/types/content";
 import { Icon } from "@/components/ui/Icon";
 import { siteConfig } from "@/app/metadata";
