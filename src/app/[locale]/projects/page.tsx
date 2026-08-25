@@ -4,6 +4,7 @@ import { ProjectService } from "@/services/projectService";
 import { Metadata } from "next";
 import { setRequestLocale } from 'next-intl/server';
 import { loadMessages } from '@/lib/content';
+import { parseLocale } from '@/i18n/config';
 import { defaultMetadata } from '@/app/metadata';
 import type { ProjectsTranslations, ProjectFilterTranslations } from '@/types/content';
 
@@ -15,10 +16,8 @@ export async function generateMetadata({
   params,
 }: ProjectsPageProps
 ): Promise<Metadata> {
-  const { locale } = await params;
+  const locale = parseLocale((await params).locale);
   setRequestLocale(locale);
-
-  // For static export, use static metadata
   return {
     metadataBase: defaultMetadata.metadataBase,
     title: `Projects - Islamux`,
@@ -27,7 +26,7 @@ export async function generateMetadata({
 }
 
 export default async function ProjectsPage({ params }: ProjectsPageProps) {
-  const { locale } = await params;
+  const locale = parseLocale((await params).locale);
   setRequestLocale(locale);
   const projects = await ProjectService.getAllProjects(locale);
 

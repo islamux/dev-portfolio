@@ -11,12 +11,12 @@ interface ProjectCardProps {
     code?: string;
     demo?: string;
   };
-  locale: string;
+  locale: Locale;
 }
 
 
 export default function ProjectCard({ project, translations, locale }: ProjectCardProps) {
-  const projectHref = getProjectHref(locale as Locale, project.id);
+  const projectHref = getProjectHref(locale, project.id);
   const isSpan = project.span === 2;
   const isMobile = project.apk || project.tech.some(t => /kotlin|flutter|android/i.test(t));
 

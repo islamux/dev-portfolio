@@ -4,7 +4,7 @@ import Link from "next/link";
 import { getContentBySlug, loadMessages } from "@/lib/content";
 import { ProjectService } from "@/services/projectService";
 import { getLocalizedHref } from "@/i18n/navigation";
-import type { Locale } from "@/i18n/config";
+import { parseLocale } from "@/i18n/config";
 import { siteConfig, defaultMetadata } from '@/app/metadata';
 import type { HomeTranslations } from '@/types/content';
 
@@ -21,10 +21,9 @@ interface PageProps {
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { locale } = await params;
+  const locale = parseLocale((await params).locale);
   setRequestLocale(locale);
 
-  // For static export, use static metadata to avoid headers() usage
   return {
     metadataBase: defaultMetadata.metadataBase,
     title: "Islamux - Software Developer",
@@ -46,15 +45,13 @@ export async function generateMetadata({
 };
 
 export default async function Page({ params }: PageProps) {
-  const { locale } = await params;
+  const locale = parseLocale((await params).locale);
   setRequestLocale(locale);
 
-  // use service layer for featured projects
   const featuredProjects = await ProjectService.getFeaturedProjects(locale, 3);
 
-  // Get localized hrefs for links
-  const projectsHref = getLocalizedHref(locale as Locale, 'projects');
-  const contactHref = getLocalizedHref(locale as Locale, 'contact');
+  const projectsHref = getLocalizedHref(locale, 'projects');
+  const contactHref = getLocalizedHref(locale, 'contact');
 
   const { frontmatter, content } = getContentBySlug("home", locale);
 

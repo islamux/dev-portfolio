@@ -13,13 +13,13 @@ import { ThemeToggle } from "../ui/ThemeToggle";
 import { MobileNavigation } from "./MobileNavigation";
 import { DesktopNavigation } from "./DesktopNavigation";
 
-export function SiteHeader({ navDict, locale }: { navDict: Record<string, string>; locale: string }) {
+export function SiteHeader({ navDict, locale }: { navDict: Record<string, string>; locale: Locale }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
 
   const navLinks = navLinkKeys.map(link => ({
     ...link,
-    href: getLocalizedHref(locale as Locale, link.key)
+    href: getLocalizedHref(locale, link.key)
   }));
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export function SiteHeader({ navDict, locale }: { navDict: Record<string, string
     <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/80 backdrop-blur-sm dark:border-gray-800 dark:bg-gray-900/80">
       <Container>
         <div className="flex h-16 items-center justify-between">
-          <Link href={getLocalizedHref(locale as Locale, 'home')}
+          <Link href={getLocalizedHref(locale, 'home')}
             className="text-xl font-bold text-gray-900 dark:text-white">
             Islamux
           </Link>

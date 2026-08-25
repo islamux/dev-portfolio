@@ -9,7 +9,7 @@ import type { Locale } from "@/i18n/config";
 
 interface SiteFooterProps {
   socialLinks: SocialLink[];
-  locale: string;
+  locale: Locale;
   navDict: Record<string, string>;
   footerMessages?: FooterMessages;
 }
@@ -17,9 +17,9 @@ interface SiteFooterProps {
 export function SiteFooter({ socialLinks, locale, navDict, footerMessages }: SiteFooterProps) {
   const currentYear = new Date().getFullYear();
 
-  const aboutHref = getLocalizedHref(locale as Locale, 'about');
-  const projectsHref = getLocalizedHref(locale as Locale, 'projects');
-  const contactHref = getLocalizedHref(locale as Locale, 'contact');
+  const aboutHref = getLocalizedHref(locale, 'about');
+  const projectsHref = getLocalizedHref(locale, 'projects');
+  const contactHref = getLocalizedHref(locale, 'contact');
   return (
     <footer className="border-t border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-900">
       <Container>

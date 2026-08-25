@@ -5,6 +5,7 @@ import type { ProjectFilterTranslations } from "@/types/content";
 import Button from "../ui/Button";
 import ProjectCard from "./ProjectCard";
 import { useProjectFilter } from "@/hooks/useProjectFilter";
+import type { Locale } from "@/i18n/config";
 
 interface ProjectsListProps {
   initialProjects: Project[];
@@ -13,7 +14,7 @@ interface ProjectsListProps {
     demo?: string;
   };
   filterTranslations?: ProjectFilterTranslations;
-  locale: string;
+  locale: Locale;
 }
 
 

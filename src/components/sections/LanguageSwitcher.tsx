@@ -4,10 +4,9 @@ import { localeFlag, localeNames, locales, type Locale } from "@/i18n/config";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
-export function LanguageSwitcher({ locale: localeString }: { locale: string }) {
+export function LanguageSwitcher({ locale }: { locale: Locale }) {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
-  const locale = localeString as Locale;
   const router = useRouter();
   const pathname = usePathname();
 

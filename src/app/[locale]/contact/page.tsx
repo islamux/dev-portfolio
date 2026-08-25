@@ -6,6 +6,7 @@ import { Icon } from '@/components/ui/Icon';
 import { socialLinks } from '@/data/socialLinks';
 import { siteConfig, defaultMetadata } from '@/app/metadata';
 import { loadMessages } from '@/lib/content';
+import { parseLocale } from '@/i18n/config';
 import type { ContactPageTranslations } from '@/types/content';
 
 interface ContactPageProps {
@@ -13,10 +14,8 @@ interface ContactPageProps {
 }
 
 export async function generateMetadata({ params }: ContactPageProps): Promise<Metadata> {
-  const { locale } = await params;
+  const locale = parseLocale((await params).locale);
   setRequestLocale(locale);
-
-  // For static export, use static metadata
   return {
     metadataBase: defaultMetadata.metadataBase,
     title: `Contact - ${siteConfig.name}`,
@@ -25,7 +24,7 @@ export async function generateMetadata({ params }: ContactPageProps): Promise<Me
 }
 
 export default async function ContactPage({ params }: ContactPageProps) {
-  const { locale } = await params;
+  const locale = parseLocale((await params).locale);
   setRequestLocale(locale);
 
   const messages = await loadMessages(locale);

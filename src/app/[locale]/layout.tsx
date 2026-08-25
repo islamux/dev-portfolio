@@ -4,7 +4,7 @@ import { Providers } from "../providers";
 import { SiteHeader } from "@/components/sections/SiteHeader";
 import { SiteFooter } from "@/components/sections/SiteFooter";
 import { socialLinks } from '@/data/socialLinks';
-import { isRTL, locales, Locale } from "@/i18n/config";
+import { isRTL, locales, parseLocale } from "@/i18n/config";
 import { NextIntlClientProvider } from "next-intl";
 import { setRequestLocale } from 'next-intl/server';
 import { loadMessages } from "@/lib/content";
@@ -12,9 +12,7 @@ import type { FooterMessages } from "@/types/content";
 
 interface LocaleLayoutProps {
   children: React.ReactNode;
-  params: Promise<{
-    locale: string;
-  }>;
+  params: Promise<{ locale: string }>;
 }
 
 export function generateStaticParams() {
@@ -23,14 +21,14 @@ export function generateStaticParams() {
 
 export default async function LocaleLayout(
   { children, params }: LocaleLayoutProps) {
-  const { locale } = await params;
+  const locale = parseLocale((await params).locale);
   setRequestLocale(locale);
 
   const messages = await loadMessages(locale);
   const navDict = (messages.nav ?? {}) as Record<string, string>;
   const footerMessages = messages.footer as FooterMessages | undefined;
 
-  const direction = isRTL(locale as Locale) ? "rtl" : "ltr";
+  const direction = isRTL(locale) ? "rtl" : "ltr";
   const isStatic = process.env.DEPLOY_TARGET === 'static';
 
   const content = (

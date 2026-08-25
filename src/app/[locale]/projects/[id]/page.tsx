@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { locales } from "@/i18n/config";
+import { locales, parseLocale } from "@/i18n/config";
 import { setRequestLocale } from 'next-intl/server';
 
 interface ProjectDetailPageProps {
@@ -47,9 +47,8 @@ export async function generateStaticParams() {
 }
 
 export default async function ProjectDetailPage({ params }: ProjectDetailPageProps) {
-  const { id, locale } = await params;
-  
-  // Enable static rendering
+  const { id } = await params;
+  const locale = parseLocale((await params).locale);
   setRequestLocale(locale);
 
   // Load project data directly
