@@ -58,6 +58,17 @@ Reference material and project-specific tutorials.
 - [SENIOR_TO_JUNIOR_ADVICE.md](./learning/SENIOR_TO_JUNIOR_ADVICE.md)
 - [TAILWIND_TUTORIAL.md](./learning/TAILWIND_TUTORIAL.md)
 - [TYPES_REFERENCE.md](./learning/TYPES_REFERENCE.md)
+- [SENIOR_INTERVIEW_QUESTIONS.md](./SENIOR_INTERVIEW_QUESTIONS.md) - 105 senior-level interview Q&A verified against this codebase
+
+### Plans & Specs
+
+Code reviews, implementation plans, and design specs.
+
+- [CLEAN_CODE_REVIEW.md](./plans/CLEAN_CODE_REVIEW.md)
+- [clean-code-solid-improvements.md](./superpowers/plans/clean-code-solid-improvements.md)
+- [2026-07-02-who-wants-millionaire.md](./superpowers/plans/2026-07-02-who-wants-millionaire.md)
+- [2026-07-02-who-wants-millionaire-design.md](./superpowers/specs/2026-07-02-who-wants-millionaire-design.md)
+- [2026-08-18-alshaebsweets-portfolio-entry-design.md](./superpowers/specs/2026-08-18-alshaebsweets-portfolio-entry-design.md)
 
 ### Troubleshooting
 
