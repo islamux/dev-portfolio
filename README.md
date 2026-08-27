@@ -76,12 +76,14 @@ dev_portfolio/
 │   ├── data/              # Static data
 │   │   └── socialLinks.ts # Social media links
 │   ├── i18n/              # Internationalization
-│   │   ├── config.ts      # Locale configuration
-│   │   ├── guards.ts      # Type guards
+│   │   ├── config.ts      # Locale configuration + parseLocale / isLocale guards
 │   │   └── request.ts     # next-intl config
 │   ├── lib/               # Utilities & helpers
+│   │   ├── content.ts     # File system reads for markdown/JSON
+│   │   └── escapeHtml.ts  # HTML entity escaping (XSS prevention)
 │   ├── hooks/             # Custom React hooks
 │   └── types/             # TypeScript type definitions
+│       └── content.ts     # Project, ContentFormData, NavLink, etc.
 ├── messages/              # Translation files (en, fr, ar, es, tr)
 ├── content/               # Per-locale content (about.md, home.md, projects.json)
 ├── public/                # Static assets
@@ -143,14 +145,13 @@ This script will:
 | [Next.js 16](https://nextjs.org/)                         | React framework with App Router (16.2.6) |
 | [TypeScript](https://www.typescriptlang.org/)             | Type safety                     |
 | [Tailwind CSS](https://tailwindcss.com/)                  | Utility-first CSS               |
-| [next-themes](https://github.com/pacocoursey/next-themes) | Dark mode                       |
 | [next-intl](https://next-intl-docs.vercel.app/)           | Internationalization            |
 
 ## 🏗️ Architecture Highlights
 
 ### Centralized Metadata (`src/app/metadata.ts`)
 
-All site configuration and SEO metadata in one place:
+All site configuration and SEO metadata generated from a single builder:
 
 ```typescript
 export const siteConfig = {
@@ -162,15 +163,16 @@ export const siteConfig = {
   social: { github, twitter, linkedin },
 };
 
-export const defaultMetadata: Metadata = {
-  // Comprehensive SEO configuration using siteConfig
-};
+// Usage in page.tsx:
+export function generateMetadata({ params }) {
+  return buildPageMetadata({ title: "...", description: "...", locale: params.locale });
+}
 ```
 
 **Benefits:**
 
 - ✅ Single source of truth for site information
-- ✅ Consistent metadata across all pages
+- ✅ Consistent metadata across all pages (SEO + OG + Twitter cards)
 - ✅ Type-safe configuration
 - ✅ Easy to update (change once, applies everywhere)
 
@@ -179,7 +181,8 @@ export const defaultMetadata: Metadata = {
 - **Server Components** (default): For static content, optimal performance
 - **Client Components** (`'use client'`): For interactivity only
 - **Props-first pattern**: Pass data via props, not hardcoded values
-- **Separation of concerns**: Data in `src/data/`, types in `src/types/`
+- **Separation of concerns**: Data in `src/data/`, types in `src/types/content.ts`
+- **Icon registry**: Centralized SVG paths in `src/components/ui/icons.ts` with `IconName` type safety
 
 ## 🌐 Deployment
 
@@ -238,6 +241,10 @@ There's a known bug with `next/font/google` in Next.js 16.0.3. This project uses
 
 ## ✨ Recent Updates
 
+### August 2026
+
+- ✅ **Clean Code & SOLID Refactor** — 9-commit refactor across 36 files: `parseLocale()` guards, `buildPageMetadata()` builder, icon registry with `IconName` type, flattened `ProjectService` to plain functions, HTML injection fix (B1), dead code removal
+
 ### May 2026
 
 - ✅ **Next.js 16.2.6 & React 19.2.6 Upgrade** - Latest framework versions with improved performance
@@ -254,7 +261,7 @@ There's a known bug with `next/font/google` in Next.js 16.0.3. This project uses
 
 ### December 2024
 
-- ✅ **Separation of Concerns Refactoring** - Codebase architecture improvement with ProjectService abstraction
+- ✅ **Separation of Concerns Refactoring** - Service layer introduced (later flattened to plain functions in Aug 2026)
 - ✅ **"Voices of Truth" Project** - Islamic scholars directory (EN/AR/FR) with filtering and search
 - ✅ **Phase 4 Complete** - Full i18n with next-intl (EN, FR, AR)
 - ✅ **Centralized metadata** - SEO config in `src/app/metadata.ts`
