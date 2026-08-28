@@ -101,11 +101,7 @@ src/i18n/
 ## Type System
 ```
 src/types/
-<<<<<<< HEAD
-└── content.ts    # ContentFrontmatter, ContentData, Project, ContactFormData, NavLink, ...
-=======
 └── content.ts    # ContentFrontmatter, ContentData, Project, ContactFormData, NavLink, ProjectFilterTranslations
->>>>>>> origin/main
 ```
 
 **Issue:** ~~`types/project.ts` exports are never imported anywhere. `NavLink` interface duplicated~~ — **RESOLVED**: `types/project.ts` removed; `NavLink` now lives in `types/content.ts:31` and is shared.
@@ -126,7 +122,6 @@ src/api/contact/route.ts  →  POST handler (validates + sends via Resend with e
 
 ## Technical Debt Summary
 
-<<<<<<< HEAD
 ### Bugs (High Priority) — all fixed
 | Bug | File | Status |
 |-----|------|--------|
@@ -138,10 +133,8 @@ src/api/contact/route.ts  →  POST handler (validates + sends via Resend with e
 | SVG path `M19 91-7` typo | `src/components/sections/LanguageSwitcher.tsx` | ✅ FIXED — `M19 9l-7 7-7-7` |
 | Home markdown `/about` link not locale-prefixed | `content/en/home.md` | ✅ FIXED — links are locale-prefixed |
 | Projects page reads `messages?.home` instead of `messages?.projects` | `projects/page.tsx` | ✅ FIXED — reads `messages.projects` |
-=======
-### Bugs (All fixed — Aug 2026 refactor)
-All originally identified bugs have been resolved: HTML injection (B1), `mb2` typo (B2), OG image path (B3), missing OG locales (B4), static failure message (B5), `as Locale` casts, `defaultMetadata` dead config, clipboard unhandled promise, CSS typos, `generateMetaData` typo, `messages?.home` wrong key.
->>>>>>> origin/main
+
+Also fixed in the Aug 2026 refactor: HTML injection (B1), `mb2` typo (B2), OG image path (B3), missing OG locales (B4), static failure message (B5), `as Locale` casts, `defaultMetadata` dead config, clipboard unhandled promise.
 
 ### Dead Code (All removed)
 | File | Status |
@@ -149,18 +142,14 @@ All originally identified bugs have been resolved: HTML injection (B1), `mb2` ty
 | `src/app/[locale]/generateStaticParams.ts` | **REMOVED** |
 | `src/i18n/guards.ts` | **REMOVED** |
 | `src/types/project.ts` | **REMOVED** |
-<<<<<<< HEAD
 | `src/lib/content.ts` → `getAllContent()` | **REMOVED** |
-=======
 | `src/types/index.ts` | **REMOVED** (SocialLink moved to `src/data/socialLinks.ts`) |
->>>>>>> origin/main
 | `src/messages/images.json` | **REMOVED** |
 | `src/middleware.ts.disabled` | **REMOVED** (file deleted) |
 
 ### Remaining Duplications
 | Duplication | Locations |
 |-------------|-----------|
-<<<<<<< HEAD
 | `generateStaticParams` logic | `layout.tsx` (duplication resolved — extra file removed) |
 | `NavLink` interface | `DesktopNavigation.tsx` + `MobileNavigation.tsx` — **fixed**: shared via `types/content.ts:31` |
 | Social URLs | `metadata.ts` (`siteConfig.social`) + `socialLinks.ts` |
@@ -179,8 +168,3 @@ All originally identified bugs have been resolved: HTML injection (B1), `mb2` ty
 - `src/app/metadata.ts` — `buildPageMetadata`, `siteConfig`
 - `src/app/robots.ts`, `src/app/sitemap.ts` — SEO files
 - `src/data/socialLinks.ts` — social link data
-=======
-| `NavLink` interface | `DesktopNavigation.tsx` + `MobileNavigation.tsx` (not shared) |
-| RTL font-family CSS | Repeated ~10 times in `globals.css` |
-| Translation loading pattern | `page.tsx`, `projects/page.tsx`, `about/page.tsx` (use `import messages` directly) |
->>>>>>> origin/main
