@@ -7,13 +7,13 @@
 Once Next.js releases a fix (likely 16.1.0+), you can switch back to `next/font/google` for better optimization.
 - ADD SHADCN FOR READY COMPONENTS, ... ICONS FOR READY BEUTIFUL ICONS
 - interfaces in types folder is it best practice or change to type
-- make sure of metadata or defaultMetadata @layout.tsx
+- ~~make sure of metadata or defaultMetadata @layout.tsx~~ ✅ `buildPageMetadata()` replaces dead `defaultMetadata`
 - sure of ssl in hostinger
-- i18 : 1- How in  @layout.tsx  "Validate Locale" works because its out the bloc of return.
-2- in validate locale i see as Locale , what the alternative way .
-- analyze the project , is there any dublications, break best practice .
+- ~~i18 : 1- How in  @layout.tsx  "Validate Locale" works because its out the bloc of return.~~ ✅ `parseLocale()` + `isLocale()` guards now at every boundary
+  2- ~~in validate locale i see as Locale , what the alternative way .~~ ✅ all `as Locale` casts eliminated
+- ~~analyze the project , is there any dublications, break best practice .~~ ✅ audit completed Aug 2026
 - ~~maybe remove generateStaticParams.ts~~ ✅ done
-- search on 'as Locale' , apply alternative solution
+- ~~search on 'as Locale' , apply alternative solution~~ ✅ `parseLocale()` guard + typed props
 - alternative for 'as Node'
 - make LangugaSwitcher is smaller 
 - make md file types used with mini explaination

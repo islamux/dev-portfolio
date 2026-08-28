@@ -49,6 +49,7 @@ Refactoring plans and summaries for structural improvements.
 - [I18N_FIX_PLAN.md](./architecture/I18N_FIX_PLAN.md)
 - [I18N_FIX_SUMMARY.md](./architecture/I18N_FIX_SUMMARY.md)
 - [SOC_REFACTORING_PLAN.md](./architecture/SOC_REFACTORING_PLAN.md)
+- [clean-code-solid-improvements.md](./superpowers/plans/clean-code-solid-improvements.md) — Aug 2026: SOLID refactor + bug fixes
 
 ### Learning
 

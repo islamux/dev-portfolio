@@ -80,14 +80,17 @@ dev_portfolio/
 │   ├── data/              # Static data
 │   │   └── socialLinks.ts # Social media links
 │   ├── i18n/              # Internationalization
-│   │   ├── config.ts      # Locale configuration
-│   │   ├── navigation.ts  # Locale-prefixed path helpers
+│   │   ├── config.ts      # Locale configuration + parseLocale / isLocale guards
+│   │   └── navigation.ts  # Locale-prefixed path helpers
 │   │   └── request.ts     # next-intl config
 │   ├── lib/               # Utilities & helpers
+│   │   ├── content.ts     # File system reads for markdown/JSON
+│   │   └── escapeHtml.ts  # HTML entity escaping (XSS prevention)
 │   ├── hooks/             # Custom React hooks
 │   ├── messages/          # Translation JSON (en, fr, ar, es, tr)
 │   ├── services/          # Data services (projectService)
 │   └── types/             # TypeScript type definitions
+│       └── content.ts     # Project, ContentFormData, NavLink, etc.
 ├── content/               # Per-locale content (about.md, home.md, projects.json)
 ├── public/                # Static assets
 │   ├── fonts/            # Font files
@@ -158,7 +161,7 @@ This script will:
 
 ### Centralized Metadata (`src/app/metadata.ts`)
 
-All site configuration and SEO metadata in one place:
+All site configuration and SEO metadata generated from a single builder:
 
 ```typescript
 export const siteConfig = {
@@ -171,15 +174,16 @@ export const siteConfig = {
   social: { github, twitter, linkedin },
 };
 
-export function buildPageMetadata({ title, description, locale }): Metadata {
-  // Open Graph + Twitter card metadata, built from siteConfig
+// Usage in page.tsx:
+export function generateMetadata({ params }) {
+  return buildPageMetadata({ title: "...", description: "...", locale: params.locale });
 }
 ```
 
 **Benefits:**
 
 - ✅ Single source of truth for site information
-- ✅ Consistent metadata across all pages
+- ✅ Consistent metadata across all pages (SEO + OG + Twitter cards)
 - ✅ Type-safe configuration
 - ✅ Easy to update (change once, applies everywhere)
 
@@ -188,7 +192,8 @@ export function buildPageMetadata({ title, description, locale }): Metadata {
 - **Server Components** (default): For static content, optimal performance
 - **Client Components** (`'use client'`): For interactivity only
 - **Props-first pattern**: Pass data via props, not hardcoded values
-- **Separation of concerns**: Data in `src/data/`, types in `src/types/`
+- **Separation of concerns**: Data in `src/data/`, types in `src/types/content.ts`
+- **Icon registry**: Centralized SVG paths in `src/components/ui/icons.ts` with `IconName` type safety
 
 ## 🌐 Deployment
 
@@ -252,7 +257,7 @@ There's a known bug with `next/font/google` in Next.js 16.0.3 (Turbopack). This 
 
 - ✅ **Next.js 16.3.2 & React 19.2.8 Upgrade** - Latest framework versions
 - ✅ **Native Theme Provider** - Custom ThemeContext replaces next-themes usage (terminal polyglot redesign, #8)
-- ✅ **Clean Code & SOLID Refactors** - Email HTML escaping, service-layer data access, dead code removal (#13, #16)
+- ✅ **Clean Code & SOLID Refactors** - `parseLocale()` guards, `buildPageMetadata()` builder, icon registry with `IconName` type, flattened `ProjectService` to plain functions, email HTML escaping, dead code removal (#13, #16)
 - ✅ **project-tracker.json Removed** - Milestone tracking via git history + docs (#14)
 - ✅ **New Projects** - badeel-atr2 added (#15); millionaire project spans 2 columns (#6)
 - ✅ **Interview Questions Doc** - 105 senior-level Q&A verified against the codebase (#7)
@@ -273,7 +278,7 @@ There's a known bug with `next/font/google` in Next.js 16.0.3 (Turbopack). This 
 
 ### December 2024
 
-- ✅ **Separation of Concerns Refactoring** - Codebase architecture improvement with ProjectService abstraction
+- ✅ **Separation of Concerns Refactoring** - Service layer introduced (later flattened to plain functions in Aug 2026)
 - ✅ **"Voices of Truth" Project** - Islamic scholars directory (EN/AR/FR) with filtering and search
 - ✅ **Phase 4 Complete** - Full i18n with next-intl (EN, FR, AR)
 - ✅ **Centralized metadata** - SEO config in `src/app/metadata.ts`

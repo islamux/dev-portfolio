@@ -4,18 +4,20 @@ A reference guide for all TypeScript types, interfaces, and type aliases in this
 
 ---
 
-## Core Types (`src/types/`)
+## Core Types
 
 ### SocialLink
-**File:** `src/types/index.ts`
+**File:** `src/data/socialLinks.ts`
 
 Represents a social media link displayed in the footer.
 
 ```typescript
+import type { IconName } from "@/components/ui/icons";
+
 interface SocialLink {
   name: string;    // Display name (e.g., "GitHub")
   href: string;    // URL to the social profile
-  icon: string;    // Icon name for the Icon component
+  icon: IconName;  // Compile-time safe icon name (e.g., "github")
 }
 ```
 
