@@ -2,7 +2,7 @@
 
 ## Project
 
-Multilingual (EN, AR, TR, ES, FR) developer portfolio. Next.js 16.2.6, React 19.2.6, TypeScript, Tailwind CSS v4, next-intl, pnpm.
+Multilingual (EN, AR, TR, ES, FR) developer portfolio. Next.js 16.3.2, React 19.2.8, TypeScript, Tailwind CSS v4, next-intl, pnpm.
 
 ## Commands
 
@@ -17,7 +17,7 @@ Multilingual (EN, AR, TR, ES, FR) developer portfolio. Next.js 16.2.6, React 19.
 | `pnpm serve:static` | Serve static `out/` dir |
 | `pnpm test:static` | Clean → static → serve cycle |
 | `pnpm lint` | ESLint (strict) |
-| `scripts/test-routes.sh` | Test all routes locally (41 checks) |
+| `scripts/test-routes.sh` | Test all routes locally (40 checks) |
 
 ## ⚠️ CRITICAL: Static Export Rules (Read Before Any Static Build)
 
@@ -44,7 +44,7 @@ This project deploys to **Hostinger (LiteSpeed)** via static export. The followi
 ### Before Deploying to Hostinger
 1. Delete all old files from `public_html/` (stale locale dirs cause 403)
 2. Run `pnpm build:static:full`
-3. Run `scripts/test-routes.sh` — all 41 checks must pass
+3. Run `scripts/test-routes.sh` — all 40 checks must pass
 4. Upload `out/` contents to `public_html/`
 
 ---

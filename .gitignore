@@ -49,3 +49,7 @@ node_modules/
 
 # graphify code index
 graphify-out/
+
+# Build artifacts
+build.log
+*.log

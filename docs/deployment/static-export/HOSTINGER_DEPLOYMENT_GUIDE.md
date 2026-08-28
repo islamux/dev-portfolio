@@ -39,32 +39,45 @@ export default withNextIntl(nextConfig);
 Hostinger uses Apache (LiteSpeed). Adding an `.htaccess` file helps handle 404 errors and ensures clean URLs.
 
 1.  Navigate to your `public` folder: `/media/islamux/Variety/JavaScriptProjects/dev_portfolio/public`
-2.  Create a new file named `.htaccess` (make sure it starts with a dot).
-3.  Paste the following content into it:
+2.  The project already ships an `.htaccess` there — **source of truth: `public/.htaccess`**. Keep it in sync rather than creating a copy.
+3.  Its current content:
 
 ```apache
+# Directory-based routing — trailing slashes + index.html
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
 
-  # Serve 404.html for missing files
+  # Add trailing slash if missing (for directories)
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^(.+[^/])$ $1/ [L,R=301]
+
   ErrorDocument 404 /404.html
 </IfModule>
 
-# Optional: Browser Caching for better performance
+DirectoryIndex index.html
+
+# Browser Caching
 <IfModule mod_expires.c>
   ExpiresActive On
   ExpiresByType image/jpg "access plus 1 year"
   ExpiresByType image/jpeg "access plus 1 year"
   ExpiresByType image/gif "access plus 1 year"
   ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
   ExpiresByType text/css "access plus 1 month"
-  ExpiresByType application/pdf "access plus 1 month"
   ExpiresByType text/javascript "access plus 1 month"
   ExpiresByType application/javascript "access plus 1 month"
   ExpiresByType application/x-javascript "access plus 1 month"
-  ExpiresByType image/x-icon "access plus 1 year"
+  ExpiresByType application/pdf "access plus 1 month"
   ExpiresDefault "access plus 2 days"
+</IfModule>
+
+# Gzip compression
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css application/javascript application/json image/svg+xml
 </IfModule>
 ```
 
@@ -73,10 +86,10 @@ Hostinger uses Apache (LiteSpeed). Adding an `.htaccess` file helps handle 404 e
 1.  Run your build command:
 
     ```bash
-    pnpm run build
+    pnpm build:static:full
     ```
 
-    _(Or your specific static build script)_
+    _(Plain `pnpm run build` is the SSR build for Vercel — it does not produce an `out/` directory.)_
 
 2.  Check the `out` directory. You should now see folders like `en/` containing `index.html` instead of just `en.html`.
 

@@ -52,8 +52,8 @@ git push origin feat/your-feature-name
 6. **Commit with `fix:` prefix**
 
 ### Common Bug Patterns in This Repo
-- **Typos in function names** (e.g., `generateMetaData` → `generateMetadata`)
-- **CSS class typos** (e.g., `md:py24` → `md:py-24`)
+- **Typos in function names** (historical, now fixed — e.g., `generateMetaData` → `generateMetadata`)
+- **CSS class typos** (historical, now fixed — e.g., `md:py24` → `md:py-12`)
 - **Hardcoded English strings** — use `src/messages/{locale}.json` instead
 - **Missing locale prefixes** in links — use `getLocalizedHref()` from `@/i18n/navigation`
 
@@ -159,9 +159,9 @@ pnpm start
 | Unify translation loading pattern | Medium | `page.tsx`, `projects/page.tsx` | 🟡 Open |
 | Replace hardcoded SVG icons with icon library | Low | `src/components/ui/Icon.tsx` | 🟡 Open |
 | Consolidate RTL CSS in `globals.css` | Medium | `src/app/globals.css` | 🟡 Open |
-| Make contact form functional (email sending) | Low | `src/api/contact/route.ts` | 🟡 Open |
-| Fix project detail page to use ProjectService | High | `projects/[id]/page.tsx` | 🟡 Open |
-| Fix logo link locale prefix | High | `SiteHeader.tsx` | 🟡 Open |
+| Make contact form functional (email sending) | Low | `src/api/contact/route.ts` | ✅ Done (Resend + escaping; note: handler currently unreachable — see PROJECT_CONTEXT) |
+| Fix project detail page to use ProjectService | High | `projects/[id]/page.tsx` | ✅ Done (calls `getProjectById`) |
+| Fix logo link locale prefix | High | `SiteHeader.tsx` | ✅ Done (`SiteHeader.tsx:34` via `getLocalizedHref`) |
 
 ## Context Preservation Strategy
 
@@ -200,4 +200,3 @@ pnpm start
 - `next.config.ts` (dual static/SSR mode config)
 - `tsconfig.json` (TypeScript strict mode)
 - `package.json` (dependency changes)
-- `src/middleware.ts.disabled` (disabled for a reason)

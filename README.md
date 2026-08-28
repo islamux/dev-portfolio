@@ -2,7 +2,7 @@
 
 > A modern, multilingual portfolio built with Next.js 16, TypeScript, and Tailwind CSS
 
-[![Next.js](https://img.shields.io/badge/Next.js-16.2.6-black)](https://nextjs.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-16.3.2-black)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0-38bdf8)](https://tailwindcss.com/)
 
@@ -14,17 +14,17 @@
 - ✅ **Responsive Design** - Mobile-first with Tailwind CSS
 - ✅ **Dark Mode** - Automatic theme switching with persistence
 - ✅ **i18n Support** - Full internationalization with English, French, Arabic (RTL), Turkish, Spanish
-- ✅ **Performance Optimized** - Lighthouse score >90
-- ✅ **Accessible** - WCAG AA compliant
-- ✅ **Clean Codebase** - ESLint + Prettier, zero warnings
+- ✅ **Performance Optimized** - Server components, static generation, minimal client JS
+- ✅ **Accessible** - Skip link, semantic HTML, keyboard-friendly navigation
+- ✅ **Clean Codebase** - ESLint (flat config) + Prettier, zero warnings
 
 ## 📋 Prerequisites
 
-- Node.js 18.17 or later
+- Node.js 20.9 or later (Next.js 16 requirement)
 - pnpm 8.0 or later
 
 ```bash
-node --version  # Should be 18.17+
+node --version  # Should be 20.9+
 pnpm --version  # Should be 8.0+
 ```
 
@@ -39,7 +39,7 @@ pnpm --version  # Should be 8.0+
 2. **Set up environment variables:**
 
    ```bash
-   cp .env.example .env.local
+   cp env.example .env.local
    # Edit .env.local with your values
    ```
 
@@ -64,11 +64,15 @@ dev_portfolio/
 │   │   │   ├── layout.tsx  # Locale layout with lang & dir
 │   │   │   ├── page.tsx    # Home page
 │   │   │   ├── about/      # About page
-│   │   │   ├── projects/   # Projects page
+│   │   │   ├── projects/   # Projects page (+ [id]/ detail pages)
 │   │   │   └── contact/    # Contact page
+│   │   ├── (index)/        # Root route group
+│   │   │   ├── layout.tsx  # Root layout
+│   │   │   └── page.tsx    # Client redirect to /en
 │   │   ├── metadata.ts     # ⭐ Centralized site config & SEO
-│   │   ├── layout.tsx      # Root layout
-│   │   ├── providers.tsx   # Theme provider
+│   │   ├── providers.tsx   # Custom theme provider (ThemeContext)
+│   │   ├── robots.ts       # robots.txt
+│   │   ├── sitemap.ts      # Sitemap generation
 │   │   └── globals.css     # Global styles
 │   ├── components/         # React components
 │   │   ├── ui/            # Reusable UI primitives
@@ -77,16 +81,19 @@ dev_portfolio/
 │   │   └── socialLinks.ts # Social media links
 │   ├── i18n/              # Internationalization
 │   │   ├── config.ts      # Locale configuration + parseLocale / isLocale guards
+│   │   └── navigation.ts  # Locale-prefixed path helpers
 │   │   └── request.ts     # next-intl config
 │   ├── lib/               # Utilities & helpers
 │   │   ├── content.ts     # File system reads for markdown/JSON
 │   │   └── escapeHtml.ts  # HTML entity escaping (XSS prevention)
 │   ├── hooks/             # Custom React hooks
+│   ├── messages/          # Translation JSON (en, fr, ar, es, tr)
+│   ├── services/          # Data services (projectService)
 │   └── types/             # TypeScript type definitions
 │       └── content.ts     # Project, ContentFormData, NavLink, etc.
-├── messages/              # Translation files (en, fr, ar, es, tr)
 ├── content/               # Per-locale content (about.md, home.md, projects.json)
 ├── public/                # Static assets
+│   ├── fonts/            # Font files
 │   └── images/           # Images and media
 ├── docs/                  # 📚 Documentation
 │   ├── README.md          # Documentation index
@@ -95,8 +102,11 @@ dev_portfolio/
 │   ├── deployment/        # Static export and Hostinger guides
 │   ├── architecture/      # Refactoring plans and summaries
 │   ├── learning/          # Tutorials and references
+│   ├── plans/             # Code-review and improvement plans
+│   ├── superpowers/       # Design specs and implementation plans
 │   └── troubleshooting/   # Issue logs and fixes
 ├── AGENTS.md              # AI agent guidelines
+├── RULES.md               # Git & PR rules
 └── CLAUDE.md              # Claude config
 ```
 
@@ -118,8 +128,6 @@ pnpm test:static        # Build + serve static version
 
 # Code Quality
 pnpm lint               # Run ESLint
-pnpm typecheck          # Check TypeScript types
-pnpm format             # Format code with Prettier
 ```
 
 ### Automated Build Script
@@ -142,10 +150,12 @@ This script will:
 
 | Technology                                                | Purpose                         |
 | --------------------------------------------------------- | ------------------------------- |
-| [Next.js 16](https://nextjs.org/)                         | React framework with App Router (16.2.6) |
+| [Next.js 16](https://nextjs.org/)                         | React framework with App Router (16.3.2) |
 | [TypeScript](https://www.typescriptlang.org/)             | Type safety                     |
 | [Tailwind CSS](https://tailwindcss.com/)                  | Utility-first CSS               |
+| Custom ThemeContext (`src/app/providers.tsx`)              | Dark mode                       |
 | [next-intl](https://next-intl-docs.vercel.app/)           | Internationalization            |
+| [react-markdown](https://github.com/remarkjs/react-markdown) | Markdown content rendering    |
 
 ## 🏗️ Architecture Highlights
 
@@ -160,6 +170,7 @@ export const siteConfig = {
   description: "...",
   url: "https://islamux.me",
   email: "fathi733@gmail.com",
+  twitterHandle: "@islamux",
   social: { github, twitter, linkedin },
 };
 
@@ -204,7 +215,7 @@ export function generateMetadata({ params }) {
 **Note:** Static exports do not support ISR, Image Optimization, or Middleware.
 
 - Images are unoptimized automatically.
-- Redirects are handled client-side via `src/app/page.tsx`.
+- Redirects are handled client-side via `src/app/(index)/page.tsx`.
 
 ### Environment Variables
 
@@ -212,7 +223,8 @@ Set these in your deployment platform:
 
 - `NEXT_PUBLIC_SITE_URL` - Your domain (e.g., https://islamux.me)
 - `CONTACT_EMAIL` - Your contact email
-- `GITHUB_TOKEN` - (Optional) For GitHub API access
+- `RESEND_API_KEY` - (Optional) Contact form email delivery via Resend
+- `GITHUB_TOKEN` - (Optional, not implemented) For GitHub API access
 
 ## 📚 Documentation
 
@@ -237,13 +249,18 @@ Each execution plan includes:
 
 ### Next.js 16.0.3 Font Loading
 
-There's a known bug with `next/font/google` in Next.js 16.0.3. This project uses CSS `@font-face` as a workaround. See [PHASE_2_EXECUTION_PLAN.md](./docs/build/PHASE_2_EXECUTION_PLAN.md#critical-nextjs-1603-turbopack-font-bug) for details.
+There's a known bug with `next/font/google` in Next.js 16.0.3 (Turbopack). This project uses CSS `@font-face` loaded from CDN as a workaround. See [PHASE_2_EXECUTION_PLAN.md](./docs/build/PHASE_2_EXECUTION_PLAN.md) ("Important: Next.js 16.0.3 Font Bug") for details.
 
 ## ✨ Recent Updates
 
 ### August 2026
 
-- ✅ **Clean Code & SOLID Refactor** — 9-commit refactor across 36 files: `parseLocale()` guards, `buildPageMetadata()` builder, icon registry with `IconName` type, flattened `ProjectService` to plain functions, HTML injection fix (B1), dead code removal
+- ✅ **Next.js 16.3.2 & React 19.2.8 Upgrade** - Latest framework versions
+- ✅ **Native Theme Provider** - Custom ThemeContext replaces next-themes usage (terminal polyglot redesign, #8)
+- ✅ **Clean Code & SOLID Refactors** - `parseLocale()` guards, `buildPageMetadata()` builder, icon registry with `IconName` type, flattened `ProjectService` to plain functions, email HTML escaping, dead code removal (#13, #16)
+- ✅ **project-tracker.json Removed** - Milestone tracking via git history + docs (#14)
+- ✅ **New Projects** - badeel-atr2 added (#15); millionaire project spans 2 columns (#6)
+- ✅ **Interview Questions Doc** - 105 senior-level Q&A verified against the codebase (#7)
 
 ### May 2026
 

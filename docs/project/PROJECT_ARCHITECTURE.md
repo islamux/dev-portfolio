@@ -9,13 +9,13 @@ Next.js App Router (locale-aware routing)
 ┌─────────────────────────────────────────┐
 │  Server Components (pages, layout)      │
 │  - Load content via project functions   │
-│  - Fetch translations from messages/    │
+│  - Fetch translations from src/messages/│
 │  - Pass props to Client Components      │
 └─────────────────────────────────────────┘
       ↓
 ┌─────────────────────────────────────────┐
 │  Client Components (hooks, interactivity)│
-│  - ThemeToggle (class strategy)          │
+│  - ThemeToggle (custom ThemeContext)    │
 │  - ProjectsList (filtering)            │
 │  - ContactForm (form state)            │
 │  - SiteHeader (navigation state)       │
@@ -24,9 +24,9 @@ Next.js App Router (locale-aware routing)
 Data Layer: content/{locale}/*.md + *.json
 ```
 
-## Component Map (48 TS/TSX files, ~2352 lines)
+## Component Map (41 TS/TSX files, ~2037 lines)
 
-### Server Components (11)
+### Server Components (14)
 | Component | Location | Purpose |
 |-----------|----------|---------|
 | LocaleLayout | `src/app/[locale]/layout.tsx` | Locale wrapper, RTL, providers |
@@ -39,20 +39,23 @@ Data Layer: content/{locale}/*.md + *.json
 | Container | `src/components/ui/Container.tsx` | Layout wrapper |
 | Icon | `src/components/ui/Icon.tsx` | SVG icons (hardcoded paths) |
 | ProjectLink | `src/components/ui/ProjectLink.tsx` | Project action links |
-| ProjectCard | `src/components/ui/ProjectCard.tsx` | Project summary card |
+| ProjectCard | `src/components/sections/ProjectCard.tsx` | Project summary card |
+| TerminalCard | `src/components/sections/TerminalCard.tsx` | Terminal-style hero card |
+| SkipToContent | `src/components/ui/SkipToContent.tsx` | A11y skip link (anchor target empty — a11y gap) |
+| Icons | `src/components/ui/icons.ts` | Shared SVG icon components |
 
 ### Client Components (9)
 | Component | Location | Hooks Used |
 |-----------|----------|------------|
-| Providers | `src/app/providers.tsx` | React context |
-| ThemeToggle | `src/components/ui/ThemeToggle.tsx` | useMounted, useTheme |
+| Providers | `src/app/providers.tsx` | custom ThemeContext |
+| ThemeToggle | `src/components/ui/ThemeToggle.tsx` | useMounted, useContext (ThemeContext) |
 | SiteHeader | `src/components/sections/SiteHeader.tsx` | useState, usePathname |
 | DesktopNavigation | `src/components/sections/DesktopNavigation.tsx` | usePathname |
 | MobileNavigation | `src/components/sections/MobileNavigation.tsx` | usePathname |
 | LanguageSwitcher | `src/components/sections/LanguageSwitcher.tsx` | useState, useRouter |
 | ProjectsList | `src/components/sections/ProjectsList.tsx` | useProjectFilter |
 | ContactForm | `src/components/sections/ContactForm.tsx` | useContactForm |
-| MarkdownContent | `src/components/ui/MarkdownContent.tsx` | react-markdown (should be "use client") |
+| MarkdownContent | `src/components/ui/MarkdownContent.tsx` | react-markdown works in RSC — server component is correct, no `'use client'` needed |
 
 ## Service Layer
 ```
@@ -64,7 +67,7 @@ content/{locale}/projects.json
 content/{locale}/*.md
 ```
 
-**Static mode:** Pages call service functions directly; `[id]/page.tsx` now uses `getProjectById` (no fs duplication).
+**Issue:** ~~`projects/[id]/page.tsx` bypasses ProjectService~~ — **RESOLVED**: the page calls `getProjectById` (`projects/[id]/page.tsx:23`).
 
 ## Data Flow (Page Render)
 ```
@@ -91,17 +94,21 @@ src/i18n/
 ## Styling Architecture
 - **Tailwind CSS v4** with `@tailwindcss/typography` plugin
 - **Brand colors:** `brand-500` (primary) through `brand-950` in `tailwind.config.js`
-- **RTL support:** ~200 lines of manual CSS overrides in `globals.css` for Arabic
-- **Dark mode:** `class` strategy, `dark:` Tailwind prefix
+- **RTL support:** ~127 lines of manual CSS overrides in `globals.css:86-212` for Arabic
+- **Dark mode:** `class` strategy via custom ThemeContext (`src/app/providers.tsx`), `dark:` Tailwind prefix
 - **Fonts:** Geist Sans/Mono (CDN loaded — workaround for Turbopack bug)
 
 ## Type System
 ```
 src/types/
+<<<<<<< HEAD
+└── content.ts    # ContentFrontmatter, ContentData, Project, ContactFormData, NavLink, ...
+=======
 └── content.ts    # ContentFrontmatter, ContentData, Project, ContactFormData, NavLink, ProjectFilterTranslations
+>>>>>>> origin/main
 ```
 
-**Issue:** `types/project.ts` exports are never imported anywhere. `NavLink` interface duplicated in DesktopNavigation and MobileNavigation instead of being in types.
+**Issue:** ~~`types/project.ts` exports are never imported anywhere. `NavLink` interface duplicated~~ — **RESOLVED**: `types/project.ts` removed; `NavLink` now lives in `types/content.ts:31` and is shared.
 
 ## State Management
 No global state library. Local state patterns:
@@ -112,15 +119,29 @@ No global state library. Local state patterns:
 
 ## API Layer
 ```
-src/api/contact/route.ts  →  POST handler (validates + logs only)
+src/api/contact/route.ts  →  POST handler (validates + sends via Resend with escaping)
 ```
 
-**Issue:** Contact form is non-functional — no email sending implemented. API routes don't work in static export mode.
+**Issue:** handler is unreachable — it lives in `src/api/`, not `src/app/api/`, so it 404s in every mode (SSR and static).
 
 ## Technical Debt Summary
 
+<<<<<<< HEAD
+### Bugs (High Priority) — all fixed
+| Bug | File | Status |
+|-----|------|--------|
+| `generateMetaData` typo (should be `generateMetadata`) | `src/app/[locale]/page.tsx` | ✅ FIXED — `generateMetadata` exists at `page.tsx:21` |
+| `openGraph.url: siteConfig.name` (should be `.url`) | `src/app/[locale]/page.tsx` | ✅ FIXED — `openGraph.url` = `siteConfig.url` (`metadata.ts:41`) |
+| CSS `md:py24` missing hyphen | `src/app/[locale]/page.tsx` | ✅ FIXED — now `md:py-12` |
+| `"Contact-Type"` header typo (should be `Content-Type`) | `src/hooks/useContactForm.ts` | ✅ FIXED — `"Content-Type"` |
+| Broken CSS class `text-gray-900dar` | `src/components/sections/ContactForm.tsx` | ✅ FIXED — class removed |
+| SVG path `M19 91-7` typo | `src/components/sections/LanguageSwitcher.tsx` | ✅ FIXED — `M19 9l-7 7-7-7` |
+| Home markdown `/about` link not locale-prefixed | `content/en/home.md` | ✅ FIXED — links are locale-prefixed |
+| Projects page reads `messages?.home` instead of `messages?.projects` | `projects/page.tsx` | ✅ FIXED — reads `messages.projects` |
+=======
 ### Bugs (All fixed — Aug 2026 refactor)
 All originally identified bugs have been resolved: HTML injection (B1), `mb2` typo (B2), OG image path (B3), missing OG locales (B4), static failure message (B5), `as Locale` casts, `defaultMetadata` dead config, clipboard unhandled promise, CSS typos, `generateMetaData` typo, `messages?.home` wrong key.
+>>>>>>> origin/main
 
 ### Dead Code (All removed)
 | File | Status |
@@ -128,13 +149,38 @@ All originally identified bugs have been resolved: HTML injection (B1), `mb2` ty
 | `src/app/[locale]/generateStaticParams.ts` | **REMOVED** |
 | `src/i18n/guards.ts` | **REMOVED** |
 | `src/types/project.ts` | **REMOVED** |
+<<<<<<< HEAD
+| `src/lib/content.ts` → `getAllContent()` | **REMOVED** |
+=======
 | `src/types/index.ts` | **REMOVED** (SocialLink moved to `src/data/socialLinks.ts`) |
+>>>>>>> origin/main
 | `src/messages/images.json` | **REMOVED** |
-| `src/middleware.ts.disabled` | Disabled, not active |
+| `src/middleware.ts.disabled` | **REMOVED** (file deleted) |
 
 ### Remaining Duplications
 | Duplication | Locations |
 |-------------|-----------|
+<<<<<<< HEAD
+| `generateStaticParams` logic | `layout.tsx` (duplication resolved — extra file removed) |
+| `NavLink` interface | `DesktopNavigation.tsx` + `MobileNavigation.tsx` — **fixed**: shared via `types/content.ts:31` |
+| Social URLs | `metadata.ts` (`siteConfig.social`) + `socialLinks.ts` |
+| RTL font-family CSS | Repeated ~10 times in `globals.css` |
+| Translation loading pattern | `page.tsx`, `projects/page.tsx`, `about/page.tsx` |
+
+### Code Style Issues
+- Multiple typos in comments across files (`translaiton`, `Feactured`, `sepecifi`, `dosn't`)
+- `any` type used in page.tsx for translations — RESOLVED (pages use typed translations interfaces)
+- `languageInfo` interface uses lowercase `l` (violates PascalCase convention — REMOVED)
+- `isValidateLocale` function name awkward (should be `isValidLocale` — REMOVED)
+- `siteConfig.url` vs `siteConfig.name` confusion in metadata
+
+### Not in Inventory Above
+- `src/app/(index)/` — root group: `layout.tsx` + `page.tsx` (redirect to default locale)
+- `src/app/metadata.ts` — `buildPageMetadata`, `siteConfig`
+- `src/app/robots.ts`, `src/app/sitemap.ts` — SEO files
+- `src/data/socialLinks.ts` — social link data
+=======
 | `NavLink` interface | `DesktopNavigation.tsx` + `MobileNavigation.tsx` (not shared) |
 | RTL font-family CSS | Repeated ~10 times in `globals.css` |
 | Translation loading pattern | `page.tsx`, `projects/page.tsx`, `about/page.tsx` (use `import messages` directly) |
+>>>>>>> origin/main
