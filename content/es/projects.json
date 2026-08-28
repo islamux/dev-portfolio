@@ -166,5 +166,16 @@
     "image": "/images/projects/alshaebsweets.png",
     "featured": true,
     "year": "2026"
+  },
+  {
+    "id": "assma-hussna-nabulsi",
+    "name": "Assma El-Housna (أسماء الله الحسنى)",
+    "description": "Una aplicación web en árabe que presenta 100 nombres agrupados de Allah (Asma Allah Al-Husna) con explicaciones detalladas de las conferencias del Dr. Muhammad Ratib Al-Nabulsi.",
+    "longDescription": "أسماء الله الحسنى (Assma El-Housna) es una enciclopedia en árabe de los Bellos Nombres de Allah. Construida con generación de sitios estáticos de Next.js, renderiza 100 páginas pregeneradas con contenido árabe completo, cada una explicando el significado del nombre a partir de las transcripciones de las conferencias del Dr. Muhammad Ratib Al-Nabulsi. Incluye búsqueda difusa (Fuse.js) en todos los nombres y contenidos, marcadores guardados en localStorage, detección de tema claro/oscuro, tamaño de fuente ajustable (14–28px), soporte de Web Share API, diseño RTL completo con tipografía árabe adecuada (fuentes Amiri y Noto Naskh Arabic) y un diseño totalmente responsive.",
+    "tech": ["Next.js", "TypeScript", "Tailwind CSS", "Fuse.js"],
+    "github": "https://github.com/islamux/assma-hussna-nabulsi",
+    "image": "/images/projects/assma_hussna.png",
+    "featured": true,
+    "year": "2026"
   }
 ]

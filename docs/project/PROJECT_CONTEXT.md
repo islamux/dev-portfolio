@@ -55,7 +55,7 @@ Root-level metadata lives in `src/app/metadata.ts`; `robots.ts` and `sitemap.ts`
 | fr | French | No |
 
 ## Project Data (content/en/projects.json)
-14 projects tracked (see `content/en/projects.json`).
+15 projects tracked (see `content/en/projects.json`).
 
 Each project has: `id`, `name`, `description`, `tech[]`, `image`, `featured`, `year`, optional `github`/`gitlab`/`demo`/`apk`/`longDescription`.
 
