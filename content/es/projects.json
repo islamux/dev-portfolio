@@ -103,7 +103,7 @@
     "tech": ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "next-intl"],
     "github": "https://github.com/islamux/new-muslim-stories",
     "demo": "https://new-muslim-stories.vercel.app/en",
-    "image": "/images/projects/new_muslims.png",
+    "image": "/images/projects/new-muslims-stories.png",
     "featured": true,
     "year": "2025"
   },
