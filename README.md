@@ -260,6 +260,7 @@ There's a known bug with `next/font/google` in Next.js 16.0.3 (Turbopack). This 
 - ✅ **Clean Code & SOLID Refactors** - `parseLocale()` guards, `buildPageMetadata()` builder, icon registry with `IconName` type, flattened `ProjectService` to plain functions, email HTML escaping, dead code removal (#13, #16)
 - ✅ **project-tracker.json Removed** - Milestone tracking via git history + docs (#14)
 - ✅ **New Projects** - badeel-atr2 added (#15); millionaire project spans 2 columns (#6)
+- ✅ **New Project: Assma El-Housna** - Names-of-Allah encyclopedia web app (Arabic RTL, Fuse.js search, bookmarks, light/dark, adjustable font)
 - ✅ **Interview Questions Doc** - 105 senior-level Q&A verified against the codebase (#7)
 
 ### May 2026
