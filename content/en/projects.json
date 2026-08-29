@@ -175,6 +175,7 @@
     "longDescription": "أسماء الله الحسنى (Assma El-Housna) is an Arabic-language encyclopedia of the Beautiful Names of Allah. Built with Next.js static site generation, it renders 100 pre-generated name pages with full Arabic content, each explaining the name's meaning from Dr. Muhammad Ratib Al-Nabulsi's lecture transcripts. It features a fuzzy search (Fuse.js) across all names and content, bookmarks saved in localStorage, light/dark theme detection, an adjustable font size (14–28px), Web Share API support, full RTL layout with proper Arabic typography (Amiri and Noto Naskh Arabic fonts), and a fully responsive design.",
     "tech": ["Next.js", "TypeScript", "Tailwind CSS", "Fuse.js"],
     "github": "https://github.com/islamux/assma-hussna-nabulsi",
+    "demo": "https://assma-hussna-nabulsi.vercel.app",
     "image": "/images/projects/assma_hussna.png",
     "featured": true,
     "year": "2026"

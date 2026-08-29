@@ -174,6 +174,7 @@
     "longDescription": "أسماء الله الحسنى (Assma El-Housna), Allah'ın Güzel İsimleri'nin Arapça bir ansiklopedisidir. Next.js statik site üretimiyle inşa edilmiş olup her ismin anlamını Dr. Muhammed Ratib Nablusi'nin ders transkriptlerinden açıklayan, tam Arapça içerikli 100 önceden oluşturulmuş isim sayfası sunar. Genel olarak şu özellikleri içerir: tüm isimler ve içerik genelinde bulanık arama (Fuse.js), localStorage'da saklanan yer imleri, açık/koyu tema algılama, ayarlanabilir yazı boyutu (14–28px), Web Share API desteği, uygun Arap tipografisiyle (Amiri ve Noto Naskh Arapça fontları) tam RTL düzen ve tamamen responsive tasarım.",
     "tech": ["Next.js", "TypeScript", "Tailwind CSS", "Fuse.js"],
     "github": "https://github.com/islamux/assma-hussna-nabulsi",
+    "demo": "https://assma-hussna-nabulsi.vercel.app",
     "image": "/images/projects/assma_hussna.png",
     "featured": true,
     "year": "2026"
