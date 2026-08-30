@@ -7,7 +7,7 @@
     "tech": ["React", "TypeScript", "Tailwind CSS", "Tone.js"],
     "github": "https://github.com/islamux/who-wants-million",
     "demo": "https://who-wants-million.vercel.app",
-    "image": "/images/projects/millionaire-cover.png",
+    "image": "/images/projects/millionaire-cover.webp",
     "featured": true,
     "year": "2025",
     "span": 2
@@ -20,7 +20,7 @@
     "tech": ["Flutter", "Dart", "GetX"],
     "github": "https://github.com/islamux/salam",
     "apk": "https://github.com/islamux/salam/releases/download/v1.0/app-release.apk",
-    "image": "/images/projects/salam-app-cover.png",
+    "image": "/images/projects/salam-app-cover.webp",
     "featured": true,
     "year": "2024"
   },
@@ -32,7 +32,7 @@
     "tech": ["Kotlin", "Jetpack Compose", "Android"],
     "github": "https://github.com/islamux/salam-kotlin",
     "apk": "https://github.com/islamux/salam-kotlin/releases/tag/v1.0",
-    "image": "/images/projects/salam-kotlin-cover.png",
+    "image": "/images/projects/salam-kotlin-cover.webp",
     "featured": true,
     "year": "2026"
   },
@@ -45,7 +45,7 @@
     "github": "https://github.com/islamux/Athkarix",
     "apk": "https://github.com/islamux/Athkarix/releases/download/v1.0.2/app-v1.0.2.apk",
     "demo": "https://athkarix.netlify.app",
-    "image": "/images/projects/athkari-cover-v2.png",
+    "image": "/images/projects/athkari-cover-v2.webp",
     "featured": true,
     "year": "2023"
   },
@@ -57,7 +57,7 @@
     "tech": ["Next.js", "TypeScript", "Tailwind CSS"],
     "github": "https://github.com/islamux/dev-portfolio",
     "demo": "https://dev-portfolio-ashen.vercel.app",
-    "image": "/images/projects/portfolio.png",
+    "image": "/images/projects/portfolio.webp",
     "featured": true,
     "year": "2024"
   },
@@ -69,7 +69,7 @@
     "tech": ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "react-i18next"],
     "github": "https://github.com/islamux/voices-of-truth",
     "demo": "https://voices-of-truth.vercel.app",
-    "image": "/images/projects/voice-of-truth.png",
+    "image": "/images/projects/voice-of-truth.webp",
     "featured": true,
     "year": "2024"
   },
@@ -81,7 +81,7 @@
     "tech": ["Next.js", "TypeScript", "Tailwind CSS"],
     "github": "https://github.com/islamux/khwater",
     "demo": "https://khwater.vercel.app",
-    "image": "/images/projects/khwater.png",
+    "image": "/images/projects/khwater.webp",
     "featured": true,
     "year": "2024"
   },
@@ -104,7 +104,7 @@
     "tech": ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "next-intl"],
     "github": "https://github.com/islamux/new-muslim-stories",
     "demo": "https://new-muslim-stories.vercel.app/en",
-    "image": "/images/projects/new-muslims-stories.png",
+    "image": "/images/projects/new-muslims-stories.webp",
     "featured": true,
     "year": "2025"
   },
@@ -116,7 +116,7 @@
     "tech": ["Next.js", "TypeScript", "Tailwind CSS", "Python"],
     "github": "https://github.com/islamux/bassaer",
     "demo": "https://bassaer.vercel.app",
-    "image": "/images/projects/bassaer.png",
+    "image": "/images/projects/bassaer.webp",
     "featured": true,
     "year": "2025"
   },
@@ -128,7 +128,7 @@
     "tech": ["Kotlin", "Jetpack Compose", "Android"],
     "github": "https://github.com/islamux/athkari-kotlin",
     "apk": "https://github.com/islamux/athkari-kotlin/releases/download/v1.1.0/app-release.apk",
-    "image": "/images/projects/athkari-kotlin-cover.png",
+    "image": "/images/projects/athkari-kotlin-cover.webp",
     "featured": true,
     "year": "2026"
   },
@@ -140,7 +140,7 @@
     "tech": ["React", "TypeScript", "Tailwind CSS", "Express", "Supabase", "Framer Motion"],
     "github": "https://github.com/islamux/fi-dhilal-al-quran",
     "demo": "https://fi-dhilal-al-quran.vercel.app",
-    "image": "/images/projects/fi-dhilal-cover.png",
+    "image": "/images/projects/fi-dhilal-cover.webp",
     "featured": true,
     "year": "2026"
   },
@@ -152,7 +152,7 @@
     "tech": ["HTML", "CSS", "JavaScript", "SVG"],
     "github": "https://github.com/islamux/badilatr2",
     "demo": "https://badeelatr.islamux.me/",
-    "image": "/images/projects/badeelatr-cover.png",
+    "image": "/images/projects/badeelatr-cover.webp",
     "featured": true,
     "year": "2026"
   },
@@ -164,7 +164,7 @@
     "tech": ["Vite", "JavaScript", "PWA", "Workbox"],
     "github": "https://github.com/islamux/alshaebsweets",
     "demo": "https://alshaebsweets.vercel.app",
-    "image": "/images/projects/alshaebsweets.png",
+    "image": "/images/projects/alshaebsweets.webp",
     "featured": true,
     "year": "2026"
   },
@@ -176,7 +176,7 @@
     "tech": ["Next.js", "TypeScript", "Tailwind CSS", "Fuse.js"],
     "github": "https://github.com/islamux/assma-hussna-nabulsi",
     "demo": "https://assma-hussna-nabulsi.vercel.app",
-    "image": "/images/projects/assma_hussna.png",
+    "image": "/images/projects/assma_hussna.webp",
     "featured": true,
     "year": "2026"
   }
