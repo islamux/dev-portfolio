@@ -179,5 +179,17 @@
     "image": "/images/projects/assma_hussna.webp",
     "featured": true,
     "year": "2026"
+  },
+  {
+    "id": "istighfar-stories",
+    "name": "Istighfar Stories",
+    "description": "A bilingual (Arabic/English) storytelling platform presenting real-life stories about the virtue of Istighfar (seeking forgiveness) and its transformative effect on people's lives.",
+    "longDescription": "Istighfar Stories (قصص المستغفرين) is a bilingual Arabic/English web platform for real-life and inspired stories about the virtue of Istighfar (seeking forgiveness), aiming to inspire users and connect them with mercy and forgiveness in Islam. Built with Next.js, TypeScript, and Tailwind CSS, stories are authored in Markdown with frontmatter and rendered in a clean, focused reading experience. It features full internationalization with Arabic RTL and English LTR layouts, story categories with search and filtering, light/dark theme support, and a fully responsive modern UI.",
+    "tech": ["Next.js", "TypeScript", "Tailwind CSS"],
+    "github": "https://github.com/islamux/istighfar-stories",
+    "demo": "https://istighfar-stories.vercel.app",
+    "image": "/images/projects/istigfar.webp",
+    "featured": true,
+    "year": "2026"
   }
 ]
