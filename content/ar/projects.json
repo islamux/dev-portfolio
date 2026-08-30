@@ -182,5 +182,17 @@
     "image": "/images/projects/assma_hussna.webp",
     "featured": true,
     "year": "2026"
+  },
+  {
+    "id": "istighfar-stories",
+    "name": "قصص المستغفرين",
+    "description": "منصة ويب تفاعلية ثنائية اللغة (العربية والإنجليزية) تعرض قصصًا واقعية ومستوحاة عن فضل الاستغفار وتأثيره في حياة المسلمين.",
+    "longDescription": "قصص المستغفرين (Istighfar Stories) هي منصة ويب ثنائية اللغة (العربية والإنجليزية) تعرض قصصًا واقعية ومستوحاة عن فضل الاستغفار وتأثيره في حياة المسلمين، بهدف إلهام المستخدمين وربطهم بمفاهيم الرحمة والمغفرة في الإسلام. مبني باستخدام Next.js وTypeScript وTailwind CSS، مع كتابة القصص بصيغة Markdown وتقديمها بتجربة قراءة نظيفة ومركّزة. يتضمن دعمًا كاملًا للتعدد اللغوي مع تخطيط RTL للعربية وLTR للإنجليزية، وتصنيفات للقصص مع بحث وتصفية، ووضعًا فاتحًا وداكنًا، وتصميمًا متجاوبًا عصريًا.",
+    "tech": ["Next.js", "TypeScript", "Tailwind CSS"],
+    "github": "https://github.com/islamux/istighfar-stories",
+    "demo": "https://istighfar-stories.vercel.app",
+    "image": "/images/projects/istigfar.webp",
+    "featured": true,
+    "year": "2026"
   }
 ]
