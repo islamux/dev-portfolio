@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>One Codebase, Five Locales, Zero Server — dev_portfolio Technical Review</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --bg-panel: #161b22;
+    --fg: #e6edf3;
+    --fg-dim: #8b949e;
+    --accent: #58a6ff;
+    --accent-2: #3fb950;   /* terminal green */
+    --warn: #d29922;
+    --danger: #f85149;
+    --code-bg: #010409;
+    --border: #30363d;
+    --mono: "SFMono-Regular", "Menlo", "Consolas", "Liberation Mono", monospace;
+    --sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+    --slide-w: 960px;
+    --slide-h: 620px;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--sans);
+    overflow: hidden;
+  }
+
+  /* subtle grid backdrop echoing a code editor */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(88,166,255,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(88,166,255,0.035) 1px, transparent 1px);
+    background-size: 42px 42px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .stage {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  .slide {
+    width: var(--slide-w);
+    max-width: 100%;
+    height: var(--slide-h);
+    max-height: calc(100vh - 120px);
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 40px 48px;
+    display: none;
+    flex-direction: column;
+    overflow: auto;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+    position: relative;
+  }
+  .slide.active { display: flex; }
+
+  /* terminal titlebar strip */
+  .slide::before {
+    content: "islamux — technical review — $";
+    display: block;
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    padding: 8px 16px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--fg-dim);
+    background: #0b0f14;
+    border-bottom: 1px solid var(--border);
+    border-radius: 12px 12px 0 0;
+    letter-spacing: 0.02em;
+  }
+
+  .slide > h1, .slide > h2 { margin-top: 26px; }
+  h1 { font-size: 2rem; margin-bottom: 12px; line-height: 1.15; }
+  h2 { font-size: 1.5rem; margin-bottom: 10px; }
+  h3 { font-size: 1.05rem; color: var(--accent); margin: 18px 0 8px; }
+  p { line-height: 1.55; color: var(--fg); margin: 6px 0; }
+  li { line-height: 1.5; margin: 5px 0; }
+  code {
+    font-family: var(--mono);
+    font-size: 0.85em;
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1px 5px;
+  }
+  pre {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    overflow: auto;
+    font-size: 0.83rem;
+    line-height: 1.5;
+  }
+  pre code { background: none; border: none; padding: 0; font-size: 1em; }
+  .accent { color: var(--accent); }
+  .green { color: var(--accent-2); }
+  .dim { color: var(--fg-dim); }
+  .warn { color: var(--warn); }
+  .danger { color: var(--danger); }
+  .kicker {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--accent-2);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-bottom: 8px;
+  }
+
+  .meta { color: var(--fg-dim); font-size: 0.95rem; }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 12px; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 12px; }
+  .card {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px;
+  }
+  .card h4 { margin: 0 0 6px; font-size: 0.95rem; }
+  .card p, .card li { font-size: 0.88rem; }
+
+  .tiny { font-size: 0.82rem; }
+  .ref {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--fg-dim);
+    background: rgba(88,166,255,0.08);
+    border: 1px solid var(--border);
+    padding: 1px 6px;
+    border-radius: 4px;
+  }
+
+  table { border-collapse: collapse; width: 100%; margin-top: 10px; font-size: 0.86rem; }
+  th, td { border: 1px solid var(--border); padding: 7px 10px; text-align: left; }
+  th { background: var(--code-bg); color: var(--accent); }
+
+  .flow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 0.85rem;
+  }
+  .flow .node {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    padding: 8px 12px;
+    border-radius: 6px;
+  }
+  .flow .arrow { color: var(--accent-2); font-weight: bold; }
+
+  /* Controls */
+  .controls {
+    position: fixed;
+    bottom: 18px;
+    right: 22px;
+    z-index: 50;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--fg-dim);
+  }
+  .controls button {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    color: var(--fg);
+    border-radius: 6px;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+  }
+  .controls button:hover { border-color: var(--accent); color: var(--accent); }
+  .count { background: var(--bg-panel); border: 1px solid var(--border); padding: 6px 10px; border-radius: 6px; }
+
+  .dots { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; z-index: 50; }
+  .dots span { width: 8px; height: 8px; border-radius: 50%; background: var(--border); cursor: pointer; }
+  .dots span.active { background: var(--accent); }
+
+  /* progress bar */
+  .progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--accent); z-index: 60; transition: width 0.2s ease; }
+
+  /* Notes */
+  .notes { display: none; }
+  .notes-panel {
+    position: fixed;
+    left: 18px; bottom: 18px;
+    z-index: 50;
+    max-width: 420px;
+    background: rgba(1,4,9,0.95);
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--fg);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    max-height: 50vh;
+    overflow: auto;
+    white-space: pre-wrap;
+  }
+  .notes-panel .label { font-family: var(--mono); color: var(--accent); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 6px; }
+  .notes-panel.hidden { display: none; }
+
+  .overview {
+    position: fixed;
+    inset: 0;
+    background: rgba(1,4,9,0.96);
+    z-index: 80;
+    padding: 30px;
+    overflow: auto;
+    display: none;
+  }
+  .overview.open { display: block; }
+  .overview h3 { color: var(--accent); }
+  .overview ol { columns: 2; column-gap: 40px; }
+  .overview li { cursor: pointer; margin: 4px 0; opacity: 0.8; }
+  .overview li:hover, .overview li.current { opacity: 1; color: var(--accent); }
+
+  .help { position: fixed; top: 18px; right: 22px; z-index: 50; }
+  .help button { background: none; border: 1px solid var(--border); color: var(--fg-dim); border-radius: 50%; width: 30px; height: 30px; cursor: pointer; }
+  .help-panel { position: fixed; top: 56px; right: 22px; background: rgba(1,4,9,0.95); border: 1px solid var(--border); border-radius: 8px; padding: 14px 18px; z-index: 85; display: none; font-size: 0.82rem; }
+  .help-panel.open { display: block; }
+  .help-panel kbd { background: var(--code-bg); border: 1px solid var(--border); border-radius: 4px; padding: 1px 6px; font-family: var(--mono); }
+
+  .divider { align-items: center; justify-content: center; text-align: center; }
+  .divider h1 { font-size: 2.6rem; }
+  .divider code { font-size: 1.5rem; background: none; border: none; color: var(--accent-2); }
+
+  @media (max-width: 768px) {
+    .slide { padding: 44px 24px 28px; height: auto; min-height: calc(100vh - 120px); }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .overview ol { columns: 1; }
+  }
+
+  @media print {
+    body { overflow: visible; background: #fff; }
+    .slide { display: flex !important; break-after: page; box-shadow: none; border-color: #ccc; }
+    .controls, .dots, .progress, .help, .notes-panel, .overview { display: none !important; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .progress, .dots span, .slide { transition: none; }
+    * { animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<!-- ============ SLIDES ============ -->
+
+<section class="slide" data-notes="OPENING (5 min). Frame the constraint first: this site is a static export on Hostinger LiteSpeed. Walk through slide sequence. Open the source files cited on the decisions slides when a question lands.">
+  <div class="kicker">Technical Review — 60 min · Senior Engineering Audience</div>
+  <h1>One Codebase, Five Locales, <span class="accent">Zero Server</span></h1>
+  <p class="meta">The engineering story of a multilingual developer portfolio built for <strong>static export</strong> — and why the hardest constraint became the best design driver.</p>
+  <p style="margin-top:24px; font-family:var(--mono); font-size:0.85rem; color:var(--accent-2);">$ neofetch --profile islamux <span class="dim">// the terminal that shipped with the site</span></p>
+</section>
+
+<section class="slide" data-notes="Problem: what the product is and what problem it solves. A personal portfolio: one person, five languages, low traffic, low maintenance budget. Static export chosen to avoid a running Node server and keep hosting cheap on Hostinger shared hosting.">
+  <div class="kicker">Opening — what is it?</div>
+  <h2>The product: a multilingual portfolio</h2>
+  <div class="grid2">
+    <div>
+      <h3>What the user gets</h3>
+      <ul>
+        <li><strong>5 locales</strong>: EN, FR, AR (RTL), ES, TR</li>
+        <li>Home, About, Projects, Project detail, Contact</li>
+        <li>Dark/light theme with persistence</li>
+        <li>Contact form → email (Resend)</li>
+      </ul>
+    </div>
+    <div>
+      <h3>What it must NOT be</h3>
+      <ul>
+        <li>Not a CMS, not a blog engine</li>
+        <li>Low traffic, one maintainer</li>
+        <li>Hosted as <strong>static files</strong> on Hostinger LiteSpeed shared hosting</li>
+        <li>No always-on Node server, no database</li>
+      </ul>
+    </div>
+  </div>
+  <p class="tiny dim">Stack: Next.js 16.3.2 · React 19.2.8 · TypeScript · Tailwind v4 · next-intl <span class="ref">package.json:17-28</span></p>
+</section>
+
+<section class="slide" data-notes="The concrete failure that opened this story: LiteSpeed auto-redirects /en -> /en/ then 403s if there is no en/index.html. That drove trailingSlash:true and directory-based routes. Show next.config.ts lines 9-13.">
+  <div class="kicker">Opening — the problem</div>
+  <h2>The Hostinger 403 that shaped everything</h2>
+  <p>LiteSpeed: visiting <code>/en</code> redirects to <code>/en/</code> — then serves <strong>403</strong> if <code>en/index.html</code> does not exist.</p>
+  <p>The fix is not a marketing nicety; it is the <em>correctness</em> of every route:</p>
+  <pre><code>// next.config.ts:9-13
+const nextConfig = {
+  output:     isStatic ? 'export' : undefined,
+  trailingSlash: isStatic ? true : undefined,   // → en/index.html
+  images: { unoptimized: isStatic },
+};</code></pre>
+  <p class="dim">Rule: <strong>directory-based</strong> routes only (<code>en/index.html</code>), never <code>en.html</code>. The route proof is a 40-check script, not a feeling.</p>
+</section>
+
+<section class="slide divider" data-notes="THESIS (4 min). State the single governing idea and stop. Everything else in the talk is evidence for it.">
+  <div class="kicker">Thesis</div>
+  <h1>Correct static export<br>is a <span class="accent">constraint</span>, not a limitation</h1>
+  <p class="meta">It rewrites routing, rendering, i18n, theming, and the contact pipeline — and the decisions it forces are the project&#39;s real engineering.</p>
+</section>
+
+<section class="slide" data-notes="The thesis flows into decisions. Three concrete decisions that trace back to the static constraint: trailingSlash (routing), prop-drilled locale (i18n in client components, bypassing NextIntlClientProvider in static mode), custom ThemeContext reading localStorage after mount (hydration).">
+  <div class="kicker">Thesis — evidence</div>
+  <h2>Three decisions, one root cause</h2>
+  <table>
+    <tr><th>Decision</th><th>Static-export reason</th><th>Where</th></tr>
+    <tr><td>Directory routes + trailing slash</td><td>LiteSpeed 403 without <code>index.html</code></td><td><span class="ref">next.config.ts:9-13</span></td></tr>
+    <tr><td>Prop-drilled locale (bypass provider)</td><td><code>NextIntlClientProvider</code> pulls <code>headers()</code> — illegal at build</td><td><span class="ref">[locale]/layout.tsx:55-62</span></td></tr>
+    <tr><td>Custom ThemeContext + <code>useMounted</code></td><td>No <code>window</code>/<code>localStorage</code> during SSR</td><td><span class="ref">providers.tsx:18-24</span></td></tr>
+  </table>
+  <p class="tiny dim">Each is revisited in depth. This table is the map for the whole talk.</p>
+</section>
+
+<section class="slide" data-notes="DECISIONS JOURNEY (6 min). Why these frameworks. Next.js 16.3.2 + React 19.2.8. Emphasize measured trade-offs, not hype. Note honestly: README documents the auto migration to 16.3.2 and the drop of next-themes for a custom ThemeContext.">
+  <div class="kicker">Decisions — stack</div>
+  <h2>Why Next.js + React here at all?</h2>
+  <ul>
+    <li><strong>File-based App Router</strong> → directory routes map 1:1 to the static-export rule</li>
+    <li><strong>Server Components by default</strong> → most pages ship as pre-rendered HTML, near-zero client JS (README:18)</li>
+    <li><strong><code>generateStaticParams</code></strong> → the project-detail pages are known at build time (5 locales × N projects)</li>
+    <li><strong>next-intl</strong> → message catalogs imported directly as JSON in static mode</li>
+  </ul>
+  <p class="danger" style="font-weight:600">Honest trade-off: a static portfolio does not need ISR/middleware — and static export explicitly drops them (README:215). We chose the framework for routing + rendering ergonomics, then turned off the parts that need a server.</p>
+</section>
+
+<section class="slide" data-notes="The routing architecture. Root route group (index) is a client-side redirect to /en/ (page.tsx). The [locale] layout sets lang, dir, setRequestLocale. Explain that params is now a Promise in Next 16 (async).">
+  <div class="kicker">Decisions — routing</div>
+  <h2>How routing bends to static export</h2>
+  <pre><code>// src/app/(index)/page.tsx:6-12 — root is a client redirect
+const isStatic = process.env.NEXT_PUBLIC_DEPLOY_TARGET === "static";
+useEffect(() => {
+  router.replace(isStatic ? "/en/" : "/en");
+}, [router, isStatic]);</code></pre>
+  <p>Path builders return plain strings, no <code>.html</code>:</p>
+  <pre><code>// src/i18n/navigation.ts:15-17
+export function getProjectHref(locale, projectId) {
+  return `/${locale}/projects/${projectId}`;   // → /en/projects/athkarix/
+}</code></pre>
+  <p class="ref" style="line-height:2">[locale]/layout.tsx:18-25 <span style="color:var(--fg-dim)">generateStaticParams for all 5 locales · setRequestLocale per page</span></p>
+</section>
+
+<section class="slide" data-notes="Client/server boundary. Server components load content and pass locale + data as props. Client components cannot use useLocale()/useTranslations() in static mode; they receive props. next/navigation is used, not next-intl/navigation.">
+  <div class="kicker">Decisions — server/client boundary</div>
+  <h2>Props over hooks in client components</h2>
+  <div class="grid2">
+    <div class="card">
+      <h4>Server (default)</h4>
+      <ul class="tiny">
+        <li>Reads files, parses Markdown, loads messages</li>
+        <li>Calls <code>setRequestLocale(locale)</code></li>
+        <li>Passes <code>locale</code> + data as props down</li>
+      </ul>
+      <p class="tiny dim" style="margin-top:8px">e.g. <span class="ref">projects/page.tsx:52-60</span></p>
+    </div>
+    <div class="card">
+      <h4>Client ("use client")</h4>
+      <ul class="tiny">
+        <li>State + interaction only (filter, menu, theme)</li>
+        <li><strong>No</strong> <code>useLocale()</code>/<code>useTranslations()</code></li>
+        <li>Uses <code>next/navigation</code>, not <code>next-intl/navigation</code></li>
+      </ul>
+      <p class="tiny dim" style="margin-top:8px">e.g. <span class="ref">ProjectsList.tsx:1-21</span></p>
+    </div>
+  </div>
+  <p class="tiny warn">Does <code>next-intl</code> hooks work in SSR dev mode? Yes. In static export they pull <code>headers()</code> at build → so the layout bypasses the provider entirely in static mode (<span class="ref">[locale]/layout.tsx:55-62</span>).</p>
+</section>
+
+<section class="slide divider" data-notes="MENTAL MODEL (4 min). Draw the data flow end to end. This is the answer-first diagram to reference during Q&A: entry point -> data flow -> reason -> trade-off -> test.">
+  <div class="kicker">Mental Model</div>
+  <h1>The data path, end to end</h1>
+  <div class="flow" style="justify-content:center; margin-top:28px">
+    <span class="node">content/{locale}/<br><span class="tiny green">*.md · projects.json</span></span>
+    <span class="arrow">→</span>
+    <span class="node">lib/content.ts<br><span class="tiny green">fs + gray-matter</span></span>
+    <span class="arrow">→</span>
+    <span class="node">services/<br><span class="tiny green">projectService</span></span>
+    <span class="arrow">→</span>
+    <span class="node">Server page<br><span class="tiny green">reads, types, filters</span></span>
+    <span class="arrow">→</span>
+    <span class="node">Client UI<br><span class="tiny green">props only</span></span>
+  </div>
+  <p class="tiny dim" style="text-align:center; margin-top:14px">Source files never change at runtime — which is exactly what makes static export valid.</p>
+</section>
+
+<section class="slide" data-notes="Show the actual data functions. getContentBySlug reads fs. getProjectData has a fallback to English if a locale has an empty projects.json. Note the types are enforced from src/types/content.ts.">
+  <div class="kicker">Mental Model — code</div>
+  <h2>The three functions that move data</h2>
+  <pre><code>// src/lib/content.ts
+getContentBySlug("home", "en")   // fs.readFileSync(content/en/home.md) + gray-matter
+  → { frontmatter, content }
+getProjectData("ar")             // JSON.parse(content/ar/projects.json)
+  → Project[];  falls back to English if empty (line 41)</code></pre>
+  <pre><code>// src/services/projectService.ts:8-12
+export function getFeaturedProjects(locale, limit = 3) {
+  return getProjectData(locale).filter(p => p.featured).slice(0, limit);
+}</code></pre>
+  <p class="tiny dim">Types live in <span class="ref">src/types/content.ts</span>; the validated locale guard is <code>parseLocale()</code> (<span class="ref">i18n/config.ts:28-30</span>).</p>
+</section>
+
+<section class="slide divider" data-notes="PRODUCT EXPERIENCE (5 min). Move from architecture to what the user actually sees. Theme, language switcher, projects grid, project detail. Then the demo.">
+  <div class="kicker">Product Experience</div>
+  <h1>What the user actually sees</h1>
+  <p class="meta">The polished surface — and the client code behind it.</p>
+</section>
+
+<section class="slide" data-notes="Layout chrome. Sticky header with theme toggle, language switcher, desktop/mobile nav. The ThemeToggle is the __reveal__ of the hydration story — it uses useMounted to avoid mismatch and renders a stable moon icon before mount.">
+  <div class="kicker">Product — chrome</div>
+  <h2>The chrome: header, theme, languages</h2>
+  <div class="grid3">
+    <div class="card"><h4>ThemeToggle</h4><p class="tiny">Renders a fixed icon until mounted, then the real one. No hydration mismatch.</p><p class="ref">ui/ThemeToggle.tsx:21-29</p></div>
+    <div class="card"><h4>LanguageSwitcher</h4><p class="tiny">Dropdown; swaps locale segment in the path via <code>useRouter</code>.</p><p class="ref">LanguageSwitcher.tsx:24-28</p></div>
+    <div class="card"><h4>Nav</h4><p class="tiny">Desktop + mobile; active route via <code>usePathname</code>.</p><p class="ref">SiteHeader.tsx:16-28</p></div>
+  </div>
+  <p class="tiny dim" style="margin-top:12px">All three are client components receiving <code>locale</code> and message dictionaries as props — no provider, no hooks.</p>
+</section>
+
+<section class="slide" data-notes="Projects grid. useProjectFilter derives the tech filter buttons and filters the list in the client. Point out the EXCLUDED_FILTER_TECH set — a deliberate editorial choice to hide framework-y tags (Tone.js, next-intl etc).">
+  <div class="kicker">Product — projects</div>
+  <h2>Filtering is client state, not a new URL</h2>
+  <pre><code>// src/hooks/useProjectFilter.ts:6-24
+const [selectedTech, setSelectedTech] = useState&lt;string | null&gt;(null);
+const allTech = useMemo(() => /* derive from projects, minus EXCLUDED */ , [projects]);
+const filteredProjects = selectedTech
+  ? projects.filter(p => p.tech.includes(selectedTech))
+  : projects;</code></pre>
+  <p class="tiny dim">Note the <span class="ref">useProjectFilter.ts:4</span> editorial exclusion set — a deliberate data-shaping decision worth explaining in Q&amp;A.</p>
+</section>
+
+<section class="slide" data-notes="Project detail + markdown. react-markdown with remark-gfm and rehype-highlight. The detail page falls back to a rendered name/description. Static params generate all (locale,id) pairs at build.">
+  <div class="kicker">Product — content rendering</div>
+  <h2>Markdown with syntax highlighting</h2>
+  <pre><code>// src/components/ui/MarkdownContent.tsx:38-43
+&lt;ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}&gt;
+  {content}
+&lt;/ReactMarkdown&gt;</code></pre>
+  <p>About and home pages render authored Markdown; project detail pages render structured JSON fields.</p>
+  <p>All project-detail URLs are pre-rendered:</p>
+  <pre><code>// [locale]/projects/[id]/page.tsx:12-16
+export function generateStaticParams() {
+  return locales.flatMap(locale =>
+    getAllProjects(locale).map(project => ({ locale, id: project.id })));
+}</code></pre>
+</section>
+
+<section class="slide divider" data-notes="TECHNICAL DEEP DIVE (13 min) — the core of the talk. Routing, rendering, hydration, state, data, performance, security, testing. Keep moving. The hydration slides that follow are mandatory and carry the Sub-agent-weight.">
+  <div class="kicker">Technical Deep Dive</div>
+  <h1>Routing, rendering, state, data</h1>
+  <p class="meta">The 13 minutes the team is here for.</p>
+</section>
+
+<section class="slide" data-notes="Routing recap in deep form: RSC pre-render, generateStaticParams for the dynamic [id] route, and the interplay of the (index) client redirect.">
+  <div class="kicker">Deep dive — routing</div>
+  <h2>Routing under static export</h2>
+  <ul>
+    <li>Root group <code>(index)</code> → client <strong>redirect</strong> to <code>/en/</code> (<span class="ref">(index)/page.tsx:10-12</span>)</li>
+    <li><code>[locale]</code> layout: <code>lang</code>, <code>dir</code>, <code>setRequestLocale</code>, <code>generateStaticParams</code> (<span class="ref">[locale]/layout.tsx:18-53</span>)</li>
+    <li>Dynamic <code>[id]</code> → <code>generateStaticParams</code> enumerates (locale, project) pairs at build</li>
+    <li>Every known URL is a real <code>index.html</code> on disk — the 40-check script proves it</li>
+  </ul>
+  <p class="tiny warn">LiteSpeed needs <code>trailingSlash:true</code>; without it, <code>/en</code> → 301 → 403. This is the #1 breaking point (AGENTS.md).</p>
+</section>
+
+<section class="slide" data-notes="Rendering modes. Explain SSG vs SSR vs CSR crisply in this project's terms. Then pivot: this site is SSG (static site generation) with a client shell on the interactions. This sets up Hydration.">
+  <div class="kicker">Deep dive — rendering</div>
+  <h2>SSG, not SSR, not CSR</h2>
+  <table>
+    <tr><th>Mode</th><th>Where it runs</th><th>In this project</th></tr>
+    <tr><td><strong>SSG</strong></td><td>Build time (once)</td><td>All pages — HTML written to <code>out/</code></td></tr>
+    <tr><td><strong>SSR</strong></td><td>Each request (server)</td><td>Only via <code>pnpm dev</code> / <code>pnpm start</code> — not shipped</td></tr>
+    <tr><td><strong>CSR</strong></td><td>Browser, after load</td><td>Client components for interaction only</td></tr>
+  </table>
+  <p class="tiny dim">SSG is why the server needs no runtime and hosting can be cheap static files.</p>
+</section>
+
+<section class="slide" data-notes="HYDRATION (mandatory, detailed). Slide 1 of the 3-4 hydration slides. Define what the server renders and what it cannot access. window, localStorage unavailable at build.">
+  <div class="kicker">Deep dive — Hydration ①/④</div>
+  <h2>Hydration: what actually happens</h2>
+  <p><strong>1. Server render (build):</strong> React renders HTML for each route. It has <strong>no browser</strong>: <code>window</code>, <code>localStorage</code>, <code>matchMedia</code> do not exist.</p>
+  <pre><code>// providers.tsx:19-24 — the lazy initializer must be safe on the server
+const [theme, setThemeState] = useState&lt;Theme&gt;(() => {
+  if (typeof window !== "undefined") {          // guard: no window at build
+    return (localStorage.getItem("theme") as Theme) || "system";
+  }
+  return "system";                              // fixed server-side default
+});</code></pre>
+  <p class="tiny dim">The guard is what stops the build from crashing — but it is only half the story (next slide).</p>
+</section>
+
+<section class="slide" data-notes="Hydration 2/4. HTML reaches the browser and paints before JS. Then React hydrates: it does NOT rebuild from an empty DOM, it attaches to the existing tree and adds event handlers.">
+  <div class="kicker">Deep dive — Hydration ②/④</div>
+  <h2>HTML first, then React attaches</h2>
+  <ul>
+    <li><strong>2. HTML response:</strong> the browser renders the static HTML immediately — before any JS finishes.</li>
+    <li><strong>3. First client render:</strong> React must produce the <em>same</em> initial tree the server produced. Any difference is a mismatch.</li>
+    <li><strong>4. Hydration:</strong> attaching React to the <em>existing</em> DOM and wiring up event handlers — <strong>not</strong> a CSR that starts from an empty page.</li>
+  </ul>
+  <pre><code>// ThemeToggle.tsx:21-29 — before mount, render the SAME icon the server rendered
+{mounted ? (theme === "dark" ? &lt;Icon name="sun"/&gt; : &lt;Icon name="moon"/&gt;)
+         : &lt;Icon name="moon"/&gt;}   // stable pre-mount = no mismatch</code></pre>
+  <p class="tiny dim">This is why <code>useMounted</code> gating the icon prevents a hydration warning.</p>
+</section>
+
+<section class="slide" data-notes="Hydration 3/4. The mismatch example: a WRONG implementation reads localStorage during the initial render. Server produces (system) dark, first client render produces light => markup differs before hydration completes => warning / error / DOM reprocessing. Then the correct pattern.">
+  <div class="kicker">Deep dive — Hydration ③/④</div>
+  <h2>The mismatch and the safe pattern</h2>
+  <div class="grid2">
+    <div>
+      <h3 class="danger">Wrong — read during render</h3>
+      <pre><code>const theme = localStorage.getItem("theme") || "system";
+// Server: "system" (no window)     — renders dark
+// First client render: "light"     — renders light
+// MISMATCH before hydration ⇒ warning / error /
+// tree reprocessing / unexpected DOM</code></pre>
+    </div>
+    <div>
+      <h3 class="green">Right — read after mount</h3>
+      <pre><code>// 1) fixed default first        (providers.tsx:23)
+// 2) read real value after mount (useMounted)
+// 3) hydrated guard so the saved value is NOT
+//    overwritten by the server default
+{mounted ? &lt;Icon name={theme==="dark"?"sun":"moon"}/&gt;
+         : &lt;Icon name="moon"/&gt;}</code></pre>
+    </div>
+  </div>
+  <p class="tiny dim">Pattern: <strong>fixed default → read after mount → hydrated save-guard.</strong></p>
+</section>
+
+<section class="slide" data-notes="Hydration 4/4. Key distinction + Effects after commit. Separate a first-render mismatch from a state update after useEffect. useEffect runs after commit, can read browser APIs, and updates state later — expected if the first render matched. suppressHydrationWarning on html is here too.">
+  <div class="kicker">Deep dive — Hydration ④/④</div>
+  <h2>Effects after commit — and the key distinction</h2>
+  <ul>
+    <li><strong>5. Effects after commit:</strong> <code>useEffect</code> runs <em>after</em> the tree is committed. It can read browser APIs and then update state in a <em>later, valid</em> render.</li>
+    <li class="green"><strong>Key distinction:</strong> a mismatch during the <em>first render</em> is a bug; a state update <em>after</em> <code>useEffect</code> is expected — <em>if</em> the first render matched.</li>
+  </ul>
+  <pre><code>// providers.tsx:37-48 — effect applies theme + listens to system changes
+useEffect(() => {
+  applyTheme(theme);
+  const mq = window.matchMedia("(prefers-color-scheme: dark)");
+  mq.addEventListener("change", handler);   // only browser, after commit
+  return () => mq.removeEventListener("change", handler);
+}, [theme]);</code></pre>
+  <p class="tiny dim"><code>suppressHydrationWarning</code> on <code>&lt;html&gt;</code> silences the attribute-level warning (layout.tsx:53) — the pattern still (not) overrides a saved value.</p>
+</section>
+
+<section class="slide" data-notes="State. Client-side state catalogs: useMounted, useProjectFilter, useContactForm, the header menu. No global store, no Redux — context only for theme. Data is props.">
+  <div class="kicker">Deep dive — state</div>
+  <h2>State: small, local, none global</h2>
+  <div class="grid3">
+    <div class="card"><h4>useProjectFilter</h4><p class="tiny">Tech filter for the projects grid (derived memo + filter).</p><p class="ref">useProjectFilter.ts</p></div>
+    <div class="card"><h4>useContactForm</h4><p class="tiny">Form fields + status machine (idle/loading/success/error) + honeypot.</p><p class="ref">useContactForm.ts:13-60</p></div>
+    <div class="card"><h4>useMounted</h4><p class="tiny">Boolean hydration guard driving the theme icon.</p><p class="ref">useMounted.ts</p></div>
+  </div>
+  <p class="tiny dim" style="margin-top:12px">The <em>only</em> React context is the custom ThemeContext (<span class="ref">providers.tsx:56-69</span>). Everything else is props or local state.</p>
+</section>
+
+<section class="slide" data-notes="Data. Emphasize no database, no CMS. Content is versioned in the repo. Env vars: CONTACT_EMAIL, RESEND_API_KEY (optional). Contact form posts to /api/contact route handler.">
+  <div class="kicker">Deep dive — data</div>
+  <h2>Data: content in the repo, no database</h2>
+  <ul>
+    <li>Content is <strong>versioned files</strong>: <code>content/{locale}/home.md</code>, <code>projects.json</code>, <code>about.md</code></li>
+    <li>No CMS, no DB, no ORM — the fallback in <code>getProjectData</code> (English) is the only resilience layer</li>
+    <li>Contact POST → <code>src/api/contact/route.ts</code> → Resend SDK</li>
+    <li>Env: <code>RESEND_API_KEY</code> (optional), <code>CONTACT_EMAIL</code> default <code>fathi733@gmail.com</code></li>
+  </ul>
+  <pre><code>// api/contact/route.ts:34-58 — if key missing, it logs instead of failing
+if (resendApiKey) { /* build + send email */ }
+else { console.log("no RESEND_API_KEY", data); }</code></pre>
+  <p class="tiny warn">This route runs <em>only</em> under SSR dev/prod. In the static export there is no server to handle it — a known limit (see Trade-offs).</p>
+</section>
+
+<section class="slide" data-notes="Performance. Static export = CDN-cacheable HTML, no server runtime. images.unoptimized true (no sharp/optimizer at export). .htaccess adds caching + gzip. All done without a service worker / PWA.">
+  <div class="kicker">Deep dive — performance</div>
+  <h2>Performance: static by design</h2>
+  <ul>
+    <li><strong>Pre-rendered HTML</strong> — nothing to compute per request</li>
+    <li><strong>Images unoptimized</strong> at export (<span class="ref">next.config.ts:11-13</span>); project covers are pre-converted WebP (<code>git log</code>)</li>
+    <li><strong>.htaccess caching + gzip</strong> on LiteSpeed (<span class="ref">out/.htaccess:15-36</span>)</li>
+    <li>No service worker / PWA — honest limitation for this scope</li>
+  </ul>
+  <p class="tiny dim">Trade-off: static export drops ISR and Image Optimization (README:215). Fast, but not dynamic.</p>
+</section>
+
+<section class="slide" data-notes="Security. No auth model because there is no server state. Threat surface: XSS via markdown (react-markdown escapes by default), escapeHtml on contact fields, honeypot against bots. No secrets in code — RESEND_API_KEY is env.">
+  <div class="kicker">Deep dive — security</div>
+  <h2>Security: small surface, deliberate</h2>
+  <ul>
+    <li><strong>No auth / no tokens</strong> — there is no server, so no session or secret stored client-side</li>
+    <li><strong>XSS</strong>: react-markdown escapes raw HTML by default; no <code>dangerouslySetInnerHTML</code></li>
+    <li><strong>Contact input</strong>: <code>escapeHtml()</code> on name/email/message before injecting into email HTML (<span class="ref">api/contact/route.ts:44-48</span>)</li>
+    <li><strong>Spam</strong>: honeypot field hidden from humans, flagged by bots (<span class="ref">useContactForm.ts:24-28</span>, <span class="ref">ContactForm.tsx:20-28</span>)</li>
+    <li><strong>Secrets</strong>: <code>RESEND_API_KEY</code> only ever in server env, never bundled</li>
+  </ul>
+  <p class="tiny dim">Threat model is honest: the static site has almost nothing to attack; the contact route is the only server surface.</p>
+</section>
+
+<section class="slide" data-notes="Testing. There are NO unit tests. The automated evidence is: pnpm lint (passes clean) + scripts/test-routes.sh (40/40 pass) + pnpm build:static. Be explicit about what is NOT tested. This honesty is the strongest signal of understanding.">
+  <div class="kicker">Deep dive — testing</div>
+  <h2>Testing: what exists, what does not</h2>
+  <table>
+    <tr><th>Check</th><th>Result (fresh)</th><th>Proves</th></tr>
+    <tr><td><code>pnpm lint</code></td><td class="green">passes, 0 warnings</td><td>ESLint flat config, strict rules</td></tr>
+    <tr><td><code>scripts/test-routes.sh</code></td><td class="green">40/40 pass</td><td>All locale routes + redirects + 404</td></tr>
+    <tr><td><code>pnpm build:static</code></td><td class="green">produces out/</td><td>Static export compiles</td></tr>
+  </table>
+  <p class="danger" style="font-weight:600">Honest gap: there is <strong>no unit/integration test suite</strong>. No tests prove the theme hook, the filter logic, or the contact validation in isolation. The 40-route smoke test is the only automated behavioral net.</p>
+</section>
+
+<section class="slide divider" data-notes="LIVE DEMO (10 min, compress to 5). Follow presentation/demo-script.md exactly. Read the preflight commands and the fallback plan there.">
+  <div class="kicker">Live Demo</div>
+  <h1>See it move</h1>
+  <p class="meta">Script: <code>presentation/demo-script.md</code></p>
+  <pre style="text-align:left; margin:0 auto; max-width:560px"><code>pnpm lint
+pnpm build:static:full        # or use existing out/
+scripts/test-routes.sh        # → 40/40 ALL PASS
+pnpm dev                       # or serve the static out/</code></pre>
+</section>
+
+<section class="slide" data-notes="TRADE-OFFS (4 min). Be explicit and balanced. Gained and paid columns. No marketing language.">
+  <div class="kicker">Trade-offs</div>
+  <h2>What we gained vs what we paid</h2>
+  <div class="grid2">
+    <div class="card">
+      <h4 class="green">Gained</h4>
+      <ul class="tiny">
+        <li>Cheap hosting (static files on shared hosting)</li>
+        <li>Near-instant load, no server to manage/scale</li>
+        <li>5 locales from one codebase</li>
+        <li>Content versioned in git, no CMS lock-in</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4 class="warn">Paid</h4>
+      <ul class="tiny">
+        <li>No dynamic data, no ISR, no middleware</li>
+        <li>Contact form needs a running SSR server to actually email</li>
+        <li>No auth, no admin, no comments</li>
+        <li>No PWA/service worker</li>
+        <li>No unit tests today</li>
+      </ul>
+    </div>
+  </div>
+  <p class="tiny dim" style="margin-top:12px">Recognizing what is <em>not</em> solved is the strongest evidence of understanding.</p>
+</section>
+
+<section class="slide" data-notes="ROADMAP (3 min). Risk-based priorities, not a wish list. Top risk is the zero test net; then the contact route being non-functional in static export; then PWA/fonts/it.">
+  <div class="kicker">Roadmap</div>
+  <h2>Priorities by risk, not wishes</h2>
+  <ol>
+    <li><strong>Unit test net (highest risk)</strong> — hooks + content fallback + validation are untested</li>
+    <li><strong>Contact route strategy</strong> — decide SSR deploy (Vercel) vs external form service for actual email</li>
+    <li><strong>Add <code>next-themes</code> or keep custom?</strong> — dedupe the unused dependency listed in package.json</li>
+    <li><strong>Optional PWA</strong> — only if offline value is needed</li>
+  </ol>
+  <p class="tiny dim">Order follows the blast radius of being wrong, not the novelty of the feature.</p>
+</section>
+
+<section class="slide divider" data-notes="CLOSING + Q&A (6 min). One sentence, then hand over to open questions. Use presentation/qa-guide.md as the question bank.">
+  <div class="kicker">Closing</div>
+  <h1>The best constraint is the one you choose</h1>
+  <p class="meta">Static export forced the exact decisions — routing, hydration-safe theming, prop-driven i18n — that make this codebase small, fast, and easy to reason about.</p>
+  <p class="meta" style="margin-top:24px">Q&amp;A map: <span class="ref">presentation/qa-guide.md</span> · Demo script: <span class="ref">presentation/demo-script.md</span></p>
+</section>
+
+<!-- ============ CONTROLS ============ -->
+<div class="help">
+  <button id="helpBtn" aria-label="Toggle keyboard shortcuts help">?</button>
+</div>
+<div class="help-panel" id="helpPanel">
+  <p><kbd>←</kbd> / <kbd>→</kbd> — previous / next</p>
+  <p><kbd>Space</kbd> — next</p>
+  <p><kbd>Home</kbd> / <kbd>End</kbd> — first / last</p>
+  <p><kbd>f</kbd> — fullscreen</p>
+  <p><kbd>n</kbd> — speaker notes</p>
+  <p><kbd>o</kbd> — overview</p>
+  <p><kbd>?</kbd> — this panel</p>
+</div>
+
+<div class="controls">
+  <button id="prevBtn" aria-label="Previous slide">‹</button>
+  <button id="nextBtn" aria-label="Next slide">›</button>
+  <button id="fullscreenBtn" aria-label="Toggle fullscreen">⛶</button>
+  <button id="notesBtn" aria-label="Toggle speaker notes">Notes</button>
+  <button id="overviewBtn" aria-label="Show overview">Overview</button>
+  <span class="count" id="count">0 / 0</span>
+</div>
+
+<div class="dots" id="dots"></div>
+
+<div class="notes-panel hidden" id="notesPanel"></div>
+
+<div class="overview" id="overview">
+  <h3>Slides</h3>
+  <ol id="overviewList"></ol>
+</div>
+
+<script>
+(function () {
+  const slides = Array.prototype.slice.call(document.querySelectorAll(".slide"));
+  const countEl = document.getElementById("count");
+  const dotsEl = document.getElementById("dots");
+  const progressEl = document.getElementById("progress");
+  const notesPanel = document.getElementById("notesPanel");
+  const overview = document.getElementById("overview");
+  const overviewList = document.getElementById("overviewList");
+
+  // Dynamic slide count + index (authoritative, from the real DOM)
+  const TOTAL = slides.length;
+  let current = 0;
+
+  // Build dots + overview dynamically so the count always matches
+  const firstHeading = function (s) {
+    const h = s.querySelector("h1, h2");
+    if (!h) return "Slide";
+    const k = s.querySelector(".kicker");
+    return (k ? k.textContent.trim() + " — " : "") + h.textContent.trim();
+  };
+  slides.forEach(function (s, i) {
+    const d = document.createElement("span");
+    d.title = (i + 1).toString();
+    d.addEventListener("click", function () { go(i); });
+    dotsEl.appendChild(d);
+
+    const li = document.createElement("li");
+    li.textContent = (i + 1) + ". " + firstHeading(s);
+    li.setAttribute("data-i", i);
+    li.addEventListener("click", function () { go(Number(this.getAttribute("data-i"))); overview.classList.remove("open"); });
+    overviewList.appendChild(li);
+  });
+  const dotNodes = dotsEl.querySelectorAll("span");
+  const overviewItems = overviewList.querySelectorAll("li");
+
+  function render() {
+    slides.forEach(function (s, i) { s.classList.toggle("active", i === current); });
+    dotNodes.forEach(function (d, i) { d.classList.toggle("active", i === current); });
+    overviewItems.forEach(function (li, i) { li.classList.toggle("current", i === current); });
+    countEl.textContent = (current + 1) + " / " + TOTAL;
+    progressEl.style.width = ((current + 1) / TOTAL * 100) + "%";
+
+    const notes = slides[current].getAttribute("data-notes") || "";
+    notesPanel.textContent = "SPEAKER NOTES — Slide " + (current + 1) + "\n\n" + notes;
+  }
+
+  function go(n) {
+    current = Math.max(0, Math.min(TOTAL - 1, n));
+    render();
+  }
+
+  // Keyboard
+  document.addEventListener("keydown", function (e) {
+    if (overview.classList.contains("open")) {
+      if (e.key === "Escape" || e.key === "o") { overview.classList.remove("open"); return; }
+      return;
+    }
+    if (e.key === "ArrowRight" || e.key === " " || e.key === "PageDown") { e.preventDefault(); go(current + 1); }
+    else if (e.key === "ArrowLeft" || e.key === "PageUp") { e.preventDefault(); go(current - 1); }
+    else if (e.key === "Home") { go(0); }
+    else if (e.key === "End") { go(TOTAL - 1); }
+    else if (e.key === "f" || e.key === "F") { toggleFullscreen(); }
+    else if (e.key === "n" || e.key === "N") { toggleNotes(); }
+    else if (e.key === "o" || e.key === "O") { overview.classList.add("open"); }
+    else if (e.key === "?") { toggleHelp(); }
+  });
+
+  function toggleFullscreen() {
+    if (!document.fullscreenElement) { document.documentElement.requestFullscreen && document.documentElement.requestFullscreen(); }
+    else { document.exitFullscreen && document.exitFullscreen(); }
+  }
+  function toggleNotes() { notesPanel.classList.toggle("hidden"); }
+  function toggleHelp() { document.getElementById("helpPanel").classList.toggle("open"); }
+
+  // Buttons
+  document.getElementById("prevBtn").addEventListener("click", function () { go(current - 1); });
+  document.getElementById("nextBtn").addEventListener("click", function () { go(current + 1); });
+  document.getElementById("fullscreenBtn").addEventListener("click", toggleFullscreen);
+  document.getElementById("notesBtn").addEventListener("click", toggleNotes);
+  document.getElementById("overviewBtn").addEventListener("click", function () { overview.classList.toggle("open"); });
+  document.getElementById("helpBtn").addEventListener("click", toggleHelp);
+  overview.addEventListener("click", function (e) { if (e.target === overview) overview.classList.remove("open"); });
+
+  // Touch swipe
+  let touchX = null;
+  document.addEventListener("touchstart", function (e) { touchX = e.touches[0].clientX; }, { passive: true });
+  document.addEventListener("touchend", function (e) {
+    if (touchX == null) return;
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 40) { dx < 0 ? go(current + 1) : go(current - 1); }
+    touchX = null;
+  }, { passive: true });
+
+  render();
+})();
+</script>
+</body>
+</html>
