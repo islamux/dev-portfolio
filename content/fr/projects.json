@@ -190,5 +190,16 @@
     "image": "/images/projects/istigfar.webp",
     "featured": true,
     "year": "2026"
+  },
+  {
+    "id": "kunuz",
+    "name": "Kunuz (كنوز من السنة النبوية)",
+    "description": "Une encyclopédie gratuite et open-source de 140 hadiths prophétiques authentifiés ('trésors'), avec recherche arabe intelligente, rotation quotidienne des trésors, favoris, compteur de tasbih et synthèse vocale.",
+    "longDescription": "Kunuz est une encyclopédie complète et open-source de 140 hadiths prophétiques authentifiés compilés de la série du Sheikh Mahmoud Al-Masri. Elle comprend une recherche arabe intelligente avec support des diacritiques, une rotation quotidienne des trésors, des favoris avec persistance dans localStorage, un compteur de tasbih interactif avec retour haptique, une liste de tâches sunnah quotidiennes avec suivi de série, une synthèse vocale en arabe et un partage direct vers WhatsApp et Telegram. Construit avec React 19, TypeScript et Tailwind CSS v4.",
+    "tech": ["React", "TypeScript", "Tailwind CSS", "Vite"],
+    "github": "https://github.com/islamux/kunuz",
+    "image": "/images/projects/kunuz.webp",
+    "featured": true,
+    "year": "2026"
   }
 ]

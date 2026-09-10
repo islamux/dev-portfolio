@@ -190,5 +190,16 @@
     "image": "/images/projects/istigfar.webp",
     "featured": true,
     "year": "2026"
+  },
+  {
+    "id": "kunuz",
+    "name": "Kunuz (كنوز من السنة النبوية)",
+    "description": "140 doğrulanmış Peygamber hadisini ('hazineyi') içeren ücretsiz, açık kaynaklı bir ansiklopedi; akıllı Arapça arama, günlük hazine döndürme, favoriler, tespih sayacı ve metinden sese özellikli.",
+    "longDescription": "Kunuz, Şeyh Mahmud El-Masri'nin serisinden derlenen 140 doğrulanmış Peygamber hadisinden oluşan kapsamlı, açık kaynaklı bir ansiklopedidir. Diacritics desteğiyle akıllı Arapça arama, günlük hazine döndürme, localStorage'da saklanan favoriler, haptic geri bildirimli interaktif tespih sayacı, serüven takipli günlük sünnet kontrol listesi, Arapça metinden sese ve WhatsApp ile Telegram'da doğrudan paylaşım özellikleri sunar. React 19, TypeScript ve Tailwind CSS v4 ile geliştirilmiştir.",
+    "tech": ["React", "TypeScript", "Tailwind CSS", "Vite"],
+    "github": "https://github.com/islamux/kunuz",
+    "image": "/images/projects/kunuz.webp",
+    "featured": true,
+    "year": "2026"
   }
 ]
