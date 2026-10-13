@@ -203,5 +203,17 @@
     "image": "/images/projects/kunuz.webp",
     "featured": true,
     "year": "2026"
+  },
+  {
+    "id": "al-majed-store",
+    "name": "Al Majed Perfumes (الماجد للعطور)",
+    "description": "Arabic-first RTL perfume e-commerce storefront for a Taiz oud house — product catalog, guest cart, WhatsApp checkout, and a full admin dashboard.",
+    "longDescription": "Al Majed Perfumes (الماجد للعطور) is an Arabic-first (RTL) e-commerce storefront for an oud & perfume house in Taiz, Yemen. Built with Next.js 16 App Router, React 19, and TypeScript, it ships as an installable PWA backed by PostgreSQL (Neon) through Prisma. Shoppers browse a category-filtered catalog of 17 photographed products, pick size variants, and check out with a guest cart that persists locally — the order is sent as one structured WhatsApp message and, when the database is configured, recorded server-side with prices recomputed from the catalog and numbered (MJ-0001). A password-protected admin dashboard manages orders with status transitions, the product catalog, taxonomy, and store settings, with order snapshots so later catalog edits never rewrite filed orders.",
+    "tech": ["Next.js", "React", "TypeScript", "Prisma", "PostgreSQL", "PWA"],
+    "github": "https://github.com/islamux/al-majed-store",
+    "demo": "https://al-majed-store.vercel.app/",
+    "image": "/images/projects/almajed-portoflio.webp",
+    "featured": true,
+    "year": "2026"
   }
 ]

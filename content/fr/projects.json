@@ -202,5 +202,17 @@
     "image": "/images/projects/kunuz.webp",
     "featured": true,
     "year": "2026"
+  },
+  {
+    "id": "al-majed-store",
+    "name": "Al Majed Perfumes (الماجد للعطور)",
+    "description": "Boutique en ligne de parfums en arabe (RTL) pour une maison de oud à Taëz — catalogue, panier invité, commande via WhatsApp et tableau de bord d'administration complet.",
+    "longDescription": "Al Majed Perfumes (الماجد للعطور) est une boutique en ligne en arabe (RTL) pour une maison de oud et de parfums à Taëz, au Yémen. Construite avec Next.js 16 App Router, React 19 et TypeScript, elle est livrée sous forme de PWA installable adossée à PostgreSQL (Neon) via Prisma. Les clients parcourent un catalogue de 17 produits photographiés avec filtrage par catégorie, choisissent les variantes de taille et passent commande avec un panier invité persistant localement : la commande est envoyée sous forme d'un message WhatsApp structuré et, lorsque la base de données est configurée, enregistrée côté serveur avec les prix recalculés à partir du catalogue et une numérotation (MJ-0001). Un tableau de bord protégé par mot de passe gère les commandes avec transitions de statut, le catalogue produits, la taxonomie et les paramètres de la boutique, avec des instantanés de commandes afin que les modifications ultérieures du catalogue ne réécrivent jamais les commandes archivées.",
+    "tech": ["Next.js", "React", "TypeScript", "Prisma", "PostgreSQL", "PWA"],
+    "github": "https://github.com/islamux/al-majed-store",
+    "demo": "https://al-majed-store.vercel.app/",
+    "image": "/images/projects/almajed-portoflio.webp",
+    "featured": true,
+    "year": "2026"
   }
 ]
