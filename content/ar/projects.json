@@ -202,6 +202,7 @@
     "longDescription": "كنوز هي موسوعة شاملة ومفتوحة المصدر لـ 140 حديثًا نبويًا موثقًا من سلسلة الشيخ محمود المصري. تتميز ببحث عربي ذكي مع دعم التشكيل، وتدوير الكنوز اليومية، والمفضلة مع حفظ في localStorage، وعدّاد تسبيح تفاعلي مع اهتزاز، وقائمة مهام سنية يومية مع تتبع السلسلة، والتحويل إلى كلام عربي، والمشاركة المباشرة عبر واتساب وتيليجرام. مبني باستخدام React 19 وTypeScript وTailwind CSS v4.",
     "tech": ["React", "TypeScript", "Tailwind CSS", "Vite"],
     "github": "https://github.com/islamux/kunuz",
+    "demo": "https://kunuzsunnah.vercel.app/",
     "image": "/images/projects/kunuz.webp",
     "featured": true,
     "year": "2026"
