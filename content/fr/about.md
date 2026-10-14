@@ -11,7 +11,7 @@ Je crois que la programmation et les langues sont des ponts vers le monde. Je m'
 
 ## 🗣️ Langues et Communication
 
-Ma passion pour les langues me permet de consulter des ressources mondiales et d'échanger avec diverses communautés techniques :
+Ma passion pour les langues me permet d'accéder à des ressources du monde entier et d'échanger avec diverses communautés techniques :
 
 - **Arabe :** Langue maternelle
 - **Anglais et Français :** Bon niveau (écrit et parlé)

@@ -1,4 +1,33 @@
 {
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "projects": "Projets",
+    "contact": "Contact"
+  },
+  "home": {
+    "hero": {
+      "title": "Salut, je suis Fathi",
+      "subtitle": "Développeur full-stack passionné par l'open source",
+      "cta": {
+        "projects": "Voir les projets",
+        "contact": "Me contacter"
+      }
+    },
+    "featured": {
+      "title": "Projets en vedette",
+      "viewAll": "Voir tout",
+      "viewAllEnd": "Voir tout"
+    },
+    "card": {
+      "code": "Code",
+      "demo": "Projet open source"
+    }
+  },
+  "about": {
+    "title": "À propos de moi",
+    "description": "Découvrez mon parcours de développeur"
+  },
   "images": {
     "projects": {
       "new_muslims": {
@@ -27,12 +56,12 @@
     },
     "card": {
       "code": "Code",
-      "demo": "Projet complet (Open Source)"
+      "demo": "Projet open source"
     }
   },
   "contact": {
-    "title": "Me Contacter",
-    "description": "Vous avez un projet en tête? Parlons-en.",
+    "title": "Me contacter",
+    "description": "Vous avez un projet en tête ? Parlons-en.",
     "form": {
       "name": "Nom",
       "email": "Email",
@@ -49,7 +78,7 @@
   "footer": {
     "about": {
       "title": "À propos",
-      "text": "Développeur full-stack passionné par l'open source et la création de superbes expériences utilisateur."
+      "text": "Développeur full-stack passionné par l'open source et la création d'expériences utilisateur soignées."
     },
     "quickLinks": {
       "title": "Liens rapides"
