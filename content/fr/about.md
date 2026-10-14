@@ -7,7 +7,7 @@ date: "2025-11-24"
 
 Diplômé en administration des affaires, j'occupe actuellement le poste de Responsable des Ressources Humaines au Yémen. En dehors du milieu administratif, ma véritable passion réside dans les logiciels libres et l'Open Source, un intérêt qui a forgé mes compétences techniques en tant que développeur autodidacte.
 
-Je crois que la programmation et les langues sont des ponts vers le monde. Je m'efforce de combiner mon expertise en gestion, mes compétences linguistiques et ma curiosité technique pour créer des projets personnels simples mais significatifs.
+Je crois que la programmation et les langues sont des ponts vers le monde. Je m'efforce de combiner mon expertise en gestion, mes compétences linguistiques et ma curiosité technique pour créer des projets personnels et des projets au service des autres.
 
 ## 🗣️ Langues et Communication
 
