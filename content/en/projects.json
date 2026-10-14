@@ -2,9 +2,14 @@
   {
     "id": "who-wants-million",
     "name": "Who Wants to Be a Millionaire",
-    "description": "An interactive trivia game built with React, TypeScript, and Vite",
-    "longDescription": "An interactive trivia game built with React, TypeScript, and Vite featuring 15 questions across general knowledge topics, 3 lifelines (50:50, Audience Poll, Walk Away), a 30-second timer with SVG circular countdown, Tone.js audio effects, and PWA support for full offline play. Responsive RTL layout optimized for mobile.",
-    "tech": ["React", "TypeScript", "Tailwind CSS", "Tone.js"],
+    "description": "An interactive Arabic trivia game with 15 questions, three lifelines, a countdown timer, and full offline play.",
+    "longDescription": "A trivia game I built from scratch with React and TypeScript, inspired by the classic Who Wants to Be a Millionaire format. It features 15 questions across varied topics, three lifelines (50:50, audience poll, walk away), a 30-second SVG circular countdown, and Tone.js sound effects. It ships as a PWA, so the full game plays offline, with a responsive RTL layout tuned for mobile.",
+    "tech": [
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Tone.js"
+    ],
     "github": "https://github.com/islamux/who-wants-million",
     "demo": "https://who-wants-million.vercel.app",
     "image": "/images/projects/millionaire-cover.webp",
@@ -15,9 +20,13 @@
   {
     "id": "salam-app-flutter",
     "name": "Salam",
-    "description": "Islamic spiritual reflections app built with Flutter featuring daily Athkar and Quranic verses",
-    "longDescription": "An Islamic app featuring daily spiritual reflections (Khutbah), Athkar, and Quranic verses. Built with Flutter and GetX for cross-platform compatibility, with full Arabic RTL support, smooth page navigation, and scheduled daily notifications.",
-    "tech": ["Flutter", "Dart", "GetX"],
+    "description": "A daily spiritual reflections app with Athkar and Quranic verses, built with Flutter for Android and iOS.",
+    "longDescription": "Salam presents daily spiritual reflections, Athkar, and Quranic verses in a calm, Arabic-first interface. I built it with Flutter and GetX for cross-platform support, with full RTL layout, smooth navigation, and scheduled daily notifications.",
+    "tech": [
+      "Flutter",
+      "Dart",
+      "GetX"
+    ],
     "github": "https://github.com/islamux/salam",
     "apk": "https://github.com/islamux/salam/releases/download/v1.0/app-release.apk",
     "image": "/images/projects/salam-app-cover.webp",
@@ -27,9 +36,13 @@
   {
     "id": "salam-kotlin",
     "name": "Salam",
-    "description": "A comprehensive refactoring project of an Android application containing over 500 pages of Arabic content. It was developed following the MVVM architecture and Material 3 visual identity. The application features full support for working without an internet connection (Offline-First) without requesting any network permissions to ensure the highest levels of privacy and performance, along with full font customization and instant sharing via WhatsApp.",
-    "longDescription": "A comprehensive refactoring project of an Android application containing over 500 pages of Arabic content. It was developed following the MVVM architecture and Material 3 visual identity. The application features full support for working without an internet connection (Offline-First) without requesting any network permissions to ensure the highest levels of privacy and performance, along with full font customization and instant sharing via WhatsApp.",
-    "tech": ["Kotlin", "Jetpack Compose", "Android"],
+    "description": "Salam rebuilt from scratch as a native Android app in Kotlin: fully offline, with zero network permissions.",
+    "longDescription": "I rebuilt Salam from scratch as a native Android app, going beyond the original Flutter version. It carries over 500 pages of Arabic content on the MVVM architecture with a Material 3 look. The app runs fully offline and requests no network permissions, protecting privacy and performance, with complete font customization and instant WhatsApp sharing.",
+    "tech": [
+      "Kotlin",
+      "Jetpack Compose",
+      "Android"
+    ],
     "github": "https://github.com/islamux/salam-kotlin",
     "apk": "https://github.com/islamux/salam-kotlin/releases/tag/v1.0",
     "image": "/images/projects/salam-kotlin-cover.webp",
@@ -39,9 +52,12 @@
   {
     "id": "athkarix",
     "name": "Athkarix",
-    "description": "Islamic Athkar app built with Flutter",
-    "longDescription": "An Islamic app featuring daily supplications (Athkar), and Quranic verses. Built with Flutter for cross-platform compatibility.",
-    "tech": ["Flutter", "Dart"],
+    "description": "A daily Athkar and supplications app with Quranic verses, built with Flutter.",
+    "longDescription": "Athkarix gathers daily supplications (Athkar) and Quranic verses in a simple, content-focused interface. I built it with Flutter so it runs on both Android and iOS.",
+    "tech": [
+      "Flutter",
+      "Dart"
+    ],
     "github": "https://github.com/islamux/Athkarix",
     "apk": "https://github.com/islamux/Athkarix/releases/download/v1.0.2/app-v1.0.2.apk",
     "demo": "https://athkarix.netlify.app",
@@ -52,9 +68,13 @@
   {
     "id": "portfolio",
     "name": "Developer Portfolio",
-    "description": "Modern portfolio site built with Next.js 15 and TypeScript",
-    "longDescription": "A fully responsive, multilingual portfolio website featuring dark mode, SEO optimization, and PWA capabilities. Demonstrates best practices in modern web development.",
-    "tech": ["Next.js", "TypeScript", "Tailwind CSS"],
+    "description": "This website: a multilingual portfolio showcasing my projects, with dark mode and PWA support.",
+    "longDescription": "The site you are browsing: a fully responsive, five-language portfolio presenting my work and journey. I built it with Next.js, TypeScript, and Tailwind CSS, with light and dark themes, SEO optimization, PWA support, and a right-to-left Arabic interface.",
+    "tech": [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS"
+    ],
     "github": "https://github.com/islamux/dev-portfolio",
     "demo": "https://dev-portfolio-ashen.vercel.app",
     "image": "/images/projects/portfolio.webp",
@@ -64,9 +84,16 @@
   {
     "id": "voices-of-truth",
     "name": "Voices of Truth",
-    "description": "A multilingual directory of renowned Islamic scholars and preachers with Arabic RTL and English LTR support, featuring server-side filtering and smooth Framer Motion animations.",
-    "longDescription": "Voices of Truth is a sophisticated web application that serves as a comprehensive directory of Islamic scholars and preachers worldwide. Built with Next.js 15 and leveraging Server Components for optimal performance, it features seamless internationalization supporting both Arabic (RTL) and English (LTR). The application includes advanced filtering capabilities by category, country, and language, along with a powerful search functionality. With a beautiful, responsive design enhanced by Framer Motion animations and a custom dark/light theme system, it demonstrates modern full-stack development practices and accessibility standards.",
-    "tech": ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "react-i18next"],
+    "description": "A multilingual directory of Islamic scholars worldwide, with search and filtering by category, country, and language.",
+    "longDescription": "Voices of Truth brings profiles of Islamic scholars and preachers worldwide together in one place. I built it with Next.js Server Components for fast performance, supporting Arabic (RTL) and English (LTR). It offers search and filtering by category, country, and language, with a responsive interface, Framer Motion animations, and light and dark themes.",
+    "tech": [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "react-i18next"
+    ],
     "github": "https://github.com/islamux/voices-of-truth",
     "demo": "https://voices-of-truth.vercel.app",
     "image": "/images/projects/voice-of-truth.webp",
@@ -76,9 +103,13 @@
   {
     "id": "khwater",
     "name": "Khwater",
-    "description": "Spiritual and intellectual reflections inspired by Islamic values, bringing the beauty of Islamic reflection into the digital world.",
-    "longDescription": "Khwater – Reflections on Faith & Life is a comprehensive spiritual application that presents Arabic, accessible, and elegant digital writings in a modern form. Originally built with Flutter, this project was fully migrated to Next.js (TypeScript) following a structured 7-phase migration plan. The application features PWA capabilities with offline mode, light/dark theme support, bookmarks functionality, advanced search, and full Arabic language support. Built with performance in mind using SSG and ISR, ensuring fast loading times while maintaining WCAG AA accessibility compliance and SEO optimization.",
-    "tech": ["Next.js", "TypeScript", "Tailwind CSS"],
+    "description": "Arabic spiritual and intellectual reflections in a calm reading experience that works offline.",
+    "longDescription": "Khwater collects Arabic spiritual and intellectual writings inspired by Islamic values, presented in a modern interface designed for comfortable reading. I migrated it fully from Flutter to Next.js through a structured, multi-phase plan, focusing on performance, offline support, and SEO. It includes bookmarks, search, light and dark themes, and offline reading.",
+    "tech": [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS"
+    ],
     "github": "https://github.com/islamux/khwater",
     "demo": "https://khwater.vercel.app",
     "image": "/images/projects/khwater.webp",
@@ -88,20 +119,30 @@
   {
     "id": "huawei-router-control",
     "name": "Huawei Router Control",
-    "description": "Advanced router management and control system for Huawei devices",
-    "longDescription": "A comprehensive router management system designed specifically for Huawei routers. This project provides advanced control features, monitoring capabilities, and automation tools for Huawei networking devices. Built with modern web technologies, it offers a user-friendly interface for managing router settings, monitoring network performance, and implementing security features.",
-    "tech": ["JavaScript", "Node.js", "Express", "React"],
+    "description": "A web tool for managing Huawei routers: settings, network monitoring, and automation.",
+    "longDescription": "A management tool designed specifically for Huawei routers. It provides advanced controls, monitoring, and automation through a simple web interface for adjusting router settings, watching network performance, and applying security measures. Built with Node.js, Express, and React.",
+    "tech": [
+      "JavaScript",
+      "Node.js",
+      "Express",
+      "React"
+    ],
     "github": "https://github.com/islamux/huawei-router-controle",
     "featured": true,
     "year": "2024"
   },
-
   {
     "id": "new-muslims",
     "name": "New Muslim Stories",
-    "description": "A multilingual platform showcasing inspiring stories of people who embraced Islam from around the world.",
-    "longDescription": "New Muslim Stories is a modern, content-driven web application built with Next.js and TypeScript. It presents real-life stories of individuals who embraced Islam, highlighting their journeys, backgrounds, and moments of guidance. The platform focuses on a calm, spiritual user experience with multilingual support (Arabic RTL and English LTR), advanced filtering by country or background, search functionality, daily featured stories, and elegant animations using Framer Motion. Content is managed via Markdown or CMS, with a strong emphasis on accessibility, responsiveness, and emotional storytelling.",
-    "tech": ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "next-intl"],
+    "description": "A multilingual platform telling real stories of people who embraced Islam, with search and daily featured stories.",
+    "longDescription": "A content-driven platform presenting real stories of people who embraced Islam: their journeys, backgrounds, and moments of guidance. I built it with Next.js and TypeScript in a calm, spiritual tone, supporting Arabic (RTL) and English (LTR). It includes filtering by country or background, search, a daily featured story, and gentle Framer Motion animations, with special care for accessibility.",
+    "tech": [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "next-intl"
+    ],
     "github": "https://github.com/islamux/new-muslim-stories",
     "demo": "https://new-muslim-stories.vercel.app/en",
     "image": "/images/projects/new-muslims-stories.webp",
@@ -111,9 +152,14 @@
   {
     "id": "bassaer",
     "name": "Bassaer (بصائر)",
-    "description": "A modern, premium digital reading platform showcasing the Arabic book 'Insights into the Universe, Life, and Religion'.",
-    "longDescription": "Bassaer is a beautifully designed, modern digital reading platform built with Next.js 15 App Router. It transforms a classical Arabic PDF book into an interactive, zero-latency web application with beautiful RTL typography using the Tajawal font. The Python-based extraction phase uses PyMuPDF to parse and segment the 900+ page book into structured Markdown chapters. The web platform then renders these with react-markdown and features an elegant 'Parchment & Ink' light/dark mode, a sticky sidebar table of contents, and smooth sequential navigation for the ultimate reading experience.",
-    "tech": ["Next.js", "TypeScript", "Tailwind CSS", "Python"],
+    "description": "A digital reading platform turning the book Basaer into a fast web app with authentic Arabic typography.",
+    "longDescription": "Bassaer brings Dr. Haitham Talaat's book, Insights into the Universe, Life, and Religion, to the web. I converted the 900+ page Arabic PDF into a fast web application with authentic Tajawal typography, using Python and PyMuPDF to extract the book into Markdown chapters rendered through Next.js App Router. The platform offers an elegant parchment-and-ink light and dark reading mode, a sticky table of contents, and smooth chapter navigation.",
+    "tech": [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Python"
+    ],
     "github": "https://github.com/islamux/bassaer",
     "demo": "https://bassaer.vercel.app",
     "image": "/images/projects/bassaer.webp",
@@ -123,9 +169,13 @@
   {
     "id": "athkari",
     "name": "Athkari",
-    "description": "A minimalist Islamic application rebuilt from scratch as a native Android app using Kotlin and MVVM architecture, achieving a remarkable ~2 MB footprint.",
-    "longDescription": "A minimalist Islamic application that combines comprehensive spiritual content with a clean, distraction-free user experience. Following the initial Flutter version, the app was completely rewritten from scratch as a Native Android application using Kotlin and the MVVM architecture. Embodying a strictly minimalist design philosophy, 'Azkari' eliminates unnecessary visual clutter and advertisements, bringing the final APK size down to a remarkably lightweight ~2 MB. Features include an Offline-First approach, Daily Fortress (Morning, Evening, and Before-Sleep Supplications), Virtues & Formulations Guide, and an Integrated Digital Library containing the Book of Athkar and the Beautiful Names of Allah.",
-    "tech": ["Kotlin", "Jetpack Compose", "Android"],
+    "description": "A native Android rewrite of Athkari in Kotlin: about 2 MB, offline, and ad-free.",
+    "longDescription": "An Islamic app pairing rich content with a deliberately minimal design. After the first Flutter version, I rewrote it from scratch as native Android in Kotlin with MVVM, choosing a minimalist, ad-free approach that keeps the APK around 2 MB. It works fully offline and includes the daily Fortress of the Muslim (morning, evening, and sleep Athkar), a virtues and formulas guide, and a built-in digital library.",
+    "tech": [
+      "Kotlin",
+      "Jetpack Compose",
+      "Android"
+    ],
     "github": "https://github.com/islamux/athkari-kotlin",
     "apk": "https://github.com/islamux/athkari-kotlin/releases/download/v1.1.0/app-release.apk",
     "image": "/images/projects/athkari-kotlin-cover.webp",
@@ -135,9 +185,16 @@
   {
     "id": "fi-dhilal-al-quran",
     "name": "Fi Dhilal al-Quran",
-    "description": "A fully offline digital reader for Sayyid Qutb's monumental tafsir, featuring full-text search across 110 surahs, dark/light themes, bookmarks, verse highlighting, and PWA support.",
-    "longDescription": "في ظلال القرآن (Fi Dhilal al-Quran — 'In the Shades of the Quran') is a comprehensive digital reader for Sayyid Qutb's monumental Quranic exegesis. Built as an SPA with React 19 and TypeScript, it contains 110 surahs with 305 verse-range sections of tafsir text — all stored locally with no external API dependencies. Features include blazing-fast full-text search with word-match scoring, a gilded gold dark/light theme system, surah/verse bookmarks with optional Supabase cloud sync, reading history tracking, Quranic verse highlighting, Juz-based navigation, and full PWA offline support. The ~18MB tafsir dataset is lazy-loaded on demand.",
-    "tech": ["React", "TypeScript", "Tailwind CSS", "Express", "Supabase", "Framer Motion"],
+    "description": "An offline reader for Sayyid Qutb's tafsir with full-text search across 110 surahs and verse highlighting.",
+    "longDescription": "A complete digital reader for Sayyid Qutb's tafsir, built as a React 19 single-page app. It ships 110 surahs and 305 tafsir sections stored locally with no external API calls. Features include fast full-text search with match scoring, gold-toned light and dark themes, bookmarks with optional Supabase sync, reading history, verse highlighting, Juz navigation, and full offline support; the roughly 18 MB dataset loads on demand.",
+    "tech": [
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Express",
+      "Supabase",
+      "Framer Motion"
+    ],
     "github": "https://github.com/islamux/fi-dhilal-al-quran",
     "demo": "https://fi-dhilal-al-quran.vercel.app",
     "image": "/images/projects/fi-dhilal-cover.webp",
@@ -147,9 +204,14 @@
   {
     "id": "badeel-atr2",
     "name": "Badeel Atr 2",
-    "description": "A single-file interactive Arabic guide to the highest-rated men's perfumes, each paired with a trusted Arabic or budget-friendly alternative — with notes, longevity and sillage ratings, and similarity scores.",
-    "longDescription": "بديل عطر ٢ (Badeel Atr 2) is a zero-dependency, single-file (perfumes.html) interactive guide showcasing top-rated men's fragrances alongside a carefully chosen Arabic or economical alternative for each one. It features ten colour-coded fragrance families with programmatically generated SVG bottles (no images or assets), instant search with Arabic letter normalisation (diacritics, aleph, ة/ه, ى/ي), filtering by family, house, and favourites plus a 'blind-buy' toggle, multi-criteria sorting, colour-graded similarity badges (twin / strong match / close / similar spirit), URL state persistence, and JSON-LD structured data for SEO. Fully RTL, UTF-8 with Arabic-Indic numerals, and respects prefers-reduced-motion.",
-    "tech": ["HTML", "CSS", "JavaScript", "SVG"],
+    "description": "A single-file Arabic guide pairing top-rated men's fragrances with trusted, budget-friendly alternatives.",
+    "longDescription": "Badeel Atr 2 is a zero-dependency, single-file interactive guide pairing highly rated men's fragrances with a carefully chosen Arabic or budget alternative for each. Ten color-coded fragrance families use programmatically generated SVG bottles, with instant search that normalizes Arabic letters, filtering by family and house, multi-criteria sorting, and color-graded similarity badges for every alternative. State persists in the URL, with JSON-LD structured data, full RTL support, and reduced-motion respect.",
+    "tech": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "SVG"
+    ],
     "github": "https://github.com/islamux/badilatr2",
     "demo": "https://badeelatr.islamux.me/",
     "image": "/images/projects/badeelatr-cover.webp",
@@ -159,9 +221,14 @@
   {
     "id": "alshaebsweets",
     "name": "Shaab Sweets (حلويات الشعب)",
-    "description": "Offline-first PWA storefront for a 50-year-old Yemeni sweets shop in Taiz — cart, checkout, order tracking, and staff admin, all in the browser.",
-    "longDescription": "A static storefront for Shaab Sweets in Taiz, Yemen — 50 years of Yemeni & Adeni sweets. Built with Vite and vanilla ES modules with zero runtime dependencies, it ships as an installable offline-first PWA: a Workbox service worker precaches the whole store so it works with no internet. Cart, multi-step checkout, order tracking, and a staff admin panel (orders, prices, delivery fees, special requests) run entirely client-side and persist to localStorage. Arabic-first RTL design with hand-drawn SVG art and a WhatsApp order flow.",
-    "tech": ["Vite", "JavaScript", "PWA", "Workbox"],
+    "description": "An offline-first PWA storefront for a 50-year Taiz sweets shop: cart, tracking, and staff admin in the browser.",
+    "longDescription": "A storefront for Shaab Sweets in Taiz, Yemen, home to fifty years of Yemeni and Adeni sweets. I built it with Vite and vanilla ES modules with zero runtime dependencies, shipping as an installable offline-first PWA: a Workbox service worker precaches the entire store. Cart, multi-step checkout, order tracking, and a staff admin panel run entirely client-side with localStorage persistence, in an Arabic-first RTL design with hand-drawn SVG art and WhatsApp ordering.",
+    "tech": [
+      "Vite",
+      "JavaScript",
+      "PWA",
+      "Workbox"
+    ],
     "github": "https://github.com/islamux/alshaebsweets",
     "demo": "https://alshaebsweets.vercel.app",
     "image": "/images/projects/alshaebsweets.webp",
@@ -171,9 +238,14 @@
   {
     "id": "assma-hussna-nabulsi",
     "name": "Assma El-Housna (أسماء الله الحسنى)",
-    "description": "An Arabic web application presenting 100 grouped Names of Allah (Asma Allah Al-Husna) with detailed explanations from Dr. Muhammad Ratib Al-Nabulsi's lectures.",
-    "longDescription": "أسماء الله الحسنى (Assma El-Housna) is an Arabic-language encyclopedia of the Beautiful Names of Allah. Built with Next.js static site generation, it renders 100 pre-generated name pages with full Arabic content, each explaining the name's meaning from Dr. Muhammad Ratib Al-Nabulsi's lecture transcripts. It features a fuzzy search (Fuse.js) across all names and content, bookmarks saved in localStorage, light/dark theme detection, an adjustable font size (14–28px), Web Share API support, full RTL layout with proper Arabic typography (Amiri and Noto Naskh Arabic fonts), and a fully responsive design.",
-    "tech": ["Next.js", "TypeScript", "Tailwind CSS", "Fuse.js"],
+    "description": "An Arabic encyclopedia of 100 Names of Allah, explained through Dr. Al-Nabulsi's lectures.",
+    "longDescription": "An Arabic encyclopedia of the Beautiful Names of Allah, each explained in depth from Dr. Muhammad Ratib Al-Nabulsi's lectures. Built with Next.js static generation, it pre-renders 100 name pages with full Arabic content. It includes Fuse.js fuzzy search, bookmarks saved locally, adjustable font size, light and dark themes, Web Share support, and a complete RTL layout with proper Arabic typography.",
+    "tech": [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Fuse.js"
+    ],
     "github": "https://github.com/islamux/assma-hussna-nabulsi",
     "demo": "https://assma-hussna-nabulsi.vercel.app",
     "image": "/images/projects/assma_hussna.webp",
@@ -183,9 +255,13 @@
   {
     "id": "istighfar-stories",
     "name": "Istighfar Stories",
-    "description": "A bilingual (Arabic/English) storytelling platform presenting real-life stories about the virtue of Istighfar (seeking forgiveness) and its transformative effect on people's lives.",
-    "longDescription": "Istighfar Stories (قصص المستغفرين) is a bilingual Arabic/English web platform for real-life and inspired stories about the virtue of Istighfar (seeking forgiveness), aiming to inspire users and connect them with mercy and forgiveness in Islam. Built with Next.js, TypeScript, and Tailwind CSS, stories are authored in Markdown with frontmatter and rendered in a clean, focused reading experience. It features full internationalization with Arabic RTL and English LTR layouts, story categories with search and filtering, light/dark theme support, and a fully responsive modern UI.",
-    "tech": ["Next.js", "TypeScript", "Tailwind CSS"],
+    "description": "A bilingual platform sharing real and inspired stories about the virtue of Istighfar.",
+    "longDescription": "Istighfar Stories is a bilingual Arabic and English platform for real-life and inspired stories about seeking forgiveness and its effect on people's lives. I built it with Next.js, TypeScript, and Tailwind CSS; stories are authored in Markdown and presented in a clean reading experience, with full RTL and LTR support, story categories, search, filtering, and light and dark themes.",
+    "tech": [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS"
+    ],
     "github": "https://github.com/islamux/istighfar-stories",
     "demo": "https://istighfar-stories.vercel.app",
     "image": "/images/projects/istigfar.webp",
@@ -195,11 +271,36 @@
   {
     "id": "kunuz",
     "name": "Kunuz (كنوز من السنة النبوية)",
-    "description": "A free, open-source encyclopedia of 140 authenticated Prophetic hadiths ('treasures'), featuring smart Arabic search, daily treasure rotation, favorites, tasbeeh counter, and text-to-speech.",
-    "longDescription": "Kunuz is a comprehensive, open-source encyclopedia of 140 authenticated Prophetic hadiths curated from Sheikh Mahmoud Al-Masri's series. Features include smart Arabic search with diacritics support, daily treasure rotation, favorites with localStorage persistence, interactive tasbeeh counter with haptic feedback, daily sunnah checklist with streak tracking, Arabic text-to-speech, and direct sharing to WhatsApp and Telegram. Built with React 19, TypeScript, and Tailwind CSS v4.",
-    "tech": ["React", "TypeScript", "Tailwind CSS", "Vite"],
+    "description": "A free, open-source encyclopedia of 140 authenticated hadiths with smart Arabic search and a tasbeeh counter.",
+    "longDescription": "Kunuz is an open-source encyclopedia of 140 authenticated Prophetic hadiths curated from Sheikh Mahmoud Al-Masri's series, built with React 19, TypeScript, and Tailwind CSS v4. It offers smart Arabic search with diacritics support, a daily treasure rotation, favorites, an interactive tasbeeh counter with haptic feedback, a daily sunnah checklist with streak tracking, Arabic text-to-speech, and direct sharing to WhatsApp and Telegram.",
+    "tech": [
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Vite"
+    ],
     "github": "https://github.com/islamux/kunuz",
+    "demo": "https://kunuzsunnah.vercel.app/",
     "image": "/images/projects/kunuz.webp",
+    "featured": true,
+    "year": "2026"
+  },
+  {
+    "id": "al-majed-store",
+    "name": "Al Majed Perfumes (الماجد للعطور)",
+    "description": "A prototype Arabic perfume storefront for a Taiz oud house: catalog, cart, WhatsApp checkout, and admin.",
+    "longDescription": "Al Majed Perfumes is an Arabic-first e-commerce prototype for an oud and perfume house in Taiz, Yemen, built with Next.js 16, React 19, and TypeScript as an installable PWA. Shoppers browse 17 photographed products, pick size variants, and check out through a locally persisted guest cart that sends one structured WhatsApp message; with the database configured, orders are recorded in PostgreSQL with server-recomputed prices and sequential numbers (MJ-0001). A password-protected admin dashboard manages orders, the catalog, taxonomy, and store settings, with order snapshots so later catalog edits never rewrite filed orders. Product names and images are confirmed; prices, stock, sizes, delivery areas, and some category details are provisional.",
+    "tech": [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Prisma",
+      "PostgreSQL",
+      "PWA"
+    ],
+    "github": "https://github.com/islamux/al-majed-store",
+    "demo": "https://al-majed-store.vercel.app/",
+    "image": "/images/projects/almajed-portoflio.webp",
     "featured": true,
     "year": "2026"
   }

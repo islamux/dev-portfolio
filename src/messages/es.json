@@ -1,4 +1,33 @@
 {
+  "nav": {
+    "home": "Inicio",
+    "about": "Sobre mí",
+    "projects": "Proyectos",
+    "contact": "Contacto"
+  },
+  "home": {
+    "hero": {
+      "title": "Hola, soy Fathi",
+      "subtitle": "Desarrollador full-stack apasionado por el código abierto",
+      "cta": {
+        "projects": "Ver proyectos",
+        "contact": "Contáctame"
+      }
+    },
+    "featured": {
+      "title": "Proyectos destacados",
+      "viewAll": "Ver todos",
+      "viewAllEnd": "Ver todos"
+    },
+    "card": {
+      "code": "Código",
+      "demo": "Proyecto de código abierto"
+    }
+  },
+  "about": {
+    "title": "Sobre mí",
+    "description": "Conoce mi camino como desarrollador"
+  },
   "images": {
     "projects": {
       "new_muslims": {
@@ -27,7 +56,7 @@
     },
     "card": {
       "code": "Código",
-      "demo": "Proyecto completo (Código abierto)"
+      "demo": "Proyecto de código abierto"
     }
   },
   "contact": {
@@ -39,17 +68,17 @@
       "message": "Mensaje",
       "submit": "Enviar mensaje",
       "sending": "Enviando...",
-      "success": "¡Mensaje enviado con éxito! Le responderé pronto.",
-      "error": "Error al enviar el mensaje. Inténtelo de nuevo."
+      "success": "¡Mensaje enviado con éxito! Te responderé pronto.",
+      "error": "Error al enviar el mensaje. Inténtalo de nuevo."
     },
     "other": {
-      "title": "Otras Formas de Contactarme"
+      "title": "Otras formas de contactarme"
     }
   },
   "footer": {
     "about": {
       "title": "Acerca de",
-      "text": "Desarrollador full-stack apasionado por el código abierto y por crear excelentes experiencias de usuario."
+      "text": "Desarrollador full-stack apasionado por el código abierto y por crear experiencias de usuario cuidadas."
     },
     "quickLinks": {
       "title": "Enlaces rápidos"

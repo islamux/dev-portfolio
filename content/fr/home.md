@@ -4,6 +4,6 @@ description: "Développeur full-stack passionné par l'open source"
 image: "/images/hero.jpg"
 ---
 
-Je crée des applications web et mobiles modernes en utilisant les technologies les plus récentes. Passionné par les projets open source et la création d'expériences utilisateur exceptionnelles.
+Je conçois des applications web et mobiles modernes, en veillant aux petits détails qui rendent une interface agréable. Je crois dans l'open source et dans le partage de ce que j'apprends.
 
 [Découvrir mon parcours et mon expertise →](/fr/about)

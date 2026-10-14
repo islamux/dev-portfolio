@@ -80,6 +80,13 @@ test_url "/en/projects/salam-app-flutter/"
 test_url "/en/projects/salam-kotlin/"
 test_url "/ar/projects/salam-app-flutter/"
 
+# — al-majed-store project detail pages —
+test_url "/en/projects/al-majed-store/"
+test_url "/ar/projects/al-majed-store/"
+test_url "/fr/projects/al-majed-store/"
+test_url "/es/projects/al-majed-store/"
+test_url "/tr/projects/al-majed-store/"
+
 # — root pages (no trailing slash → 301 redirect to trailing slash) —
 test_url "/"
 test_url "/en" 301
