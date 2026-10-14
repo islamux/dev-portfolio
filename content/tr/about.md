@@ -6,7 +6,7 @@ date: "2025-11-24"
 
 İşletme Bölümü mezunuyum ve hâlen Yemen’de İnsan Kaynakları Yöneticisi olarak görev yapıyorum. Kurumsal dünyanın ötesinde, asıl tutkum Açık Kaynak yazılımlar ve programlamadır. Bu tutku, teknik becerilerimi geliştirmemi sağlamış ve beni kendi kendini yetiştirmiş bir geliştirici hâline getirmiştir.
 
-Programlama ve dillerin dünyaya açılan köprüler olduğuna inanıyorum. Yönetim tecrübemi, dil becerilerimi ve teknik merakımı birleştirerek kişisel projeler ve başkalarına hizmet eden projeler üretmeyi hedefliyorum.
+Programlama ve dillerin dünyaya açılan köprüler olduğuna inanıyorum. Yönetim tecrübemi, dil becerilerimi ve teknik merakımı birleştirerek sade ama anlamlı kişisel projeler üretmeyi hedefliyorum.
 
 ## 🗣️ Diller & İletişim
 

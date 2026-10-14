@@ -7,7 +7,7 @@ date: "2025-11-24"
 
 Soy graduado en Administración de Empresas y actualmente trabajo como Gerente de Recursos Humanos en Yemen. Más allá del mundo corporativo, mi gran pasión es el Software Libre y el Código Abierto, un hobby que me ha llevado a formarme como desarrollador autodidacta.
 
-Creo que la programación y los idiomas son puentes hacia el mundo. Me esfuerzo por combinar mi experiencia en gestión, mis habilidades lingüísticas y mi curiosidad técnica para crear proyectos personales y proyectos al servicio de los demás.
+Creo que la programación y los idiomas son puentes hacia el mundo. Me esfuerzo por combinar mi experiencia en gestión, mis habilidades lingüísticas y mi curiosidad técnica para crear proyectos personales simples pero significativos.
 
 ## 🗣️ Idiomas y Comunicación
 

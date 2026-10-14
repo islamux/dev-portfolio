@@ -7,7 +7,7 @@ date: "2025-11-24"
 
 I am a Business Administration graduate currently serving as an HR Manager in Yemen. Beyond the corporate world, my true passion lies in Open Source software and programming, a hobby that has shaped my technical skills and made me a dedicated self-taught developer.
 
-I believe that programming and languages are bridges to the world. I strive to blend my managerial expertise, linguistic skills, and technical curiosity to build personal projects and projects that serve others.
+I believe that programming and languages are bridges to the world. I strive to blend my managerial expertise, linguistic skills, and technical curiosity to build simple yet meaningful personal projects.
 
 ## 🗣️ Languages & Communication
 
