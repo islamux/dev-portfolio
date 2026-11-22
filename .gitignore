@@ -53,3 +53,8 @@ graphify-out/
 # Build artifacts
 build.log
 *.log
+.env
+.env.*
+*.key
+*.p12
+*.pfx
